@@ -18,4 +18,4 @@ store.subscribe(() => {
 
 -
 
-> Let's use Redux with React. [Continue >](react-redux.md)
+> Let's recap what we've learned. [Continue >](recap.md)
