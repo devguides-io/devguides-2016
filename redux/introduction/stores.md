@@ -1,5 +1,7 @@
 # Stores
 
+Think of Redux as a way to manage a store of data.
+
 ```js
 article = {
   title: 'Global Warming',
@@ -8,7 +10,7 @@ article = {
 }
 ```
 
-Think of Redux as a way to manage a store of data. In fact, you may have already done this: the example above is a plain JS object that stores data.
+In fact, you may have already done this: the example above is a plain JS object that stores data.
 
 ```js
 console.log(article.title)  // <- Read
