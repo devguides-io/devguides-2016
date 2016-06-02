@@ -1,4 +1,4 @@
-# Block scoping recursion
+# Nested blocks
 
 Variables defined using `let` and `const` are available only inside `{...}` blocks, and other blocks inside them.
 

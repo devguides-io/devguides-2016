@@ -17,7 +17,7 @@ if (hidden) { /*...*/ }
 else { /*...*/ }
 try { /*...*/ }
 catch (e) { /*...*/ }
-finaly { /*...*/ }
+finally { /*...*/ }
 switch (state) { /*...*/ }
 for (;;) { /*...*/ }
 while (true) { /*...*/ }
@@ -25,4 +25,4 @@ while (true) { /*...*/ }
 
 -
 
-> What about blocks inside blocks? [Continue >](recap.md)
+> What about blocks inside blocks? [Continue >](nested-blocks.md)

@@ -14,4 +14,4 @@ App = {
 
 -
 
-What's `handler` up there? [Continue >](object-shorthand.md)
+> What's `handler` up there mean? [Continue >](object-shorthand.md)
