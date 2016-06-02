@@ -1,6 +1,6 @@
 # Redux
 
-Redux, pocket-explained.
+[Redux](http://redux.js.org/) is used to manage data in a React application.
 
 * [Introduction](introduction/stores.md) ([recap](introduction/recap.md))
 * [Actions](actions/actions.md) ([recap](actions/recap.md))
