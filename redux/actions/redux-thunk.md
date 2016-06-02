@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux'
 store = createStore(reducer, {}, applyMiddleware(reduxThunk))
 ```
 
-> ↳ redux-thunk is a **middleware**: a plugin that extends `dispatch()` to do more things.
+> ↳ redux-thunk is a **middleware**: a plugin that extends `dispatch()` to do more things. [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
 
 ```js
 function load (dispatch, getState) {

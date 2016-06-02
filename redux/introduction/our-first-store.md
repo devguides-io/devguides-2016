@@ -6,6 +6,8 @@ reducer = /*...*/
 store = createStore(reducer, article)
 ```
 
+> ↳ Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
+
 ```js
 //# Reading from the store
 state = store.getState()
