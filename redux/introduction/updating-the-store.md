@@ -16,6 +16,7 @@ function articleStore (state, action) {
 > ↳ Reducers take the current state and return a new one. How it changes the store depends on the *action*.
 
 ```js
+import { createStore } from 'redux'
 store = createStore(articleStore, article)
 ```
 
@@ -28,7 +29,7 @@ store.dispatch({ type: 'PUBLISH' })
 store.getState().published  //=> true
 ```
 
-> ↳ To run an action, use `dispatch()`.
+> ↳ To run an action, use `dispatch()`. This changes the store's **state**.
 
 -
 

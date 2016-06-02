@@ -11,7 +11,7 @@ createStore(reducer, {/*[ initial state ]*/})
 
 ```js
 function reducer (state, action) {
-  if (state === 'PUBLISH') {
+  if (action.type === 'PUBLISH') {
     return { ...state, published: true }
   }
   return state
