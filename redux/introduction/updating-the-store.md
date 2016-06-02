@@ -13,7 +13,7 @@ function articleStore (state, action) {
 }
 ```
 
-> ↳ Reducers take the current state and return a new one. How it changes the store depends on the *action*. [(docs)](http://redux.js.org/docs/basics/Reducers.html)
+> ↳ Reducers take the current state and return a new one. How it changes the store depends on `action`. [(docs)](http://redux.js.org/docs/basics/Reducers.html)
 
 ```js
 import { createStore } from 'redux'

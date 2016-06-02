@@ -4,7 +4,7 @@
 return { ...state, published: true }
 ```
 
-The `...` symbol is the **object spread operator**. That line is roughly the same as this:
+The `...` symbol is the **object spread operator**. [(docs)](http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html) That line is roughly the same as this:
 
 ```js
 return {
