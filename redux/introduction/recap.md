@@ -35,4 +35,4 @@ store.subscribe(() => { /*...*/ })
 
 -
 
-> Let's use Redux with React. [Continue >](../react/react-redux.md)
+> Let's learn more about actions. [Continue >](../actions/actions.md)
