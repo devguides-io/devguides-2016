@@ -1,31 +1,28 @@
 # Block scoping
 
-`let` and `const` are said to be "block scoping". In JavaScript, a block is code inside `{...}`, such as:
+`let` and `const` are said to be "block scoping." In JavaScript, a block is code inside `{...}`. These variables are only available inside their blocks.
+
+```js
+if (true) {
+  let a = 'hello'
+}
+console.log(a)  //=> undefined
+```
+
+There are more blocks than `if`s:
 
 ```js
 function greet () { /*...*/ }
 if (hidden) { /*...*/ }
-try { /*...*/ } catch (e) { /*...*/ }
+else { /*...*/ }
+try { /*...*/ }
+catch (e) { /*...*/ }
+finaly { /*...*/ }
 switch (state) { /*...*/ }
-```
-
-Variables defined using `let` and `const` are available only inside these blocks, and other blocks inside them.
-
-```js
-function run (user) {
-  if (user) {
-    let running = user.state === 'running'
-    if (running) {
-      /*[ `running` is still available here ]*/
-    } else {
-      /*[ and here, too ]*/
-    }
-  } else {
-    /*[ but not here! ]*/
-  }
-}
+for (;;) { /*...*/ }
+while (true) { /*...*/ }
 ```
 
 -
 
-> Learn recap what we've learned. [Continue >](recap.md)
+> What about blocks inside blocks? [Continue >](recap.md)
