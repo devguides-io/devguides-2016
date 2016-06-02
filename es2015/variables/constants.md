@@ -12,4 +12,4 @@ function greet (user) {
 
 -
 
-> Learn what's new with strings. [Continue >](template-strings.md)
+> What is block scoping? [Continue >](block-scoping.md)
