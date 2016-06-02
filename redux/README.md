@@ -2,8 +2,8 @@
 
 [Redux](http://redux.js.org/) is used to manage data in a React application.
 
-* __[Introduction](introduction/stores.md)__ ([recap](introduction/recap.md))
-* __[Actions](actions/actions.md)__ ([recap](actions/recap.md))
+* __[Introduction](introduction/README.md)__ ([recap](introduction/recap.md))
+* __[Actions](actions/README.md)__ ([recap](actions/recap.md))
 * _...more to come soon!_
 
 -
