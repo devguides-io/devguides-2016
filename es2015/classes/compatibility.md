@@ -5,7 +5,7 @@ Classes are simply syntactic sugar over ES5's prototypes. In fact, these two are
 ```js
 class Circle {
   constructor (r) { this.radius = r }
-  getDiameter () { return this.r * 2 }
+  getDiameter () { return this.radius * 2 }
 }
 ```
 

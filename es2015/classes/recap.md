@@ -18,4 +18,4 @@ c = new Circle(10)
 
 -
 
-> How do you define methods? [Continue >](methods.md)
+> Let's learn about strings. [Continue >](../strings/README.md)

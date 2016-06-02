@@ -4,11 +4,11 @@ Let me try to explain complicated things in simple ways. Every guide here follow
 
 ## Let's learn
 
-* [Redux](redux/README.md)
-* [ES2015](es2015/README.md)
+* __[Redux](redux/README.md)__
+* __[ES2015](es2015/README.md)__
 * _...more to come soon!_
 
-This is a big work-in-progress. Many sections haven't been written yet.
+_This is a big work-in-progress. Many sections haven't been written yet._
 
 ## Thanks
 

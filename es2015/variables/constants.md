@@ -5,10 +5,12 @@
 ```js
 function greet (user) {
   const name = user.name
-  const name = 'Mr. ' + user.name // <-- Error
-  console.log('Hello, ' + name)
+  const name = name.toUpperCase()
+  //=> TypeError: Identifier 'name' has already been declared
 }
 ```
+
+Most guides now recommend using `let` and `const` instead of `var`.
 
 -
 
