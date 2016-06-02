@@ -35,4 +35,4 @@ store.subscribe(() => { /*...*/ })
 
 -
 
-> Let's learn more about actions. [Continue >](../actions/actions.md)
+> Let's learn more about actions. [Continue >](../actions/README.md)

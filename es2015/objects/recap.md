@@ -13,3 +13,5 @@ App = {
 ```
 
 -
+
+> Let's learn about strings. [Continue >](../strings/README.md)

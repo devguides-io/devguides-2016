@@ -14,3 +14,7 @@ hello
 world
 `;
 ```
+
+-
+
+> Why is it called a "template"? [Continue >](tagged-templates.md)

@@ -1,14 +1,19 @@
 # Computed properties
 
-You can write computed properties.
+You can write properties with key names derived from expressions.
 
 ```js
-var n = 'answer'
-App = {
-  [ 'prop_' + n ]: 42
-}
+let id = 'john'
+let Users = { [id]: "John Frobisher" }
+Users.john //=> "John Frobisher"
+```
 
-App.prop_answer  //=> 42
+You would've written it like the long way in ES5:
+
+```js
+var id = 'john'
+var Users = {}
+Users[id] = "John Frobisher"
 ```
 
 -
