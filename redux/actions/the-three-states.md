@@ -15,4 +15,4 @@ API.get('/data.json')
 
 -
 
-Let's try to hook this up to our store. [Continue >](first-try.md)
+> Let's try to hook this up to our store. [Continue >](first-try.md)
