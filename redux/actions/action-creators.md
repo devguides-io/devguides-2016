@@ -18,7 +18,7 @@ export function deleteProject (id) { /*...*/ }
 export function createProject (id, data) { /*...*/ }
 ```
 
-> ↳ We just built **action creators**: functions that create an action. `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
+> ↳ We just built **action creators**: functions that create an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
 
 ```
 import { loadProject } from './actions'
