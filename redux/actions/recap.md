@@ -7,6 +7,8 @@
 export function publishProject (id) {
   return { type: 'PROJECT_UPDATE', id, published: true }
 }
+
+store.dispatch(publishProject(12))
 ```
 
 **redux-thunk** is a plugin that will allow you to pass functions to `dispatch()`. Great for asynchronous actions.
