@@ -11,9 +11,11 @@ function load (dispatch) {
     .catch(error =>
       dispatch({ type: 'LOAD_ERROR', error: error }))
 }
+
+load(store.dispatch)
 ```
 
-> ↳ Calling `load(store.dispatch)` will pull via AJAX and dispatch some events.
+> ↳ By passing `dispatch` to `load()`, it can dispatch events.
 
 But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`.
 

@@ -1,11 +1,11 @@
 # First try
 
-Let's try putting this logic in the reducer.
+Let's try putting this logic in the reducer. Let's add `API.get(...)` into it.
 
 ```js
 function reducer (state, action) {
   if (action.type === 'LOAD_START') {
-    fetchData().then(/*...*/).catch(/*...*/)
+    API.get('/data.json').then(/*[ ? ]*/).catch(/*[ ? ]*/)
     return { ...state, loading: true }
   } else {
     return state
@@ -15,7 +15,7 @@ function reducer (state, action) {
 createStore(reducer)
 ```
 
-We've ran into a problem here: you can't `dispatch()` inside a reducer, you have no access to the store! This is exactly how Redux was designed.
+We have a problem. You can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
 
 -
 

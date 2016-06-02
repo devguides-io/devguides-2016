@@ -1,15 +1,17 @@
 # The three states
 
-Each asynchronous action typically has 3 states: `loading`, `success`, and `error`. Imagine each action looking like this:
+Asynchronous processes typically have 3 states: `loading`, `success`, and `error`. Imagine it looking like this:
 
 ```js
 store.dispatch({ type: 'LOAD_START' })
-fetchData()
+API.get('/data.json')
   .then(data =>
     store.dispatch({ type: 'LOAD_FINISH', data: data }))
   .catch(error =>
     store.dispatch({ type: 'LOAD_ERROR', error: error }))
 ```
+
+> ↳ Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
 
 -
 
