@@ -5,7 +5,7 @@
 ```js
 import { createStore } from 'redux'
 
-store = createStore(/*...*/)
+var store = createStore(/*...*/)
 ```
 
 -

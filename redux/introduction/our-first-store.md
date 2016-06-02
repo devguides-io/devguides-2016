@@ -2,15 +2,15 @@
 
 ```js
 //# Creating our store
-reducer = /*...*/
-store = createStore(reducer, article)
+var reducer = /*...*/
+var store = createStore(reducer, article)
 ```
 
 > ↳ Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
 
 ```js
 //# Reading from the store
-state = store.getState()
+var state = store.getState()
 console.log(state.title) //=> 'Global Warming'
 ```
 

@@ -17,7 +17,7 @@ function articleStore (state, action) {
 
 ```js
 import { createStore } from 'redux'
-store = createStore(articleStore, article)
+var store = createStore(articleStore, article)
 ```
 
 > ↳ You'll need a reducer to use `createStore()`.

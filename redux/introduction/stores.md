@@ -3,7 +3,7 @@
 Think of Redux as a way to manage a store of data.
 
 ```js
-article = {
+var article = {
   title: 'Global Warming',
   published: false,
   body: /*...*/
