@@ -15,6 +15,8 @@ In ES2015, you can shorten this to:
 module.exports = { update, save }
 ```
 
+> ↳ `update` rolls out into `update: update`.
+
 You can use this shorthand anywhere in a `{...}` object.
 
 ```js
