@@ -1,6 +1,6 @@
 # The three states
 
-Asynchronous processes typically have 3 states: `loading`, `success`, and `error`. Imagine it looking like this:
+Processes are *asynchronous* when they take a long time, such as AJAX calls to load some data. They usually have 3 states: `pending`, `success`, and `error`. Imagine it looking like this:
 
 ```js
 store.dispatch({ type: 'LOAD_START' })

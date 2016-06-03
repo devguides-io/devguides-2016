@@ -1,20 +1,20 @@
 # Our first store
 
+Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
+
 ```js
-//# Creating our store
 var reducer = /*...*/
-var store = createStore(reducer, article)
+var store = createStore(reducer, album)
 ```
 
-> ↳ Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
+Read from the store using `getState()`.
 
 ```js
-//# Reading from the store
 var state = store.getState()
-console.log(state.title) //=> 'Global Warming'
+console.log(state.title) //=> 'Kind of Blue'
 ```
 
-Stores in Redux are similar: you can get data from it by checking its **state**. Writing data works a bit different, though. That's where `reducer` comes in.
+You can get data from store by checking its **state**. Writing data works a bit different, though. That's where `reducer` comes in.
 
 -
 

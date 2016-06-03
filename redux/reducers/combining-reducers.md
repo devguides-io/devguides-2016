@@ -1,8 +1,6 @@
 # Combining reducers
 
-Let's say you app has *articles* and *users*. If we put everything into one reducer, we'll be writing a very long function!
-
-There's a better way. Imagine your store state looks like this:
+Let's say you app has *articles* and *users*. If we put everything into one reducer, we'll be writing a very long function! There's a better way. Imagine your store state looks like this:
 
 ```js
 {
@@ -11,7 +9,7 @@ There's a better way. Imagine your store state looks like this:
 }
 ```
 
-You can use `combineReducers` to separate these two concerns to their own reducers. [(docs)](http://redux.js.org/docs/api/combineReducers.html)
+You can use `combineReducers` to make two reducers, each working on one part. [(docs)](http://redux.js.org/docs/api/combineReducers.html)
 
 ```js
 import { combineReducers, createStore } from 'redux'

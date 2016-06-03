@@ -2,8 +2,9 @@
 
 In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.
 
+##### actions.js
+
 ```js
-//# actions.js
 export function loadProject (id) {
   return function (dispatch) {
     dispatch({ type: 'PROJECT_LOADING', data })
@@ -18,15 +19,16 @@ export function deleteProject (id) { /*...*/ }
 export function createProject (id, data) { /*...*/ }
 ```
 
-> ↳ We just built **action creators**: functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
+We just built **action creators**: functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
 
-```
+```js
 import { loadProject } from './actions'
 
 store.dispatch(loadProject())
+//             ^-----------^
 ```
 
-> ↳ You can invoke these actions by passing the functions' results to `dispatch()`.
+> ↳ Invoke these actions by passing the functions' results to `dispatch()`.
 
 -
 

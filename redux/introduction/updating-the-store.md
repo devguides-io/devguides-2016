@@ -3,7 +3,6 @@
 You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through **reducer functions**.
 
 ```js
-//# Reducer function
 function reducer (state, action) {
   if (action.type === 'PUBLISH') {
     return { ...state, published: true }

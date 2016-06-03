@@ -1,20 +1,20 @@
 # Stores
 
-Think of Redux as a way to manage a store of data.
+Think of a store as a bunch of data.
 
 ```js
-var article = {
-  title: 'Global Warming',
-  published: false,
-  body: /*...*/
+var album = {
+  title: 'Kind of Blue',
+  artist: 'Miles Davis'
+  year: 1959
 }
 ```
 
 In fact, you may have already done this: the example above is a plain JS object that stores data.
 
 ```js
-console.log(article.title)  // <- Read
-article.published = true    // <- Write
+console.log(album.title)  // <- Read
+album.genre = 'Jazz'      // <- Write
 ```
 
 You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.

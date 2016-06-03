@@ -21,7 +21,7 @@ if (state === oldState) {
 
 > ↳ React does this under-the-hood to make rendering faster.
 
-If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes `state === oldState` true, even if they changed... making React skip doing updates.
+If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes `state === oldState` true even if they changed, making React skip doing updates.
 
 -
 

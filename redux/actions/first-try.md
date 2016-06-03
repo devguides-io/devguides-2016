@@ -5,7 +5,7 @@ Let's try putting this logic in the reducer. Let's add `API.get(...)` into it.
 ```js
 function reducer (state, action) {
   if (action.type === 'LOAD_START') {
-    API.get('/data.json').then(/*[ ? ]*/).catch(/*[ ? ]*/)
+    API.get('/data.json').then(/*[ ? ]*/).catch(/*[ ? ]*/) //@
     return { ...state, loading: true }
   } else {
     return state
