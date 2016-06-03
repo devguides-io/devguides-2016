@@ -44,3 +44,7 @@ These props are available in your components as `this.props`.
 <button onClick={() => this.props.onPublishClick()}>
 //                     ^-----------------------^
 ```
+
+-
+
+> Let's learn about redux middleware. [Continue >](../middleware/README.md)
