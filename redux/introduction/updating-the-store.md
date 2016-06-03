@@ -4,7 +4,7 @@ You can't change the store's state from outside the store. To do that, you'll ne
 
 ```js
 //# Reducer function
-function articleStore (state, action) {
+function reducer (state, action) {
   if (action.type === 'PUBLISH') {
     return { ...state, published: true }
   } else {
@@ -17,7 +17,7 @@ function articleStore (state, action) {
 
 ```js
 import { createStore } from 'redux'
-var store = createStore(articleStore, article)
+var store = createStore(reducer, article)
 ```
 
 > ↳ You'll need a reducer to use `createStore()`.

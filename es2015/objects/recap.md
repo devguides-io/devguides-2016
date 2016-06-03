@@ -1,4 +1,4 @@
-# Objects
+# Recap
 
 ES2015 offers some shorthand for writing objects.
 
@@ -14,4 +14,4 @@ App = {
 
 -
 
-> Let's learn about strings. [Continue >](../strings/README.md)
+> Let's learn about classes. [Continue >](../classes/README.md)

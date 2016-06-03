@@ -1,6 +1,6 @@
 # Constants
 
-`const` is just like `let`, except you can't modify its contents.
+`const` is just like *let*, except you can't modify its contents.
 
 ```js
 function greet (user) {
@@ -10,7 +10,7 @@ function greet (user) {
 }
 ```
 
-Most guides now recommend using `let` and `const` instead of `var`.
+Most guides now recommend using *let* and *const* instead of `var`.
 
 -
 

@@ -1,6 +1,6 @@
 # Second try
 
-Let's try putting that logic in a function outside the store.
+Let's try putting that logic in a function outside the store. Let's make a function.
 
 ```js
 function load (dispatch) {
@@ -17,7 +17,7 @@ load(store.dispatch)
 
 > ↳ By passing `dispatch` to `load()`, it can dispatch events.
 
-But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`.
+But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`. We can do better.
 
 -
 

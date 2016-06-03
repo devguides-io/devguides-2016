@@ -1,6 +1,6 @@
 # let vs. var
 
-`let` is scoped to a block instead. A `let` is only available inside that `{ ... }` block.
+`let` is scoped to a block instead. A *let* is only available inside that *{ ... }* block.
 
 ```js
 function greet (user) {
@@ -15,7 +15,9 @@ function greet (user) {
 }
 ```
 
-On the other hand, `var` is scoped to a function. If we changed `let` to `var` above, it'd work like you expect it.
+> ↳ Here, the `name`s are only available inside their respective *if* and *else* blocks.
+
+On the other hand, `var` is scoped to a function. If we changed *let* to *var* above, it'd work like you expect it.
 
 -
 

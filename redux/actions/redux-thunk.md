@@ -3,10 +3,10 @@
 Let's improve our design. [redux-thunk](https://www.npmjs.com/package/redux-thunk) is a plugin for Redux. It makes your `dispatch()` accept functions just like the one earlier.
 
 ```js
-import reduxThunk from 'redux-thunk'
+import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 
-store = createStore(reducer, {}, applyMiddleware(reduxThunk))
+store = createStore(reducer, {}, applyMiddleware(thunk))
 ```
 
 > ↳ redux-thunk is a **middleware**: a plugin that extends `dispatch()` to do more things. [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
