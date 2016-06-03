@@ -33,4 +33,4 @@ store = createStore(reducer, {}, applyMiddleware(reduxThunk))
 
 -
 
-> Let's use Redux with React. [Continue >](../react/react-redux.md)
+> Let's learn about reducers. [Continue >](../reducers/README.md)

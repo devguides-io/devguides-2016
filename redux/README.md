@@ -4,7 +4,7 @@
 
 * __[Introduction](introduction/README.md)__ ([recap](introduction/recap.md))
 * __[Actions](actions/README.md)__ ([recap](actions/recap.md))
-* Reducers
+* __[Reducers](reducers/README.md)__ ([recap](reducers/recap.md))
 * Using with React
 * Middleware
 * _...more to come soon!_
