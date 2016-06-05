@@ -110,6 +110,8 @@ store.dispatch(load)
 
 > ↳ We can take the `load()` function earlier and use it as an action.
 
+&nbsp;
+
 > Let's sort out our action creators. [Continue >](#next)
 
 ---

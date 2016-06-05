@@ -1,6 +1,30 @@
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/github-markdown-css/github-markdown';
 
+$space: 10em;
+$width: 640px;
+
 body {
   form-family: sans-serif;
+  overflow-x: hidden;
+}
+
+.markdown-body {
+  max-width: $width;
+  margin: 0 auto;
+  padding-top: $space;
+  padding-bottom: $space;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.7;
+}
+
+.markdown-body h1 {
+  font-family: palatino, serif;
+  border-bottom: 0;
+}
+
+.markdown-body hr {
+  margin: $space 0;
+  width: 100vw;
+  margin-left: calc(-1 * (50vw - #{$width / 2}));
 }
