@@ -1,0 +1,23 @@
+{
+  "name": "mm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "github-markdown-css": "2.3.0",
+    "jstransformer-jade": "0.1.1",
+    "jstransformer-markdown-it": "0.2.3",
+    "markdown-it-decorate": "1.2.1",
+    "metalsmith": "2.1.0",
+    "metalsmith-jstransformer": "0.7.0",
+    "metalsmith-sense-sass": "1.1.0",
+    "metalsmith-start": "2.0.1",
+    "normalize.css": "4.1.1"
+  }
+}
