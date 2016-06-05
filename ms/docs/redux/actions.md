@@ -33,7 +33,7 @@ API.get('/data.json')
 
 > ↳ Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
 
-<br>
+&nbsp;
 
 > Let's try to hook this up to our store. [Continue >](#next)
 
@@ -146,7 +146,7 @@ store.dispatch(loadProject())
 
 > ↳ Invoke these actions by passing the functions' results to `dispatch()`.
 
-<br>
+&nbsp;
 
 > Let's build more action creators. [Continue >](#next)
 
@@ -165,7 +165,7 @@ export function publishProject (id) {
 
 > ↳ Even simple actions can have action creators.
 
--
+&nbsp;
 
 > Let's recap what we've learned. [Continue >](#next)
 
