@@ -11,7 +11,7 @@ function greet (user) {
   }
 
   console.log('Hello, ' + name)
-  //=> "Hello, undefined"
+  //=> "ReferenceError: name is not defined"
 }
 ```
 
