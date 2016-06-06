@@ -50,7 +50,6 @@ function transformMd (md) {
  */
 
 function transformHtml (html) {
-  html = html.replace(/<hr>/g, '<br clear="all"><hr >')
   html = html.replace(/<blockquote>\n<p>Next: /g, '<blockquote class="up-next">\n<p>')
   html = highlightCode(html)
   return html
