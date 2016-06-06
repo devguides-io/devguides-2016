@@ -3,8 +3,20 @@ html
   head
     meta(charset='utf-8')
     link(rel='stylesheet' href='../_assets/style.css')
-    title My Site
+    title
+      = chapter + ' - ' + book
   body
+    .book-nav
+      .nav-button
+    .chapter-nav
+      strong= book
+      span= chapter
+    .page-nav
+      span= 'Page '
+      span(role='page-number') n
+      span= ' of '
+      span(role='page-count') n
+
     .markdown-body
       .page-section
         .container

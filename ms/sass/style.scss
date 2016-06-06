@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/github-markdown-css/github-markdown';
 @import '../node_modules/modularscale-sass/stylesheets/modular-scale';
@@ -11,6 +13,7 @@ $blacker: #111;
 $skyblue: #F3F9FF;
 $blue: #326BAD;
 $bluegrey: mix($blue, #8090a0, 30%);
+$gray: #708090;
 
 $ms-base: 1em;
 $ms: 1.2;
@@ -19,8 +22,8 @@ $ms-range: 1.1 20em, 1.2 60em;
 
 $serif: merriweather, palatino, serif;
 // $sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+// $sans: adelle sans, source sans pro, sans-serif;
 $sans: source sans pro, sans-serif;
-$sans: adelle sans, source sans pro, sans-serif;
 
 /*
  * Mixins
@@ -398,8 +401,9 @@ body, .markdown-body {
 
   .page-section {
     & {
-      background-color: white;
-      transition: background-color 300ms linear;
+      background-color: rgba(white, .99);
+      transition: background-color 600ms linear, transform 300ms ease-out;
+      transform-origin: 64px 50%;
 
       > .container {
         opacity: 1;
@@ -407,24 +411,153 @@ body, .markdown-body {
       }
     }
 
-    // & + & {
-    //   margin-top: 16px;
-    // }
-
     &.-active {
+      transition: background-color 300ms linear, transform 300ms ease-out;
       border-top: 0;
       position: relative;
-      z-index: 1;
+      z-index: 3;
       box-shadow: 0 20px 40px rgba($blue, .02);
+      transform: scale(1);
     }
 
     &.-mute {
       border-top: 0;
-      // background-color: rgba($blue, .05);
       background-color: rgba(white, 0);
+      transform: scale(.98);
 
       > .container {
         opacity: .2;
+      }
+    }
+  }
+}
+
+/*
+ * Chapter nav
+ */
+
+.book-nav {
+  position: fixed;
+  top: 40px - 8px;
+  left: 40px;
+  z-index: 5;
+
+  height: 32px;
+  line-height: 32px;
+
+  transform: translate3d(0, 0, 0);
+
+  @include ms-respond(font-size, -1);
+}
+
+.chapter-nav {
+  position: fixed;
+  z-index: 5;
+  top: 40px + 300px + 16px;
+  left: 40px + 32px - 8px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  width: 300px;
+  @include ms-respond(font-size, -1);
+
+  transform-origin: 0 100%;
+  transform: rotate(270deg);
+
+  strong {
+    margin-right: .5em;
+  }
+
+  strong, span {
+    position: relative;
+    top: 2px;
+  }
+
+  span {
+    color: $gray;
+    opacity: .5;
+  }
+}
+
+.nav-button {
+  display: inline-block;
+  vertical-align: middle;
+
+  &:before {
+    @include ion-icon('navicon');
+    font-size: 32px;
+    color: $blue;
+  }
+}
+
+@media (max-width: 768px) {
+  .chapter-nav,
+  .book-nav {
+    display: none;
+  }
+}
+
+.page-nav {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  @include ms-respond(font-size, -1);
+  color: $gray;
+  opacity: .5;
+}
+
+.page-section {
+  position: relative;
+}
+
+@media (min-width: 769px) {
+  .markdown-body {
+    padding-bottom: 0;
+  }
+
+  .page-section::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 64px;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: rgba($blue, .05);
+  }
+
+  .page-section.-active:last-child {
+    background:
+      linear-gradient(to bottom, rgba(#123, .8), rgba(#123, .8)),
+      linear-gradient(to bottom, rgba(#808080, .7), rgba(#808080, .7)),
+      url('https://unsplash.it/1400/600?image=635') center center / cover;
+
+    &, * {
+      color: white !important;
+    }
+  }
+
+  .page-section.-mute:last-child {
+    transform: scale(1);
+  }
+
+  .page-section:last-child {
+    text-align: center;
+    margin-top: 5em;
+    margin-left: -16px;
+    margin-right: -16px;
+
+    blockquote {
+      margin: 0;
+      padding: 0;
+      padding-top: 2em;
+      padding-bottom: 2em;
+
+
+      &:before {
+        display: none;
       }
     }
   }
