@@ -7,6 +7,7 @@ var app = Metalsmith(__dirname)
     layoutPattern: '_layouts/**',
     defaultlayout: null
   }))
+  .use(require('./lib/middleware').transformHtml())
   .source('./docs')
   .destination('./public')
 

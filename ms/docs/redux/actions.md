@@ -14,8 +14,7 @@ store.dispatch({ type: 'PUBLISH' })
 
 Actions are objects and always have a `type` key. This isn't required, but it's just the way everyone does it.
 
-> How would we do it asynchronously? [Continue >](#next)
-<!--{blockquote:.up-next}-->
+> Next: How would we do it asynchronously? [Continue](#next)
 
 
 ---
@@ -33,12 +32,11 @@ API.get('/data.json')
     store.dispatch({ type: 'LOAD_ERROR', error: error }))
 ```
 
-> ↳ Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
+> Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
 
 &nbsp;
 
-> Let's try to hook this up to our store. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+> Next: Let's try to hook this up to our store. [Continue](#next)
 
 ---
 
@@ -59,10 +57,11 @@ function reducer (state, action) {
 createStore(reducer)
 ```
 
-We have a problem. You can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
+### Problem: no dispatch
 
-> Let's try a different approach. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+It seems you can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
+
+> Next: Let's try a different approach. [Continue](#next)
 
 ---
 
@@ -79,16 +78,20 @@ function load (dispatch) {
     .catch(error =>
       dispatch({ type: 'LOAD_ERROR', error: error }))
 }
-
-load(store.dispatch)
 ```
 
-> ↳ By passing `dispatch` to `load()`, it can dispatch events.
+> By passing `dispatch` to `load()`, it can dispatch events.
+
+### Problem: inconsistency
 
 But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`. We can do better.
 
-> Let's make things more consistent. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+```js
+load(store.dispatch)              // <-- this new way
+store.dispatch({ type: 'INIT' })  // <-- everything else
+  ```
+
+> Next: Let's make things more consistent. [Continue](#next)
 
 ---
 
@@ -103,7 +106,8 @@ import { createStore, applyMiddleware } from 'redux'
 store = createStore(reducer, {}, applyMiddleware(thunk))
 ```
 
-> ↳ redux-thunk is a **middleware**: a plugin that extends `dispatch()` to do more things. [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
+### Middleware
+redux-thunk is a *middleware*, or a plugin that extends `dispatch()` to do more things. [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
 
 ```js
 function load (dispatch, getState) {
@@ -113,12 +117,11 @@ function load (dispatch, getState) {
 store.dispatch(load)
 ```
 
-> ↳ We can take the `load()` function earlier and use it as an action.
+> We can take the `load()` function earlier and use it as an action.
 
 &nbsp;
 
-> Let's sort out our action creators. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+> Next: Let's sort out our action creators. [Continue](#next)
 
 ---
 
@@ -143,7 +146,8 @@ export function deleteProject (id) { /*...*/ }
 export function createProject (id, data) { /*...*/ }
 ```
 
-We just built **action creators**: functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
+### Action creators
+Action creators are functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
 
 ```js
 import { loadProject } from './actions'
@@ -152,12 +156,11 @@ store.dispatch(loadProject())
 //             ^-----------^
 ```
 
-> ↳ Invoke these actions by passing the functions' results to `dispatch()`.
+> Invoke these actions by passing the functions' results to `dispatch()`.
 
 &nbsp;
 
-> Let's build more action creators. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+> Next: Let's build more action creators. [Continue](#next)
 
 ---
 
@@ -172,12 +175,11 @@ export function publishProject (id) {
 }
 ```
 
-> ↳ Even simple actions can have action creators.
+> Even simple actions can have action creators.
 
 &nbsp;
 
-> Let's recap what we've learned. [Continue >](#next)
-<!--{blockquote:.up-next}-->
+> Next: Let's recap what we've learned. [Continue](#next)
 
 ---
 
@@ -214,5 +216,4 @@ store.dispatch(loadProject(12))
 store = createStore(reducer, {}, applyMiddleware(reduxThunk))
 ```
 
-> Let's learn about reducers. [Continue >](../reducers/README.md)
-<!--{blockquote:.up-next}-->
+> Next: Let's learn about reducers. [Continue](../reducers/README.md)
