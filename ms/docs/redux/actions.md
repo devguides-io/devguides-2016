@@ -15,6 +15,8 @@ store.dispatch({ type: 'PUBLISH' })
 Actions are objects and always have a `type` key. This isn't required, but it's just the way everyone does it.
 
 > How would we do it asynchronously? [Continue >](#next)
+<!--{blockquote:.up-next}-->
+
 
 ---
 
@@ -36,6 +38,7 @@ API.get('/data.json')
 &nbsp;
 
 > Let's try to hook this up to our store. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -59,6 +62,7 @@ createStore(reducer)
 We have a problem. You can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
 
 > Let's try a different approach. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -84,6 +88,7 @@ load(store.dispatch)
 But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`. We can do better.
 
 > Let's make things more consistent. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -113,6 +118,7 @@ store.dispatch(load)
 &nbsp;
 
 > Let's sort out our action creators. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -120,9 +126,9 @@ store.dispatch(load)
 
 In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.
 
-##### actions.js
 
 ```js
+//# actions.js
 export function loadProject (id) {
   return function (dispatch) {
     dispatch({ type: 'PROJECT_LOADING', data })
@@ -151,6 +157,7 @@ store.dispatch(loadProject())
 &nbsp;
 
 > Let's build more action creators. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -170,6 +177,7 @@ export function publishProject (id) {
 &nbsp;
 
 > Let's recap what we've learned. [Continue >](#next)
+<!--{blockquote:.up-next}-->
 
 ---
 
@@ -207,3 +215,4 @@ store = createStore(reducer, {}, applyMiddleware(reduxThunk))
 ```
 
 > Let's learn about reducers. [Continue >](../reducers/README.md)
+<!--{blockquote:.up-next}-->
