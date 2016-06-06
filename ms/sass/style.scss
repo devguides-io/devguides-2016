@@ -1,6 +1,7 @@
 @import '../node_modules/normalize.css/normalize';
 @import '../node_modules/github-markdown-css/github-markdown';
 @import '../node_modules/modularscale-sass/stylesheets/modular-scale';
+@import '../node_modules/iconfonts/stylesheets/ionicons';
 
 $space: 10em;
 $width: 960px;
@@ -30,7 +31,11 @@ $sans: adelle sans, source sans pro, sans-serif;
   display: block;
   width: 100%;
   height: 1px;
-  background: linear-gradient(to right, rgba($blue, .2), rgba($blue, 0));
+  background: rgba($blue, .1);
+
+  @media (min-width: 769px) {
+    background: linear-gradient(to right, rgba($blue, .1), rgba($blue, .05) 90%);
+  }
 }
 
 @mixin clearfix {
@@ -45,6 +50,8 @@ $sans: adelle sans, source sans pro, sans-serif;
 /*
  * Base
  */
+
+@include ion-font;
 
 body {
   overflow-x: hidden;
@@ -76,12 +83,19 @@ body, .markdown-body {
   font-family: $serif;
   font-weight: 100;
   border-bottom: 0;
-  @include ms-respond(font-size, 4);
+  @include ms-respond(font-size, 5);
   font-weight: normal;
 
-  &:after {
-    @include hr-rule;
-    margin-top: .5em;
+  // Line on desktop
+  @media (min-width: 769px) {
+    &:after {
+      @include hr-rule;
+      margin-top: .5em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 0;
   }
 }
 
@@ -111,7 +125,9 @@ body, .markdown-body {
   }
 
   padding-left: 0;
+  padding-right: 0;
   margin-left: 0;
+  margin-right: 0;
   border: 0;
 }
 
@@ -162,6 +178,12 @@ body, .markdown-body {
 
   &::before {
     @include hr-rule;
+    opacity: .5;
+  }
+
+  // Hide in mobile
+  @media (max-width: 480px) {
+    display: none;
   }
 }
 
@@ -175,6 +197,11 @@ body, .markdown-body {
       width: 60%;
       float: right;
       clear: right;
+    }
+
+    blockquote {
+      box-sizing: border-box;
+      padding-right: 2em;
     }
 
     h2, h3, p {
@@ -213,12 +240,30 @@ body, .markdown-body {
     margin-bottom: 16px;
   }
 
+  > p {
+    color: $black;
+    font-style: normal;
+    font-family: $sans;
+    font-size: 1em;
+  }
+
   > p > a {
     margin-left: 10px;
     font-weight: bold;
     font-family: $sans;
     font-style: normal;
     text-transform: uppercase;
+    font-size: .95em;
+    letter-spacing: .02em;
+  }
+
+  > p > a::after {
+    @include ion-icon('chevron-right');
+    margin-left: 8px;
+    font-size: .95em;
+
+    position: relative;
+    top: -1px;
   }
 }
 
@@ -239,6 +284,14 @@ body, .markdown-body {
 
   & + & {
     border-top: solid 1px rgba($blue, .1);
+  }
+
+  &:first-child > .container > h1 {
+    @include ms-respond(font-size, 8);
+
+    &::after {
+      display: none;
+    }
   }
 }
 
@@ -331,4 +384,48 @@ body, .markdown-body {
 
   position: relative;
   top: -1px;
+}
+
+/*
+ * Muting
+ */
+
+@media (min-width: 769px) {
+  .markdown-body {
+    background-color: #fdfdfe;
+    padding: 16px;
+  }
+
+  .page-section {
+    & {
+      background-color: white;
+      transition: background-color 300ms linear;
+
+      > .container {
+        opacity: 1;
+        transition: opacity 300ms linear;
+      }
+    }
+
+    // & + & {
+    //   margin-top: 16px;
+    // }
+
+    &.-active {
+      border-top: 0;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 20px 40px rgba($blue, .02);
+    }
+
+    &.-mute {
+      border-top: 0;
+      // background-color: rgba($blue, .05);
+      background-color: rgba(white, 0);
+
+      > .container {
+        opacity: .2;
+      }
+    }
+  }
 }

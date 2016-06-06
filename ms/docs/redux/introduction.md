@@ -1,0 +1,217 @@
+---
+layout: _layouts/chapter.jade
+book: Redux
+chapter: Introduction
+---
+
+Redux
+=====
+
+[Redux](http://redux.js.org/) is used to manage data in a React application. Using redux means you create a *store* that a React app listens to.
+
+```js
+import { createStore } from 'redux'
+
+var store = createStore(/*...*/)
+```
+
+> Next: What's a store? [Continue](#stores)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Stores
+======
+
+Think of a store as a bunch of data. In fact, you may have already done this: the example here is a plain JS object that stores data.
+
+```js
+var album = {
+  title: 'Kind of Blue',
+  artist: 'Miles Davis'
+  year: 1959
+}
+```
+
+---
+
+You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.
+
+```js
+console.log(album.title)  // <- Read
+album.genre = 'Jazz'      // <- Write
+```
+
+> Next: How would you do that in Redux? [Continue](#our-first-store)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Our first store
+===============
+
+Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
+
+```js
+import { createStore } from 'redux'
+
+var reducer = /*...*/
+var store = /*{*/createStore(reducer, album)/*}*/
+```
+
+---
+
+You can get data from store by checking its *state* using `getState()`.
+
+```js
+var state = /*{*/store.getState()/*}*/
+console.log(state.title) //=> 'Kind of Blue'
+```
+
+---
+
+Writing data works a bit different, though. That's where `reducer` comes in.
+
+> Next: How do you write to a store? [Continue](#updating-the-store)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Updating the store
+==================
+
+You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through *reducer functions*.
+
+```js
+function reducer (state, action) {
+  if (action.type === 'PUBLISH') {
+    return { ...state, published: true }
+  } else {
+    return state
+  }
+}
+```
+
+> Reducers take the current state and return a new one. How it changes the store depends on `action`. [(docs)](http://redux.js.org/docs/basics/Reducers.html)
+
+---
+
+You'll need a reducer to use `createStore()`.
+
+```js
+import { createStore } from 'redux'
+var store = /*{*/createStore(reducer, article)/*}*/
+```
+
+---
+
+To run an action, use `dispatch()`. This changes the store's *state*.
+
+```js
+store.getState().published  //=> false
+
+/*{*/store.dispatch({ type: 'PUBLISH' })/*}*/
+store.getState().published  //=> true
+```
+
+<br>
+
+> Next: What does `...state` mean? [Continue](#spread-operator)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The spread operator
+===================
+
+```js
+return { /*{*/...state/*}*/, published: true }
+```
+
+The `...` symbol is the *object spread operator*. [(docs)](http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html)
+It's available in Babel and in the 2017 version of JavaScript.
+
+---
+
+That line is roughly the same as this:
+
+```js
+return {
+  /*{*/title: state.title,/*}*/
+  /*{*/body: state.body,/*}*/
+  published: true
+}
+```
+
+> The contents of `state` is rolled out in place of `...state`.
+
+<br>
+
+> Next: Let's learn more about actions. [Continue](#dispatching-actions)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Dispatching actions
+===================
+
+The only way to change the store's state is by dispatching actions. You can then easily make a log of what actions have happened, or even undo them.
+
+```js
+store.dispatch({ type: 'UPDATE', title: 'Global Warming 101' })
+store.dispatch({ type: 'PUBLISH' })
+store.dispatch({ type: 'ADD_COMMENT', text: 'I agree!' })
+```
+
+```js
+store.subscribe(() => {
+  /*...*/
+})
+```
+
+> You can also listen for changes in the store using `subscribe()`.
+
+<br>
+
+> Next: Let's recap what we've learned. [Continue](#recap)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# Recap
+
+Stores are made from reducer functions.
+
+```js
+import { createStore } from 'redux'
+
+store = createStore(reducer, {/*[ initial state ]*/})
+```
+
+---
+
+Actions are dispatched to the reducer.
+
+```js
+store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
+```
+
+---
+
+Reducers tell us how to change a `state` based on an `action`.
+
+```js
+function reducer (state, action) {
+  if /*{*/(action.type === 'PUBLISH')/*}*/ {
+    return { ...state, published: true }
+  }
+  return state
+}
+```
+
+---
+
+The store keeps a state, and you can listen for updates using `subscribe()`.
+
+```js
+store.getState()
+store.subscribe(() => { /*...*/ })
+```
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+> Next: Let's learn more about actions. [Continue](actions.html)

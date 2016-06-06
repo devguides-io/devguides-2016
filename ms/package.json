@@ -10,17 +10,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browserify": "13.0.1",
     "github-markdown-css": "2.3.0",
     "highlight.js": "9.4.0",
     "iconfonts": "0.9.0",
+    "jquery": "2.2.4",
     "jstransformer-jade": "0.1.1",
     "jstransformer-markdown-it": "0.2.3",
     "markdown-it-decorate": "1.2.1",
     "metalsmith": "2.1.0",
+    "metalsmith-browserify": "0.1.0",
     "metalsmith-jstransformer": "0.7.0",
     "metalsmith-sense-sass": "1.1.0",
     "metalsmith-start": "2.0.1",
     "modularscale-sass": "2.1.1",
-    "normalize.css": "4.1.1"
+    "normalize.css": "4.1.1",
+    "waypoints": "4.0.0"
   }
 }

@@ -34,7 +34,7 @@ API.get('/data.json')
 
 > Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
 
-&nbsp;
+<br>
 
 > Next: Let's try to hook this up to our store. [Continue](#next)
 
@@ -119,7 +119,7 @@ store.dispatch(/*{*/load/*}*/)
 > We can take the `load()` function earlier and use it as an action.
 > [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
 
-&nbsp;
+<br>
 
 > Next: Let's sort out our action creators. [Continue](#next)
 
@@ -157,7 +157,7 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 > Invoke these actions by passing the functions' results to `dispatch()`.
 
-&nbsp;
+<br>
 
 > Next: Let's build more action creators. [Continue](#next)
 
@@ -176,7 +176,7 @@ export function publishProject (id) {
 
 > Even simple actions can have action creators.
 
-&nbsp;
+<br>
 
 > Next: Let's recap what we've learned. [Continue](#next)
 
@@ -219,4 +219,6 @@ export function loadProject (id) {
 store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 ```
 
-> Next: Let's learn about reducers. [Continue](../reducers/README.md)
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+> Next: Let's learn about reducers. [Continue](../reducers.html)
