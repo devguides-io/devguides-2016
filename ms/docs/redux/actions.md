@@ -9,7 +9,7 @@ chapter: Actions
 So far we've learned about actions: things you `dispatch()` to a store to change its state.
 
 ```js
-store.dispatch({ type: 'PUBLISH' })
+store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
 ```
 
 Actions are objects and always have a `type` key. This isn't required, but it's just the way everyone does it.
@@ -24,12 +24,12 @@ Actions are objects and always have a `type` key. This isn't required, but it's 
 Processes are *asynchronous* when they take a long time, such as AJAX calls to load some data. They usually have 3 states: `pending`, `success`, and `error`. Imagine it looking like this:
 
 ```js
-store.dispatch({ type: 'LOAD_START' })
+store.dispatch(/*{*/{ type: 'LOAD_START' }/*}*/)
 API.get('/data.json')
   .then(data =>
-    store.dispatch({ type: 'LOAD_FINISH', data: data }))
+    store.dispatch(/*{*/{ type: 'LOAD_FINISH', data: data })/*}*/)
   .catch(error =>
-    store.dispatch({ type: 'LOAD_ERROR', error: error }))
+    store.dispatch(/*{*/{ type: 'LOAD_ERROR', error: error })/*}*/)
 ```
 
 > Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
@@ -47,7 +47,7 @@ Let's try putting this logic in the reducer. Let's add `API.get(...)` into it.
 ```js
 function reducer (state, action) {
   if (action.type === 'LOAD_START') {
-    API.get('/data.json').then(/*[ ? ]*/).catch(/*[ ? ]*/) //@
+    /*{*/API.get('/data.json').then(/*[ ?? ]*/).catch(/*[ ?? ]*/)/*}*/
     return { ...state, loading: true }
   } else {
     return state
@@ -70,13 +70,13 @@ It seems you can't `dispatch()` inside a reducer! This is how Redux was designed
 Let's try putting that logic in a function outside the store. Let's make a function.
 
 ```js
-function load (dispatch) {
-  dispatch({ type: 'LOAD_START' })
+/*{*/function load (dispatch) {/*}*/
+  /*{*/dispatch/*}*/({ type: 'LOAD_START' })
   API.get('/data.json')
     .then(data =>
-      dispatch({ type: 'LOAD_FINISH', data: data }))
+      /*{*/dispatch/*}*/({ type: 'LOAD_FINISH', data: data }))
     .catch(error =>
-      dispatch({ type: 'LOAD_ERROR', error: error }))
+      /*{*/dispatch/*}*/({ type: 'LOAD_ERROR', error: error }))
 }
 ```
 
@@ -103,7 +103,7 @@ Let's improve our design. [redux-thunk](https://www.npmjs.com/package/redux-thun
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 
-store = createStore(reducer, {}, applyMiddleware(thunk))
+store = createStore(reducer, {}, /*{*/applyMiddleware(thunk)/*}*/)
 ```
 
 ### Middleware
@@ -114,7 +114,7 @@ function load (dispatch, getState) {
   /*...*/
 }
 
-store.dispatch(load)
+store.dispatch(/*{*/load/*}*/)
 ```
 
 > We can take the `load()` function earlier and use it as an action.
@@ -129,16 +129,15 @@ store.dispatch(load)
 
 In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.
 
-
 ```js
 //# actions.js
 export function loadProject (id) {
-  return function (dispatch) {
-    dispatch({ type: 'PROJECT_LOADING', data })
-    return API.get(`/projects/${id}`)
-      .then(data => dispatch({ type: 'PROJECT_LOADED', data }))
-      .catch(err => dispatch({ type: 'PROJECT_ERROR', err }))
-  }
+  return function (dispatch) { //-
+    dispatch({ type: 'PROJECT_LOADING', data }) //-
+    return API.get(`/projects/${id}`) //-
+      .then(data => dispatch({ type: 'PROJECT_LOADED', data })) //-
+      .catch(err => dispatch({ type: 'PROJECT_ERROR', err })) //-
+  } //-
 }
 
 export function saveProject (id) { /*...*/ }
@@ -152,8 +151,7 @@ Action creators are functions that return an action. [(docs)](http://redux.js.or
 ```js
 import { loadProject } from './actions'
 
-store.dispatch(loadProject())
-//             ^-----------^
+store.dispatch(/*{*/loadProject()/*}*/)
 ```
 
 > Invoke these actions by passing the functions' results to `dispatch()`.
@@ -188,9 +186,9 @@ export function publishProject (id) {
 **Action creators** are functions that return things that you can pass to `dispatch()`.
 
 ```js
-export function publishProject (id) {
-  return { type: 'PROJECT_UPDATE', id, published: true }
-}
+export function publishProject (id) { //+
+  return { type: 'PROJECT_UPDATE', id, published: true } //+
+} //+
 
 store.dispatch(publishProject(12))
 ```
@@ -198,6 +196,8 @@ store.dispatch(publishProject(12))
 **redux-thunk** is a plugin that will allow you to pass functions to `dispatch()`. Great for asynchronous actions.
 
 ```js
+store.dispatch(loadProject(12)) //+
+
 export function loadProject (id) {
   return function (dispatch) {
     dispatch({ type: 'PROJECT_LOADING', data })
@@ -206,8 +206,6 @@ export function loadProject (id) {
       .catch(err => dispatch({ type: 'PROJECT_ERROR', err }))
   }
 }
-
-store.dispatch(loadProject(12))
 ```
 
 **Middleware** are plugins for Redux that extends `dispatch()` to do more things.

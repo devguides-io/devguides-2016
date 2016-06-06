@@ -47,21 +47,17 @@ $sans: adelle sans, source sans pro, sans-serif;
  */
 
 body {
-  form-family: sans-serif;
   overflow-x: hidden;
-  font-size: 14px;
-}
-
-@media (min-width: 769px) {
-  body {
-    font-size: 15px;
-  }
 }
 
 body, .markdown-body {
   font-family: $sans;
   line-height: 1.7;
   color: $black;
+  font-size: 13px;
+  @media (min-width: 769px) {
+    font-size: 16px;
+  }
 }
 
 /*
@@ -113,6 +109,10 @@ body, .markdown-body {
     font-style: italic;
     @include ms-respond(font-size, -1);
   }
+
+  padding-left: 0;
+  margin-left: 0;
+  border: 0;
 }
 
 /*
@@ -121,11 +121,18 @@ body, .markdown-body {
 
 .markdown-body pre {
   background: $skyblue;
-  color: $blue;
+  color: rgba($blue, .8);
+  font-size: .8em;
+  line-height: 1.6;
 
   > code {
     background: ihnerit;
     color: inherit;
+  }
+
+  @media (max-width: 480px) {
+    margin-left: -16px;
+    margin-right: -16px;
   }
 }
 
@@ -133,7 +140,8 @@ body, .markdown-body {
   background: transparent;
   padding: 0;
   margin: 0;
-  color: #326BAD;
+  color: $black;
+  letter-spacing: -0.05em;
   font-style: normal;
   &:before, &:after {
     display: none;
@@ -158,10 +166,6 @@ body, .markdown-body {
     }
 
     blockquote {
-      padding-left: 0;
-      margin-left: 0;
-      border: 0;
-
       > p {
         width: auto;
         float: none;
@@ -176,7 +180,10 @@ body, .markdown-body {
 
 .markdown-body .up-next {
   clear: both;
-  padding-top: 3em;
+
+  @media (min-width: 769px) {
+    @include ms-respond(padding-top, 10);
+  }
 
   &, > p {
     width: auto;
@@ -203,8 +210,14 @@ body, .markdown-body {
 
 .page-section {
   @include clearfix;
-  padding-top: $space;
-  padding-bottom: $space;
+
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  @media (min-width: 769px) {
+    @include ms-respond(padding-top, 12);
+    @include ms-respond(padding-bottom, 12);
+  }
 
   & + & {
     border-top: solid 1px rgba($blue, .1);
@@ -221,4 +234,83 @@ body, .markdown-body {
   padding-right: 16px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/*
+ * hljs
+ */
+
+.hljs-comment {
+  color: rgba($blue, .5);
+}
+
+.hljs-keyword {
+  color: $blue;
+}
+
+.hljs-string,
+.hljs-literal,
+.hljs-number {
+  color: saturate($blue, 40%);
+}
+
+.hljs-placeholder {
+  background: rgba($blue, .5);
+  color: white;
+  font-family: $sans;
+  border-radius: 10px;
+  font-size: .9em;
+  padding-left: .9em;
+  padding-right: .9em;
+
+  position: relative;
+  top: -1px;
+}
+
+.hljs-highlight {
+  background: white;
+  box-shadow: 0 -2px white, 0 2px white;
+  padding-left: .2em;
+  padding-right: .2em;
+  border-radius: 3px;
+}
+
+.hljs-line {
+  display: block;
+  margin-left: -8px;
+  margin-right: -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: -1.6em;
+
+  & + & {
+    margin-top: 1.6em;
+  }
+
+  &.-highlight {
+    background: rgba(white, .9);
+  }
+
+  &.-mute {
+    background: white;
+    &, * { color: rgba($blue, .5); }
+    opacity: .7;
+  }
+}
+
+.hljs-ellipsis {
+  &::before {
+    content: '···';
+  }
+
+  letter-spacing: .2em;
+  background: rgba($blue, .1);
+  color: $blue;
+  font-family: $sans;
+  border-radius: 2px;
+  padding-left: .9em;
+  padding-right: .9em;
+
+  position: relative;
+  top: -1px;
 }
