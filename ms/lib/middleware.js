@@ -8,6 +8,8 @@ exports.addMdOptions = function () {
   return function (files, ms, done) {
     for (var fn in files) {
       if (/\.md$/.test(fn)) {
+        files[fn].contents = transformMd(files[fn].contents.toString())
+        files[fn].html = true
         files[fn].plugins = [
           require('markdown-it-decorate')
         ]
@@ -33,12 +35,28 @@ exports.transformHtml = function () {
 }
 
 /*
+ * Pre-markdown transformations.
+ */
+
+function transformMd (md) {
+  md = md.replace(
+    /\*( \*)+\n/g,
+    '</div></div><div class="page-section"><div class="container">\n')
+  return md
+}
+
+/*
  * Transforms HTML.
  */
 
 function transformHtml (html) {
-  html = html.replace(/<hr>/g, '</div></div><div class="page-section"><div class="container">')
+  html = html.replace(/<hr>/g, '<br clear="all"><hr >')
   html = html.replace(/<blockquote>\n<p>Next: /g, '<blockquote class="up-next">\n<p>')
+  html = highlightCode(html)
+  return html
+}
+
+function highlightCode (html) {
   html = html.replace(/<pre><code class="language-([^"]*)">([\s\S.]*?)<\/code><\/pre>/mg, function (_, lang, code) {
     code = code.replace(/&lt;/g, '<')
     code = code.replace(/&gt;/g, '>')
@@ -69,6 +87,7 @@ function transformHtml (html) {
     code = code.replace(
       /<span class="hljs-comment">\/\*{\*\/<\/span>(.*?)<span class="hljs-comment">\/\*}\*\/<\/span>/g,
       (_, str) => `<span class="hljs-highlight">${str}</span>`)
+
     return '<pre><code class="language-' + lang + '">' + code + '</code></pre>'
   })
   return html

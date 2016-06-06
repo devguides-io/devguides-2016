@@ -17,7 +17,7 @@ Actions are objects and always have a `type` key. This isn't required, but it's 
 > Next: How would we do it asynchronously? [Continue](#next)
 
 
----
+* * * *
 
 # The three states
 
@@ -38,7 +38,7 @@ API.get('/data.json')
 
 > Next: Let's try to hook this up to our store. [Continue](#next)
 
----
+* * * *
 
 # First try
 
@@ -57,13 +57,11 @@ function reducer (state, action) {
 createStore(reducer)
 ```
 
-### Problem: no dispatch
-
 It seems you can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
 
 > Next: Let's try a different approach. [Continue](#next)
 
----
+* * * *
 
 # Second try
 
@@ -82,7 +80,7 @@ Let's try putting that logic in a function outside the store. Let's make a funct
 
 > By passing `dispatch` to `load()`, it can dispatch events.
 
-### Problem: inconsistency
+---
 
 But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`. We can do better.
 
@@ -93,7 +91,7 @@ store.dispatch({ type: 'INIT' })  // <-- everything else
 
 > Next: Let's make things more consistent. [Continue](#next)
 
----
+* * * *
 
 # Meet redux-thunk
 
@@ -106,8 +104,9 @@ import { createStore, applyMiddleware } from 'redux'
 store = createStore(reducer, {}, /*{*/applyMiddleware(thunk)/*}*/)
 ```
 
-### Middleware
-redux-thunk is a *middleware*, or a plugin that extends `dispatch()` to do more things. [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
+---
+
+redux-thunk is a Middleware, or a plugin that extends `dispatch()` to do more things.
 
 ```js
 function load (dispatch, getState) {
@@ -118,12 +117,13 @@ store.dispatch(/*{*/load/*}*/)
 ```
 
 > We can take the `load()` function earlier and use it as an action.
+> [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
 
 &nbsp;
 
 > Next: Let's sort out our action creators. [Continue](#next)
 
----
+* * * *
 
 # Action creators
 
@@ -145,8 +145,9 @@ export function deleteProject (id) { /*...*/ }
 export function createProject (id, data) { /*...*/ }
 ```
 
-### Action creators
-Action creators are functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
+---
+
+Action Creators are functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
 
 ```js
 import { loadProject } from './actions'
@@ -160,7 +161,7 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 > Next: Let's build more action creators. [Continue](#next)
 
----
+* * * *
 
 # Simple action creators
 
@@ -179,7 +180,7 @@ export function publishProject (id) {
 
 > Next: Let's recap what we've learned. [Continue](#next)
 
----
+* * * *
 
 # Recap
 
@@ -192,6 +193,8 @@ export function publishProject (id) { //+
 
 store.dispatch(publishProject(12))
 ```
+
+---
 
 **redux-thunk** is a plugin that will allow you to pass functions to `dispatch()`. Great for asynchronous actions.
 
@@ -208,10 +211,12 @@ export function loadProject (id) {
 }
 ```
 
+---
+
 **Middleware** are plugins for Redux that extends `dispatch()` to do more things.
 
 ```js
-store = createStore(reducer, {}, applyMiddleware(reduxThunk))
+store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 ```
 
 > Next: Let's learn about reducers. [Continue](../reducers/README.md)

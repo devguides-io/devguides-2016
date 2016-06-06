@@ -149,6 +149,21 @@ body, .markdown-body {
 }
 
 /*
+ * hr
+ */
+
+.markdown-body hr {
+  display: block;
+  background: transparent;
+  margin-top: .5em;
+  margin-bottom: 1.5em;
+
+  &::before {
+    @include hr-rule;
+  }
+}
+
+/*
  * Literate style
  */
 
@@ -157,12 +172,13 @@ body, .markdown-body {
     pre, blockquote {
       width: 60%;
       float: right;
+      clear: right;
     }
 
     h2, h3, p {
-      float: left;
       width: 37%;
-      clear: both;
+      float: left;
+      clear: left;
     }
 
     blockquote {
