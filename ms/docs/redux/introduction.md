@@ -51,7 +51,7 @@ Our first store
 Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
 
 ```js
-import { createStore } from 'redux'
+import { createStore } from 'redux' //-
 
 var reducer = /*...*/
 var store = /*{*/createStore(reducer, album)/*}*/
@@ -96,7 +96,7 @@ function reducer (state, action) {
 You'll need a reducer to use `createStore()`.
 
 ```js
-import { createStore } from 'redux'
+import { createStore } from 'redux' //-
 var store = /*{*/createStore(reducer, article)/*}*/
 ```
 
@@ -177,8 +177,7 @@ store.subscribe(() => {
 Stores are made from reducer functions.
 
 ```js
-import { createStore } from 'redux'
-
+import { createStore } from 'redux' //-
 store = createStore(reducer, {/*[ initial state ]*/})
 ```
 

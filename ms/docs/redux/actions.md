@@ -49,12 +49,12 @@ function reducer (state, action) {
   if (action.type === 'LOAD_START') {
     /*{*/API.get('/data.json').then(/*[ ?? ]*/).catch(/*[ ?? ]*/)/*}*/
     return { ...state, loading: true }
-  } else {
-    return state
-  }
-}
+  } else { //-
+    return state //-
+  } //-
+} //-
 
-createStore(reducer)
+createStore(reducer) //-
 ```
 
 It seems you can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
@@ -98,8 +98,8 @@ store.dispatch({ type: 'INIT' })  // <-- everything else
 Let's improve our design. [redux-thunk](https://www.npmjs.com/package/redux-thunk) is a plugin for Redux. It makes your `dispatch()` accept functions just like the one earlier.
 
 ```js
-import thunk from 'redux-thunk'
-import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk' //-
+import { createStore, applyMiddleware } from 'redux' //-
 
 store = createStore(reducer, {}, /*{*/applyMiddleware(thunk)/*}*/)
 ```
@@ -130,7 +130,6 @@ store.dispatch(/*{*/load/*}*/)
 In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.
 
 ```js
-//# actions.js
 export function loadProject (id) {
   return function (dispatch) { //-
     dispatch({ type: 'PROJECT_LOADING', data }) //-
@@ -168,7 +167,6 @@ store.dispatch(/*{*/loadProject()/*}*/)
 Action creators don't have to only be for asynchronous actions.
 
 ```js
-//# actions.js
 export function publishProject (id) {
   return { type: 'PROJECT_UPDATE', id, published: true }
 }
@@ -187,11 +185,13 @@ export function publishProject (id) {
 **Action creators** are functions that return things that you can pass to `dispatch()`.
 
 ```js
-export function publishProject (id) { //+
-  return { type: 'PROJECT_UPDATE', id, published: true } //+
-} //+
+export function publishProject (id) {
+  return { type: 'PROJECT_UPDATE', id, published: true }
+}
+```
 
-store.dispatch(publishProject(12))
+```js
+store.dispatch(/*{*/publishProject(12)/*}*/)
 ```
 
 ---
@@ -199,10 +199,8 @@ store.dispatch(publishProject(12))
 **redux-thunk** is a plugin that will allow you to pass functions to `dispatch()`. Great for asynchronous actions.
 
 ```js
-store.dispatch(loadProject(12)) //+
-
 export function loadProject (id) {
-  return function (dispatch) {
+  /*{*/return function (dispatch) {/*}*/
     dispatch({ type: 'PROJECT_LOADING', data })
     return API.get(`/projects/${id}`)
       .then(data => dispatch({ type: 'PROJECT_LOADED', data }))
@@ -210,6 +208,11 @@ export function loadProject (id) {
   }
 }
 ```
+
+```js
+store.dispatch(/*{*/loadProject(12)/*}*/)
+```
+
 
 ---
 
@@ -221,4 +224,4 @@ store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> Next: Let's learn about reducers. [Continue](../reducers.html)
+> Next: Let's learn about reducers. [Continue](reducers.html)

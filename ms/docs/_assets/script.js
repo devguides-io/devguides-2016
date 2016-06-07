@@ -22,6 +22,7 @@ $(function () {
       $(this.element).removeClass('-mute').addClass('-active')
       $number.html($pages.index(this.element) + 1)
     },
-    offset: '50%'
+    offset: '50%',
+    context: '#body'
   })
 })
