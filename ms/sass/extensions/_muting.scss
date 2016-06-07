@@ -27,6 +27,11 @@
       z-index: 3;
       box-shadow: 0 20px 40px rgba($blue, .05);
       transform: scale(1) translate3d(0, 0, 0);
+
+      > .container {
+        opacity: 1;
+        transition: opacity 300ms linear 300ms;
+      }
     }
 
     &.-mute {
@@ -35,7 +40,7 @@
       transform: scale(.98);
 
       > .container {
-        opacity: .2;
+        opacity: 0.04;
       }
     }
   }
