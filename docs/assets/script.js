@@ -17,9 +17,15 @@ $(function () {
 $(function () {
   if ($('body').scrollTop() !== 0) return
   $('body').addClass('-first-load')
-  $('.page-section').hide()
-  $('.page-section').eq(0).show()
-  $('.page-section').parent().append($('<div role="next-waypoint"></div>'));
+
+  var $sections = $('.page-section')
+
+  if ($sections.length > 1) {
+    $sections.hide()
+    $sections.eq(0).show()
+    $sections.parent().append($('<div role="next-waypoint"></div>'));
+  }
+
   window.Waypoint.refreshAll()
 })
 
@@ -29,11 +35,16 @@ $(function () {
 
 $(function () {
   // Add new pages
-  $('[role="next-waypoint"]').waypoint({
+  var $placeholder = $('[role="next-waypoint"]')
+
+  $placeholder.waypoint({
     handler: function () {
-      var $next = $('.page-section.-active').next().eq(0)
+      var $next = $('.page-section.-active ~ .page-section').eq(0)
       $('body').removeClass('-first-load')
-      $next.show()
+
+      if ($next.length) $next.show()
+      else $placeholder.remove()
+
       setTimeout(function () { window.Waypoint.refreshAll() })
     },
     offset: '70%'

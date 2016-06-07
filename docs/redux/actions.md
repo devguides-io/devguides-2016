@@ -224,4 +224,4 @@ store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> Next: Let's learn about reducers. [Continue](reducers.html)
+Let's learn about reducers. [Continue](reducers.html)

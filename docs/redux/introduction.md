@@ -257,4 +257,4 @@ store.subscribe(() => { /*...*/ })
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> Next: Let's learn more about actions. [Continue](actions.html)
+Let's learn more about actions. [Continue](actions.html)

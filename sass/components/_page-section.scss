@@ -29,6 +29,22 @@
 }
 
 /*
+ * Line
+ */
+
+.page-section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 64px;
+  width: 1px;
+  background: $blue;
+  opacity: .1;
+}
+
+/*
  * Account for prelude
  */
 

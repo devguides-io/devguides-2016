@@ -205,4 +205,4 @@ combineReducers({ profile, photos })
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> Next: Let's use Redux with React. [Continue](react.html)
+Let's use Redux with React. [Continue](react.html)

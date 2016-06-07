@@ -160,4 +160,4 @@ These props are available in your components as `this.props`.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-> Next: Let's enhance your store with middleware. [Continue](middleware.html)
+Let's enhance your store with middleware. [Continue](middleware.html)
