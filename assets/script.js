@@ -1,33 +1,34 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var $ = require('jquery')
-window.$ = $
-window.jQuery = $
+require('../../lib/web')
 
-var Waypoint = require('waypoints/lib/jquery.waypoints')
+},{"../../lib/web":2}],2:[function(require,module,exports){
+window.jQuery = window.$ = require('jquery')
+require('waypoints/lib/jquery.waypoints')
 
-$(function () {
-  var $pages = $('.page-section')
-  var count = $pages.length
-  $('[role~="page-count"]').html(count)
-})
+var $ = window.$
+var Waypoint = window.Waypoint
+
+var onScrollUp = require('./on_scrollup')
 
 /*
  * First load
  */
 
 $(function () {
+  // If pressing the 'back' button, just show everything
   if ($('body').scrollTop() !== 0) return
-  $('body').addClass('-first-load')
 
+  $('body').addClass('-first-load')
   var $sections = $('.page-section')
 
+  // Don't add a next-waypoint unless there's a next page.
   if ($sections.length > 1) {
-    $sections.hide()
-    $sections.eq(0).show()
-    $sections.parent().append($('<div role="next-waypoint"></div>'));
+    $sections.addClass('-hide')
+    $sections.eq(0).removeClass('-hide')
+    $sections.parent().append($('<div role="next-waypoint"></div>'))
   }
 
-  window.Waypoint.refreshAll()
+  Waypoint.refreshAll()
 })
 
 /*
@@ -35,18 +36,33 @@ $(function () {
  */
 
 $(function () {
-  // Add new pages
   var $placeholder = $('[role="next-waypoint"]')
+  var disabled
 
   $placeholder.waypoint({
     handler: function () {
-      var $next = $('.page-section.-active ~ .page-section').eq(0)
+      if (disabled) return
+      var $next = $('.page-section.-hide').eq(0)
       $('body').removeClass('-first-load')
 
-      if ($next.length) $next.show()
-      else $placeholder.remove()
+      console.log('bam!', $next[0])
 
-      setTimeout(function () { window.Waypoint.refreshAll() })
+      // Disable until refresh; prevents double invocation.
+      disabled = true
+
+      $next.removeClass('-hide')
+
+      // Remove on the last page to show.
+      if ($('.page-section.-hide').length === 0) $placeholder.remove()
+
+      setTimeout(function () {
+        disabled = false
+      }, 50)
+
+      setTimeout(function () {
+        window.Waypoint.refreshAll()
+        console.log('refreshing...')
+      })
     },
     offset: '70%'
   })
@@ -61,27 +77,33 @@ $(function () {
 
   $('.page-section').addClass('-mute')
   $('.page-section').waypoint({
-    handler: onEnter,
+    handler: onAdvance,
     offset: '50%',
-    // context: '#body',
     down: 'enter',
     up: 'exited'
   })
 
   $('.page-section').waypoint({
-    handler: onEnter,
-    offset: 'bottom-in-view',
-    // context: '#body',
-    down: 'entered',
-    up: 'exit'
+    handler: onRewind,
+    offset: '-50%',
+    down: 'exited',
+    up: 'enter'
   })
 
-  function onEnter (direction) {
+  function onAdvance (direction) {
+    if (direction !== 'down') return
     var $this = $(this.element)
     if ($this.is(':hidden')) return
-    $this.trigger('pages:change', {
-      index: $pages.index(this.element)
-    })
+    $this.trigger('pages:advance', { index: $pages.index(this.element) })
+  }
+
+  // There's a strange instance where its first appearance (via infinite scroll)
+  // triggers htis
+  function onRewind (direction) {
+    if (direction !== 'up') return
+    var $this = $(this.element)
+    if ($this.is(':hidden')) return
+    $this.trigger('pages:rewind', { index: $pages.index(this.element) })
   }
 
   $(document).trigger('pages:init', {
@@ -89,23 +111,22 @@ $(function () {
   })
 })
 
-/*
- * Page change
- */
-
-$(document).on('pages:change', '.page-section', function (e, options) {
-  var $this = $(this)
-  $('.page-section.-active').addClass('-mute').removeClass('-active')
-  $this.removeClass('-mute').addClass('-active')
+onScrollUp({ min: 64 }, function () {
+  $(document).trigger('pages:showAll')
 })
 
 /*
- * Page count
+ * Page change (muting)
  */
 
-$(document).on('pages:change', '.page-section', function (e, options) {
-  var $number = $('[role~="page-number"]')
-  $number.html(options.index + 1)
+$(document).on('pages:showAll', function (e) {
+  $('.page-section').removeClass('-mute').removeClass('-active')
+})
+
+$(document).on('pages:advance', '.page-section', function (e, options) {
+  var $this = $(this)
+  $('.page-section').addClass('-mute').removeClass('-active')
+  $this.removeClass('-mute').addClass('-active')
 })
 
 /*
@@ -120,18 +141,50 @@ $(document).on('pages:init', function (e, options) {
   $pagedots.appendTo('body')
 })
 
-$(document).on('pages:change', '.page-section', function (e, options) {
+$(document).on('pages:advance pages:rewind', '.page-section', function (e, options) {
   var $pagedots = $('.page-dots')
   var $dots = $pagedots.children()
   $dots.removeClass('-active')
   $pagedots.toggleClass('-hide', options.index === 0)
 
-  if (options.index > 0) {
-    $dots.eq(options.index).addClass('-active')
-  }
+  // Never select the first dot.
+  $dots.eq(Math.max(options.index, 1)).addClass('-active')
 })
 
-},{"jquery":2,"waypoints/lib/jquery.waypoints":3}],2:[function(require,module,exports){
+},{"./on_scrollup":3,"jquery":4,"waypoints/lib/jquery.waypoints":5}],3:[function(require,module,exports){
+var $ = window.$
+
+module.exports = function onScrollUp (options, fn) {
+  if (!options) options = {}
+  var $window = $(window)
+  var min = options.min || 10
+  var lastY, bottomY, lastDirection, supress
+
+  $window.on('scroll', function () {
+    var newY = $window.scrollTop()
+
+    if (typeof lastY === 'undefined') {
+      lastY = newY
+      bottomY = newY
+      return
+    }
+
+    var newDirection = newY > lastY ? 'down' : 'up'
+
+    if (newDirection === 'down') {
+      bottomY = newY
+      supress = false
+    } else if (!supress && bottomY - newY > min) {
+      fn()
+      supress = true
+    }
+
+    lastY = newY
+    lastDirection = newDirection
+  })
+}
+
+},{}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -9947,7 +10000,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /*!
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton
