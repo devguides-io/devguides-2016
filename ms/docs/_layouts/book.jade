@@ -1,28 +1,21 @@
 extends ./base.jade
 
 block title
-  = chapter + ' - ' + book
+  = title
 
 block content
   .book-nav
     .nav-button
 
   .chapter-nav
-    strong= book
-    span= chapter
-
-  .page-nav
-    span= 'Page '
-    span(role='page-number') n
-    span= ' of '
-    span(role='page-count') n
+    strong= title
 
   #body.markdown-body
     .page-section
       .container
         h5.chapter-prelude
           strong= 'Pocket Guides / '
-          a(href='.')= book
+          a(href='.')= title
         != contents
 
   script(src='../_assets/script.js')

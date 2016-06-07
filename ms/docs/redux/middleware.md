@@ -67,7 +67,7 @@ store.dispatch({ type: 'SAVE' })
 // New state: { ... }
 ```
 
-> Let's use this for something useful. [Continue](#side-effects)
+> Next: Let's use this for something useful. [Continue](#side-effects)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -80,17 +80,17 @@ A store's reducers should have no side effects. Middleware is often used for tha
 const fetcher = store => dispatch => action => {
   const { type, next, url } = action
   if (type === 'FETCH') {
-    dispatch(next + '_PENDING')
+    /*{*/dispatch({ type: next + '_PENDING' })/*}*/
     fetch(url)
-    .then(result => dispatch({ type: next + '_SUCCESS', result })
-    .then(error => dispatch({ type: next + '_ERROR', result })
+    .then(result => /*{*/dispatch({ type: next + '_SUCCESS', result })/*}*/)
+    .then(error => /*{*/dispatch({ type: next + '_ERROR', result })/*}*/)
   } else {
     dispatch(action)
   }
 }
 ```
 
-> This middleware listens for `FETCH` actions.
+> This function will replace `dispatch()`. It listens for `FETCH` actions.
 
 ```js
 store.dispatch({ type: 'FETCH', next: 'LOAD', url: '/data.json' })

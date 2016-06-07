@@ -1,6 +1,14 @@
-# Redux
+---
+layout: _layouts/book.jade
+title: Redux
+---
+
+Redux
+=====
 
 [Redux](http://redux.js.org/) is used to manage data in a React application.
+
+---
 
 * __[Introduction](introduction.html)__ ([recap](introduction.html#recap))
 * __[Actions](actions.html)__ ([recap](actions.html#recap))
@@ -10,4 +18,4 @@
 
 <br>
 
-> Let's begin. What's Redux? [Continue >](introduction.html)
+> Next: Let's begin. What's Redux? [Continue](introduction.html)
