@@ -36,7 +36,7 @@ $(function () {
       $next.show()
       setTimeout(function () { window.Waypoint.refreshAll() })
     },
-    offset: '90%'
+    offset: '70%'
   })
 })
 

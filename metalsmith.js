@@ -2,8 +2,8 @@ var Metalsmith = require('metalsmith')
 
 var app = Metalsmith(__dirname)
   .use(require('metalsmith-browserify')({
-    dest: '_assets/script.js',
-    args: [ './docs/_assets/script.js' ]
+    dest: 'assets/script.js',
+    args: [ './docs/assets/script.js' ]
   }))
   .use(require('metalsmith-sense-sass')())
   .use(require('./lib/middleware').addMdOptions())

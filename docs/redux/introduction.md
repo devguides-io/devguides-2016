@@ -111,7 +111,26 @@ store.getState().published  //=> false
 store.getState().published  //=> true
 ```
 
-<br>
+<!--
+var store = createStore(reducer)
+
+store.dispatch({ type: 'SET', value: 10 })
+console.log(store.getState())
+
+store.dispatch({ type: 'ADD', value: 3 })
+console.log(store.getState())
+
+function reducer (state, action) {
+  switch (action.type) {
+    case 'SET':
+      return action.value
+    case 'ADD':
+      return state + action.value
+    default:
+      return state
+  }
+}
+-->
 
 > Next: What does `...state` mean? [Continue](#spread-operator)
 
@@ -141,6 +160,11 @@ return {
 
 > The contents of `state` is rolled out in place of `...state`.
 
+<!--
+var state = { name: 'John', age: 3 }
+inspect({ ...state, published: true })
+-->
+
 <br>
 
 > Next: Let's learn more about actions. [Continue](#dispatching-actions)
@@ -166,7 +190,27 @@ store.subscribe(() => {
 
 > You can also listen for changes in the store using `subscribe()`.
 
-<br>
+<!--
+var store = createStore(reducer)
+
+store.subscribe(() => {
+  inspect(store.getState())
+})
+
+store.dispatch({ type: 'SET', value: 10 })
+store.dispatch({ type: 'ADD', value: 3 })
+
+function reducer (state, action) {
+  switch (action.type) {
+    case 'SET':
+      return action.value
+    case 'ADD':
+      return state + action.value
+    default:
+      return state
+  }
+}
+-->
 
 > Next: Let's recap what we've learned. [Continue](#recap)
 

@@ -30,13 +30,26 @@
   transform-origin: 0 100%;
   transform: rotate(270deg);
 
-  strong {
+  a, a:visited, strong {
     margin-right: .5em;
+    color: $blacker;
+    font-weight: bold;
+    text-decoration: none;
   }
 
-  strong, span {
+  a:hover,
+  a:focus {
+    color: $blue;
+  }
+
+  a, strong, span {
     position: relative;
     top: 2px;
+  }
+
+  span::before {
+    content: '/';
+    margin-right: .5em;
   }
 
   span {
