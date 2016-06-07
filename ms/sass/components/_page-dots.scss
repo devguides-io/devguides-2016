@@ -40,7 +40,7 @@ $size: 4px;
     border-radius: $size / 2;
     width: $size;
     height: $size;
-    opacity: .3;
+    opacity: .2;
     margin: 6px 0;
 
     transition: all 0ms linear;
@@ -48,7 +48,6 @@ $size: 4px;
 
   &.-active {
     background: $blue;
-    height: 32px;
     opacity: 1;
   }
 }

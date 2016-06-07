@@ -1,0 +1,20 @@
+.spinner-box {
+  display: inline-block;
+  border: solid 2px transparent;
+  border-top-color: $blue;
+  border-left-color: $blue;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 300ms linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

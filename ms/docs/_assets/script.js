@@ -11,13 +11,31 @@ $(function () {
 })
 
 $(function () {
+  if ($('body').scrollTop() !== 0) return
+  $('.page-section').hide()
+  $('.page-section').eq(0).show()
+  $('.page-section').parent().append($('<div role="next-waypoint"></div>'));
+  window.Waypoint.refreshAll()
+})
+
+$(function () {
   var $pages = $('.page-section')
+
+  $('[role="next-waypoint"]').waypoint({
+    handler: function () {
+      var $next = $('.page-section.-active').next().eq(0)
+      $next.show()
+      // $('html, body').animate({ scrollTop: $next.offset().top - 16 }, 500)
+      setTimeout(function () { window.Waypoint.refreshAll() })
+    },
+    offset: '90%'
+  })
 
   $('.page-section').addClass('-mute')
   $('.page-section').waypoint({
     handler: onEnter,
     offset: '50%',
-    context: '#body',
+    // context: '#body',
     down: 'enter',
     up: 'exited'
   })
@@ -25,13 +43,15 @@ $(function () {
   $('.page-section').waypoint({
     handler: onEnter,
     offset: 'bottom-in-view',
-    context: '#body',
+    // context: '#body',
     down: 'entered',
     up: 'exit'
   })
 
   function onEnter (direction) {
-    $(this.element).trigger('pages:change', {
+    var $this = $(this.element)
+    if ($this.is(':hidden')) return
+    $this.trigger('pages:change', {
       index: $pages.index(this.element)
     })
   }
@@ -47,10 +67,15 @@ $(function () {
 
 $(document).on('pages:change', '.page-section', function (e, options) {
   var $this = $(this)
-
   $('.page-section.-active').addClass('-mute').removeClass('-active')
   $this.removeClass('-mute').addClass('-active')
+})
 
+/*
+ * Page count
+ */
+
+$(document).on('pages:change', '.page-section', function (e, options) {
   var $number = $('[role~="page-number"]')
   $number.html(options.index + 1)
 })

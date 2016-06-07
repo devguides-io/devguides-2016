@@ -8,6 +8,7 @@
   padding-top: 2em;
   padding-bottom: 2em;
   position: relative;
+  min-height: 100vh;
 
   @media (min-width: 769px) {
     @include ms-respond(padding-top, 10);
@@ -33,4 +34,9 @@
 
 .page-section:first-child {
   padding-top: 24px;
+}
+
+div[role="next-waypoint"] {
+  height: 15vh;
+  text-align: center;
 }
