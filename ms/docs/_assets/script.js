@@ -10,26 +10,42 @@ $(function () {
   $('[role~="page-count"]').html(count)
 })
 
+/*
+ * First load
+ */
+
 $(function () {
   if ($('body').scrollTop() !== 0) return
+  $('body').addClass('-first-load')
   $('.page-section').hide()
   $('.page-section').eq(0).show()
   $('.page-section').parent().append($('<div role="next-waypoint"></div>'));
   window.Waypoint.refreshAll()
 })
 
-$(function () {
-  var $pages = $('.page-section')
+/*
+ * Infinite scroll
+ */
 
+$(function () {
+  // Add new pages
   $('[role="next-waypoint"]').waypoint({
     handler: function () {
       var $next = $('.page-section.-active').next().eq(0)
+      $('body').removeClass('-first-load')
       $next.show()
-      // $('html, body').animate({ scrollTop: $next.offset().top - 16 }, 500)
       setTimeout(function () { window.Waypoint.refreshAll() })
     },
     offset: '90%'
   })
+})
+
+/*
+ * Waypoints
+ */
+
+$(function () {
+  var $pages = $('.page-section')
 
   $('.page-section').addClass('-mute')
   $('.page-section').waypoint({

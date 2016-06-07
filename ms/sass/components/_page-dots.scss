@@ -66,3 +66,29 @@ $size: 3px;
     transition: opacity 300ms linear;
   }
 }
+
+/*
+ * Mobile
+ */
+
+@media (max-width: 480px) {
+  .page-dots {
+    flex-direction: row;
+    width: 100%;
+    height: $size + 16px + 8px;
+    left: 0;
+    bottom: 0;
+    top: auto;
+    right: auto;
+    padding: 8px 8px 16px 8px;
+    background: white;
+  }
+
+  .page-dots > .dot {
+    margin: 0 3px;
+  }
+
+  .page-dots > .dot.-active {
+    height: $size;
+  }
+}

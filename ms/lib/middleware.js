@@ -27,7 +27,7 @@ exports.transformHtml = function () {
   return function (files, ms, done) {
     for (var fn in files) {
       if (/\.html/.test(fn)) {
-        files[fn].contents = transformHtml(files[fn].contents)
+        files[fn].contents = transformHtml(files[fn].contents.toString())
       }
     }
     done()

@@ -174,7 +174,7 @@ store.subscribe(() => {
 
 # Recap
 
-Stores are made from reducer functions.
+**Stores** are made from reducer functions.
 
 ```js
 import { createStore } from 'redux' //-
@@ -183,7 +183,7 @@ store = createStore(reducer, {/*[ initial state ]*/})
 
 ---
 
-Actions are dispatched to the reducer.
+**Actions** are dispatched to the reducer.
 
 ```js
 store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
@@ -191,7 +191,7 @@ store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
 
 ---
 
-Reducers tell us how to change a `state` based on an `action`.
+**Reducers** tell us how to change a `state` based on an `action`.
 
 ```js
 function reducer (state, action) {
@@ -204,10 +204,10 @@ function reducer (state, action) {
 
 ---
 
-The store keeps a state, and you can listen for updates using `subscribe()`.
+**States:** the store keeps a state, and you can listen for updates using `subscribe()`.
 
 ```js
-store.getState()
+/*{*/store.getState()/*}*/.published
 store.subscribe(() => { /*...*/ })
 ```
 

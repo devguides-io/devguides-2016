@@ -73,3 +73,9 @@
   color: $gray;
   opacity: .5;
 }
+
+@media (max-width: 480px) {
+  .page-nav {
+    display: none;
+  }
+}
