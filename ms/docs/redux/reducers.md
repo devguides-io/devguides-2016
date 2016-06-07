@@ -21,11 +21,11 @@ Most reducers use `switch` inside them to do different things depending on the `
 function reducer (state, action) {
   switch (action.type) {
     case 'PUBLISH':
-      return { ...state, published: true }
+      return /*{*/{ ...state, published: true }/*}*/
     case 'UNPUBLISH':
-      return { ...state, published: false }
+      return /*{*/{ ...state, published: false }/*}*/
     case 'UPDATE':
-      return { ...state, ...action.data }
+      return /*{*/{ ...state, ...action.data }/*}*/
     default:
       return state
   }
@@ -42,11 +42,11 @@ Immutability
 Never modify objects! That's the Redux way of doing things. This is called *immutability*, in other words, never having to mutate.
 
 ```js
-function reducer (state, action) {
-  switch (action.type) {
-    case 'PUBLISH':
+function reducer (state, action) { //-
+  switch (action.type) { //-
+    case 'PUBLISH': //-
       state.published = true  // <-- Avoid this
-      return state
+      return state //-
 ```
 
 > This is mutation: we're modifying the `state` object. Don't do this.
@@ -88,7 +88,7 @@ Let's say you app has *articles* and *users*. If we put everything into one redu
 You can use `combineReducers` to make two reducers, each working on one part. [(docs)](http://redux.js.org/docs/api/combineReducers.html)
 
 ```js
-import { /*{*/combineReducers/*}*/, createStore } from 'redux'
+import { combineReducers, createStore } from 'redux' //-
 
 function articles (state, action) {
   /*[ ...`state` is `state.articles` here ]*/
@@ -99,7 +99,7 @@ function users (state, action) {
 }
 
 let reducer = /*{*/combineReducers({ articles, users })/*}*/
-let store = createStore(reducer)
+let store = createStore(reducer) //-
 ```
 
 This is only useful if each reducer works on a single part of your state.
@@ -154,11 +154,12 @@ Reduce reducers
 Another approach to combining reducers is to use *reduce-reducers*. Unlike *combineReducers()*, these sub-reducers will be able to work on the entire tree.
 
 ```js
-import reduceReducers from 'reduce-reducers'
+import reduceReducers from 'reduce-reducers' //-
 
 function profiles (state, action) {
   /*[ see the whole `state` here ]*/
 }
+
 function photos (state, action) {
   /*[ see the whole `state` here ]*/
 }

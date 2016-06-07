@@ -1,0 +1,50 @@
+$size: 4px;
+
+.page-dots {
+  position: fixed;
+  right: 32px;
+  top: 50%;
+  z-index: 5;
+  width: $size;
+  height: 300px;
+  margin-top: -150px;
+
+  > .dot {
+  }
+}
+
+.page-dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > .dot {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/*
+ * Dot
+ */
+
+.page-dots > .dot {
+  & {
+    text-align: center;
+    display: block;
+    border: solid 1px rgba(red, .1);
+    background: $blue;
+    border-radius: $size / 2;
+    width: $size;
+    height: $size;
+    opacity: .5;
+    margin: 6px 0;
+
+    transition: all 200ms linear;
+  }
+
+  &.-active {
+    height: 32px;
+    opacity: 1;
+  }
+}
