@@ -1,0 +1,43 @@
+$height: 2px;
+
+.next-progress {
+  position: fixed;
+  z-index: 10;
+
+  bottom: 64px;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+  height: $height;
+  background: rgba($blue, .1);
+  animation: progress-fade 250ms linear 250ms;
+
+  &::before {
+    content: '';
+    display: block;
+    height: $height;
+    width: 100%;
+    background: $blue;
+    animation: progress-run 400ms linear;
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes progress-run {
+  0% { transform: scaleX(.1); }
+  30% { transform: scaleX(.2); }
+  40% { transform: scaleX(.4); }
+  90% { transform: scaleX(.6); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes progress-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .next-progress {
+    display: none;
+  }
+}
