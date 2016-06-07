@@ -19,6 +19,7 @@
     "jstransformer-jade": "0.1.1",
     "jstransformer-markdown-it": "0.2.3",
     "markdown-it-decorate": "1.2.1",
+    "markdown-it-named-headings": "1.1.0",
     "metalsmith": "2.1.0",
     "metalsmith-browserify": "0.1.0",
     "metalsmith-jstransformer": "0.7.0",
@@ -26,7 +27,8 @@
     "metalsmith-start": "2.0.1",
     "modularscale-sass": "2.1.1",
     "normalize.css": "4.1.1",
-    "waypoints": "4.0.0"
+    "waypoints": "4.0.0",
+    "zepto": "1.0.1"
   },
   "devDependencies": {
     "git-update-ghpages": "1.3.0"
