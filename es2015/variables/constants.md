@@ -1,12 +1,12 @@
 # Constants
 
-`const` is just like *let*, except you can't modify its contents.
+`const` is just like *let*, except you can't reassign it to a new value
 
 ```js
 function greet (user) {
   const name = user.name
-  const name = name.toUpperCase()
-  //=> TypeError: Identifier 'name' has already been declared
+  name = name.toUpperCase()
+  //=> TypeError: Assignment to constant variable.
 }
 ```
 
