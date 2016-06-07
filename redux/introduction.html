@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../_assets/style.css"><title>Introduction - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><strong>Redux</strong><span>Introduction</span></div><div class="page-nav"><span>Page </span><span role="page-number">n</span><span> of </span><span role="page-count">n</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Redux</h1>
+<p><a href="http://redux.js.org/">Redux</a> is used to manage data in a React application. Using redux means you create a <em>store</em> that a React app listens to.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>
+
+<span class="hljs-keyword">var</span> store = createStore(<span class="hljs-ellipsis"></span>)
+</code></pre>
+<blockquote class="up-next">
+<p>What's a store? <a href="#stores">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Stores</h1>
+<p>Think of a store as a bunch of data. In fact, you may have already done this: the example here is a plain JS object that stores data.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> album = {
+  title: <span class="hljs-string">'Kind of Blue'</span>,
+  artist: <span class="hljs-string">'Miles Davis'</span>
+  year: <span class="hljs-number">1959</span>
+}
+</code></pre>
+<hr>
+<p>You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.</p>
+<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(album.title)  <span class="hljs-comment">// &lt;- Read</span>
+album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-comment">// &lt;- Write</span>
+</code></pre>
+<blockquote class="up-next">
+<p>How would you do that in Redux? <a href="#our-first-store">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Our first store</h1>
+<p>Stores are created using <code>createStore()</code>. <a href="http://redux.js.org/docs/basics/Actions.html">(docs)</a></p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
+
+<span class="hljs-keyword">var</span> reducer = <span class="hljs-ellipsis"></span>
+<span class="hljs-keyword">var</span> store = <span class="hljs-highlight">createStore(reducer, album)</span>
+</code></pre>
+<hr>
+<p>You can get data from store by checking its <em>state</em> using <code>getState()</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> state = <span class="hljs-highlight">store.getState()</span>
+<span class="hljs-built_in">console</span>.log(state.title) <span class="hljs-comment">//=&gt; 'Kind of Blue'</span>
+</code></pre>
+<hr>
+<p>Writing data works a bit different, though. That's where <code>reducer</code> comes in.</p>
+<blockquote class="up-next">
+<p>How do you write to a store? <a href="#updating-the-store">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Updating the store</h1>
+<p>You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through <em>reducer functions</em>.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'PUBLISH'</span>) {
+    <span class="hljs-keyword">return</span> { ...state, published: <span class="hljs-literal">true</span> }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> state
+  }
+}
+</code></pre>
+<blockquote>
+<p>Reducers take the current state and return a new one. How it changes the store depends on <code>action</code>. <a href="http://redux.js.org/docs/basics/Reducers.html">(docs)</a></p>
+</blockquote>
+<hr>
+<p>You'll need a reducer to use <code>createStore()</code>.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
+<span class="hljs-keyword">var</span> store = <span class="hljs-highlight">createStore(reducer, article)</span>
+</code></pre>
+<hr>
+<p>To run an action, use <code>dispatch()</code>. This changes the store's <em>state</em>.</p>
+<pre><code class="language-js">store.getState().published  <span class="hljs-comment">//=&gt; false</span>
+
+<span class="hljs-highlight">store.dispatch({ type: <span class="hljs-string">'PUBLISH'</span> })</span>
+store.getState().published  <span class="hljs-comment">//=&gt; true</span>
+</code></pre>
+<br>
+<blockquote class="up-next">
+<p>What does <code>...state</code> mean? <a href="#spread-operator">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>The spread operator</h1>
+<pre><code class="language-js"><span class="hljs-keyword">return</span> { <span class="hljs-highlight">...state</span>, published: <span class="hljs-literal">true</span> }
+</code></pre>
+<p>The <code>...</code> symbol is the <em>object spread operator</em>. <a href="http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html">(docs)</a>
+It's available in Babel and in the 2017 version of JavaScript.</p>
+<hr>
+<p>That line is roughly the same as this:</p>
+<pre><code class="language-js"><span class="hljs-keyword">return</span> {
+  <span class="hljs-highlight">title: state.title,</span>
+  <span class="hljs-highlight">body: state.body,</span>
+  published: <span class="hljs-literal">true</span>
+}
+</code></pre>
+<blockquote>
+<p>The contents of <code>state</code> is rolled out in place of <code>...state</code>.</p>
+</blockquote>
+<br>
+<blockquote class="up-next">
+<p>Let's learn more about actions. <a href="#dispatching-actions">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Dispatching actions</h1>
+<p>The only way to change the store's state is by dispatching actions. You can then easily make a log of what actions have happened, or even undo them.</p>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'UPDATE'</span>, title: <span class="hljs-string">'Global Warming 101'</span> })
+store.dispatch({ type: <span class="hljs-string">'PUBLISH'</span> })
+store.dispatch({ type: <span class="hljs-string">'ADD_COMMENT'</span>, text: <span class="hljs-string">'I agree!'</span> })
+</code></pre>
+<pre><code class="language-js">store.subscribe(() =&gt; {
+  <span class="hljs-ellipsis"></span>
+})
+</code></pre>
+<blockquote>
+<p>You can also listen for changes in the store using <code>subscribe()</code>.</p>
+</blockquote>
+<br>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Recap</h1>
+<p><strong>Stores</strong> are made from reducer functions.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
+store = createStore(reducer, {<span class="hljs-placeholder">initial state</span>})
+</code></pre>
+<hr>
+<p><strong>Actions</strong> are dispatched to the reducer.</p>
+<pre><code class="language-js">store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'PUBLISH'</span> }</span>)
+</code></pre>
+<hr>
+<p><strong>Reducers</strong> tell us how to change a <code>state</code> based on an <code>action</code>.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">if</span> <span class="hljs-highlight">(action.type === <span class="hljs-string">'PUBLISH'</span>)</span> {
+    <span class="hljs-keyword">return</span> { ...state, published: <span class="hljs-literal">true</span> }
+  }
+  <span class="hljs-keyword">return</span> state
+}
+</code></pre>
+<hr>
+<p><strong>States:</strong> the store keeps a state, and you can listen for updates using <code>subscribe()</code>.</p>
+<pre><code class="language-js"><span class="hljs-highlight">store.getState()</span>.published
+store.subscribe(() =&gt; { <span class="hljs-ellipsis"></span> })
+</code></pre>
+</div></div><div class="page-section"><div class="container">
+<blockquote class="up-next">
+<p>Let's learn more about actions. <a href="actions.html">Continue</a></p>
+</blockquote>
+</div></div></div><script src="../_assets/script.js"></script></body></html>

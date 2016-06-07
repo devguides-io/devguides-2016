@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../_assets/style.css"><title>Reducers - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><strong>Redux</strong><span>Reducers</span></div><div class="page-nav"><span>Page </span><span role="page-number">n</span><span> of </span><span role="page-count">n</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Reducers</h1>
+<p>The function you pass to <code>createStore()</code> is called a reducer. It's a simple function that takes in a state, and returns another state.</p>
+<pre><code class="language-js">reducer(state, action) → state
+</code></pre>
+<hr>
+<p>Most reducers use <code>switch</code> inside them to do different things depending on the <code>action</code>.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">switch</span> (action.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'PUBLISH'</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-highlight">{ ...state, published: <span class="hljs-literal">true</span> }</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'UNPUBLISH'</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-highlight">{ ...state, published: <span class="hljs-literal">false</span> }</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'UPDATE'</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-highlight">{ ...state, ...action.data }</span>
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> state
+  }
+}
+</code></pre>
+<blockquote class="up-next">
+<p>Why do we keep using <code>...</code>? <a href="#immutability">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Immutability</h1>
+<p>Never modify objects! That's the Redux way of doing things. This is called <em>immutability</em>, in other words, never having to mutate.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{ </span><span class="hljs-line -mute">  <span class="hljs-keyword">switch</span> (action.type) { </span><span class="hljs-line -mute">    <span class="hljs-keyword">case</span> <span class="hljs-string">'PUBLISH'</span>: </span>
+      state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span><span class="hljs-line -mute">      <span class="hljs-keyword">return</span> state </span>
+</code></pre>
+<blockquote>
+<p>This is mutation: we're modifying the <code>state</code> object. Don't do this.</p>
+</blockquote>
+<hr>
+<p>This seems like a hassle at first, but it makes your app faster in the long run. You'll be able to check if a state has changed.</p>
+<pre><code class="language-js"><span class="hljs-keyword">if</span> (state === oldState) {
+  <span class="hljs-placeholder">...then things have changed</span>
+}
+</code></pre>
+<blockquote>
+<p>React does this under-the-hood to make rendering faster.</p>
+</blockquote>
+<hr>
+<p>If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes <code>state === oldState</code> true even if they changed, making React skip doing updates.</p>
+<blockquote class="up-next">
+<p>What happens when my reducer gets very big? <a href="#combining-reducers">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Combining reducers</h1>
+<p>Let's say you app has <em>articles</em> and <em>users</em>. If we put everything into one reducer, we'll be writing a very long function! There's a better way. Imagine your store state looks like this:</p>
+<pre><code class="language-js">{
+  articles: {<span class="hljs-ellipsis"></span>},
+  users: {<span class="hljs-ellipsis"></span>}
+}
+</code></pre>
+<hr>
+<p>You can use <code>combineReducers</code> to make two reducers, each working on one part. <a href="http://redux.js.org/docs/api/combineReducers.html">(docs)</a></p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { combineReducers, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articles</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-placeholder">...`state` is `state.articles` here</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">users</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-placeholder">...`state` is `state.users` here</span>
+}
+
+<span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">combineReducers({ articles, users })</span><span class="hljs-line -mute"><span class="hljs-keyword">let</span> store = createStore(reducer) </span>
+</code></pre>
+<p>This is only useful if each reducer works on a single part of your state.</p>
+<blockquote class="up-next">
+<p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>State subtrees</h1>
+<p>Think of your state as a tree. It has branches which have their own branches and leaves, and so on. A subtree is one branch of that tree.</p>
+<pre><code class="language-js"><span class="hljs-line -mute">state = { </span>
+  profile: {
+    name: <span class="hljs-string">'John Jones'</span>,
+    private: <span class="hljs-literal">true</span>
+  },<span class="hljs-line -mute">  photos: [ </span><span class="hljs-line -mute">    <span class="hljs-ellipsis"></span> </span><span class="hljs-line -mute">  ] </span><span class="hljs-line -mute">} </span>
+</code></pre>
+<blockquote>
+<p><code>state.profile</code> is a subtree of the <em>state</em> tree.</p>
+</blockquote>
+<hr>
+<p><code>combineReducers()</code> lets you break apart your reducer. Your reducers will only operate in their own subtree, like <em>state.profile</em> above.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profile</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'PUBLISH'</span>) {
+    <span class="hljs-placeholder">`state` is actually `state.profile` here.</span>
+    <span class="hljs-keyword">return</span> { ...state, private: <span class="hljs-literal">false</span> }
+  }
+}
+
+reducer = combineReducers({ profile, <span class="hljs-ellipsis"></span> })
+</code></pre>
+<p>This reducer can't see <code>state.photos</code>! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.</p>
+<blockquote class="up-next">
+<p>What if my I need my reducers to do more than that? <a href="#reduce-reducers">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Reduce reducers</h1>
+<p>Another approach to combining reducers is to use <em>reduce-reducers</em>. Unlike <em>combineReducers()</em>, these sub-reducers will be able to work on the entire tree.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> reduceReducers <span class="hljs-keyword">from</span> <span class="hljs-string">'reduce-reducers'</span> </span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profiles</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-placeholder">see the whole `state` here</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">photos</span> (<span class="hljs-params">state, action</span>) </span>{
+  <span class="hljs-placeholder">see the whole `state` here</span>
+}
+
+<span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">reduceReducers(profiles, photos)</span>
+createStore(reducer)
+</code></pre>
+<p>reduce-reducers is a 3rd-party package. <a href="https://github.com/acdlite/reduce-reducers">(docs)</a> It's one of the many plugins available in the Redux ecosystem in npm.</p>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Recap</h1>
+<p><strong>Reducers</strong> are functions that take a state, and return a new state.</p>
+<pre><code class="language-js">reducer(state, action) → state
+</code></pre>
+<hr>
+<p><strong>Immutable:</strong> reducers work your state in a way that never mutates objects.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
+  state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span>
+</code></pre>
+<hr>
+<p><strong>Composing:</strong> You can use <code>combineReducers()</code> or <code>reduce-reducers</code> to break a big reducer into smaller reducers.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profile</span> (<span class="hljs-params">state, action</span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">photos</span> (<span class="hljs-params">state, action</span>) </span>{ <span class="hljs-ellipsis"></span> }
+
+combineReducers({ profile, photos })
+</code></pre>
+</div></div><div class="page-section"><div class="container">
+<blockquote class="up-next">
+<p>Let's use Redux with React. <a href="react.html">Continue</a></p>
+</blockquote>
+</div></div></div><script src="../_assets/script.js"></script></body></html>

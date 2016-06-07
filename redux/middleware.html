@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../_assets/style.css"><title>Middleware - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><strong>Redux</strong><span>Middleware</span></div><div class="page-nav"><span>Page </span><span role="page-number">n</span><span> of </span><span role="page-count">n</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Middleware</h1>
+<p>Redux plugins are often made as <em>middleware</em>.
+Middleware are just functions. Here's a middleware that does nothing.</p>
+<pre><code class="language-js">createStore(reducer, {}, applyMiddleware(<span class="hljs-highlight">logger</span>))
+</code></pre>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span> (<span class="hljs-params">store</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">action</span>) </span>{
+      <span class="hljs-keyword">return</span> dispatch(action)
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>It make look complicated at first, but let's learn about this later!</p>
+</blockquote>
+<hr>
+<p>With ES2015, you can shorten this to:</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
+  <span class="hljs-keyword">return</span> dispatch(action)
+}
+</code></pre>
+<blockquote class="up-next">
+<p>Let's make it do something useful. <a href="#decorating-dispatch">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Decorating dispatch</h1>
+<p>Middleware is most commonly used to make <code>dispatch()</code> do something else.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Dispatching:'</span>, action.type)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Old state:'</span>, store.getState())
+  <span class="hljs-keyword">var</span> result = dispatch(action)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'New state:'</span>, store.getState())
+  <span class="hljs-keyword">return</span> result
+}
+</code></pre>
+<hr>
+<p>In this example, we've made <code>dispatch()</code> log some messages before and after dispatching.</p>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })
+<span class="hljs-comment">// Dispatching: SAVE</span>
+<span class="hljs-comment">// Old state: { ... }</span>
+<span class="hljs-comment">// New state: { ... }</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's use this for something useful. <a href="#side-effects">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Side effects</h1>
+<p>A store's reducers should have no side effects. Middleware is often used for that instead. Let's write a middleware that performs AJAX requests using <a href="https://fetch.spec.whatwg.org/">window.fetch()</a>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> fetcher = store =&gt; dispatch =&gt; action =&gt; {
+  <span class="hljs-keyword">const</span> { type, next, url } = action
+  <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'FETCH'</span>) {
+    <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_PENDING'</span> })</span>
+    fetch(url)
+    .then(result =&gt; <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_SUCCESS'</span>, result })</span>)
+    .then(error =&gt; <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_ERROR'</span>, result })</span>)
+  } <span class="hljs-keyword">else</span> {
+    dispatch(action)
+  }
+}
+</code></pre>
+<blockquote>
+<p>This function will replace <code>dispatch()</code>. It listens for <code>FETCH</code> actions.</p>
+</blockquote>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'FETCH'</span>, next: <span class="hljs-string">'LOAD'</span>, url: <span class="hljs-string">'/data.json'</span> })
+</code></pre>
+<blockquote>
+<p>When using the middleware, this dispatches <code>LOAD_PENDING</code>, <code>LOAD_SUCCESS</code> and <code>LOAD_ERROR</code>.</p>
+</blockquote>
+<br>
+<blockquote class="up-next">
+<p>Let's improve your Redux experience with npm. <a href="#common-middleware">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Common middleware</h1>
+<p>The npm ecosystem has a lot of useful Redux middleware. For instance, <a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a> lets you dispatch functions.</p>
+<pre><code class="language-js">store.dispatch((dispatch) =&gt; { <span class="hljs-ellipsis"></span> })
+</code></pre>
+<hr>
+<p><a href="https://github.com/ashaffer/redux-multi">redux-multi</a> lets you dispatch many actions in one action.</p>
+<pre><code class="language-js">store.dispatch([
+  { type: <span class="hljs-string">'INCREMENT'</span>, payload: <span class="hljs-number">2</span> },
+  { type: <span class="hljs-string">'INCREMENT'</span>, payload: <span class="hljs-number">3</span> }
+])
+</code></pre>
+<hr>
+<p><a href="https://github.com/evgenyrodionov/redux-logger">redux-logger</a> shows you Redux actions as they happen.</p>
+<pre><code>action @ 13:11:00 FETCH (in 0.1ms)
+action @ 13:11:01 LOAD_PENDING (in 0.1ms)
+action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
+</code></pre>
+<blockquote class="up-next">
+<p>Did you wonder why middleware looks like <code>store =&gt; dispatch =&gt; action</code>? <a href="#signature">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Middleware signature</h1>
+<p>You may have noticed that middleware functions look a bit confusing. It's a function, that returns a function, that returns a function.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
+  <span class="hljs-keyword">return</span> dispatch(action)
+}
+</code></pre>
+<p>Forget about its strange look. Think of it as a single function.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span> (<span class="hljs-params">store, dispatch, action</span>) </span>{ <span class="hljs-ellipsis"></span> }
+</code></pre>
+<hr>
+<p>Having them as functions-that-return-functions makes for something interesting: it breaks the middleware into 3 steps that are applied separately.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">store</span>) </span>{
+  <span class="hljs-placeholder">You can get store.dispatch() and store.getState() here.</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
+    <span class="hljs-placeholder">This only runs once.</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">action</span>) </span>{
+      <span class="hljs-placeholder">This runs every dispatch().</span>
+    }
+  }
+}
+</code></pre>
+<p>Most middleware will not need this, but the Redux docs has <a href="http://redux.js.org/docs/advanced/Middleware.html">examples</a> when this can be useful.</p>
+<br>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1>Recap</h1>
+<p><strong>Middleware</strong> are Redux plugins you can attach to your store.</p>
+<pre><code class="language-js">createStore(reducer, {}, applyMiddleware(<span class="hljs-highlight">logger</span>, <span class="hljs-highlight">thunk</span>))
+</code></pre>
+<hr>
+<p>They give <code>dispatch()</code> more powers.</p>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })     <span class="hljs-comment">// Normal</span>
+store.dispatch(fetch(<span class="hljs-string">'/data.json'</span>))  <span class="hljs-comment">// Promises</span>
+store.dispatch(() =&gt; { <span class="hljs-ellipsis"></span> })    <span class="hljs-comment">// Functions/thunks</span>
+store.dispatch(<span class="hljs-ellipsis"></span>)              <span class="hljs-comment">// and a lot more</span>
+</code></pre>
+<hr>
+<p>You can use middleware to write side effects to actions.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> middleware = store =&gt; dispatch =&gt; action =&gt; {
+  <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'FETCH'</span>) {
+    dispatch(action) <span class="hljs-comment">// &lt;-- Do something different here</span>
+  }
+}
+</code></pre>
+</div></div><div class="page-section"><div class="container">
+<p>That's all for now!</p>
+</div></div></div><script src="../_assets/script.js"></script></body></html>
