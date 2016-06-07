@@ -1,0 +1,36 @@
+/*
+ * Pages
+ */
+
+.page-section {
+  @include clearfix;
+
+  padding-top: 2em;
+  padding-bottom: 2em;
+  position: relative;
+
+  @media (min-width: 769px) {
+    @include ms-respond(padding-top, 10);
+    @include ms-respond(padding-bottom, 10);
+  }
+
+  & + & {
+    border-top: solid 1px rgba($blue, .1);
+  }
+
+  &:first-child > .container > h1 {
+    @include ms-respond(font-size, 8);
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+/*
+ * Account for prelude
+ */
+
+.page-section:first-child {
+  padding-top: 24px;
+}

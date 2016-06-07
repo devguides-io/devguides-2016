@@ -114,15 +114,15 @@ State subtrees
 Think of your state as a tree. It has branches which have their own branches and leaves, and so on. A subtree is one branch of that tree.
 
 ```js
-state = {
-  profile: {            //+
-    name: 'John Jones', //+
-    private: true       //+
-  },                    //+
-  photos: [
-    /*...*/
-  ]
-}
+state = { //-
+  profile: {
+    name: 'John Jones',
+    private: true
+  },
+  photos: [ //-
+    /*...*/ //-
+  ] //-
+} //-
 ```
 
 > `state.profile` is a subtree of the *state* tree.
@@ -134,7 +134,7 @@ state = {
 ```js
 function profile (state, action) {
   if (action.type === 'PUBLISH') {
-    // `state` is actually `state.profile` here.
+    /*[ `state` is actually `state.profile` here. ]*/
     return { ...state, private: false }
   }
 }
@@ -163,7 +163,7 @@ function photos (state, action) {
   /*[ see the whole `state` here ]*/
 }
 
-let reducer = reduceReducers(profiles, photos)
+let reducer = /*{*/reduceReducers(profiles, photos)/*}*/
 createStore(reducer)
 ```
 

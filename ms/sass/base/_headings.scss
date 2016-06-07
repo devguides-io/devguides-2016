@@ -1,0 +1,44 @@
+/*
+ * headings
+ */
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body strong {
+  color: $blacker;
+}
+
+.markdown-body h1 {
+  font-family: $serif;
+  font-weight: 100;
+  border-bottom: 0;
+  @include ms-respond(font-size, 5);
+  font-weight: normal;
+
+  // Line on desktop
+  @media (min-width: 769px) {
+    &:after {
+      @include hr-rule;
+      margin-top: .5em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 0;
+  }
+}
+
+.markdown-body h3 {
+  font-family: $sans;
+  @include ms-respond(font-size, 0);
+  font-weight: 700;
+
+  margin-bottom: .25em;
+  font-size: 1.2em;
+
+  & + p {
+    margin-top: 0;
+  }
+}

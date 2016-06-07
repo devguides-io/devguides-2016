@@ -1,0 +1,75 @@
+/*
+ * Chapter nav
+ */
+
+.book-nav {
+  position: fixed;
+  top: 40px - 8px;
+  left: 40px;
+  z-index: 5;
+
+  height: 32px;
+  line-height: 32px;
+
+  transform: translate3d(0, 0, 0);
+
+  @include ms-respond(font-size, -1);
+}
+
+.chapter-nav {
+  position: fixed;
+  z-index: 5;
+  top: 40px + 300px + 16px;
+  left: 40px + 32px - 8px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  width: 300px;
+  @include ms-respond(font-size, -1);
+
+  transform-origin: 0 100%;
+  transform: rotate(270deg);
+
+  strong {
+    margin-right: .5em;
+  }
+
+  strong, span {
+    position: relative;
+    top: 2px;
+  }
+
+  span {
+    color: $gray;
+    opacity: .5;
+  }
+}
+
+.nav-button {
+  display: inline-block;
+  vertical-align: middle;
+
+  &:before {
+    @include ion-icon('navicon');
+    font-size: 32px;
+    color: $blue;
+  }
+}
+
+@media (max-width: 768px) {
+  .chapter-nav,
+  .book-nav {
+    display: none;
+  }
+}
+
+.page-nav {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1;
+  transform: translate3d(0, 0, 0);
+  @include ms-respond(font-size, -1);
+  color: $gray;
+  opacity: .5;
+}

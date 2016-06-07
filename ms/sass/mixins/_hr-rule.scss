@@ -1,0 +1,11 @@
+@mixin hr-rule {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba($blue, .1);
+
+  @media (min-width: 769px) {
+    background: linear-gradient(to right, rgba($blue, .1), rgba($blue, .05) 90%);
+  }
+}

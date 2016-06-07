@@ -1,0 +1,48 @@
+/*
+ * Up next
+ */
+
+.markdown-body .up-next {
+  clear: both;
+
+  @media (min-width: 769px) {
+    @include ms-respond(padding-top, 10);
+  }
+
+  &, > p {
+    width: auto;
+    float: none;
+    padding-right: 0;
+  }
+
+  &:before {
+    @include hr-rule;
+    margin-bottom: 16px;
+  }
+
+  > p {
+    color: $black;
+    font-style: normal;
+    font-family: $sans;
+    font-size: 1em;
+  }
+
+  > p > a {
+    margin-left: 10px;
+    font-weight: bold;
+    font-family: $sans;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: .95em;
+    letter-spacing: .02em;
+  }
+
+  > p > a::after {
+    @include ion-icon('chevron-right');
+    margin-left: 8px;
+    font-size: .95em;
+
+    position: relative;
+    top: -1px;
+  }
+}

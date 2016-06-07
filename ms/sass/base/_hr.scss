@@ -1,0 +1,22 @@
+/*
+ * hr
+ */
+
+.markdown-body hr {
+  display: block;
+  clear: both;
+  background: transparent;
+  margin-bottom: 1.5em;
+  position: relative;
+  top: .3em; // There's no margin-top for clear: both
+
+  &::before {
+    @include hr-rule;
+    opacity: .5;
+  }
+
+  // Hide in mobile
+  @media (max-width: 480px) {
+    display: none;
+  }
+}

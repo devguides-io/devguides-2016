@@ -1,0 +1,40 @@
+/*
+ * Base
+ */
+
+@include ion-font;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+body, .markdown-body {
+  font-family: $sans;
+  line-height: 1.7;
+  color: $black;
+  font-size: 13px;
+  @media (min-width: 769px) {
+    font-size: 16px;
+  }
+}
+
+/*
+ * Scrollbar magic
+ */
+
+html {
+  overflow: hidden;
+}
+
+#body {
+  position: absolute;
+  left: 0;
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+}

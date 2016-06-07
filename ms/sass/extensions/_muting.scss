@@ -1,0 +1,42 @@
+/*
+ * Muting
+ */
+
+@media (min-width: 769px) {
+  .markdown-body {
+    background-color: #fafbfc;
+    padding: 16px;
+  }
+
+  .page-section {
+    & {
+      background-color: rgba(white, .99);
+      transition: background-color 600ms linear, transform 300ms ease-out;
+      transform-origin: 64px 50%;
+
+      > .container {
+        opacity: 1;
+        transition: opacity 300ms linear;
+      }
+    }
+
+    &.-active {
+      transition: background-color 300ms linear, transform 300ms ease-out;
+      border-top: 0;
+      position: relative;
+      z-index: 3;
+      box-shadow: 0 20px 40px rgba($blue, .02);
+      transform: scale(1);
+    }
+
+    &.-mute {
+      border-top: 0;
+      background-color: rgba(white, 0);
+      transform: scale(.98);
+
+      > .container {
+        opacity: .2;
+      }
+    }
+  }
+}

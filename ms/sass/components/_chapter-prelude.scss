@@ -1,0 +1,15 @@
+.markdown-body .chapter-prelude {
+  @include ms-respond(font-size, -1);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .05em;
+
+  @media (min-width: 769px) {
+    margin-bottom: 12em;
+  }
+
+  &:after {
+    margin-top: 16px;
+    @include hr-rule;
+  }
+}

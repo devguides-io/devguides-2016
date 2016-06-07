@@ -1,0 +1,18 @@
+/*
+ * Blockquote
+ */
+
+.markdown-body blockquote {
+  p {
+    color: $bluegrey;
+    font-family: $serif;
+    font-style: italic;
+    @include ms-respond(font-size, -1);
+  }
+
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  border: 0;
+}

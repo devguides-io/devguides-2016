@@ -1,0 +1,78 @@
+/*
+ * hljs
+ */
+
+.hljs-comment {
+  color: rgba($blue, .5);
+}
+
+.hljs-keyword {
+  color: $blue;
+}
+
+.hljs-string,
+.hljs-literal,
+.hljs-number {
+  color: saturate($blue, 40%);
+}
+
+.hljs-placeholder {
+  color: $gray;
+  font-family: $serif;
+  font-style: italic;
+  border-radius: 10px;
+  font-size: .95em;
+  padding-left: .9em;
+  padding-right: .9em;
+  letter-spacing: 0;
+
+  position: relative;
+  top: -1px;
+}
+
+.hljs-highlight {
+  background: white;
+  box-shadow: 0 -2px white, 0 2px white;
+  padding-left: .2em;
+  padding-right: .2em;
+  border-radius: 3px;
+}
+
+.hljs-line {
+  display: block;
+  margin-left: -8px;
+  margin-right: -8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: -1.6em;
+
+  & + & {
+    margin-top: 1.6em;
+  }
+
+  &.-highlight {
+    background: rgba(white, .9);
+  }
+
+  &.-mute {
+    &, * { color: rgba($blue, .5); }
+    opacity: .5;
+  }
+}
+
+.hljs-ellipsis {
+  &::before {
+    content: '···';
+  }
+
+  letter-spacing: .2em;
+  background: rgba($blue, .1);
+  color: $blue;
+  font-family: $sans;
+  border-radius: 2px;
+  padding-left: .9em;
+  padding-right: .9em;
+
+  position: relative;
+  top: -1px;
+}
