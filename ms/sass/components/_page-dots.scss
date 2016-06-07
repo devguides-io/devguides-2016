@@ -1,4 +1,4 @@
-$size: 4px;
+$size: 3px;
 
 .page-dots {
   position: fixed;
@@ -41,7 +41,7 @@ $size: 4px;
     width: $size;
     height: $size;
     opacity: .2;
-    margin: 6px 0;
+    margin: 5px 0;
 
     transition: all 0ms linear;
   }
@@ -49,5 +49,20 @@ $size: 4px;
   &.-active {
     background: $blue;
     opacity: 1;
+    height: $size * 6;
+  }
+}
+
+/*
+ * Hide
+ */
+
+.page-dots {
+  opacity: 1;
+  transition: opacity 300ms linear 1200ms;
+
+  &.-hide {
+    opacity: 0;
+    transition: opacity 300ms linear;
   }
 }

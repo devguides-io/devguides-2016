@@ -85,7 +85,7 @@ $(document).on('pages:change', '.page-section', function (e, options) {
  */
 
 $(document).on('pages:init', function (e, options) {
-  var $pagedots = $('<div class="page-dots">')
+  var $pagedots = $('<div class="page-dots -hide">')
   for (var i = 0; i < options.count; i++) {
     $('<a class="dot">').appendTo($pagedots)
   }
@@ -96,5 +96,9 @@ $(document).on('pages:change', '.page-section', function (e, options) {
   var $pagedots = $('.page-dots')
   var $dots = $pagedots.children()
   $dots.removeClass('-active')
-  $dots.eq(options.index).addClass('-active')
+  $pagedots.toggleClass('-hide', options.index === 0)
+
+  if (options.index > 0) {
+    $dots.eq(options.index).addClass('-active')
+  }
 })
