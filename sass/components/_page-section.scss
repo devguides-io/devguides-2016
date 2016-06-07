@@ -33,6 +33,11 @@
  */
 
 @media (min-width: 769px) {
+  .page-section {
+    padding-left: 64px + 16px;
+    padding-right: 16px;
+  }
+
   .page-section::before {
     content: '';
     display: block;

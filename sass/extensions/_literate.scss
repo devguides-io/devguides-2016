@@ -2,7 +2,7 @@
  * Literate style
  */
 
-@media (min-width: 769px) {
+@media (min-width: 900px) {
   .markdown-body {
     pre, blockquote {
       width: 60%;
@@ -27,5 +27,13 @@
         float: none;
       }
     }
+  }
+}
+
+// HR's only break apart literate sections, they serve no visual purpose
+// when in non-literate mode
+@media (max-width: 899px) {
+  .markdown-body hr {
+    display: none;
   }
 }
