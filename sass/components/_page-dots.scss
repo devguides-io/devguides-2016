@@ -59,7 +59,7 @@ $size: 3px;
 
 .page-dots {
   opacity: 1;
-  transition: opacity 300ms linear 1200ms;
+  transition: opacity 300ms linear 300ms;
 
   &.-hide {
     opacity: 0;

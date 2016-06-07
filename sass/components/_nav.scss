@@ -75,20 +75,3 @@
     display: none;
   }
 }
-
-.page-nav {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 1;
-  transform: translate3d(0, 0, 0);
-  @include ms-respond(font-size, -1);
-  color: $gray;
-  opacity: .5;
-}
-
-@media (max-width: 480px) {
-  .page-nav {
-    display: none;
-  }
-}

@@ -13,6 +13,7 @@
       background-color: rgba(white, .99);
       transition: background-color 600ms linear, transform 300ms ease-out;
       transform-origin: 64px 50%;
+      transform: scale(1) translate3d(0, 0, 0);
 
       > .container {
         opacity: 1;
@@ -26,7 +27,6 @@
       position: relative;
       z-index: 3;
       box-shadow: 0 20px 40px rgba($blue, .05);
-      transform: scale(1) translate3d(0, 0, 0);
 
       > .container {
         opacity: 1;
@@ -44,4 +44,14 @@
       }
     }
   }
+}
+
+/*
+ * Infinite scroll
+ */
+
+.page-section.-hide {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
 }
