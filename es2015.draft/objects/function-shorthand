@@ -1,0 +1,17 @@
+<h1 id="function-shorthand">Function shorthand</h1>
+<p>Have you ever defined functions inside objects?</p>
+<pre><code class="language-js">App = {
+  start: function () { /*...*/ }
+}
+</code></pre>
+<p>In ES2015, you can shorten this to:</p>
+<pre><code class="language-js">App = {
+  start () { /*...*/ }
+}
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Learn about getters and setters. <a href="getters-and-setters.md">Continue &gt;</a></p>
+</blockquote>

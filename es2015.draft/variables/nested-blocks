@@ -1,0 +1,21 @@
+<h1 id="nested-blocks">Nested blocks</h1>
+<p>Variables defined using <code>let</code> and <code>const</code> are available only inside <code>{...}</code> blocks, and other blocks inside them.</p>
+<pre><code class="language-js">function run (user) {
+  if (user) {
+    let running = user.state === 'running'
+    if (running) {
+      /*[ `running` is still available here ]*/
+    } else {
+      /*[ and here, too ]*/
+    }
+  } else {
+    /*[ but not here! ]*/
+  }
+}
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Learn recap what we've learned. <a href="recap.md">Continue &gt;</a></p>
+</blockquote>

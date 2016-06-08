@@ -1,0 +1,16 @@
+<h1 id="template-strings">Template strings</h1>
+<p>You can use <code>${...}</code> to add expressions inside strings. To do this, surround your string with backticks.</p>
+<pre><code class="language-js">var message = `Hello ${name}`
+</code></pre>
+<p>Template strings can span multiple lines.</p>
+<pre><code class="language-js">var str = `
+hello
+world
+`;
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Why is it called a &quot;template&quot;? <a href="tagged-templates.md">Continue &gt;</a></p>
+</blockquote>

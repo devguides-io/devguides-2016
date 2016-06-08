@@ -1,0 +1,15 @@
+<h1 id="constants">Constants</h1>
+<p><code>const</code> is just like <em>let</em>, except you can't reassign it to a new value</p>
+<pre><code class="language-js">function greet (user) {
+  const name = user.name
+  name = name.toUpperCase()
+  //=&gt; TypeError: Assignment to constant variable.
+}
+</code></pre>
+<p>Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>What is block scoping? <a href="block-scoping.md">Continue &gt;</a></p>
+</blockquote>

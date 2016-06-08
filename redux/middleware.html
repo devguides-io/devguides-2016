@@ -21,7 +21,7 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 }
 </code></pre>
 <blockquote class="up-next">
-<p>Let's make it do something useful. <a href="#decorating-dispatch">Continue</a></p>
+<p>Let's make it do something useful. <a href="#decorating-dispatch">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="decorating-dispatch">Decorating dispatch</h1>
@@ -42,7 +42,7 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <span class="hljs-comment">// New state: { ... }</span>
 </code></pre>
 <blockquote class="up-next">
-<p>Let's use this for something useful. <a href="#side-effects">Continue</a></p>
+<p>Let's use this for something useful. <a href="#side-effects">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="side-effects">Side effects</h1>
@@ -67,9 +67,8 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <blockquote>
 <p>When using the middleware, this dispatches <code>LOAD_PENDING</code>, <code>LOAD_SUCCESS</code> and <code>LOAD_ERROR</code>.</p>
 </blockquote>
-<br>
 <blockquote class="up-next">
-<p>Let's improve your Redux experience with npm. <a href="#common-middleware">Continue</a></p>
+<p>Let's improve your Redux experience with npm. <a href="#common-middleware">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="common-middleware">Common middleware</h1>
@@ -90,7 +89,7 @@ action @ 13:11:01 LOAD_PENDING (in 0.1ms)
 action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 </code></pre>
 <blockquote class="up-next">
-<p>Did you wonder why middleware looks like <code>store =&gt; dispatch =&gt; action</code>? <a href="#signature">Continue</a></p>
+<p>Did you wonder why middleware looks like <code>store =&gt; dispatch =&gt; action</code>? <a href="#signature">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="middleware-signature">Middleware signature</h1>
@@ -115,9 +114,8 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 }
 </code></pre>
 <p>Most middleware will not need this, but the Redux docs has <a href="http://redux.js.org/docs/advanced/Middleware.html">examples</a> when this can be useful.</p>
-<br>
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>

@@ -5,7 +5,7 @@
 <span class="hljs-keyword">var</span> store = createStore(<span class="hljs-ellipsis"></span>)
 </code></pre>
 <blockquote class="up-next">
-<p>What's a store? <a href="#stores">Continue</a></p>
+<p>What's a store? <a href="#stores">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="stores">Stores</h1>
@@ -22,11 +22,11 @@
 album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-comment">// &lt;- Write</span>
 </code></pre>
 <blockquote class="up-next">
-<p>How would you do that in Redux? <a href="#our-first-store">Continue</a></p>
+<p>How would you do that in Redux? <a href="#our-first-store">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="our-first-store">Our first store</h1>
-<p>Stores are created using <code>createStore()</code>. <a href="http://redux.js.org/docs/basics/Actions.html">(docs)</a></p>
+<p>Stores are created using <code>createStore()</code>.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 
 <span class="hljs-keyword">var</span> reducer = <span class="hljs-ellipsis"></span>
@@ -39,8 +39,11 @@ album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-com
 </code></pre>
 <hr>
 <p>Writing data works a bit different, though. That's where <code>reducer</code> comes in.</p>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Actions.html">createStore docs</a></p>
+</blockquote>
 <blockquote class="up-next">
-<p>How do you write to a store? <a href="#updating-the-store">Continue</a></p>
+<p>How do you write to a store? <a href="#updating-the-store">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="updating-the-store">Updating the store</h1>
@@ -54,7 +57,7 @@ album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-com
 }
 </code></pre>
 <blockquote>
-<p>Reducers take the current state and return a new one. How it changes the store depends on <code>action</code>. <a href="http://redux.js.org/docs/basics/Reducers.html">(docs)</a></p>
+<p>Reducers take the current state and return a new one. How it changes the store depends on <code>action</code>.</p>
 </blockquote>
 <hr>
 <p>You'll need a reducer to use <code>createStore()</code>.</p>
@@ -88,15 +91,17 @@ function reducer (state, action) {
   }
 }
 -->
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Reducers.html">Reducer docs</a></p>
+</blockquote>
 <blockquote class="up-next">
-<p>What does <code>...state</code> mean? <a href="#spread-operator">Continue</a></p>
+<p>What does <code>...state</code> mean? <a href="#spread-operator">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="the-spread-operator">The spread operator</h1>
 <pre><code class="language-js"><span class="hljs-keyword">return</span> { <span class="hljs-highlight">...state</span>, published: <span class="hljs-literal">true</span> }
 </code></pre>
-<p>The <code>...</code> symbol is the <em>object spread operator</em>. <a href="http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html">(docs)</a>
-It's available in Babel and in the 2017 version of JavaScript.</p>
+<p>The <code>...</code> symbol is the <em>object spread operator</em>. It's available in Babel and in the 2017 version of JavaScript.</p>
 <hr>
 <p>That line is roughly the same as this:</p>
 <pre><code class="language-js"><span class="hljs-keyword">return</span> {
@@ -112,9 +117,11 @@ It's available in Babel and in the 2017 version of JavaScript.</p>
 var state = { name: 'John', age: 3 }
 inspect({ ...state, published: true })
 -->
-<br>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html">Object spread docs</a></p>
+</blockquote>
 <blockquote class="up-next">
-<p>Let's learn more about actions. <a href="#dispatching-actions">Continue</a></p>
+<p>Let's learn more about actions. <a href="#dispatching-actions">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="dispatching-actions">Dispatching actions</h1>
@@ -152,7 +159,7 @@ function reducer (state, action) {
 }
 -->
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
@@ -179,5 +186,5 @@ store = createStore(reducer, {<span class="hljs-placeholder">initial state</span
 store.subscribe(() =&gt; { <span class="hljs-ellipsis"></span> })
 </code></pre>
 </div></div><div class="page-section"><div class="container">
-<p>Let's learn more about actions. <a href="actions.html">Continue</a></p>
+<p>Let's learn more about actions. <a href="actions.html">Next</a></p>
 </div></div></div><script src="../assets/script.js"></script></body></html>

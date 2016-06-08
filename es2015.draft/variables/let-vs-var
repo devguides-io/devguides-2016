@@ -1,0 +1,23 @@
+<h1 id="let-vs-var">let vs. var</h1>
+<p><code>let</code> is scoped to a block instead. A <em>let</em> is only available inside that <em>{ ... }</em> block.</p>
+<pre><code class="language-js">function greet (user) {
+  if (user.gender === male) {
+    let name = 'Mr. ' + user.name //@
+  } else {
+    let name = 'Ms. ' + user.name //@
+  }
+
+  console.log('Hello, ' + name)
+  //=&gt; &quot;ReferenceError: name is not defined&quot;
+}
+</code></pre>
+<blockquote>
+<p>↳ Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.</p>
+</blockquote>
+<p>On the other hand, <code>var</code> is scoped to a function. If we changed <em>let</em> to <em>var</em> above, it'd work like you expect it.</p>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Learn about <code>let</code>'s cousin. <a href="constants.md">Continue &gt;</a></p>
+</blockquote>

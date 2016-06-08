@@ -4,44 +4,43 @@
 </code></pre>
 <p>Actions are objects and always have a <code>type</code> key. This isn't required, but it's just the way everyone does it.</p>
 <blockquote class="up-next">
-<p>How would we do it asynchronously? <a href="#next">Continue</a></p>
+<p>How would we do it asynchronously? <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="the-three-states">The three states</h1>
 <p>Processes are <em>asynchronous</em> when they take a long time, such as AJAX calls to load some data. They usually have 3 states: <code>pending</code>, <code>success</code>, and <code>error</code>. Imagine it looking like this:</p>
 <pre><code class="language-js">store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'LOAD_START'</span> }</span>)
-API.get(<span class="hljs-string">'/data.json'</span>)
+fetch(<span class="hljs-string">'/data.json'</span>)
   .then(data =&gt;
     store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data })</span>)
   .catch(error =&gt;
     store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'LOAD_ERROR'</span>, error: error })</span>)
 </code></pre>
 <blockquote>
-<p>Assuming <code>API.get()</code> returns a promise, we can use it to trigger store actions when something happens.</p>
+<p>Assuming <code>fetch()</code> returns a promise, we can use it to trigger store actions when something happens.</p>
 </blockquote>
-<br>
 <blockquote class="up-next">
-<p>Let's try to hook this up to our store. <a href="#next">Continue</a></p>
+<p>Let's try to hook this up to our store. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="first-try">First try</h1>
-<p>Let's try putting this logic in the reducer. Let's add <code>API.get(...)</code> into it.</p>
+<p>Let's try putting this logic in the reducer. Let's add <code>fetch()</code> into it.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'LOAD_START'</span>) {
-    <span class="hljs-highlight">API.get(<span class="hljs-string">'/data.json'</span>).then(<span class="hljs-placeholder">??</span>).catch(<span class="hljs-placeholder">??</span>)</span>
+    <span class="hljs-highlight">fetch(<span class="hljs-string">'/data.json'</span>).then(<span class="hljs-placeholder">??</span>).catch(<span class="hljs-placeholder">??</span>)</span>
     <span class="hljs-keyword">return</span> { ...state, loading: <span class="hljs-literal">true</span> }<span class="hljs-line -mute">  } <span class="hljs-keyword">else</span> { </span><span class="hljs-line -mute">    <span class="hljs-keyword">return</span> state </span><span class="hljs-line -mute">  } </span><span class="hljs-line -mute">} </span>
 <span class="hljs-line -mute">createStore(reducer) </span>
 </code></pre>
 <p>It seems you can't <code>dispatch()</code> inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.</p>
 <blockquote class="up-next">
-<p>Let's try a different approach. <a href="#next">Continue</a></p>
+<p>Let's try a different approach. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="second-try">Second try</h1>
 <p>Let's try putting that logic in a function outside the store. Let's make a function.</p>
 <pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
   <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_START'</span> })
-  API.get(<span class="hljs-string">'/data.json'</span>)
+  fetch(<span class="hljs-string">'/data.json'</span>)
     .then(data =&gt;
       <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data }))
     .catch(error =&gt;
@@ -57,7 +56,7 @@ API.get(<span class="hljs-string">'/data.json'</span>)
 store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-comment">// &lt;-- everything else</span>
 </code></pre>
 <blockquote class="up-next">
-<p>Let's make things more consistent. <a href="#next">Continue</a></p>
+<p>Let's make things more consistent. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="meet-redux-thunk">Meet redux-thunk</h1>
@@ -75,17 +74,19 @@ store = createStore(reducer, {}, <span class="hljs-highlight">applyMiddleware(th
 store.dispatch(<span class="hljs-highlight">load</span>)
 </code></pre>
 <blockquote>
-<p>We can take the <code>load()</code> function earlier and use it as an action.
-<a href="http://redux.js.org/docs/api/applyMiddleware.html">(docs)</a></p>
+<p>We can take the <code>load()</code> function earlier and use it as an action.</p>
 </blockquote>
-<br>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/api/applyMiddleware.html">applyMiddleware docs</a>
+<br></p>
+</blockquote>
 <blockquote class="up-next">
-<p>Let's sort out our action creators. <a href="#next">Continue</a></p>
+<p>Let's sort out our action creators. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="action-creators">Action creators</h1>
 <p>In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.</p>
-<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadProject</span> (<span class="hljs-params">id</span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{ </span><span class="hljs-line -mute">    dispatch({ type: <span class="hljs-string">'PROJECT_LOADING'</span>, data }) </span><span class="hljs-line -mute">    <span class="hljs-keyword">return</span> API.get(<span class="hljs-string">`/projects/<span class="hljs-subst">${id}</span>`</span>) </span><span class="hljs-line -mute">      .then(data =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_LOADED'</span>, data })) </span><span class="hljs-line -mute">      .catch(err =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_ERROR'</span>, err })) </span><span class="hljs-line -mute">  } </span>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadProject</span> (<span class="hljs-params">id</span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{ </span><span class="hljs-line -mute">    dispatch({ type: <span class="hljs-string">'PROJECT_LOADING'</span>, data }) </span><span class="hljs-line -mute">    <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`/projects/<span class="hljs-subst">${id}</span>`</span>) </span><span class="hljs-line -mute">      .then(data =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_LOADED'</span>, data })) </span><span class="hljs-line -mute">      .catch(err =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_ERROR'</span>, err })) </span><span class="hljs-line -mute">  } </span>
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveProject</span> (<span class="hljs-params">id</span>) </span>{ <span class="hljs-ellipsis"></span> }
@@ -93,7 +94,7 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createProject</span> (<span class="hljs-params">id, data</span>) </span>{ <span class="hljs-ellipsis"></span> }
 </code></pre>
 <hr>
-<p>Action Creators are functions that return an action. <a href="http://redux.js.org/docs/basics/Actions.html">(docs)</a> <code>loadProject()</code> and friends return functions, which redux-thunk will happily accept as actions.</p>
+<p><em>Action Creators are</em> functions that return an action. <code>loadProject()</code> and friends return functions, which redux-thunk will happily accept as actions.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> { loadProject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./actions'</span>
 
 store.dispatch(<span class="hljs-highlight">loadProject()</span>)
@@ -101,9 +102,11 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <blockquote>
 <p>Invoke these actions by passing the functions' results to <code>dispatch()</code>.</p>
 </blockquote>
-<br>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Actions.html">Actions docs</a></p>
+</blockquote>
 <blockquote class="up-next">
-<p>Let's build more action creators. <a href="#next">Continue</a></p>
+<p>Let's build more action creators. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="simple-action-creators">Simple action creators</h1>
@@ -115,9 +118,8 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <blockquote>
 <p>Even simple actions can have action creators.</p>
 </blockquote>
-<br>
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#next">Continue</a></p>
+<p>Let's recap what we've learned. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
@@ -133,7 +135,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadProject</span> (<span class="hljs-params">id</span>) </span>{
   <span class="hljs-highlight"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
     dispatch({ type: <span class="hljs-string">'PROJECT_LOADING'</span>, data })
-    <span class="hljs-keyword">return</span> API.get(<span class="hljs-string">`/projects/<span class="hljs-subst">${id}</span>`</span>)
+    <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`/projects/<span class="hljs-subst">${id}</span>`</span>)
       .then(data =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_LOADED'</span>, data }))
       .catch(err =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_ERROR'</span>, err }))
   }
@@ -146,5 +148,5 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <pre><code class="language-js">store = createStore(reducer, {}, <span class="hljs-highlight">applyMiddleware(reduxThunk)</span>)
 </code></pre>
 </div></div><div class="page-section"><div class="container">
-<p>Let's learn about reducers. <a href="reducers.html">Continue</a></p>
+<p>Let's learn about reducers. <a href="reducers.html">Next</a></p>
 </div></div></div><script src="../assets/script.js"></script></body></html>

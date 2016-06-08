@@ -1,0 +1,17 @@
+<h1 id="recap">Recap</h1>
+<p><code>let</code> is the new <code>var</code>. <code>const</code> is the same, but doesn't let you change it.</p>
+<pre><code class="language-js">let a = 'hello'
+const b = 'hi'
+</code></pre>
+<p>They are &quot;block scoping&quot;: they are only available within <code>{...}</code> blocks, but not outside them.</p>
+<pre><code class="language-js">if (true) {
+  let a = 'hello'
+}
+console.log(a)  //=&gt; undefined
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Learn what's new with objects. <a href="../objects/README.md">Continue &gt;</a></p>
+</blockquote>

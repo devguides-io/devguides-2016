@@ -1,0 +1,17 @@
+<h1 id="computed-properties">Computed properties</h1>
+<p>You can write properties with key names derived from expressions.</p>
+<pre><code class="language-js">let id = 'john'
+let Users = { [id]: &quot;John Frobisher&quot; }
+Users.john //=&gt; &quot;John Frobisher&quot;
+</code></pre>
+<p>You would've written it like the long way in ES5:</p>
+<pre><code class="language-js">var id = 'john'
+var Users = {}
+Users[id] = &quot;John Frobisher&quot;
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Let's recap what we've learned. <a href="recap.md">Continue &gt;</a></p>
+</blockquote>

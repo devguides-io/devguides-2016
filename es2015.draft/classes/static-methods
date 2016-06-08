@@ -1,0 +1,17 @@
+<h1 id="static-methods">Static methods</h1>
+<p>You can define functions that can be called without instanciating it (calling <code>new YourClass</code>). These are called static methods.</p>
+<pre><code class="language-js">class Circle {
+  static createFromDiameter (diameter) {
+    return new Circle(diameter / 2)
+  }
+}
+
+c = Circle.createFromDiameter(21)
+// Same as `new Circle(10.5)`
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Let's learn about inheritance. <a href="inheritance.md">Continue &gt;</a></p>
+</blockquote>

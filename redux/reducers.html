@@ -18,7 +18,7 @@
 }
 </code></pre>
 <blockquote class="up-next">
-<p>Why do we keep using <code>...</code>? <a href="#immutability">Continue</a></p>
+<p>Why do we keep using <code>...</code>? <a href="#immutability">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="immutability">Immutability</h1>
@@ -41,7 +41,7 @@
 <hr>
 <p>If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes <code>state === oldState</code> true even if they changed, making React skip doing updates.</p>
 <blockquote class="up-next">
-<p>What happens when my reducer gets very big? <a href="#combining-reducers">Continue</a></p>
+<p>What happens when my reducer gets very big? <a href="#combining-reducers">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="combining-reducers">Combining reducers</h1>
@@ -67,7 +67,7 @@
 </code></pre>
 <p>This is only useful if each reducer works on a single part of your state.</p>
 <blockquote class="up-next">
-<p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Continue</a></p>
+<p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="state-subtrees">State subtrees</h1>
@@ -94,7 +94,7 @@ reducer = combineReducers({ profile, <span class="hljs-ellipsis"></span> })
 </code></pre>
 <p>This reducer can't see <code>state.photos</code>! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.</p>
 <blockquote class="up-next">
-<p>What if my I need my reducers to do more than that? <a href="#reduce-reducers">Continue</a></p>
+<p>What if my I need my reducers to do more than that? <a href="#reduce-reducers">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="reduce-reducers">Reduce reducers</h1>
@@ -114,7 +114,7 @@ createStore(reducer)
 </code></pre>
 <p>reduce-reducers is a 3rd-party package. <a href="https://github.com/acdlite/reduce-reducers">(docs)</a> It's one of the many plugins available in the Redux ecosystem in npm.</p>
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
@@ -134,5 +134,5 @@ createStore(reducer)
 combineReducers({ profile, photos })
 </code></pre>
 </div></div><div class="page-section"><div class="container">
-<p>Let's use Redux with React. <a href="react.html">Continue</a></p>
+<p>Let's use Redux with React. <a href="react.html">Next</a></p>
 </div></div></div><script src="../assets/script.js"></script></body></html>

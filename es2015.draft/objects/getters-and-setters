@@ -1,0 +1,21 @@
+<h1 id="getters-and-setters">Getters and setters</h1>
+<p>Apart from function shorthands, you can define special attributes that do something when read or set.</p>
+<pre><code class="language-js">Shop = {
+  get closed () {
+    return this.status === 'closed'
+  },
+  set closed (value) {
+    this.status = value ? 'closed' : 'open'
+  }
+}
+
+Shop.closed = true  // invokes `set closed()`
+Shop.status         //=&gt; 'closed'
+Shop.closed         //=&gt; true (invokes `get closed()`)
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Learn about writing dynamic property names. <a href="computed-properties.md">Continue &gt;</a></p>
+</blockquote>
