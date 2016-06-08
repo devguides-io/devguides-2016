@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Using with React - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Using with React</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Using with React</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Using with React - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Using with React</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1 id="using-with-react">Using with React</h1>
 <p><strong>react-redux</strong> is the official package used to make Redux and React work together. <a href="http://redux.js.org/docs/basics/UsageWithReact.html">(docs)</a> To use it, wrap your main app (your top-most React component) inside a <code>&lt;Provider&gt;</code>. This lets your components see the <code>store</code>.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span> </span><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span> </span><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 <span class="hljs-keyword">import</span> { <span class="hljs-highlight">Provider</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
@@ -15,7 +15,7 @@ render(
 <p>How do I see the state in my components? <a href="#connecting">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Connecting to the store</h1>
+<h1 id="connecting-to-the-store">Connecting to the store</h1>
 <p>react-redux provides <code>connect()</code> to let components see the store's state.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>
 
@@ -41,7 +41,7 @@ PhotosList = <span class="hljs-highlight">connect(mapState)</span>(PhotosList)
 <p>What about dispatching events? <a href="#dispatching">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Dispatching</h1>
+<h1 id="dispatching">Dispatching</h1>
 <p><code>connect()</code> also lets you send <em>props</em> to your Components that map to dispatch calls. The 2nd argument of <code>connect()</code> lets you do this.</p>
 <pre><code class="language-js"><span class="hljs-keyword">var</span> PhotosList = connect(mapState, <span class="hljs-highlight">mapDispatch</span>)(PhotosList)
 </code></pre>
@@ -63,7 +63,7 @@ PhotosList = <span class="hljs-highlight">connect(mapState)</span>(PhotosList)
 <p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Recap</h1>
+<h1 id="recap">Recap</h1>
 <p><strong>react-redux</strong> lets you make Redux and React work together. <a href="http://redux.js.org/docs/basics/UsageWithReact.html">(docs)</a> <code>Provider</code> makes React components aware of a store.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span> </span>
 

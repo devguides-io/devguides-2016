@@ -1,14 +1,62 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 require('../../lib/web')
 
-},{"../../lib/web":2}],2:[function(require,module,exports){
+},{"../../lib/web":4}],2:[function(require,module,exports){
+var $ = window.$
+
+$(document).on('pages:load', function () {
+  if ($('.next-progress').length) return
+
+  var $progress = $('<div class="next-progress">')
+  $progress.appendTo('body')
+
+  setTimeout(function () {
+    $progress.remove()
+  }, 500)
+})
+
+},{}],3:[function(require,module,exports){
+var $ = window.$
+
+module.exports = function onScrollUp (options, fn) {
+  if (!options) options = {}
+  var $window = $(window)
+  var min = options.min || 10
+  var lastY, bottomY, lastDirection, supress
+
+  $window.on('scroll', function () {
+    var newY = $window.scrollTop()
+
+    if (typeof lastY === 'undefined') {
+      lastY = newY
+      bottomY = newY
+      return
+    }
+
+    var newDirection = newY > lastY ? 'down' : 'up'
+
+    if (newDirection === 'down') {
+      bottomY = newY
+      supress = false
+    } else if (!supress && bottomY - newY > min) {
+      fn()
+      supress = true
+    }
+
+    lastY = newY
+    lastDirection = newDirection
+  })
+}
+
+},{}],4:[function(require,module,exports){
 window.jQuery = window.$ = require('jquery')
 require('waypoints/lib/jquery.waypoints')
 
 var $ = window.$
 var Waypoint = window.Waypoint
 
-var onScrollUp = require('./on_scrollup')
+var onScrollUp = require('./helpers/on_scrollup')
+require('./behaviors/next_progress')
 
 /*
  * First load
@@ -16,7 +64,7 @@ var onScrollUp = require('./on_scrollup')
 
 $(function () {
   // If pressing the 'back' button, just show everything
-  if ($('body').scrollTop() !== 0) return
+  if ($('body').scrollTop() !== 0 || window.location.hash !== '') return
 
   $('body').addClass('-first-load')
   var $sections = $('.page-section')
@@ -45,15 +93,16 @@ $(function () {
       var $next = $('.page-section.-hide').eq(0)
       $('body').removeClass('-first-load')
 
-      console.log('bam!', $next[0])
-
       // Disable until refresh; prevents double invocation.
       disabled = true
 
+      $next.trigger('pages:load')
       $next.removeClass('-hide')
 
       // Remove on the last page to show.
       if ($('.page-section.-hide').length === 0) $placeholder.remove()
+
+      // Ahuh
 
       setTimeout(function () {
         disabled = false
@@ -61,7 +110,6 @@ $(function () {
 
       setTimeout(function () {
         window.Waypoint.refreshAll()
-        console.log('refreshing...')
       })
     },
     offset: '70%'
@@ -111,7 +159,7 @@ $(function () {
   })
 })
 
-onScrollUp({ min: 64 }, function () {
+onScrollUp({ min: 128 }, function () {
   $(document).trigger('pages:showAll')
 })
 
@@ -151,40 +199,7 @@ $(document).on('pages:advance pages:rewind', '.page-section', function (e, optio
   $dots.eq(Math.max(options.index, 1)).addClass('-active')
 })
 
-},{"./on_scrollup":3,"jquery":4,"waypoints/lib/jquery.waypoints":5}],3:[function(require,module,exports){
-var $ = window.$
-
-module.exports = function onScrollUp (options, fn) {
-  if (!options) options = {}
-  var $window = $(window)
-  var min = options.min || 10
-  var lastY, bottomY, lastDirection, supress
-
-  $window.on('scroll', function () {
-    var newY = $window.scrollTop()
-
-    if (typeof lastY === 'undefined') {
-      lastY = newY
-      bottomY = newY
-      return
-    }
-
-    var newDirection = newY > lastY ? 'down' : 'up'
-
-    if (newDirection === 'down') {
-      bottomY = newY
-      supress = false
-    } else if (!supress && bottomY - newY > min) {
-      fn()
-      supress = true
-    }
-
-    lastY = newY
-    lastDirection = newDirection
-  })
-}
-
-},{}],4:[function(require,module,exports){
+},{"./behaviors/next_progress":2,"./helpers/on_scrollup":3,"jquery":5,"waypoints/lib/jquery.waypoints":6}],5:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -10000,7 +10015,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /*!
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Actions - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Actions</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Actions</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Actions - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Actions</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1 id="actions">Actions</h1>
 <p>So far we've learned about actions: things you <code>dispatch()</code> to a store to change its state.</p>
 <pre><code class="language-js">store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'PUBLISH'</span> }</span>)
 </code></pre>
@@ -7,7 +7,7 @@
 <p>How would we do it asynchronously? <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>The three states</h1>
+<h1 id="the-three-states">The three states</h1>
 <p>Processes are <em>asynchronous</em> when they take a long time, such as AJAX calls to load some data. They usually have 3 states: <code>pending</code>, <code>success</code>, and <code>error</code>. Imagine it looking like this:</p>
 <pre><code class="language-js">store.dispatch(<span class="hljs-highlight">{ type: <span class="hljs-string">'LOAD_START'</span> }</span>)
 API.get(<span class="hljs-string">'/data.json'</span>)
@@ -24,7 +24,7 @@ API.get(<span class="hljs-string">'/data.json'</span>)
 <p>Let's try to hook this up to our store. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>First try</h1>
+<h1 id="first-try">First try</h1>
 <p>Let's try putting this logic in the reducer. Let's add <code>API.get(...)</code> into it.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'LOAD_START'</span>) {
@@ -37,7 +37,7 @@ API.get(<span class="hljs-string">'/data.json'</span>)
 <p>Let's try a different approach. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Second try</h1>
+<h1 id="second-try">Second try</h1>
 <p>Let's try putting that logic in a function outside the store. Let's make a function.</p>
 <pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
   <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_START'</span> })
@@ -60,7 +60,7 @@ store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="
 <p>Let's make things more consistent. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Meet redux-thunk</h1>
+<h1 id="meet-redux-thunk">Meet redux-thunk</h1>
 <p>Let's improve our design. <a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a> is a plugin for Redux. It makes your <code>dispatch()</code> accept functions just like the one earlier.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">'redux-thunk'</span> </span><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore, applyMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 
@@ -83,7 +83,7 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 <p>Let's sort out our action creators. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Action creators</h1>
+<h1 id="action-creators">Action creators</h1>
 <p>In a typical app, we'll likely have a few of action creators. It's best to organize these into one file.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadProject</span> (<span class="hljs-params">id</span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{ </span><span class="hljs-line -mute">    dispatch({ type: <span class="hljs-string">'PROJECT_LOADING'</span>, data }) </span><span class="hljs-line -mute">    <span class="hljs-keyword">return</span> API.get(<span class="hljs-string">`/projects/<span class="hljs-subst">${id}</span>`</span>) </span><span class="hljs-line -mute">      .then(data =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_LOADED'</span>, data })) </span><span class="hljs-line -mute">      .catch(err =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_ERROR'</span>, err })) </span><span class="hljs-line -mute">  } </span>
 }
@@ -106,7 +106,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <p>Let's build more action creators. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Simple action creators</h1>
+<h1 id="simple-action-creators">Simple action creators</h1>
 <p>Action creators don't have to only be for asynchronous actions.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publishProject</span> (<span class="hljs-params">id</span>) </span>{
   <span class="hljs-keyword">return</span> { type: <span class="hljs-string">'PROJECT_UPDATE'</span>, id, published: <span class="hljs-literal">true</span> }
@@ -120,7 +120,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <p>Let's recap what we've learned. <a href="#next">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Recap</h1>
+<h1 id="recap">Recap</h1>
 <p><strong>Action creators</strong> are functions that return things that you can pass to <code>dispatch()</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publishProject</span> (<span class="hljs-params">id</span>) </span>{
   <span class="hljs-keyword">return</span> { type: <span class="hljs-string">'PROJECT_UPDATE'</span>, id, published: <span class="hljs-literal">true</span> }

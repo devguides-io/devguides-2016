@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Reducers - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Reducers</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Reducers</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Reducers - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Reducers</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1 id="reducers">Reducers</h1>
 <p>The function you pass to <code>createStore()</code> is called a reducer. It's a simple function that takes in a state, and returns another state.</p>
 <pre><code class="language-js">reducer(state, action) → state
 </code></pre>
@@ -21,7 +21,7 @@
 <p>Why do we keep using <code>...</code>? <a href="#immutability">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Immutability</h1>
+<h1 id="immutability">Immutability</h1>
 <p>Never modify objects! That's the Redux way of doing things. This is called <em>immutability</em>, in other words, never having to mutate.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{ </span><span class="hljs-line -mute">  <span class="hljs-keyword">switch</span> (action.type) { </span><span class="hljs-line -mute">    <span class="hljs-keyword">case</span> <span class="hljs-string">'PUBLISH'</span>: </span>
       state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span><span class="hljs-line -mute">      <span class="hljs-keyword">return</span> state </span>
@@ -44,7 +44,7 @@
 <p>What happens when my reducer gets very big? <a href="#combining-reducers">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Combining reducers</h1>
+<h1 id="combining-reducers">Combining reducers</h1>
 <p>Let's say you app has <em>articles</em> and <em>users</em>. If we put everything into one reducer, we'll be writing a very long function! There's a better way. Imagine your store state looks like this:</p>
 <pre><code class="language-js">{
   articles: {<span class="hljs-ellipsis"></span>},
@@ -70,7 +70,7 @@
 <p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>State subtrees</h1>
+<h1 id="state-subtrees">State subtrees</h1>
 <p>Think of your state as a tree. It has branches which have their own branches and leaves, and so on. A subtree is one branch of that tree.</p>
 <pre><code class="language-js"><span class="hljs-line -mute">state = { </span>
   profile: {
@@ -97,7 +97,7 @@ reducer = combineReducers({ profile, <span class="hljs-ellipsis"></span> })
 <p>What if my I need my reducers to do more than that? <a href="#reduce-reducers">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Reduce reducers</h1>
+<h1 id="reduce-reducers">Reduce reducers</h1>
 <p>Another approach to combining reducers is to use <em>reduce-reducers</em>. Unlike <em>combineReducers()</em>, these sub-reducers will be able to work on the entire tree.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> reduceReducers <span class="hljs-keyword">from</span> <span class="hljs-string">'reduce-reducers'</span> </span>
 
@@ -117,7 +117,7 @@ createStore(reducer)
 <p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Recap</h1>
+<h1 id="recap">Recap</h1>
 <p><strong>Reducers</strong> are functions that take a state, and return a new state.</p>
 <pre><code class="language-js">reducer(state, action) → state
 </code></pre>

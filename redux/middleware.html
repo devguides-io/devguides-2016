@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Middleware - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Middleware</span></div><div id="body" class="markdown-body"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1>Middleware</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Middleware - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Middleware</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1 id="middleware">Middleware</h1>
 <p>Redux plugins are often made as <em>middleware</em>.
 Middleware are just functions. Here's a middleware that does nothing.</p>
 <pre><code class="language-js">createStore(reducer, {}, applyMiddleware(<span class="hljs-highlight">logger</span>))
@@ -24,7 +24,7 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <p>Let's make it do something useful. <a href="#decorating-dispatch">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Decorating dispatch</h1>
+<h1 id="decorating-dispatch">Decorating dispatch</h1>
 <p>Middleware is most commonly used to make <code>dispatch()</code> do something else.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Dispatching:'</span>, action.type)
@@ -45,7 +45,7 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <p>Let's use this for something useful. <a href="#side-effects">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Side effects</h1>
+<h1 id="side-effects">Side effects</h1>
 <p>A store's reducers should have no side effects. Middleware is often used for that instead. Let's write a middleware that performs AJAX requests using <a href="https://fetch.spec.whatwg.org/">window.fetch()</a>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> fetcher = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-keyword">const</span> { type, next, url } = action
@@ -72,7 +72,7 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <p>Let's improve your Redux experience with npm. <a href="#common-middleware">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Common middleware</h1>
+<h1 id="common-middleware">Common middleware</h1>
 <p>The npm ecosystem has a lot of useful Redux middleware. For instance, <a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a> lets you dispatch functions.</p>
 <pre><code class="language-js">store.dispatch((dispatch) =&gt; { <span class="hljs-ellipsis"></span> })
 </code></pre>
@@ -93,7 +93,7 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 <p>Did you wonder why middleware looks like <code>store =&gt; dispatch =&gt; action</code>? <a href="#signature">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Middleware signature</h1>
+<h1 id="middleware-signature">Middleware signature</h1>
 <p>You may have noticed that middleware functions look a bit confusing. It's a function, that returns a function, that returns a function.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-keyword">return</span> dispatch(action)
@@ -120,7 +120,7 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 <p>Let's recap what we've learned. <a href="#recap">Continue</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
-<h1>Recap</h1>
+<h1 id="recap">Recap</h1>
 <p><strong>Middleware</strong> are Redux plugins you can attach to your store.</p>
 <pre><code class="language-js">createStore(reducer, {}, applyMiddleware(<span class="hljs-highlight">logger</span>, <span class="hljs-highlight">thunk</span>))
 </code></pre>
