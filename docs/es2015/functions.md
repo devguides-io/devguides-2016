@@ -134,7 +134,7 @@ logger(next)(store.dispatch)({ type: 'init '})
 You can now define defaults for arguments that are omitted.
 
 ```js
-function greet(name = "Jerry") {
+function greet(/*{*/name = "Jerry"/*}*/) {
   return `Hello ${name}`;
 }
 // ---

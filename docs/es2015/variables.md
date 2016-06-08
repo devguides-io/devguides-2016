@@ -21,26 +21,25 @@ function greet (user) {
 
 # let vs. var
 
-`let` is scoped to a block instead. A *let* is only available inside that *{ ... }* block.
+A `let` is only available inside the `{ ... }` block they're in. `let` is scoped to blocks.
 
 ```js
 function greet (user) {
-  if (user.gender === male) {
-    let name = 'Mr. ' + user.name //+
+  if (user.gender === 'male') {
+    /*{*/let name = 'Mr. ' + user.name/*}*/
   } else {
-    let name = 'Ms. ' + user.name //+
+    /*{*/let name = 'Ms. ' + user.name/*}*/
   }
-
   console.log('Hello, ' + name)
-  //=> "ReferenceError: name is not defined"
 }
+// ---
+//=> ReferenceError: name is not defined
 ```
 
 > Here, the `name`s are only available inside their respective *if* and *else* blocks.
+> If we changed `let` to `var`, it'd work like you expect it, because `var` is scoped to functions.
 
----
-
-On the other hand, `var` is scoped to a function. If we changed *let* to *var* above, it'd work like you expect it.
+<!-- -->
 
 > Also see: [Block scope (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
@@ -56,11 +55,10 @@ On the other hand, `var` is scoped to a function. If we changed *let* to *var* a
 Most guides now recommend using *let* and *const* instead of `var`.
 
 ```js
-function greet (user) {
-  const name = user.name //+
-  name = name.toUpperCase()
-  //=> TypeError: Assignment to constant variable.
-}
+const name = user.name
+name = name.toUpperCase()
+// ---
+//=> TypeError: Assignment to constant variable
 ```
 
 > Also see: [Constants (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
@@ -79,7 +77,9 @@ function greet (user) {
 if (true) {
   let a = 'hello'
 }
-console.log(a)  //=> undefined
+console.log(a)
+// ---
+//=> undefined
 ```
 
 > The variable `a` is only available inside the *if* block.

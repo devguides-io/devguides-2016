@@ -69,12 +69,12 @@ Let's try putting that logic in a function outside the store. Let's make a funct
 
 ```js
 /*{*/function load (dispatch) {/*}*/
-  /*{*/dispatch/*}*/({ type: 'LOAD_START' })
+  dispatch({ type: 'LOAD_START' })
   fetch('/data.json')
     .then(data =>
-      /*{*/dispatch/*}*/({ type: 'LOAD_FINISH', data: data }))
+      dispatch({ type: 'LOAD_FINISH', data: data }))
     .catch(error =>
-      /*{*/dispatch/*}*/({ type: 'LOAD_ERROR', error: error }))
+      dispatch({ type: 'LOAD_ERROR', error: error }))
 }
 ```
 
@@ -85,7 +85,8 @@ Let's try putting that logic in a function outside the store. Let's make a funct
 But now we're not being consistent: we often use `store.dispatch()` to trigger actions, but this time we're using `load(...)`. We can do better.
 
 ```js
-load(store.dispatch)              // <-- this new way
+/*{*/load(store.dispatch)/*}*/              // <-- this new way
+// ---
 store.dispatch({ type: 'INIT' })  // <-- everything else
   ```
 
@@ -147,6 +148,8 @@ export function deleteProject (id) { /*...*/ }
 export function createProject (id, data) { /*...*/ }
 ```
 
+> Save this file as `actions.js`.
+
 ---
 
 *Action Creators are* functions that return an action. `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
@@ -195,9 +198,7 @@ export function publishProject (id) {
 export function publishProject (id) {
   return { type: 'PROJECT_UPDATE', id, published: true }
 }
-```
-
-```js
+// ---
 store.dispatch(/*{*/publishProject(12)/*}*/)
 ```
 
@@ -214,9 +215,7 @@ export function loadProject (id) {
       .catch(err => dispatch({ type: 'PROJECT_ERROR', err }))
   }
 }
-```
-
-```js
+// ---
 store.dispatch(/*{*/loadProject(12)/*}*/)
 ```
 

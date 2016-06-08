@@ -7,7 +7,7 @@ chapter: Using with React
 Using with React
 ================
 
-**react-redux** is the official package used to make Redux and React work together. [(docs)](http://redux.js.org/docs/basics/UsageWithReact.html) To use it, wrap your main app (your top-most React component) inside a `<Provider>`. This lets your components see the `store`.
+**react-redux** is the official package used to make Redux and React work together. To use it, wrap your main app (your top-most React component) inside a `<Provider>`. This lets your components see the `store`.
 
 ```js
 import React from 'react' //-
@@ -23,6 +23,10 @@ render(
   </Provider>,
   document.getElementById('root'))
 ```
+
+> Also see: [Usage with React](http://redux.js.org/docs/basics/UsageWithReact.html) 
+
+<!-- -->
 
 > Next: How do I see the state in my components? [Next](#connecting)
 
@@ -105,7 +109,7 @@ These properties will be available in `props` in your component. You can then ca
 Recap
 =====
 
-**react-redux** lets you make Redux and React work together. [(docs)](http://redux.js.org/docs/basics/UsageWithReact.html) `Provider` makes React components aware of a store.
+**react-redux** lets you make Redux and React work together. `Provider` makes React components aware of a store.
 
 ```js
 import { Provider } from 'react-redux' //-

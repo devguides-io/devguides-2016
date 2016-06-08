@@ -93,11 +93,11 @@ import { combineReducers, createStore } from 'redux' //-
 function articles (state, action) {
   //! ...`state` is `state.articles` here
 }
-
+// ---
 function users (state, action) {
   //! ...`state` is `state.users` here
 }
-
+// ---
 let reducer = /*{*/combineReducers({ articles, users })/*}*/
 let store = createStore(reducer) //-
 ```
