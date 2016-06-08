@@ -114,18 +114,17 @@ You can build on top of other classes using `extends`. This makes the methods of
 
 ```js
 class Shape {
-  /*{*/show ()/*}*/ { /*...*/ }
+  show () { /*...*/ }
   hide () { /*...*/ }
 }
 // ---
-class Circle extends Shape {
-  /*...*/
+/*{*/class Circle extends Shape {/*}*/
+  roll () { /*...*/ }
 }
-```
-
-```js
-c = new Circle()
-c./*{*/show/*}*/()
+// ---
+let c = new Circle()
+c.show()
+c.roll()
 ```
 
 > Also see: [Sub classing (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Sub_classing_with_extends)
@@ -146,9 +145,7 @@ class Logger {
     console.log(message)
   }
 }
-```
-
-```js
+// ---
 class ErrorLogger extends Logger {
   log (message) {
     /*{*/super/*}*/('Error: ' + message)
@@ -183,9 +180,7 @@ class Circle {
   constructor (r) { this.radius = r }
   getDiameter () { return this.radius * 2 }
 }
-```
-
-```js
+// ---
 function Circle (r) { this.radius = r }
 Circle.prototype.getDiameter = function () { return this.r * 2 }
 ```

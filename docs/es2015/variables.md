@@ -36,8 +36,8 @@ function greet (user) {
 //=> ReferenceError: name is not defined
 ```
 
-> Here, the `name`s are only available inside their respective *if* and *else* blocks.
-> If we changed `let` to `var`, it'd work like you expect it, because `var` is scoped to functions.
+Here, the `name`s are only available inside their respective *if* and *else* blocks.
+If we changed `let` to `var`, it'd work like you expect it, because `var` is scoped to functions.
 
 <!-- -->
 
@@ -79,10 +79,9 @@ if (true) {
 }
 console.log(a)
 // ---
+//! `a` is only available inside the *if* block.
 //=> undefined
 ```
-
-> The variable `a` is only available inside the *if* block.
 
 ---
 

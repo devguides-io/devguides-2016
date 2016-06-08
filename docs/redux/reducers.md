@@ -92,7 +92,6 @@ import { combineReducers, createStore } from 'redux' //-
 function articles (state, action) {
   //! ...`state` is `state.articles` here
 }
-// ---
 function users (state, action) {
   //! ...`state` is `state.users` here
 }
@@ -140,7 +139,7 @@ function profile (state, action) {
   }
 }
 // ---
-reducer = combineReducers({ /*{*/profile/*}*/, /*...*/ })
+let reducer = combineReducers({ /*{*/profile/*}*/, /*...*/ })
 ```
 
 This reducer can't see `state.photos`! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.
@@ -160,13 +159,12 @@ import reduceReducers from 'reduce-reducers' //-
 function profiles (state, action) {
   /*[ see the whole `state` here ]*/
 }
-// ---
 function photos (state, action) {
   /*[ see the whole `state` here ]*/
 }
 // ---
 let reducer = /*{*/reduceReducers(profiles, photos)/*}*/
-createStore(reducer)
+let store = createStore(reducer)
 ```
 
 reduce-reducers is a 3rd-party package. It's one of the many plugins available in the Redux ecosystem in npm.

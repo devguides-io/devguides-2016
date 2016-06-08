@@ -86,7 +86,7 @@ You can't change the store's state from outside the store. To do that, you'll ne
 ```js
 import { createStore } from 'redux' //-
 
-var store = /*{*/createStore(reducer, article)/*}*/
+var store = createStore(/*{*/reducer/*}*/, article)
 // ---
 function reducer (state, action) {
   if (action.type === 'PUBLISH') {

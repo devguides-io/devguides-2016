@@ -37,7 +37,8 @@ tpl `hello ${name}! I'm ${me}`
 
 ---
 
-`tpl` is a function you write. It will be invoked like so:
+`tpl` is a function you write. It will be invoked like so.
+While this is not used very often, it lets us write things like template engines.
 
 ```js
 function tpl (strings, values) {
@@ -45,10 +46,6 @@ function tpl (strings, values) {
   values  //=> [name, me]
 }
 ```
-
----
-
-While this is not used very often, it lets us write things like template engines.
 
 > Also see: [Tagged template literals (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
 

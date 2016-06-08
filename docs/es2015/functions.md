@@ -90,18 +90,17 @@ list.map(function (n) { return Math.sqrt(n) }) //! In ES5
 You may have noticed we omitted the parentheses as well. You can do this if your function only takes in one argument. It makes no difference.
 
 ```js
+//! These two are the same.
 list.map(n => Math.sqrt(n))
 list.map(/*{*/(n)/*}*/ => Math.sqrt(n))
 ```
 
-> These two are the same.
-
 ```js
-list.reduce(a, b => a + b)   //! Error
-list.reduce((a, b) => a + b) //! OK
+//! It only works if you have 1 argument.
+list.reduce((a, b) => a + b)
+list.reduce(a, b => a + b) //! Error
 ```
 
-> It only works if you have one argument.
 
 <!-- -->
 
