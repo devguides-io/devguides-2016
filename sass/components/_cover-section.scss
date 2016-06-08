@@ -40,37 +40,6 @@
   padding-left: 64px;
 }
 
-.chapter-links {
-  margin: 2em 0;
-}
-
-.chapter-link {
-  border-top: solid 1px rgba($blue, .2);
-  padding: 8px 0;
-
-  > a:hover,
-  > a:focus {
-    text-decoration: none;
-  }
-
-  > a > .title {
-    font-weight: normal;
-    font-size: 1em;
-    @include ms-respond(font-size, 1);
-    margin-right: .5em;
-    color: $blacker;
-  }
-
-  > a > .description {
-    color: $gray;
-    @include ms-respond(font-size, -1);
-  }
-
-  &:last-child {
-    border-bottom: solid 1px rgba($blue, .2);
-  }
-}
-
 /*
  * Front cover
  */

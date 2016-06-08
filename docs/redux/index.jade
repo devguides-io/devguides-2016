@@ -1,26 +1,28 @@
 ---
 title: Redux
 prelude: Introduction to
-description: |
-  Redux is a library for managing data in a React application. This guide assumes an intermediate knowledge of JavaScript.
 chapters:
   - id: introduction
     title: Introduction
     description: An introduction to Redux
   - id: actions
     title: Actions
-    description: An introduction to Redux
+    description: Modifying the state
   - id: reducers
     title: Reducers
-    description: An introduction to Redux
+    description: Defining state transitions
   - id: react
     title: Using with React
-    description: An introduction to Redux
+    description: Integrating via react-redux
   - id: middleware
     title: Middleware
-    description: An introduction to Redux
+    description: Managing side effects
 ---
 extends ../_layouts/book.jade
+
+block description
+  :markdown-it
+    [Redux](http://redux.js.org) is a library for managing data in a React application. This guide assumes an intermediate knowledge of JavaScript.
 
 block content
   +content(chapters)

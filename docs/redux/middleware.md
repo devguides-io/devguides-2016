@@ -211,6 +211,4 @@ const middleware = store => dispatch => action => {
 }
 ```
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-That's all for now!
+> Next: That's all for now! [Back](.)

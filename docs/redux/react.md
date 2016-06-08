@@ -158,6 +158,4 @@ These props are available in your components as `this.props`.
 <button onClick={() => this.props.onPublishClick()}>
 ```
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-Let's enhance your store with middleware. [Next](middleware.html)
+> Next: Let's enhance your store with middleware. [Next](middleware.html)

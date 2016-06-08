@@ -25,13 +25,20 @@ mixin content(chapters)
         .space
 
       .cover-content
-        p= description
+        block description
 
         .chapter-links
           each chapter in chapters
-            .chapter-link
-              a(href=chapter.id)
-                strong.title= chapter.title
-                span.description= chapter.description
+            if chapter.unavailable
+              .chapter-link.-unavailable
+                span
+                  strong.title= chapter.title
+                  span.description= chapter.description
+                  span.soon Coming soon
+            else
+              .chapter-link
+                a(href=chapter.id)
+                  strong.title= chapter.title
+                  span.description= chapter.description
 
   script(src='../assets/script.js')

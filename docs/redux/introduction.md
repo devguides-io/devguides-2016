@@ -266,6 +266,4 @@ function reducer (state, action) {
 store.subscribe(() => { /*...*/ })
 ```
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-Let's learn more about actions. [Next](actions.html)
+> Next: Let's learn more about actions. [Next](actions.html)
