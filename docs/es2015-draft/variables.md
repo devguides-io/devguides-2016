@@ -42,6 +42,10 @@ function greet (user) {
 
 On the other hand, `var` is scoped to a function. If we changed *let* to *var* above, it'd work like you expect it.
 
+> Also see: [Block scope (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+<!-- -->
+
 > Next: Learn about `let`'s cousin. [Next](#constants)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -59,6 +63,9 @@ function greet (user) {
 }
 ```
 
+> Also see: [Constants (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+
+<!-- -->
 
 > Next: What is block scoping? [Next](#block-scoping)
 
@@ -92,6 +99,10 @@ switch (state) { /*...*/ }
 for (;;) { /*...*/ }
 while (true) { /*...*/ }
 ```
+
+> Also see: [Blocks (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block)
+
+<!-- -->
 
 > Next: What about blocks inside blocks? [Next](#nested-blocks)
 
@@ -140,6 +151,4 @@ if (true) {
 console.log(a)  //=> undefined
 ```
 
--
-
-> Next: Learn what's new with objects. [Next](../objects.html)
+> Next: Learn what's new with objects. [Next](objects.html)

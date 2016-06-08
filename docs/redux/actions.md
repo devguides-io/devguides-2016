@@ -120,7 +120,8 @@ store.dispatch(/*{*/load/*}*/)
 
 <br>
 
-> Also see: [applyMiddleware docs](http://redux.js.org/docs/api/applyMiddleware.html)
+> Also see: [applyMiddleware()](http://redux.js.org/docs/api/applyMiddleware.html) [redux-thunk](https://www.npmjs.com/package/redux-thunk)
+
 <br>
 
 > Next: Let's sort out our action creators. [Next](#next)
@@ -160,7 +161,7 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 <br>
 
-> Also see: [Actions docs](http://redux.js.org/docs/basics/Actions.html)
+> Also see: [Actions](http://redux.js.org/docs/basics/Actions.html)
 
 <br>
 

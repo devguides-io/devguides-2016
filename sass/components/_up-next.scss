@@ -30,13 +30,15 @@
     padding-top: 0;
   }
 
-  > p > span {
-    margin-right: .2em;
+  a[href^='http'] {
+    margin-left: .5em;
   }
 
+  // External links
   a[href^='http']::after {
     @include ion-icon('arrow-up-c');
     transform: rotate(45deg);
+    margin: 0 .2em;
     opacity: .5;
     font-size: .9em;
     margin-left: .4em;

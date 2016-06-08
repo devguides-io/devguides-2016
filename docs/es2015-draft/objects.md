@@ -10,7 +10,7 @@ ES2015 offers some shorthand for writing object
 [Names](#name-shorthand),
 [Functions](#functions-shorthand),
 [Getters and setters](#getters-and-setters), and
-[Computed](#computed-properties) properties.
+[Computed name](#computed-names) properties.
 
 ```js
 App = {
@@ -115,11 +115,15 @@ Shop.status         //=> 'closed'
 Shop.closed         //=> true (invokes `get closed()`)
 ```
 
+> Also see: [get (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
+
+<!-- -->
+
 > Next: Learn about writing dynamic property names. [Next](#computed-properties)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-# Computed properties
+# Computed names
 
 You can write properties with key names derived from expressions.
 
@@ -137,6 +141,17 @@ You would've written it like the long way in ES5:
 var id = 'john'
 var Users = {}
 Users[id] = "John Frobisher"
+```
+
+---
+
+This works with the other function shorthands, too. This example creates a function `gettitle()`.
+
+```js
+var key = 'title'
+App = {
+  /*{*/['get' + key]()/*}*/ { return this[key] }
+}
 ```
 
 > Next: Let's recap what we've learned. [Next](#recap)
@@ -163,7 +178,7 @@ App = {
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 
-  // Computed properties
+  // Computed names
   /*{*/[ 'prop_' + n ]/*}*/: 42
 }
 ```
