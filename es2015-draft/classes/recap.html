@@ -1,0 +1,21 @@
+<h1 id="recap">Recap</h1>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+
+  <span class="hljs-comment">// Methods</span>
+  getArea () { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius }
+
+  <span class="hljs-comment">// Static methods</span>
+  <span class="hljs-keyword">static</span> createFromDiameter (d) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(d / <span class="hljs-number">2</span>) }
+}
+
+c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">10</span>)
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>Let's learn about strings. <a href="../strings/README.md">Continue &gt;</a></p>
+</blockquote>

@@ -1,0 +1,21 @@
+<h1 id="classes">Classes</h1>
+<p>You can now write classes in ES2015.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+  getArea () {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius
+  }
+}
+</code></pre>
+<p>Classes let you define your own object types. You create instances of them using <code>new</code>. These instances have functions called &quot;methods,&quot; such as <code>getArea()</code> here.</p>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">20</span>)
+c.getArea() <span class="hljs-comment">//=&gt; 125.66</span>
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>How do you define methods? <a href="methods.md">Continue &gt;</a></p>
+</blockquote>

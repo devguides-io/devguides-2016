@@ -1,0 +1,17 @@
+<h1 id="constructors">Constructors</h1>
+<p>When you have a method with the name <code>constructor</code>, it will be called when doing <code>new YourClass(...)</code>.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+}
+
+c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">10.5</span>)
+c.radius  <span class="hljs-comment">//=&gt; 10.5</span>
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote>
+<p>What about static methods? <a href="static-methods.md">Continue &gt;</a></p>
+</blockquote>

@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Objects - ES2015</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Objects</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">ES2015</a></h5><h1 id="objects">Objects</h1>
+<p>ES2015 offers some shorthand for writing object
+<a href="#name-shorthand">Names</a>,
+<a href="#functions-shorthand">Functions</a>,
+<a href="#getters-and-setters">Getters and setters</a>, and
+<a href="#computed-properties">Computed</a> properties.</p>
+<pre><code class="language-js">App = {
+  <span class="hljs-comment">// Names</span>
+  <span class="hljs-highlight">handler</span>,
+
+  <span class="hljs-comment">// Functions</span>
+  <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
+
+  <span class="hljs-comment">// Getters and setters</span>
+  <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
+  <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
+
+  <span class="hljs-comment">// Computed properties</span>
+  <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
+}
+</code></pre>
+<blockquote class="up-next">
+<p>What's <code>handler</code> up there mean? <a href="#name-shorthand">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="name-shorthand">Name shorthand</h1>
+<p>Ever type <code>{ foo: foo }</code> and find it repetitive? This is common when writing exports.</p>
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = {
+  <span class="hljs-highlight">update: update</span>,
+  save: save
+}
+</code></pre>
+<hr>
+<p>In ES2015, you can shorten this to:</p>
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = { <span class="hljs-highlight">update</span>, save }
+</code></pre>
+<blockquote>
+<p><code>update</code> rolls out into <code>update: update</code>.</p>
+</blockquote>
+<hr>
+<p>You can use this shorthand anywhere in a <code>{...}</code> object.</p>
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = { <span class="hljs-highlight">update</span>, save, create: createItem }
+</code></pre>
+<blockquote class="up-next">
+<p>You can shorten functions, too. <a href="#function-shorthand">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="function-shorthand">Function shorthand</h1>
+<p>JavaScript lets you define properties as functions.</p>
+<pre><code class="language-js">App = {
+  start: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
+}
+</code></pre>
+<pre><code class="language-js">App.start()
+</code></pre>
+<hr>
+<p>In ES2015, you can shorten this.</p>
+<pre><code class="language-js">App = {
+  <span class="hljs-highlight">start ()</span> { <span class="hljs-ellipsis"></span> }
+}
+</code></pre>
+<blockquote class="up-next">
+<p>Learn about getters and setters. <a href="#getters-and-setters">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="getters-and-setters">Getters and setters</h1>
+<p>Apart from function shorthands, you can define special attributes that do something when read or set.</p>
+<pre><code class="language-js">Shop = {
+  <span class="hljs-highlight">get closed ()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span>
+  },
+  <span class="hljs-highlight">set closed (value)</span> {
+    <span class="hljs-keyword">this</span>.status = value ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span>
+  }
+}
+</code></pre>
+<pre><code class="language-js">Shop.closed = <span class="hljs-literal">true</span>  <span class="hljs-comment">// invokes `set closed()`</span>
+Shop.status         <span class="hljs-comment">//=&gt; 'closed'</span>
+Shop.closed         <span class="hljs-comment">//=&gt; true (invokes `get closed()`)</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Learn about writing dynamic property names. <a href="#computed-properties">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="computed-properties">Computed properties</h1>
+<p>You can write properties with key names derived from expressions.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> id = <span class="hljs-string">'john'</span>
+<span class="hljs-keyword">let</span> Users = { <span class="hljs-highlight">[id]</span>: <span class="hljs-string">'John Frobisher'</span> }
+Users.john <span class="hljs-comment">//=&gt; 'John Frobisher'</span>
+</code></pre>
+<hr>
+<p>You would've written it like the long way in ES5:</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> id = <span class="hljs-string">'john'</span>
+<span class="hljs-keyword">var</span> Users = {}
+Users[id] = <span class="hljs-string">'John Frobisher'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p>ES2015 offers some shorthand for writing object
+<a href="#name-shorthand">Names</a>,
+<a href="#functions-shorthand">Functions</a>,
+<a href="#getters-and-setters">Getters and setters</a>, and
+<a href="#computed-properties">Computed</a> properties.</p>
+<pre><code class="language-js">App = {
+  <span class="hljs-comment">// Names</span>
+  <span class="hljs-highlight">handler</span>,
+
+  <span class="hljs-comment">// Functions</span>
+  <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
+
+  <span class="hljs-comment">// Getters and setters</span>
+  <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
+  <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
+
+  <span class="hljs-comment">// Computed properties</span>
+  <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
+}
+</code></pre>
+<blockquote class="up-next">
+<p>Let's learn about classes. <a href="./classes">Next</a></p>
+</blockquote>
+</div></div></div><script src="../assets/script.js"></script></body></html>

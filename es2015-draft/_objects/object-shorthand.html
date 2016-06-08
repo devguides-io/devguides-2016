@@ -1,18 +1,18 @@
 <h1 id="object-shorthand">Object shorthand</h1>
 <p>Ever type <code>{ foo: foo }</code> and find it repetitive? This is common when writing exports.</p>
-<pre><code class="language-js">module.exports = {
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = {
   update: update,
   save: save
 }
 </code></pre>
 <p>In ES2015, you can shorten this to:</p>
-<pre><code class="language-js">module.exports = { update, save }
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = { update, save }
 </code></pre>
 <blockquote>
 <p>↳ <code>update</code> rolls out into <code>update: update</code>.</p>
 </blockquote>
 <p>You can use this shorthand anywhere in a <code>{...}</code> object.</p>
-<pre><code class="language-js">module.exports = { update, save, create: createItem }
+<pre><code class="language-js"><span class="hljs-built_in">module</span>.exports = { update, save, create: createItem }
 </code></pre>
 <ul>
 <li></li>

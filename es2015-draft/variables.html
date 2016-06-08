@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Variables - ES2015</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Variables</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">ES2015</a></h5><h1 id="let">Let</h1>
+<p><code>let</code> works just like <code>var</code>. In most cases, you can use <code>let</code> instead of var.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-highlight"><span class="hljs-keyword">let</span> name = user.name</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
+}
+</code></pre>
+<blockquote class="up-next">
+<p>But what makes it different? <a href="#let-vs-var">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="let-vs-var">let vs. var</h1>
+<p><code>let</code> is scoped to a block instead. A <em>let</em> is only available inside that <em>{ ... }</em> block.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-keyword">if</span> (user.gender === male) {<span class="hljs-line -highlight">    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name </span>
+  } <span class="hljs-keyword">else</span> {<span class="hljs-line -highlight">    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name </span>
+  }
+
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
+  <span class="hljs-comment">//=&gt; 'ReferenceError: name is not defined'</span>
+}
+</code></pre>
+<blockquote>
+<p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.</p>
+</blockquote>
+<hr>
+<p>On the other hand, <code>var</code> is scoped to a function. If we changed <em>let</em> to <em>var</em> above, it'd work like you expect it.</p>
+<blockquote class="up-next">
+<p>Learn about <code>let</code>'s cousin. <a href="#constants">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="constants">Constants</h1>
+<p><code>const</code> is just like <em>let</em>, except you can't reassign it to a new value.
+Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{<span class="hljs-line -highlight">  <span class="hljs-keyword">const</span> name = user.name </span>
+  name = name.toUpperCase()
+  <span class="hljs-comment">//=&gt; TypeError: Assignment to constant variable.</span>
+}
+</code></pre>
+<blockquote class="up-next">
+<p>What is block scoping? <a href="#block-scoping">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="block-scoping">Block scoping</h1>
+<p><code>let</code> and <code>const</code> are said to be <em>block scoping.</em> In JavaScript, a block is code inside <code>{</code> and <code>}</code>. These variables are only available inside their blocks.</p>
+<pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
+}
+<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-comment">//=&gt; undefined</span>
+</code></pre>
+<blockquote>
+<p>The variable <code>a</code> is only available inside the <em>if</em> block.</p>
+</blockquote>
+<hr>
+<p>Block scoping affects other kinds of blocks.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">if</span> (hidden) { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">else</span> { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">try</span> { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">catch</span> (e) { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">finally</span> { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">switch</span> (state) { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">for</span> (;;) { <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) { <span class="hljs-ellipsis"></span> }
+</code></pre>
+<blockquote class="up-next">
+<p>What about blocks inside blocks? <a href="#nested-blocks">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="nested-blocks">Nested blocks</h1>
+<p>Variables defined using <code>let</code> and <code>const</code> are available only inside <code>{...}</code> blocks, and other blocks inside them.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span> (<span class="hljs-params">user</span>) </span>{
+  <span class="hljs-keyword">if</span> (user) {
+    <span class="hljs-highlight"><span class="hljs-keyword">let</span> running = user.state === <span class="hljs-string">'running'</span></span>
+    <span class="hljs-keyword">if</span> (running) {
+      <span class="hljs-placeholder">`running` is still available here</span>
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-placeholder">and here, too</span>
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-placeholder">but not here!</span>
+  }
+}
+</code></pre>
+<blockquote class="up-next">
+<p>Learn recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p><code>let</code> is the new <code>var</code>. <code>const</code> is the same, but doesn't let you change it.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
+<span class="hljs-keyword">const</span> b = <span class="hljs-string">'hi'</span>
+</code></pre>
+<hr>
+<p>They are <em>block scoping</em>: they are only available within <code>{...}</code> blocks, but not outside them.</p>
+<pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
+}
+<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-comment">//=&gt; undefined</span>
+</code></pre>
+<ul>
+<li></li>
+</ul>
+<blockquote class="up-next">
+<p>Learn what's new with objects. <a href="../objects.html">Next</a></p>
+</blockquote>
+</div></div></div><script src="../assets/script.js"></script></body></html>
