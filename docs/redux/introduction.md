@@ -48,7 +48,7 @@ album.genre = 'Jazz'      // <- Write
 Our first store
 ===============
 
-Stores are created using `createStore()`. [(docs)](http://redux.js.org/docs/basics/Actions.html)
+Stores are created using `createStore()`.
 
 ```js
 import { createStore } from 'redux' //-
@@ -70,6 +70,10 @@ console.log(state.title) //=> 'Kind of Blue'
 
 Writing data works a bit different, though. That's where `reducer` comes in.
 
+> See also: [createStore docs](http://redux.js.org/docs/basics/Actions.html)
+
+<br>
+
 > Next: How do you write to a store? [Continue](#updating-the-store)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -89,7 +93,7 @@ function reducer (state, action) {
 }
 ```
 
-> Reducers take the current state and return a new one. How it changes the store depends on `action`. [(docs)](http://redux.js.org/docs/basics/Reducers.html)
+> Reducers take the current state and return a new one. How it changes the store depends on `action`.
 
 ---
 
@@ -132,6 +136,10 @@ function reducer (state, action) {
 }
 -->
 
+> See also: [Reducer docs](http://redux.js.org/docs/basics/Reducers.html)
+
+<br>
+
 > Next: What does `...state` mean? [Continue](#spread-operator)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -143,8 +151,7 @@ The spread operator
 return { /*{*/...state/*}*/, published: true }
 ```
 
-The `...` symbol is the *object spread operator*. [(docs)](http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html)
-It's available in Babel and in the 2017 version of JavaScript.
+The `...` symbol is the *object spread operator*. It's available in Babel and in the 2017 version of JavaScript.
 
 ---
 
@@ -164,6 +171,10 @@ return {
 var state = { name: 'John', age: 3 }
 inspect({ ...state, published: true })
 -->
+
+<br>
+
+> See also: [Object spread docs](http://redux.js.org/docs/recipes/UsingObjectSpreadOperator.html)
 
 <br>
 
