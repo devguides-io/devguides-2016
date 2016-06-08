@@ -39,7 +39,8 @@ function reducer (state, action) {
 Immutability
 ============
 
-Never modify objects! That's the Redux way of doing things. This is called *immutability*, in other words, never having to mutate.
+Never modify the state! That's the Redux way of doing things.
+This is called *immutability*, in other words, never having to mutate.
 
 ```js
 function reducer (state, action) { //-
@@ -49,23 +50,20 @@ function reducer (state, action) { //-
       return state //-
 ```
 
-> This is mutation: we're modifying the `state` object. Don't do this.
-
 ---
 
 This seems like a hassle at first, but it makes your app faster in the long run. You'll be able to check if a state has changed.
 
 ```js
-if (state === oldState) {
-  //! ...then things have changed
-}
+var a = { message: 'Hello' }
+var b = a
+a.message = 'Hola'
+// ---
+//! State mutations break equality checks.
+a === b  //=> true
 ```
 
-> React does this under-the-hood to make rendering faster.
-
----
-
-If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes `state === oldState` true even if they changed, making React skip doing updates.
+If your React app seems like it's not updating, it's probably because you're mutating state. It'd make `state === oldState` even if they changed, making React skip doing updates.
 
 > Next: What happens when my reducer gets very big? [Next](#combining-reducers)
 
@@ -85,7 +83,8 @@ Let's say you app has *articles* and *users*. If we put everything into one redu
 
 ---
 
-You can use `combineReducers` to make two reducers, each working on one part. [(docs)](http://redux.js.org/docs/api/combineReducers.html)
+You can use `combineReducers` to make two reducers, each working on one part.
+This is only useful if each reducer works on a single part of your state.
 
 ```js
 import { combineReducers, createStore } from 'redux' //-
@@ -102,7 +101,9 @@ let reducer = /*{*/combineReducers({ articles, users })/*}*/
 let store = createStore(reducer) //-
 ```
 
-This is only useful if each reducer works on a single part of your state.
+> Also see: [combineReducers()](http://redux.js.org/docs/api/combineReducers.html)
+
+<!-- -->
 
 > Next: What do you mean "on a single part"? [Next](#state-subtrees)
 

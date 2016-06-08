@@ -34,7 +34,7 @@ fetch('/data.json')
 
 > Assuming `fetch()` returns a promise, we can use it to trigger store actions when something happens.
 
-<br>
+<!-- -->
 
 > Next: Let's try to hook this up to our store. [Next](#next)
 
@@ -119,11 +119,11 @@ store.dispatch(/*{*/load/*}*/)
 
 > We can take the `load()` function earlier and use it as an action.
 
-<br>
+<!-- -->
 
 > Also see: [applyMiddleware()](http://redux.js.org/docs/api/applyMiddleware.html) [redux-thunk](https://www.npmjs.com/package/redux-thunk)
 
-<br>
+<!-- -->
 
 > Next: Let's sort out our action creators. [Next](#next)
 
@@ -162,11 +162,11 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 > Invoke these actions by passing the functions' results to `dispatch()`.
 
-<br>
+<!-- -->
 
 > Also see: [Actions](http://redux.js.org/docs/basics/Actions.html)
 
-<br>
+<!-- -->
 
 > Next: Let's build more action creators. [Next](#next)
 
@@ -174,17 +174,13 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 # Simple action creators
 
-Action creators don't have to only be for asynchronous actions.
+Action creators don't have to only be for asynchronous actions. Even simple actions can have action creators.
 
 ```js
 export function publishProject (id) {
   return { type: 'PROJECT_UPDATE', id, published: true }
 }
 ```
-
-> Even simple actions can have action creators.
-
-<br>
 
 > Next: Let's recap what we've learned. [Next](#next)
 

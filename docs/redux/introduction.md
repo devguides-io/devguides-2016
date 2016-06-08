@@ -48,7 +48,7 @@ album.genre = 'Jazz'      // <-- Writing
 Our first store
 ===============
 
-Stores are created using `createStore()`.
+Stores are created using `createStore()`. 
 
 ```js
 import { createStore } from 'redux' //-
@@ -59,16 +59,16 @@ var store = /*{*/createStore(reducer, album)/*}*/
 
 ---
 
-You can get data from store by checking its *state* using `getState()`.
+You can read from a store by checking its *state* using `getState()`.
+Writing data works a bit different, though. That's where `reducer` comes in.
 
 ```js
 var state = /*{*/store.getState()/*}*/
-console.log(state.title) //=> 'Kind of Blue'
+console.log(state.title)
+// ---
+//=> 'Kind of Blue'
 ```
 
----
-
-Writing data works a bit different, though. That's where `reducer` comes in.
 
 > See also: [createStore docs](http://redux.js.org/docs/basics/Actions.html)
 
@@ -81,9 +81,13 @@ Writing data works a bit different, though. That's where `reducer` comes in.
 Updating the store
 ==================
 
-You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through *reducer functions*.
+You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through *reducer functions*, which is used by `createStore()`.
 
 ```js
+import { createStore } from 'redux' //-
+
+var store = /*{*/createStore(reducer, article)/*}*/
+// ---
 function reducer (state, action) {
   if (action.type === 'PUBLISH') {
     return { ...state, published: true }
@@ -93,26 +97,17 @@ function reducer (state, action) {
 }
 ```
 
-> Reducers take the current state and return a new one. How it changes the store depends on `action`.
-
----
-
-You'll need a reducer to use `createStore()`.
-
-```js
-import { createStore } from 'redux' //-
-var store = /*{*/createStore(reducer, article)/*}*/
-```
+Reducers take the current state and return a new one. How it changes the store depends on `action`.
 
 ---
 
 To run an action, use `dispatch()`. This changes the store's *state*.
 
 ```js
-store.getState().published  //=> false
-
+store.getState().published        //=> false
+// ---
 /*{*/store.dispatch({ type: 'PUBLISH' })/*}*/
-store.getState().published  //=> true
+store.getState().published        //=> true
 ```
 
 <!--
@@ -147,17 +142,12 @@ function reducer (state, action) {
 The spread operator
 ===================
 
+The `...` symbol is the *object spread operator*. It's available in Babel and in the 2017 version of JavaScript.
+These two are roughly equivalent.
+
 ```js
 return { /*{*/...state/*}*/, published: true }
-```
-
-The `...` symbol is the *object spread operator*. It's available in Babel and in the 2017 version of JavaScript.
-
----
-
-That line is roughly the same as this:
-
-```js
+// ---
 return {
   /*{*/title: state.title,/*}*/
   /*{*/body: state.body,/*}*/
@@ -193,13 +183,15 @@ store.dispatch({ type: 'PUBLISH' })
 store.dispatch({ type: 'ADD_COMMENT', text: 'I agree!' })
 ```
 
+---
+
+You can also listen for changes in the store using `subscribe()`.
+
 ```js
 store.subscribe(() => {
   /*...*/
 })
 ```
-
-> You can also listen for changes in the store using `subscribe()`.
 
 <!--
 var store = createStore(reducer)
