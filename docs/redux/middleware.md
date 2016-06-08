@@ -37,7 +37,7 @@ const logger = store => dispatch => action => {
 }
 ```
 
-> Next: Let's make it do something useful. [Continue](#decorating-dispatch)
+> Next: Let's make it do something useful. [Next](#decorating-dispatch)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -67,7 +67,7 @@ store.dispatch({ type: 'SAVE' })
 // New state: { ... }
 ```
 
-> Next: Let's use this for something useful. [Continue](#side-effects)
+> Next: Let's use this for something useful. [Next](#side-effects)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -100,7 +100,7 @@ store.dispatch({ type: 'FETCH', next: 'LOAD', url: '/data.json' })
 
 <br>
 
-> Next: Let's improve your Redux experience with npm. [Continue](#common-middleware)
+> Next: Let's improve your Redux experience with npm. [Next](#common-middleware)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -134,7 +134,7 @@ action @ 13:11:01 LOAD_PENDING (in 0.1ms)
 action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 ```
 
-> Next: Did you wonder why middleware looks like `store => dispatch => action`? [Continue](#signature)
+> Next: Did you wonder why middleware looks like `store => dispatch => action`? [Next](#signature)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -175,7 +175,7 @@ Most middleware will not need this, but the Redux docs has [examples](http://red
 
 <br>
 
-> Next: Let's recap what we've learned. [Continue](#recap)
+> Next: Let's recap what we've learned. [Next](#recap)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

@@ -24,7 +24,7 @@ render(
   document.getElementById('root'))
 ```
 
-> Next: How do I see the state in my components? [Continue](#connecting)
+> Next: How do I see the state in my components? [Next](#connecting)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -63,7 +63,7 @@ var PhotosList = React.createClass({
 })
 ```
 
-> Next: What about dispatching events? [Continue](#dispatching)
+> Next: What about dispatching events? [Next](#dispatching)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -98,7 +98,7 @@ These properties will be available in `props` in your component. You can then ca
 <button onClick={() => this.props.onPublishClick()}>
 ```
 
-> Next: Let's recap what we've learned. [Continue](#recap)
+> Next: Let's recap what we've learned. [Next](#recap)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -160,4 +160,4 @@ These props are available in your components as `this.props`.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Let's enhance your store with middleware. [Continue](middleware.html)
+Let's enhance your store with middleware. [Next](middleware.html)

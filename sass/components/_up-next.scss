@@ -97,7 +97,7 @@
       line-height: 1em;
       display: inline-block;
       padding: 8px 12px;
-      border: solid 1px rgba($blue, .2);
+      border: solid 1px rgba($blue, .1);
       border-radius: 3px;
 
       float: left;
@@ -105,9 +105,19 @@
       margin-right: 16px;
     }
 
+    > p > a::after {
+      // transform: rotate(90deg);
+      // position: relative;
+      // top: 0;
+      opacity: .5;
+    }
+
     > p > a:hover,
     > p > a:focus {
       text-decoration: none;
+      background: rgba($blue, .2);
+      border-color: transparent;
+      color: white;
     }
   }
 }

@@ -32,7 +32,7 @@ function reducer (state, action) {
 }
 ```
 
-> Next: Why do we keep using `...`? [Continue](#immutability)
+> Next: Why do we keep using `...`? [Next](#immutability)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -67,7 +67,7 @@ if (state === oldState) {
 
 If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes `state === oldState` true even if they changed, making React skip doing updates.
 
-> Next: What happens when my reducer gets very big? [Continue](#combining-reducers)
+> Next: What happens when my reducer gets very big? [Next](#combining-reducers)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -104,7 +104,7 @@ let store = createStore(reducer) //-
 
 This is only useful if each reducer works on a single part of your state.
 
-> Next: What do you mean "on a single part"? [Continue](#state-subtrees)
+> Next: What do you mean "on a single part"? [Next](#state-subtrees)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -144,7 +144,7 @@ reducer = combineReducers({ profile, /*...*/ })
 
 This reducer can't see `state.photos`! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.
 
-> Next: What if my I need my reducers to do more than that? [Continue](#reduce-reducers)
+> Next: What if my I need my reducers to do more than that? [Next](#reduce-reducers)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -170,7 +170,7 @@ createStore(reducer)
 
 reduce-reducers is a 3rd-party package. [(docs)](https://github.com/acdlite/reduce-reducers) It's one of the many plugins available in the Redux ecosystem in npm.
 
-> Next: Let's recap what we've learned. [Continue](#recap)
+> Next: Let's recap what we've learned. [Next](#recap)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -205,4 +205,4 @@ combineReducers({ profile, photos })
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Let's use Redux with React. [Continue](react.html)
+Let's use Redux with React. [Next](react.html)

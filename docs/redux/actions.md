@@ -14,7 +14,7 @@ store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
 
 Actions are objects and always have a `type` key. This isn't required, but it's just the way everyone does it.
 
-> Next: How would we do it asynchronously? [Continue](#next)
+> Next: How would we do it asynchronously? [Next](#next)
 
 
 * * * *
@@ -25,29 +25,29 @@ Processes are *asynchronous* when they take a long time, such as AJAX calls to l
 
 ```js
 store.dispatch(/*{*/{ type: 'LOAD_START' }/*}*/)
-API.get('/data.json')
+fetch('/data.json')
   .then(data =>
     store.dispatch(/*{*/{ type: 'LOAD_FINISH', data: data })/*}*/)
   .catch(error =>
     store.dispatch(/*{*/{ type: 'LOAD_ERROR', error: error })/*}*/)
 ```
 
-> Assuming `API.get()` returns a promise, we can use it to trigger store actions when something happens.
+> Assuming `fetch()` returns a promise, we can use it to trigger store actions when something happens.
 
 <br>
 
-> Next: Let's try to hook this up to our store. [Continue](#next)
+> Next: Let's try to hook this up to our store. [Next](#next)
 
 * * * *
 
 # First try
 
-Let's try putting this logic in the reducer. Let's add `API.get(...)` into it.
+Let's try putting this logic in the reducer. Let's add `fetch()` into it.
 
 ```js
 function reducer (state, action) {
   if (action.type === 'LOAD_START') {
-    /*{*/API.get('/data.json').then(/*[ ?? ]*/).catch(/*[ ?? ]*/)/*}*/
+    /*{*/fetch('/data.json').then(/*[ ?? ]*/).catch(/*[ ?? ]*/)/*}*/
     return { ...state, loading: true }
   } else { //-
     return state //-
@@ -59,7 +59,7 @@ createStore(reducer) //-
 
 It seems you can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
 
-> Next: Let's try a different approach. [Continue](#next)
+> Next: Let's try a different approach. [Next](#next)
 
 * * * *
 
@@ -70,7 +70,7 @@ Let's try putting that logic in a function outside the store. Let's make a funct
 ```js
 /*{*/function load (dispatch) {/*}*/
   /*{*/dispatch/*}*/({ type: 'LOAD_START' })
-  API.get('/data.json')
+  fetch('/data.json')
     .then(data =>
       /*{*/dispatch/*}*/({ type: 'LOAD_FINISH', data: data }))
     .catch(error =>
@@ -89,7 +89,7 @@ load(store.dispatch)              // <-- this new way
 store.dispatch({ type: 'INIT' })  // <-- everything else
   ```
 
-> Next: Let's make things more consistent. [Continue](#next)
+> Next: Let's make things more consistent. [Next](#next)
 
 * * * *
 
@@ -117,11 +117,13 @@ store.dispatch(/*{*/load/*}*/)
 ```
 
 > We can take the `load()` function earlier and use it as an action.
-> [(docs)](http://redux.js.org/docs/api/applyMiddleware.html)
 
 <br>
 
-> Next: Let's sort out our action creators. [Continue](#next)
+> Also see: [applyMiddleware docs](http://redux.js.org/docs/api/applyMiddleware.html)
+<br>
+
+> Next: Let's sort out our action creators. [Next](#next)
 
 * * * *
 
@@ -133,7 +135,7 @@ In a typical app, we'll likely have a few of action creators. It's best to organ
 export function loadProject (id) {
   return function (dispatch) { //-
     dispatch({ type: 'PROJECT_LOADING', data }) //-
-    return API.get(`/projects/${id}`) //-
+    return fetch(`/projects/${id}`) //-
       .then(data => dispatch({ type: 'PROJECT_LOADED', data })) //-
       .catch(err => dispatch({ type: 'PROJECT_ERROR', err })) //-
   } //-
@@ -146,7 +148,7 @@ export function createProject (id, data) { /*...*/ }
 
 ---
 
-Action Creators are functions that return an action. [(docs)](http://redux.js.org/docs/basics/Actions.html) `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
+*Action Creators are* functions that return an action. `loadProject()` and friends return functions, which redux-thunk will happily accept as actions.
 
 ```js
 import { loadProject } from './actions'
@@ -158,7 +160,11 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 <br>
 
-> Next: Let's build more action creators. [Continue](#next)
+> Also see: [Actions docs](http://redux.js.org/docs/basics/Actions.html)
+
+<br>
+
+> Next: Let's build more action creators. [Next](#next)
 
 * * * *
 
@@ -176,7 +182,7 @@ export function publishProject (id) {
 
 <br>
 
-> Next: Let's recap what we've learned. [Continue](#next)
+> Next: Let's recap what we've learned. [Next](#next)
 
 * * * *
 
@@ -202,7 +208,7 @@ store.dispatch(/*{*/publishProject(12)/*}*/)
 export function loadProject (id) {
   /*{*/return function (dispatch) {/*}*/
     dispatch({ type: 'PROJECT_LOADING', data })
-    return API.get(`/projects/${id}`)
+    return fetch(`/projects/${id}`)
       .then(data => dispatch({ type: 'PROJECT_LOADED', data }))
       .catch(err => dispatch({ type: 'PROJECT_ERROR', err }))
   }
@@ -224,4 +230,4 @@ store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Let's learn about reducers. [Continue](reducers.html)
+Let's learn about reducers. [Next](reducers.html)

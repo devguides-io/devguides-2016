@@ -15,7 +15,7 @@ import { createStore } from 'redux'
 var store = createStore(/*...*/)
 ```
 
-> Next: What's a store? [Continue](#stores)
+> Next: What's a store? [Next](#stores)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -41,7 +41,7 @@ console.log(album.title)  // <- Read
 album.genre = 'Jazz'      // <- Write
 ```
 
-> Next: How would you do that in Redux? [Continue](#our-first-store)
+> Next: How would you do that in Redux? [Next](#our-first-store)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -74,7 +74,7 @@ Writing data works a bit different, though. That's where `reducer` comes in.
 
 <br>
 
-> Next: How do you write to a store? [Continue](#updating-the-store)
+> Next: How do you write to a store? [Next](#updating-the-store)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -140,7 +140,7 @@ function reducer (state, action) {
 
 <br>
 
-> Next: What does `...state` mean? [Continue](#spread-operator)
+> Next: What does `...state` mean? [Next](#spread-operator)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -178,7 +178,7 @@ inspect({ ...state, published: true })
 
 <br>
 
-> Next: Let's learn more about actions. [Continue](#dispatching-actions)
+> Next: Let's learn more about actions. [Next](#dispatching-actions)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -223,7 +223,7 @@ function reducer (state, action) {
 }
 -->
 
-> Next: Let's recap what we've learned. [Continue](#recap)
+> Next: Let's recap what we've learned. [Next](#recap)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -268,4 +268,4 @@ store.subscribe(() => { /*...*/ })
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Let's learn more about actions. [Continue](actions.html)
+Let's learn more about actions. [Next](actions.html)
