@@ -161,11 +161,11 @@ Having them as functions-that-return-functions makes for something interesting: 
 
 ```js
 const logger = function (store) {
-  /*[ You can get store.dispatch() and store.getState() here. ]*/
+  //! You can get store.dispatch() and store.getState() here.
   return function (dispatch) {
-    /*[ This only runs once. ]*/
+    //! This only runs once.
     return function (action) {
-      /*[ This runs every dispatch(). ]*/
+      //! This runs every dispatch().
     }
   }
 }

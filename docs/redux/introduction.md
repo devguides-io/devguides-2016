@@ -37,8 +37,8 @@ var album = {
 You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.
 
 ```js
-console.log(album.title)  // <- Read
-album.genre = 'Jazz'      // <- Write
+console.log(album.title)  // <-- Reading
+album.genre = 'Jazz'      // <-- Writing
 ```
 
 > Next: How would you do that in Redux? [Next](#our-first-store)

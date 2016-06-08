@@ -10,7 +10,7 @@ Reducers
 The function you pass to `createStore()` is called a reducer. It's a simple function that takes in a state, and returns another state.
 
 ```js
-reducer(state, action) → state
+reducer(state, action) //=> state
 ```
 
 ---
@@ -57,7 +57,7 @@ This seems like a hassle at first, but it makes your app faster in the long run.
 
 ```js
 if (state === oldState) {
-  /*[ ...then things have changed ]*/
+  //! ...then things have changed
 }
 ```
 
@@ -91,11 +91,11 @@ You can use `combineReducers` to make two reducers, each working on one part. [(
 import { combineReducers, createStore } from 'redux' //-
 
 function articles (state, action) {
-  /*[ ...`state` is `state.articles` here ]*/
+  //! ...`state` is `state.articles` here
 }
 
 function users (state, action) {
-  /*[ ...`state` is `state.users` here ]*/
+  //! ...`state` is `state.users` here
 }
 
 let reducer = /*{*/combineReducers({ articles, users })/*}*/
@@ -134,12 +134,12 @@ state = { //-
 ```js
 function profile (state, action) {
   if (action.type === 'PUBLISH') {
-    /*[ `state` is actually `state.profile` here. ]*/
+    //! `state` is actually `state.profile` here.
     return { ...state, private: false }
   }
 }
-
-reducer = combineReducers({ profile, /*...*/ })
+// ---
+reducer = combineReducers({ /*{*/profile/*}*/, /*...*/ })
 ```
 
 This reducer can't see `state.photos`! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.
@@ -159,16 +159,20 @@ import reduceReducers from 'reduce-reducers' //-
 function profiles (state, action) {
   /*[ see the whole `state` here ]*/
 }
-
+// ---
 function photos (state, action) {
   /*[ see the whole `state` here ]*/
 }
-
+// ---
 let reducer = /*{*/reduceReducers(profiles, photos)/*}*/
 createStore(reducer)
 ```
 
-reduce-reducers is a 3rd-party package. [(docs)](https://github.com/acdlite/reduce-reducers) It's one of the many plugins available in the Redux ecosystem in npm.
+reduce-reducers is a 3rd-party package. It's one of the many plugins available in the Redux ecosystem in npm.
+
+> See also: [reduce-reducers](https://github.com/acdlite/reduce-reducers)
+
+<!-- -->
 
 > Next: Let's recap what we've learned. [Next](#recap)
 
@@ -180,7 +184,7 @@ Recap
 **Reducers** are functions that take a state, and return a new state.
 
 ```js
-reducer(state, action) → state
+reducer(state, action) //=> state
 ```
 
 ---

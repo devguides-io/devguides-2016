@@ -117,12 +117,12 @@ function run (user) {
   if (user) {
     /*{*/let running = user.state === 'running'/*}*/
     if (running) {
-      /*[ `running` is still available here ]*/
+      //! `running` is still available here
     } else {
-      /*[ and here, too ]*/
+      //! and here, too
     }
   } else {
-    /*[ but not here! ]*/
+    //! but not here!
   }
 }
 ```

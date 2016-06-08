@@ -30,6 +30,11 @@
   top: -1px;
 }
 
+.hljs-placeholder.-line {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .hljs-highlight {
   background: white;
   box-shadow: 0 -2px white, 0 2px white;
@@ -75,4 +80,25 @@
 
   position: relative;
   top: -1px;
+}
+
+.hljs-hr {
+  &:before {
+    content: '';
+    @include hr-rule;
+    position: relative;
+    top: .7em;
+    margin-right: -16px;
+  }
+}
+
+.hljs-result {
+  color: saturate($blue, 40%);
+  font-style: italic;
+
+  &::before {
+    @include ion-icon('arrow-right-c');
+    color: $red;
+    margin-right: .8em;
+  }
 }

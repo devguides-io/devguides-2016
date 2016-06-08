@@ -25,7 +25,7 @@ You create instances of classes using `new`. These instances have functions call
 
 ```js
 c = new Circle(2)
-c.getArea() //=> 12.56
+c.getArea()  //=> 12.56
 ```
 
 > Also see: [Classes (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
@@ -53,7 +53,7 @@ class Circle {
 
 ```js
 c = new Circle(2)
-c.getArea() //=> 12.56
+c.getArea()  //=> 12.56
 ```
 
 > Also see: [Methods (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Prototype_methods)
@@ -117,7 +117,7 @@ class Shape {
   /*{*/show ()/*}*/ { /*...*/ }
   hide () { /*...*/ }
 }
-
+// ---
 class Circle extends Shape {
   /*...*/
 }
@@ -212,10 +212,10 @@ class Circle extends Shape {
     this.radius = radius
   }
 
-  // Methods
+  //! Methods:
   getArea () { return Math.PI * 2 * this.radius }
 
-  // Static methods
+  //! Static methods:
   static createFromDiameter (d) { return new Circle(d / 2) }
 }
 ```

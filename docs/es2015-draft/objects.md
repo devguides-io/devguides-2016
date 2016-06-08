@@ -14,17 +14,16 @@ ES2015 offers some shorthand for writing object
 
 ```js
 App = {
-  // Names
   /*{*/handler/*}*/,
 
-  // Functions
+  //! Functions:
   /*{*/start ()/*}*/ { return this.go() },
 
-  // Getters and setters
+  //! Getters and setters:
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 
-  // Computed properties
+  //! Computed properties:
   /*{*/[ 'prop_' + n ]/*}*/: 42
 }
 ```
@@ -74,9 +73,7 @@ JavaScript lets you define properties as functions.
 App = {
   start: function () { /*...*/ }
 }
-```
-
-```js
+// ---
 App.start()
 ```
 
@@ -107,12 +104,10 @@ Shop = {
     this.status = value ? 'closed' : 'open'
   }
 }
-```
-
-```js
-Shop.closed = true  // invokes `set closed()`
-Shop.status         //=> 'closed'
-Shop.closed         //=> true (invokes `get closed()`)
+// ---
+Shop.closed = true  //! invokes `set closed()`
+Shop.status         //! 'closed'
+Shop.closed         //! true (invokes `get closed()`)
 ```
 
 > Also see: [get (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
@@ -130,7 +125,8 @@ You can write properties with key names derived from expressions.
 ```js
 let id = 'john'
 let Users = { /*{*/[id]/*}*/: "John Frobisher" }
-Users.john //=> "John Frobisher"
+// ---
+Users.john  //=> "John Frobisher"
 ```
 
 ---
@@ -164,21 +160,20 @@ ES2015 offers some shorthand for writing object
 [Names](#name-shorthand),
 [Functions](#functions-shorthand),
 [Getters and setters](#getters-and-setters), and
-[Computed](#computed-properties) properties.
+[Computed name](#computed-names) properties.
 
 ```js
 App = {
-  // Names
   /*{*/handler/*}*/,
 
-  // Functions
+  //! Functions:
   /*{*/start ()/*}*/ { return this.go() },
 
-  // Getters and setters
+  //! Getters and setters:
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 
-  // Computed names
+  //! Computed names:
   /*{*/[ 'prop_' + n ]/*}*/: 42
 }
 ```
