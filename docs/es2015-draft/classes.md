@@ -151,7 +151,7 @@ class Logger {
 ```js
 class ErrorLogger extends Logger {
   log (message) {
-    super('Error: ' + message) //+
+    /*{*/super/*}*/('Error: ' + message)
   }
 }
 ```

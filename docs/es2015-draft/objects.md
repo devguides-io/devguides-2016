@@ -34,20 +34,15 @@ App = {
 
 # Name shorthand
 
-Ever type `{ foo: foo }` and find it repetitive? This is common when writing exports.
+Ever type `{ foo: foo }` and find it repetitive? This is common when writing exports. You can now shorten this in ES2015.
+
 
 ```js
 module.exports = {
   /*{*/update: update/*}*/,
   save: save
 }
-```
-
----
-
-In ES2015, you can shorten this to:
-
-```js
+// ---
 module.exports = { /*{*/update/*}*/, save }
 ```
 
@@ -67,24 +62,18 @@ module.exports = { /*{*/update/*}*/, save, create: createItem }
 
 # Function shorthand
 
-JavaScript lets you define properties as functions.
+JavaScript lets you define properties as functions.  You can now shorten this in ES2015.
 
 ```js
 App = {
-  start: function () { /*...*/ }
+  /*{*/start: function () { /*...*/ }/*}*/
 }
 // ---
-App.start()
-```
-
----
-
-In ES2015, you can shorten this.
-
-```js
 App = {
   /*{*/start ()/*}*/ { /*...*/ }
 }
+// ---
+App.start()
 ```
 
 > Next: Learn about getters and setters. [Next](#getters-and-setters)

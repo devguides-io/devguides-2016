@@ -50,4 +50,8 @@ function tpl (strings, values) {
 
 While this is not used very often, it lets us write things like template engines.
 
+> Also see: [Tagged template literals (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
+
+<!-- -->
+
 > Next: Let's learn about what's new with functions. [Next](functions.html)

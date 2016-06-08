@@ -63,13 +63,17 @@ addItems: function (items) {
 }
 ```
 
+> Also see: [Lexical this (Babel)](http://babeljs.io/docs/learn-es2015/#arrows)
+
+<!-- -->
+
 > Next: How else are arrow functions useful? [Next](#)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 # Short syntax
 
-You can omit the curly braces. If you do, it implicitly returns the expression following the arrow.
+You can omit the curly braces. If you do, it implicitly returns the expression after the arrow.
 All these lines do the same thing.
 
 ```js
@@ -119,3 +123,86 @@ logger(next)(store.dispatch)({ type: 'init '})
 
 > This is how [Redux middleware](../redux/middleware) are built.
 
+<!-- -->
+
+> Next: Set default arguments. [Next](#default-arguments)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# Default arguments
+
+You can now define defaults for arguments that are omitted.
+
+```js
+function greet(name = "Jerry") {
+  return `Hello ${name}`;
+}
+// ---
+greet()        //=> "Hello, Jerry"
+greet("Kyle")  //=> "Hello, Kyle"
+```
+
+> Next: Let's write functions with multiple arguments. [Next](#rest-and-spread)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# Rest and spread
+
+Write functions that take in multiple arguments by using the *rest* syntax.
+
+```js
+function greet(/*{*/...names/*}*/) {
+  return `Hello ${names.join(', ')}!`;
+}
+// ---
+greet('Moe', 'Larry', 'Curly')  //! Hello Moe, Larry, Curly!
+```
+
+---
+
+Similarly, you can call functions with an array of arguments by using the *spread* syntax.
+
+```js
+let names = ['Moe', 'Larry', 'Curly']
+// ---
+greet(/*{*/...names/*}*/)  //! ...same as: greet('Moe', 'Larry', 'Curly')
+```
+
+> See also: [Default rest spread (Babel)](http://babeljs.io/docs/learn-es2015/#default--rest--spread)
+
+<!-- -->
+
+> Next: Let's recap what we've learned. [Next](#recap)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# Recap
+
+**Default, rest, and spread** make dynamic arguments easier.
+
+```js
+function greet(/*{*/name = "Jerry"/*}*/) { /*...*/ }
+function greet(/*{*/...names/*}*/) { /*...*/ }
+// ---
+greet(/*{*/...names/*}*/)
+```
+
+---
+
+**Arrow functions** preserve the lexical `this`.
+
+```js
+list.forEach(item => {
+  this.addItem(item)
+})
+```
+
+---
+
+Omit the curly braces for short functions.
+
+```js
+list.map(n => Math.PI * Math.sqrt(n))
+```
+
+> Next: That's all for now! [Back](.)
