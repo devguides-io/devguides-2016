@@ -3,7 +3,7 @@
  */
 
 @media (min-width: 900px) {
-  .markdown-body {
+  .markdown-body.-literate {
     pre, blockquote {
       width: 60%;
       float: right;
@@ -33,7 +33,7 @@
 // HR's only break apart literate sections, they serve no visual purpose
 // when in non-literate mode
 @media (max-width: 899px) {
-  .markdown-body hr {
+  .markdown-body.-literate hr {
     display: none;
   }
 }

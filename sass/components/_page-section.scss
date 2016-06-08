@@ -32,22 +32,24 @@
  * Line
  */
 
-@media (min-width: 769px) {
-  .page-section {
-    padding-left: 64px + 16px;
-    padding-right: 16px;
-  }
+.page-section {
+  @media (min-width: 769px) {
+    & {
+      padding-left: 64px + 16px;
+      padding-right: 16px;
+    }
 
-  .page-section::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 16px;
-    bottom: 16px;
-    left: 64px;
-    width: 1px;
-    background: $blue;
-    opacity: .1;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 16px;
+      bottom: 16px;
+      left: 64px;
+      width: 1px;
+      background: $blue;
+      opacity: .1;
+    }
   }
 }
 
@@ -62,4 +64,27 @@
 div[role="next-waypoint"] {
   height: 30vh;
   text-align: center;
+}
+
+.cover-section {
+  position: relative;
+  min-height: calc(100vh - 32px);
+  background: white;
+  overflow: hidden;
+
+  display: flex;
+
+  > .cover-front {
+    flex: 0 0 50%;
+    background: #89a;
+  }
+
+  > .cover-content {
+    flex: 0 0 50%;
+  }
+}
+
+.cover-content {
+  padding: 32px;
+  
 }

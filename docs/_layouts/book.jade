@@ -3,7 +3,7 @@ extends ./base.jade
 block title
   = title
 
-block content
+mixin content(chapters)
   .book-nav
     .nav-button
 
@@ -11,11 +11,27 @@ block content
     strong= title
 
   #body.markdown-body
-    .page-section
-      .container
+    .cover-section
+      .cover-front
         h5.chapter-prelude
           strong= 'Pocket Guides / '
           a(href='.')= title
-        != contents
+
+        .space
+        .cover-front-title
+          p.prelude= prelude
+          h1.title= title
+
+        .space
+
+      .cover-content
+        p= description
+
+        .chapter-links
+          each chapter in chapters
+            .chapter-link
+              a(href=chapter.id)
+                strong.title= chapter.title
+                span.description= chapter.description
 
   script(src='../assets/script.js')
