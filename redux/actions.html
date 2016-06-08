@@ -19,6 +19,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 <blockquote>
 <p>Assuming <code>fetch()</code> returns a promise, we can use it to trigger store actions when something happens.</p>
 </blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>Let's try to hook this up to our store. <a href="#next">Next</a></p>
 </blockquote>
@@ -76,9 +77,11 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 <blockquote>
 <p>We can take the <code>load()</code> function earlier and use it as an action.</p>
 </blockquote>
+<!-- -->
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="http://redux.js.org/docs/api/applyMiddleware.html">applyMiddleware()</a> <a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a></p>
 </blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>Let's sort out our action creators. <a href="#next">Next</a></p>
 </blockquote>
@@ -104,22 +107,21 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <blockquote>
 <p>Invoke these actions by passing the functions' results to <code>dispatch()</code>.</p>
 </blockquote>
+<!-- -->
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Actions.html">Actions</a></p>
 </blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>Let's build more action creators. <a href="#next">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="simple-action-creators">Simple action creators</h1>
-<p>Action creators don't have to only be for asynchronous actions.</p>
+<p>Action creators don't have to only be for asynchronous actions. Even simple actions can have action creators.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publishProject</span> (<span class="hljs-params">id</span>) </span>{
   <span class="hljs-keyword">return</span> { type: <span class="hljs-string">'PROJECT_UPDATE'</span>, id, published: <span class="hljs-literal">true</span> }
 }
 </code></pre>
-<blockquote>
-<p>Even simple actions can have action creators.</p>
-</blockquote>
 <blockquote class="up-next">
 <p>Let's recap what we've learned. <a href="#next">Next</a></p>
 </blockquote>

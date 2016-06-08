@@ -22,24 +22,20 @@
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="immutability">Immutability</h1>
-<p>Never modify objects! That's the Redux way of doing things. This is called <em>immutability</em>, in other words, never having to mutate.</p>
+<p>Never modify the state! That's the Redux way of doing things.
+This is called <em>immutability</em>, in other words, never having to mutate.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{ </span><span class="hljs-line -mute">  <span class="hljs-keyword">switch</span> (action.type) { </span><span class="hljs-line -mute">    <span class="hljs-keyword">case</span> <span class="hljs-string">'PUBLISH'</span>: </span>
       state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span><span class="hljs-line -mute">      <span class="hljs-keyword">return</span> state </span>
 </code></pre>
-<blockquote>
-<p>This is mutation: we're modifying the <code>state</code> object. Don't do this.</p>
-</blockquote>
 <hr>
 <p>This seems like a hassle at first, but it makes your app faster in the long run. You'll be able to check if a state has changed.</p>
-<pre><code class="language-js"><span class="hljs-keyword">if</span> (state === oldState) {
-  <span class="hljs-placeholder -line">...then things have changed</span>
-}
+<pre><code class="language-js"><span class="hljs-keyword">var</span> a = { message: <span class="hljs-string">'Hello'</span> }
+<span class="hljs-keyword">var</span> b = a
+a.message = <span class="hljs-string">'Hola'</span><span class="hljs-hr"></span>
+<span class="hljs-placeholder -line">State mutations break equality checks.</span>
+a === b  <span class="hljs-result">true</span>
 </code></pre>
-<blockquote>
-<p>React does this under-the-hood to make rendering faster.</p>
-</blockquote>
-<hr>
-<p>If your React app seems like it's not updating, most of the time it's because you're using mutations. A mutated state makes <code>state === oldState</code> true even if they changed, making React skip doing updates.</p>
+<p>If your React app seems like it's not updating, it's probably because you're mutating state. It'd make <code>state === oldState</code> even if they changed, making React skip doing updates.</p>
 <blockquote class="up-next">
 <p>What happens when my reducer gets very big? <a href="#combining-reducers">Next</a></p>
 </blockquote>
@@ -52,7 +48,8 @@
 }
 </code></pre>
 <hr>
-<p>You can use <code>combineReducers</code> to make two reducers, each working on one part. <a href="http://redux.js.org/docs/api/combineReducers.html">(docs)</a></p>
+<p>You can use <code>combineReducers</code> to make two reducers, each working on one part.
+This is only useful if each reducer works on a single part of your state.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { combineReducers, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articles</span> (<span class="hljs-params">state, action</span>) </span>{
@@ -63,7 +60,10 @@
 }<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">combineReducers({ articles, users })</span><span class="hljs-line -mute"><span class="hljs-keyword">let</span> store = createStore(reducer) </span>
 </code></pre>
-<p>This is only useful if each reducer works on a single part of your state.</p>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/api/combineReducers.html">combineReducers()</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Next</a></p>
 </blockquote>
