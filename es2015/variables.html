@@ -10,21 +10,22 @@
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="let-vs-var">let vs. var</h1>
-<p><code>let</code> is scoped to a block instead. A <em>let</em> is only available inside that <em>{ ... }</em> block.</p>
+<p>A <code>let</code> is only available inside the <code>{ ... }</code> block they're in. <code>let</code> is scoped to blocks.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{
-  <span class="hljs-keyword">if</span> (user.gender === male) {<span class="hljs-line -highlight">    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name </span>
-  } <span class="hljs-keyword">else</span> {<span class="hljs-line -highlight">    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name </span>
+  <span class="hljs-keyword">if</span> (user.gender === <span class="hljs-string">'male'</span>) {
+    <span class="hljs-highlight"><span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name</span>
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-highlight"><span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name</span>
   }
-
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
-  <span class="hljs-result">'ReferenceError: name is not defined'</span>
-}
+}<span class="hljs-hr"></span>
+<span class="hljs-result">ReferenceError: name is not defined</span>
 </code></pre>
 <blockquote>
-<p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.</p>
+<p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.
+If we changed <code>let</code> to <code>var</code>, it'd work like you expect it, because <code>var</code> is scoped to functions.</p>
 </blockquote>
-<hr>
-<p>On the other hand, <code>var</code> is scoped to a function. If we changed <em>let</em> to <em>var</em> above, it'd work like you expect it.</p>
+<!-- -->
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block scope (MDN)</a></p>
 </blockquote>
@@ -36,10 +37,9 @@
 <h1 id="constants">Constants</h1>
 <p><code>const</code> is just like <em>let</em>, except you can't reassign it to a new value.
 Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{<span class="hljs-line -highlight">  <span class="hljs-keyword">const</span> name = user.name </span>
-  name = name.toUpperCase()
-  <span class="hljs-result">TypeError: Assignment to constant variable.</span>
-}
+<pre><code class="language-js"><span class="hljs-keyword">const</span> name = user.name
+name = name.toUpperCase()<span class="hljs-hr"></span>
+<span class="hljs-result">TypeError: Assignment to constant variable</span>
 </code></pre>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants (MDN)</a></p>
@@ -54,7 +54,8 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
   <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
 }
-<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-result">undefined</span>
+<span class="hljs-built_in">console</span>.log(a)<span class="hljs-hr"></span>
+<span class="hljs-result">undefined</span>
 </code></pre>
 <blockquote>
 <p>The variable <code>a</code> is only available inside the <em>if</em> block.</p>

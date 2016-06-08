@@ -39,12 +39,12 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 <h1 id="second-try">Second try</h1>
 <p>Let's try putting that logic in a function outside the store. Let's make a function.</p>
 <pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
-  <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_START'</span> })
+  dispatch({ type: <span class="hljs-string">'LOAD_START'</span> })
   fetch(<span class="hljs-string">'/data.json'</span>)
     .then(data =&gt;
-      <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data }))
+      dispatch({ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data }))
     .catch(error =&gt;
-      <span class="hljs-highlight">dispatch</span>({ type: <span class="hljs-string">'LOAD_ERROR'</span>, error: error }))
+      dispatch({ type: <span class="hljs-string">'LOAD_ERROR'</span>, error: error }))
 }
 </code></pre>
 <blockquote>
@@ -52,7 +52,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </blockquote>
 <hr>
 <p>But now we're not being consistent: we often use <code>store.dispatch()</code> to trigger actions, but this time we're using <code>load(...)</code>. We can do better.</p>
-<pre><code class="language-js">load(store.dispatch)              <span class="hljs-comment">// &lt;-- this new way</span>
+<pre><code class="language-js"><span class="hljs-highlight">load(store.dispatch)</span>              <span class="hljs-comment">// &lt;-- this new way</span><span class="hljs-hr"></span>
 store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-comment">// &lt;-- everything else</span>
 </code></pre>
 <blockquote class="up-next">
@@ -92,6 +92,9 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteProject</span> (<span class="hljs-params">id</span>) </span>{ <span class="hljs-ellipsis"></span> }
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createProject</span> (<span class="hljs-params">id, data</span>) </span>{ <span class="hljs-ellipsis"></span> }
 </code></pre>
+<blockquote>
+<p>Save this file as <code>actions.js</code>.</p>
+</blockquote>
 <hr>
 <p><em>Action Creators are</em> functions that return an action. <code>loadProject()</code> and friends return functions, which redux-thunk will happily accept as actions.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> { loadProject } <span class="hljs-keyword">from</span> <span class="hljs-string">'./actions'</span>
@@ -125,9 +128,8 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 <p><strong>Action creators</strong> are functions that return things that you can pass to <code>dispatch()</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">publishProject</span> (<span class="hljs-params">id</span>) </span>{
   <span class="hljs-keyword">return</span> { type: <span class="hljs-string">'PROJECT_UPDATE'</span>, id, published: <span class="hljs-literal">true</span> }
-}
-</code></pre>
-<pre><code class="language-js">store.dispatch(<span class="hljs-highlight">publishProject(<span class="hljs-number">12</span>)</span>)
+}<span class="hljs-hr"></span>
+store.dispatch(<span class="hljs-highlight">publishProject(<span class="hljs-number">12</span>)</span>)
 </code></pre>
 <hr>
 <p><strong>redux-thunk</strong> is a plugin that will allow you to pass functions to <code>dispatch()</code>. Great for asynchronous actions.</p>
@@ -138,9 +140,8 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
       .then(data =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_LOADED'</span>, data }))
       .catch(err =&gt; dispatch({ type: <span class="hljs-string">'PROJECT_ERROR'</span>, err }))
   }
-}
-</code></pre>
-<pre><code class="language-js">store.dispatch(<span class="hljs-highlight">loadProject(<span class="hljs-number">12</span>)</span>)
+}<span class="hljs-hr"></span>
+store.dispatch(<span class="hljs-highlight">loadProject(<span class="hljs-number">12</span>)</span>)
 </code></pre>
 <hr>
 <p><strong>Middleware</strong> are plugins for Redux that extends <code>dispatch()</code> to do more things.</p>

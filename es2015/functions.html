@@ -92,7 +92,7 @@ logger(next)(store.dispatch)({ type: <span class="hljs-string">'init '</span>})
 </div></div><div class="page-section"><div class="container">
 <h1 id="default-arguments">Default arguments</h1>
 <p>You can now define defaults for arguments that are omitted.</p>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name = 'Jerry'</span>) </span>{
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">name = 'Jerry'</span></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span>;
 }<span class="hljs-hr"></span>
 greet()        <span class="hljs-result">'Hello, Jerry'</span>

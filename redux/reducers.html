@@ -57,12 +57,10 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articles</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder -line">...`state` is `state.articles` here</span>
-}
-
+}<span class="hljs-hr"></span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">users</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder -line">...`state` is `state.users` here</span>
-}
-
+}<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">combineReducers({ articles, users })</span><span class="hljs-line -mute"><span class="hljs-keyword">let</span> store = createStore(reducer) </span>
 </code></pre>
 <p>This is only useful if each reducer works on a single part of your state.</p>
