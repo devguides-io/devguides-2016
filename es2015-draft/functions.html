@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Functions - ES2015</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Functions</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">ES2015</a></h5><h1 id="arrow-functions">Arrow functions</h1>
+<p>In ES2015, you can now write functions with the <code>=&gt;</code> syntax, known as arrow functions.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> greet = (name) =&gt; {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>`</span>)
+}
+</code></pre>
+<hr>
+<p>For the most part, that's is the same as these examples that you would write in ES5.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> greet = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
+}<span class="hljs-hr"></span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
+}
+</code></pre>
+<blockquote class="up-next">
+<p>But what makes them different? <a href="#">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="this">This</h1>
+<p>When using <code>this</code> inside arrow functions, they take whatever's the value of <code>this</code> from its parent scope.</p>
+<pre><code class="language-js">addItems: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">items</span>) </span>{
+  <span class="hljs-keyword">this</span>.show()
+  items.forEach((item) =&gt; {
+    <span class="hljs-highlight"><span class="hljs-keyword">this</span></span>.append(item)
+  })
+}
+</code></pre>
+<p>In this example, both instances of <code>this</code> refer to the same object.</p>
+<hr>
+<p>In ES5, you may have worked around this by keeping track of <code>this</code> yourself. If you didn't, <code>this.append()</code> will likely throw an error.</p>
+<pre><code class="language-js">addItems: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">items</span>) </span>{
+  <span class="hljs-keyword">this</span>.show()
+  <span class="hljs-highlight"><span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span></span>
+  items.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
+    <span class="hljs-placeholder -line">Without arrow functions, `this` means something else here.</span>
+    self.append(item)
+  })
+}
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://babeljs.io/docs/learn-es2015/#arrows">Lexical this (Babel)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>How else are arrow functions useful? <a href="#">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="short-syntax">Short syntax</h1>
+<p>You can omit the curly braces. If you do, it implicitly returns the expression after the arrow.
+All these lines do the same thing.</p>
+<pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))<span class="hljs-hr"></span>
+list.map(n =&gt; <span class="hljs-highlight">{ <span class="hljs-keyword">return</span></span> <span class="hljs-built_in">Math</span>.sqrt(n) <span class="hljs-highlight">}</span>)
+list.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(n) }) <span class="hljs-placeholder -line">In ES5</span>
+</code></pre>
+<blockquote>
+<p>Useful for functions like <code>map</code> and <code>reduce</code>.</p>
+</blockquote>
+<hr>
+<p>You may have noticed we omitted the parentheses as well. You can do this if your function only takes in one argument. It makes no difference.</p>
+<pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
+list.map(<span class="hljs-highlight">(n)</span> =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
+</code></pre>
+<blockquote>
+<p>These two are the same.</p>
+</blockquote>
+<pre><code class="language-js">list.reduce(a, b =&gt; a + b)   <span class="hljs-placeholder -line">Error</span>
+list.reduce((a, b) =&gt; a + b) <span class="hljs-placeholder -line">OK</span>
+</code></pre>
+<blockquote>
+<p>It only works if you have one argument.</p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>What else is it useful for? <a href="#">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="currying">Currying</h1>
+<p>You can take advantage of the short syntax to return functions. This is often called <em>currying.</em> In this example, we make a function, that returns a function, that returns a function.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> logger = next =&gt; dispatch =&gt; action =&gt; {
+  dispatch(action)
+}<span class="hljs-hr"></span>
+logger(next)(store.dispatch)({ type: <span class="hljs-string">'init '</span>})
+</code></pre>
+<blockquote>
+<p>This is how <a href="../redux/middleware">Redux middleware</a> are built.</p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Set default arguments. <a href="#default-arguments">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="default-arguments">Default arguments</h1>
+<p>You can now define defaults for arguments that are omitted.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name = 'Jerry'</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span>;
+}<span class="hljs-hr"></span>
+greet()        <span class="hljs-result">'Hello, Jerry'</span>
+greet(<span class="hljs-string">'Kyle'</span>)  <span class="hljs-result">'Hello, Kyle'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's write functions with multiple arguments. <a href="#rest-and-spread">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="rest-and-spread">Rest and spread</h1>
+<p>Write functions that take in multiple arguments by using the <em>rest</em> syntax.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">...names</span></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${names.join(', ')}</span>!`</span>;
+}<span class="hljs-hr"></span>
+greet(<span class="hljs-string">'Moe'</span>, <span class="hljs-string">'Larry'</span>, <span class="hljs-string">'Curly'</span>)  <span class="hljs-placeholder -line">Hello Moe, Larry, Curly!</span>
+</code></pre>
+<hr>
+<p>Similarly, you can call functions with an array of arguments by using the <em>spread</em> syntax.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> names = [<span class="hljs-string">'Moe'</span>, <span class="hljs-string">'Larry'</span>, <span class="hljs-string">'Curly'</span>]<span class="hljs-hr"></span>
+greet(<span class="hljs-highlight">...names</span>)  <span class="hljs-placeholder -line">...same as: greet('Moe', 'Larry', 'Curly')</span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://babeljs.io/docs/learn-es2015/#default--rest--spread">Default rest spread (Babel)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p><strong>Default, rest, and spread</strong> make dynamic arguments easier.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">name = 'Jerry'</span></span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">...names</span></span>) </span>{ <span class="hljs-ellipsis"></span> }<span class="hljs-hr"></span>
+greet(<span class="hljs-highlight">...names</span>)
+</code></pre>
+<hr>
+<p><strong>Arrow functions</strong> preserve the lexical <code>this</code>.</p>
+<pre><code class="language-js">list.forEach(item =&gt; {
+  <span class="hljs-keyword">this</span>.addItem(item)
+})
+</code></pre>
+<hr>
+<p>Omit the curly braces for short functions.</p>
+<pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.PI * <span class="hljs-built_in">Math</span>.sqrt(n))
+</code></pre>
+<blockquote class="up-next">
+<p>That's all for now! <a href=".">Back</a></p>
+</blockquote>
+</div></div></div><script src="../assets/script.js"></script></body></html>

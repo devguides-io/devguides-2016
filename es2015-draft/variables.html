@@ -17,7 +17,7 @@
   }
 
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
-  <span class="hljs-comment">//=&gt; 'ReferenceError: name is not defined'</span>
+  <span class="hljs-result">'ReferenceError: name is not defined'</span>
 }
 </code></pre>
 <blockquote>
@@ -25,6 +25,10 @@
 </blockquote>
 <hr>
 <p>On the other hand, <code>var</code> is scoped to a function. If we changed <em>let</em> to <em>var</em> above, it'd work like you expect it.</p>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block scope (MDN)</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>Learn about <code>let</code>'s cousin. <a href="#constants">Next</a></p>
 </blockquote>
@@ -34,9 +38,13 @@
 Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{<span class="hljs-line -highlight">  <span class="hljs-keyword">const</span> name = user.name </span>
   name = name.toUpperCase()
-  <span class="hljs-comment">//=&gt; TypeError: Assignment to constant variable.</span>
+  <span class="hljs-result">TypeError: Assignment to constant variable.</span>
 }
 </code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants (MDN)</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>What is block scoping? <a href="#block-scoping">Next</a></p>
 </blockquote>
@@ -46,7 +54,7 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
   <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
 }
-<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-comment">//=&gt; undefined</span>
+<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-result">undefined</span>
 </code></pre>
 <blockquote>
 <p>The variable <code>a</code> is only available inside the <em>if</em> block.</p>
@@ -63,6 +71,10 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <span class="hljs-keyword">for</span> (;;) { <span class="hljs-ellipsis"></span> }
 <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) { <span class="hljs-ellipsis"></span> }
 </code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block">Blocks (MDN)</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>What about blocks inside blocks? <a href="#nested-blocks">Next</a></p>
 </blockquote>
@@ -73,12 +85,12 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
   <span class="hljs-keyword">if</span> (user) {
     <span class="hljs-highlight"><span class="hljs-keyword">let</span> running = user.state === <span class="hljs-string">'running'</span></span>
     <span class="hljs-keyword">if</span> (running) {
-      <span class="hljs-placeholder">`running` is still available here</span>
+      <span class="hljs-placeholder -line">`running` is still available here</span>
     } <span class="hljs-keyword">else</span> {
-      <span class="hljs-placeholder">and here, too</span>
+      <span class="hljs-placeholder -line">and here, too</span>
     }
   } <span class="hljs-keyword">else</span> {
-    <span class="hljs-placeholder">but not here!</span>
+    <span class="hljs-placeholder -line">but not here!</span>
   }
 }
 </code></pre>
@@ -96,12 +108,9 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
   <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
 }
-<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-comment">//=&gt; undefined</span>
+<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-result">undefined</span>
 </code></pre>
-<ul>
-<li></li>
-</ul>
 <blockquote class="up-next">
-<p>Learn what's new with objects. <a href="../objects.html">Next</a></p>
+<p>Learn what's new with objects. <a href="objects.html">Next</a></p>
 </blockquote>
 </div></div></div><script src="../assets/script.js"></script></body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Classes - ES2015</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Classes</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">ES2015</a></h5><h1 id="classes">Classes</h1>
+<p>You can now write classes in ES2015. Classes let you define your own object types.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+  getArea () {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius
+  }
+}
+</code></pre>
+<hr>
+<p>You create instances of classes using <code>new</code>. These instances have functions called <em>methods</em>, such as <code>getArea()</code> here.</p>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">2</span>)
+c.getArea()  <span class="hljs-result">12.56</span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Classes (MDN)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>How do you define methods? <a href="#methods">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="methods">Methods</h1>
+<p>You can write methods similar to the object function shorthand. Note that there are no commas, unlike objects!</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-highlight">getArea ()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-keyword">this</span>.radius * <span class="hljs-keyword">this</span>.radius
+  }<span class="hljs-line -mute">  getCircumference () { </span><span class="hljs-line -mute">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius </span><span class="hljs-line -mute">  } </span>
+}
+</code></pre>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">2</span>)
+c.getArea()  <span class="hljs-result">12.56</span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Prototype_methods">Methods (MDN)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>What about constructors? <a href="#constructors">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="constructors">Constructors</h1>
+<p>When you have a method with the name <code>constructor</code>, it will be called when doing <code>new YourClass(...)</code>.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-highlight"><span class="hljs-keyword">constructor</span> (radius) {</span>
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+}
+</code></pre>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">10.5</span>)
+c.radius  <span class="hljs-result">10.5</span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">Constructors (MDN)</a></p>
+</blockquote>
+<blockquote class="up-next">
+<p>What about static methods? <a href="#static-methods">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="static-methods">Static methods</h1>
+<p>You can define functions that can be called without instanciating it (calling <code>new YourClass</code>). These are called static methods.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-highlight"><span class="hljs-keyword">static</span> createFromDiameter (diameter) {</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(diameter / <span class="hljs-number">2</span>)
+  }
+}
+</code></pre>
+<pre><code class="language-js">c = Circle.createFromDiameter(<span class="hljs-number">21</span>)
+<span class="hljs-comment">// Same as `new Circle(10.5)`</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's learn about inheritance. <a href="#inheritance">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="inheritance">Inheritance</h1>
+<p>You can build on top of other classes using <code>extends</code>. This makes the methods of the parent class available in your class.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> </span>{
+  <span class="hljs-highlight">show ()</span> { <span class="hljs-ellipsis"></span> }
+  hide () { <span class="hljs-ellipsis"></span> }
+}<span class="hljs-hr"></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{
+  <span class="hljs-ellipsis"></span>
+}
+</code></pre>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle()
+c.<span class="hljs-highlight">show</span>()
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Sub_classing_with_extends">Sub classing (MDN)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>How do I extend methods? <a href="#compatibility">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="super">Super</h1>
+<p>If you use the same method name in a subclass, in overrides what's in the parent class. To call methods from a class's parent, use <code>super</code>.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Logger</span> </span>{
+  log (message) {
+    <span class="hljs-built_in">console</span>.log(message)
+  }
+}
+</code></pre>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorLogger</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Logger</span> </span>{
+  log (message) {
+    <span class="hljs-highlight"><span class="hljs-keyword">super</span></span>(<span class="hljs-string">'Error: '</span> + message)
+  }
+}
+</code></pre>
+<hr>
+<p>You can also use <code>super</code> for static methods, but it works a little differently.</p>
+<pre><code class="language-js"><span class="hljs-keyword">static</span> log (message) {
+  <span class="hljs-highlight"><span class="hljs-keyword">super</span>.log</span>(<span class="hljs-string">'Error: '</span> + message)
+}
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super (MDN)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Are all these backward-compatible? <a href="#compatibility">Continue</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="compatibility">Compatibility</h1>
+<p>Classes are simply syntactic sugar over ES5's prototypes. In fact, these two are equivalent.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
+  <span class="hljs-keyword">constructor</span> (r) { <span class="hljs-keyword">this</span>.radius = r }
+  getDiameter () { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.radius * <span class="hljs-number">2</span> }
+}
+</code></pre>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Circle</span> (<span class="hljs-params">r</span>) </span>{ <span class="hljs-keyword">this</span>.radius = r }
+Circle.prototype.getDiameter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.r * <span class="hljs-number">2</span> }
+</code></pre>
+<hr>
+<p>You can both use them in the same way.</p>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">20</span>)
+</code></pre>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p>ES2015 lets you write classes instead of dealing with prototypes.</p>
+<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+
+  <span class="hljs-placeholder -line">Methods:</span>
+  getArea () { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius }
+
+  <span class="hljs-placeholder -line">Static methods:</span>
+  <span class="hljs-keyword">static</span> createFromDiameter (d) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(d / <span class="hljs-number">2</span>) }
+}
+</code></pre>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">10</span>)
+c = Circle.createFromDiameter(<span class="hljs-number">20</span>)
+c.getArea()
+</code></pre>
+<blockquote class="up-next">
+<p>Let's learn about strings. <a href="strings.html">Next</a></p>
+</blockquote>
+</div></div></div><script src="../assets/script.js"></script></body></html>

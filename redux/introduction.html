@@ -18,8 +18,8 @@
 </code></pre>
 <hr>
 <p>You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.</p>
-<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(album.title)  <span class="hljs-comment">// &lt;- Read</span>
-album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-comment">// &lt;- Write</span>
+<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(album.title)  <span class="hljs-comment">// &lt;-- Reading</span>
+album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-comment">// &lt;-- Writing</span>
 </code></pre>
 <blockquote class="up-next">
 <p>How would you do that in Redux? <a href="#our-first-store">Next</a></p>
@@ -35,7 +35,7 @@ album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-com
 <hr>
 <p>You can get data from store by checking its <em>state</em> using <code>getState()</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">var</span> state = <span class="hljs-highlight">store.getState()</span>
-<span class="hljs-built_in">console</span>.log(state.title) <span class="hljs-comment">//=&gt; 'Kind of Blue'</span>
+<span class="hljs-built_in">console</span>.log(state.title) <span class="hljs-result">'Kind of Blue'</span>
 </code></pre>
 <hr>
 <p>Writing data works a bit different, though. That's where <code>reducer</code> comes in.</p>
@@ -66,10 +66,10 @@ album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-com
 </code></pre>
 <hr>
 <p>To run an action, use <code>dispatch()</code>. This changes the store's <em>state</em>.</p>
-<pre><code class="language-js">store.getState().published  <span class="hljs-comment">//=&gt; false</span>
+<pre><code class="language-js">store.getState().published  <span class="hljs-result">false</span>
 
 <span class="hljs-highlight">store.dispatch({ type: <span class="hljs-string">'PUBLISH'</span> })</span>
-store.getState().published  <span class="hljs-comment">//=&gt; true</span>
+store.getState().published  <span class="hljs-result">true</span>
 </code></pre>
 <!--
 var store = createStore(reducer)

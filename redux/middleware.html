@@ -104,11 +104,11 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 <hr>
 <p>Having them as functions-that-return-functions makes for something interesting: it breaks the middleware into 3 steps that are applied separately.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">store</span>) </span>{
-  <span class="hljs-placeholder">You can get store.dispatch() and store.getState() here.</span>
+  <span class="hljs-placeholder -line">You can get store.dispatch() and store.getState() here.</span>
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
-    <span class="hljs-placeholder">This only runs once.</span>
+    <span class="hljs-placeholder -line">This only runs once.</span>
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">action</span>) </span>{
-      <span class="hljs-placeholder">This runs every dispatch().</span>
+      <span class="hljs-placeholder -line">This runs every dispatch().</span>
     }
   }
 }

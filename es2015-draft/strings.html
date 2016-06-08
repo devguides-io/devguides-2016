@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Strings - ES2015</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Strings</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">ES2015</a></h5><h1 id="template-strings">Template strings</h1>
+<p>You can use <code>${...}</code> to add expressions inside strings. To do this, surround your string with backticks.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> message = <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span>
+</code></pre>
+<hr>
+<p>Template strings are also used for multi-line strings.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> help = <span class="hljs-string">`
+Usage:
+  $0 [options] [files...]
+`</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Why is it called a &quot;template&quot;? <a href="#tagged-templates">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="tagged-templates">Tagged templates</h1>
+<p>Template strings can be &quot;tagged&quot; by putting a function before it.</p>
+<pre><code class="language-js">tpl <span class="hljs-string">`hello <span class="hljs-subst">${name}</span>! I'm <span class="hljs-subst">${me}</span>`</span>
+</code></pre>
+<hr>
+<p><code>tpl</code> is a function you write. It will be invoked like so:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tpl</span> (<span class="hljs-params">strings, values</span>) </span>{
+  strings <span class="hljs-result">['hello ', '! I'm', '']</span>
+  values  <span class="hljs-result">[name, me]</span>
+}
+</code></pre>
+<hr>
+<p>While this is not used very often, it lets us write things like template engines.</p>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals">Tagged template literals (MDN)</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Let's learn about what's new with functions. <a href="functions.html">Next</a></p>
+</blockquote>
+</div></div></div><script src="../assets/script.js"></script></body></html>
