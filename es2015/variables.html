@@ -21,10 +21,8 @@
 }<span class="hljs-hr"></span>
 <span class="hljs-result">ReferenceError: name is not defined</span>
 </code></pre>
-<blockquote>
 <p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.
 If we changed <code>let</code> to <code>var</code>, it'd work like you expect it, because <code>var</code> is scoped to functions.</p>
-</blockquote>
 <!-- -->
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block scope (MDN)</a></p>
@@ -55,11 +53,9 @@ name = name.toUpperCase()<span class="hljs-hr"></span>
   <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
 }
 <span class="hljs-built_in">console</span>.log(a)<span class="hljs-hr"></span>
+<span class="hljs-placeholder -line">`a` is only available inside the *if* block.</span>
 <span class="hljs-result">undefined</span>
 </code></pre>
-<blockquote>
-<p>The variable <code>a</code> is only available inside the <em>if</em> block.</p>
-</blockquote>
 <hr>
 <p>Block scoping affects other kinds of blocks.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }

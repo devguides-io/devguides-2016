@@ -18,14 +18,13 @@ Usage:
 <pre><code class="language-js">tpl <span class="hljs-string">`hello <span class="hljs-subst">${name}</span>! I'm <span class="hljs-subst">${me}</span>`</span>
 </code></pre>
 <hr>
-<p><code>tpl</code> is a function you write. It will be invoked like so:</p>
+<p><code>tpl</code> is a function you write. It will be invoked like so.
+While this is not used very often, it lets us write things like template engines.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tpl</span> (<span class="hljs-params">strings, values</span>) </span>{
   strings <span class="hljs-result">['hello ', '! I'm', '']</span>
   values  <span class="hljs-result">[name, me]</span>
 }
 </code></pre>
-<hr>
-<p>While this is not used very often, it lets us write things like template engines.</p>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals">Tagged template literals (MDN)</a></p>
 </blockquote>

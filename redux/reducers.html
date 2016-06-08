@@ -54,7 +54,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articles</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder -line">...`state` is `state.articles` here</span>
-}<span class="hljs-hr"></span>
+}
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">users</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder -line">...`state` is `state.users` here</span>
 }<span class="hljs-hr"></span>
@@ -87,7 +87,7 @@ This is only useful if each reducer works on a single part of your state.</p>
     <span class="hljs-keyword">return</span> { ...state, private: <span class="hljs-literal">false</span> }
   }
 }<span class="hljs-hr"></span>
-reducer = combineReducers({ <span class="hljs-highlight">profile</span>, <span class="hljs-ellipsis"></span> })
+<span class="hljs-keyword">let</span> reducer = combineReducers({ <span class="hljs-highlight">profile</span>, <span class="hljs-ellipsis"></span> })
 </code></pre>
 <p>This reducer can't see <code>state.photos</code>! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.</p>
 <blockquote class="up-next">
@@ -100,12 +100,12 @@ reducer = combineReducers({ <span class="hljs-highlight">profile</span>, <span c
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profiles</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder">see the whole `state` here</span>
-}<span class="hljs-hr"></span>
+}
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">photos</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-placeholder">see the whole `state` here</span>
 }<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">reduceReducers(profiles, photos)</span>
-createStore(reducer)
+<span class="hljs-keyword">let</span> store = createStore(reducer)
 </code></pre>
 <p>reduce-reducers is a 3rd-party package. It's one of the many plugins available in the Redux ecosystem in npm.</p>
 <blockquote class="see-also">

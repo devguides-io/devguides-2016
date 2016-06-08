@@ -58,18 +58,14 @@ list.map(<span class="hljs-function"><span class="hljs-keyword">function</span> 
 </blockquote>
 <hr>
 <p>You may have noticed we omitted the parentheses as well. You can do this if your function only takes in one argument. It makes no difference.</p>
-<pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
+<pre><code class="language-js"><span class="hljs-placeholder -line">These two are the same.</span>
+list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
 list.map(<span class="hljs-highlight">(n)</span> =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
 </code></pre>
-<blockquote>
-<p>These two are the same.</p>
-</blockquote>
-<pre><code class="language-js">list.reduce(a, b =&gt; a + b)   <span class="hljs-placeholder -line">Error</span>
-list.reduce((a, b) =&gt; a + b) <span class="hljs-placeholder -line">OK</span>
+<pre><code class="language-js"><span class="hljs-placeholder -line">It only works if you have 1 argument.</span>
+list.reduce((a, b) =&gt; a + b)
+list.reduce(a, b =&gt; a + b) <span class="hljs-placeholder -line">Error</span>
 </code></pre>
-<blockquote>
-<p>It only works if you have one argument.</p>
-</blockquote>
 <!-- -->
 <blockquote class="up-next">
 <p>What else is it useful for? <a href="#">Next</a></p>

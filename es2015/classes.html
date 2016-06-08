@@ -77,15 +77,15 @@ c.radius  <span class="hljs-result">10.5</span>
 <h1 id="inheritance">Inheritance</h1>
 <p>You can build on top of other classes using <code>extends</code>. This makes the methods of the parent class available in your class.</p>
 <pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> </span>{
-  <span class="hljs-highlight">show ()</span> { <span class="hljs-ellipsis"></span> }
+  show () { <span class="hljs-ellipsis"></span> }
   hide () { <span class="hljs-ellipsis"></span> }
 }<span class="hljs-hr"></span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{
-  <span class="hljs-ellipsis"></span>
-}
-</code></pre>
-<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle()
-c.<span class="hljs-highlight">show</span>()
+<span class="hljs-highlight"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{</span>
+  roll () { <span class="hljs-ellipsis"></span> }
+}<span class="hljs-hr"></span>
+<span class="hljs-keyword">let</span> c = <span class="hljs-keyword">new</span> Circle()
+c.show()
+c.roll()
 </code></pre>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Sub_classing_with_extends">Sub classing (MDN)</a></p>
@@ -101,9 +101,8 @@ c.<span class="hljs-highlight">show</span>()
   log (message) {
     <span class="hljs-built_in">console</span>.log(message)
   }
-}
-</code></pre>
-<pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorLogger</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Logger</span> </span>{
+}<span class="hljs-hr"></span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorLogger</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Logger</span> </span>{
   log (message) {
     <span class="hljs-highlight"><span class="hljs-keyword">super</span></span>(<span class="hljs-string">'Error: '</span> + message)
   }
@@ -128,9 +127,8 @@ c.<span class="hljs-highlight">show</span>()
 <pre><code class="language-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>{
   <span class="hljs-keyword">constructor</span> (r) { <span class="hljs-keyword">this</span>.radius = r }
   getDiameter () { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.radius * <span class="hljs-number">2</span> }
-}
-</code></pre>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Circle</span> (<span class="hljs-params">r</span>) </span>{ <span class="hljs-keyword">this</span>.radius = r }
+}<span class="hljs-hr"></span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Circle</span> (<span class="hljs-params">r</span>) </span>{ <span class="hljs-keyword">this</span>.radius = r }
 Circle.prototype.getDiameter = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.r * <span class="hljs-number">2</span> }
 </code></pre>
 <hr>

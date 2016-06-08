@@ -50,7 +50,7 @@ Writing data works a bit different, though. That's where <code>reducer</code> co
 <p>You can't change the store's state from outside the store. To do that, you'll need to create actions. Actions are made through <em>reducer functions</em>, which is used by <code>createStore()</code>.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 
-<span class="hljs-keyword">var</span> store = <span class="hljs-highlight">createStore(reducer, article)</span><span class="hljs-hr"></span>
+<span class="hljs-keyword">var</span> store = createStore(<span class="hljs-highlight">reducer</span>, article)<span class="hljs-hr"></span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'PUBLISH'</span>) {
     <span class="hljs-keyword">return</span> { ...state, published: <span class="hljs-literal">true</span> }
