@@ -101,7 +101,7 @@ class Circle {
 
 ```js
 c = Circle.createFromDiameter(21)
-// Same as `new Circle(10.5)`
+/// Same as `new Circle(10.5)`
 ```
 
 > Next: Let's learn about inheritance. [Next](#inheritance)
@@ -207,10 +207,10 @@ class Circle extends Shape {
     this.radius = radius
   }
 
-  //! Methods:
+  /// Methods:
   getArea () { return Math.PI * 2 * this.radius }
 
-  //! Static methods:
+  /// Static methods:
   static createFromDiameter (d) { return new Circle(d / 2) }
 }
 ```

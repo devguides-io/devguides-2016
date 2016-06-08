@@ -46,8 +46,11 @@ This is called *immutability*, in other words, never having to mutate.
 function reducer (state, action) { //-
   switch (action.type) { //-
     case 'PUBLISH': //-
-      state.published = true  // <-- Avoid this
+      state.published = true  //! Avoid
       return state //-
+
+// ---
+      return { ...state, published: true }  ///
 ```
 
 ---
@@ -55,12 +58,12 @@ function reducer (state, action) { //-
 This seems like a hassle at first, but it makes your app faster in the long run. You'll be able to check if a state has changed.
 
 ```js
-var a = { message: 'Hello' }
-var b = a
-a.message = 'Hola'
+var orig = { message: 'Hello' }
+var copy = orig
+orig.message = 'Hola'
+orig === copy  //! true
 // ---
 //! State mutations break equality checks.
-a === b  //=> true
 ```
 
 If your React app seems like it's not updating, it's probably because you're mutating state. It'd make `state === oldState` even if they changed, making React skip doing updates.
@@ -90,10 +93,10 @@ This is only useful if each reducer works on a single part of your state.
 import { combineReducers, createStore } from 'redux' //-
 
 function articles (state, action) {
-  //! ...`state` is `state.articles` here
+  /// ...`state` is `state.articles` here.
 }
 function users (state, action) {
-  //! ...`state` is `state.users` here
+  /// ...`state` is `state.users` here.
 }
 // ---
 let reducer = /*{*/combineReducers({ articles, users })/*}*/
@@ -134,7 +137,7 @@ state = { //-
 ```js
 function profile (state, action) {
   if (action.type === 'PUBLISH') {
-    //! `state` is actually `state.profile` here.
+    // <-- `state` is limited to `state.profile` here.
     return { ...state, private: false }
   }
 }
@@ -157,10 +160,10 @@ Another approach to combining reducers is to use *reduce-reducers*. Unlike *comb
 import reduceReducers from 'reduce-reducers' //-
 
 function profiles (state, action) {
-  /*[ see the whole `state` here ]*/
+  // <-- See the whole `state` here.
 }
 function photos (state, action) {
-  /*[ see the whole `state` here ]*/
+  // <-- Here, as well.
 }
 // ---
 let reducer = /*{*/reduceReducers(profiles, photos)/*}*/
@@ -191,8 +194,9 @@ reducer(state, action) //=> state
 **Immutable:** reducers work your state in a way that never mutates objects.
 
 ```js
-function reducer (state, action) {
-  state.published = true  // <-- Avoid this
+state.published = true  //!
+// ---
+return { ...state, published: true }  ///
 ```
 
 ---

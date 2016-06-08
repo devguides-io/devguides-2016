@@ -39,7 +39,7 @@ Introduction
 
 ## Pages
 
-- Parts of a page
+Controllers and actions, views, templates
 
 ## Models
 

@@ -12,7 +12,6 @@
 
   &::before {
     @include hr-rule;
-    opacity: .5;
   }
 
   // Hide in mobile

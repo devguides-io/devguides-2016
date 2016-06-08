@@ -80,7 +80,7 @@ All these lines do the same thing.
 list.map(n => Math.sqrt(n))
 // ---
 list.map(n => /*{*/{ return/*}*/ Math.sqrt(n) /*{*/}/*}*/)
-list.map(function (n) { return Math.sqrt(n) }) //! In ES5
+list.map(function (n) { return Math.sqrt(n) }) /// In ES5
 ```
 
 > Useful for functions like `map` and `reduce`.
@@ -90,7 +90,7 @@ list.map(function (n) { return Math.sqrt(n) }) //! In ES5
 You may have noticed we omitted the parentheses as well. You can do this if your function only takes in one argument. It makes no difference.
 
 ```js
-//! These two are the same.
+/// These two are the same.
 list.map(n => Math.sqrt(n))
 list.map(/*{*/(n)/*}*/ => Math.sqrt(n))
 ```
@@ -154,7 +154,7 @@ function greet(/*{*/...names/*}*/) {
   return `Hello ${names.join(', ')}!`;
 }
 // ---
-greet('Moe', 'Larry', 'Curly')  //! Hello Moe, Larry, Curly!
+greet('Moe', 'Larry', 'Curly')  /// Hello Moe, Larry, Curly!
 ```
 
 ---
@@ -164,7 +164,7 @@ Similarly, you can call functions with an array of arguments by using the *sprea
 ```js
 let names = ['Moe', 'Larry', 'Curly']
 // ---
-greet(/*{*/...names/*}*/)  //! ...same as: greet('Moe', 'Larry', 'Curly')
+greet(/*{*/...names/*}*/)  /// same as: `greet('Moe', 'Larry', 'Curly')`
 ```
 
 > See also: [Default rest spread (Babel)](http://babeljs.io/docs/learn-es2015/#default--rest--spread)

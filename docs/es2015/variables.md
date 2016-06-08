@@ -33,7 +33,7 @@ function greet (user) {
   console.log('Hello, ' + name)
 }
 // ---
-//=> ReferenceError: name is not defined
+//! ReferenceError: name is not defined
 ```
 
 Here, the `name`s are only available inside their respective *if* and *else* blocks.
@@ -58,7 +58,7 @@ Most guides now recommend using *let* and *const* instead of `var`.
 const name = user.name
 name = name.toUpperCase()
 // ---
-//=> TypeError: Assignment to constant variable
+//! TypeError: Assignment to constant variable
 ```
 
 > Also see: [Constants (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
@@ -75,13 +75,11 @@ name = name.toUpperCase()
 
 ```js
 if (true) {
-  let a = 'hello'
+  let msg = 'hello'
 }
-console.log(a)
-// ---
-//! `a` is only available inside the *if* block.
-//=> undefined
+console.log(msg)  //! undefined
 ```
+> `msg` is only available inside the *if* block.
 
 ---
 
@@ -116,9 +114,9 @@ function run (user) {
   if (user) {
     /*{*/let running = user.state === 'running'/*}*/
     if (running) {
-      //! `running` is still available here
+      /// `running` is still available here
     } else {
-      //! and here, too
+      /// and here, too
     }
   } else {
     //! but not here!
@@ -147,7 +145,7 @@ They are *block scoping*: they are only available within `{...}` blocks, but not
 if (true) {
   let a = 'hello'
 }
-console.log(a)  //=> undefined
+console.log(a)  //! undefined
 ```
 
 > Next: Learn what's new with objects. [Next](objects.html)

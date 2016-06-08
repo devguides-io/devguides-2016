@@ -27,12 +27,73 @@
   letter-spacing: 0;
 
   position: relative;
-  top: -1px;
+  top: 0;
 }
 
-.hljs-placeholder.-line {
+.hljs-placeholder.-warning {
   padding-left: 0;
   padding-right: 0;
+  color: mix($red, $gray, 50%);
+
+  &::before {
+    @include ion-icon('close-round');
+    font-size: 12px;
+    margin-right: .5em;
+    position: relative;
+    top: -1px;
+    color: $red;
+  }
+
+  code {
+    color: $red;
+  }
+}
+
+.hljs-placeholder.-ok {
+  padding-left: 0;
+  padding-right: 0;
+  color: $green;
+
+  &::before {
+    font-size: 12px;
+    @include ion-icon('checkmark');
+    margin-right: .5em;
+    position: relative;
+    top: -1px;
+    color: $green;
+  }
+
+  code {
+    color: darken($green, 15%);
+  }
+}
+
+.hljs-placeholder.-info {
+  padding-left: 0;
+  padding-right: 0;
+  color: $gray;
+
+  &::before {
+    font-size: 12px;
+    @include ion-icon('arrow-left-c');
+    margin-right: .5em;
+    position: relative;
+    top: -1px;
+    color: $green;
+  }
+
+  code {
+    color: darken($green, 15%);
+  }
+}
+
+.hljs-placeholder {
+  code {
+    font-size: 1em;
+    font-family: $serif;
+    font-style: italic;
+    letter-spacing: 0;
+  }
 }
 
 .hljs-highlight {
@@ -98,7 +159,7 @@
 
   &::before {
     @include ion-icon('arrow-right-c');
-    color: $red;
+    color: $green;
     margin-right: .8em;
   }
 }

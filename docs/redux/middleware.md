@@ -12,7 +12,7 @@ Middleware are just functions. Here's a middleware that does nothing.
 
 
 ```js
-createStore(reducer, {}, applyMiddleware(/*{*/logger/*}*/))
+createStore(reducer, {}, /*{*/applyMiddleware(logger)/*}*/)
 ```
 
 ```js
@@ -37,7 +37,11 @@ const logger = store => dispatch => action => {
 }
 ```
 
-> Next: Let's make it do something useful. [Next](#decorating-dispatch)
+> Also see: [applyMiddleware()](http://redux.js.org/docs/api/applyMiddleware.html)
+
+<!-- -->
+
+> Next: Let's give extra powers to `dispatch()`. [Next](#decorating-dispatch)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -62,9 +66,10 @@ In this example, we've made `dispatch()` log some messages before and after disp
 
 ```js
 store.dispatch({ type: 'SAVE' })
-// Dispatching: SAVE
-// Old state: { ... }
-// New state: { ... }
+// ---
+//=> Dispatching: SAVE
+//=> Old state: { ... }
+//=> New state: { ... }
 ```
 
 > Next: Let's use this for something useful. [Next](#side-effects)
@@ -80,12 +85,12 @@ A store's reducers should have no side effects. Middleware is often used for tha
 const fetcher = store => dispatch => action => {
   const { type, next, url } = action
   if (type === 'FETCH') {
-    /*{*/dispatch({ type: next + '_PENDING' })/*}*/
-    fetch(url)
-    .then(result => /*{*/dispatch({ type: next + '_SUCCESS', result })/*}*/)
-    .then(error => /*{*/dispatch({ type: next + '_ERROR', result })/*}*/)
+    /*{*/dispatch({ type: `${next}_PENDING` })/*}*/
+    return fetch(url)
+    .then(result => /*{*/dispatch({ type: `${next}_SUCCESS`, result })/*}*/)
+    .then(error => /*{*/dispatch({ type: `${next}_ERROR`, error })/*}*/)
   } else {
-    dispatch(action)
+    return dispatch(action)
   }
 }
 ```
@@ -161,11 +166,11 @@ Having them as functions-that-return-functions makes for something interesting: 
 
 ```js
 const logger = function (store) {
-  //! You can get store.dispatch() and store.getState() here.
+  // <-- You can get store.dispatch() and store.getState() here.
   return function (dispatch) {
-    //! This only runs once.
+    // <-- This runs on `createStore()`.
     return function (action) {
-      //! This runs every dispatch().
+      // <-- This runs every `dispatch()`.
     }
   }
 }
@@ -193,10 +198,10 @@ createStore(reducer, {}, applyMiddleware(/*{*/logger/*}*/, /*{*/thunk/*}*/))
 They give `dispatch()` more powers.
 
 ```js
-store.dispatch({ type: 'SAVE' })     // Normal
-store.dispatch(fetch('/data.json'))  // Promises
-store.dispatch(() => { /*...*/ })    // Functions/thunks
-store.dispatch(/*...*/)              // and a lot more
+store.dispatch({ type: 'SAVE' })     /// Normal
+store.dispatch(fetch('/data.json'))  /// Promises
+store.dispatch(() => { /*...*/ })     /// Functions/thunks
+store.dispatch(/*...*/)               /// ...and more
 ```
 
 ---
@@ -206,8 +211,9 @@ You can use middleware to write side effects to actions.
 ```js
 const middleware = store => dispatch => action => {
   if (action.type === 'FETCH') {
-    dispatch(action) // <-- Do something different here
+    doSomethingDifferent()
   }
+  dispatch(action)
 }
 ```
 
