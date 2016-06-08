@@ -68,7 +68,7 @@ c.radius  <span class="hljs-result">10.5</span>
 }
 </code></pre>
 <pre><code class="language-js">c = Circle.createFromDiameter(<span class="hljs-number">21</span>)
-<span class="hljs-comment">// Same as `new Circle(10.5)`</span>
+<span class="hljs-placeholder -ok">Same as <code>new Circle(10.5)</code></span>
 </code></pre>
 <blockquote class="up-next">
 <p>Let's learn about inheritance. <a href="#inheritance">Next</a></p>
@@ -146,10 +146,10 @@ Circle.prototype.getDiameter = <span class="hljs-function"><span class="hljs-key
     <span class="hljs-keyword">this</span>.radius = radius
   }
 
-  <span class="hljs-placeholder -line">Methods:</span>
+  <span class="hljs-placeholder -ok">Methods:</span>
   getArea () { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius }
 
-  <span class="hljs-placeholder -line">Static methods:</span>
+  <span class="hljs-placeholder -ok">Static methods:</span>
   <span class="hljs-keyword">static</span> createFromDiameter (d) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(d / <span class="hljs-number">2</span>) }
 }
 </code></pre>

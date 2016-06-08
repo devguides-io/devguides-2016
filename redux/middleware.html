@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Middleware - Redux</title></head><body><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">Redux</a><span>Middleware</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><strong>Pocket Guides / </strong><a href=".">Redux</a></h5><h1 id="middleware">Middleware</h1>
 <p>Redux plugins are often made as <em>middleware</em>.
 Middleware are just functions. Here's a middleware that does nothing.</p>
-<pre><code class="language-js">createStore(reducer, {}, applyMiddleware(<span class="hljs-highlight">logger</span>))
+<pre><code class="language-js">createStore(reducer, {}, <span class="hljs-highlight">applyMiddleware(logger)</span>)
 </code></pre>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">logger</span> (<span class="hljs-params">store</span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
@@ -20,8 +20,12 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
   <span class="hljs-keyword">return</span> dispatch(action)
 }
 </code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="http://redux.js.org/docs/api/applyMiddleware.html">applyMiddleware()</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
-<p>Let's make it do something useful. <a href="#decorating-dispatch">Next</a></p>
+<p>Let's give extra powers to <code>dispatch()</code>. <a href="#decorating-dispatch">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="decorating-dispatch">Decorating dispatch</h1>
@@ -36,10 +40,10 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 </code></pre>
 <hr>
 <p>In this example, we've made <code>dispatch()</code> log some messages before and after dispatching.</p>
-<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })
-<span class="hljs-comment">// Dispatching: SAVE</span>
-<span class="hljs-comment">// Old state: { ... }</span>
-<span class="hljs-comment">// New state: { ... }</span>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })<span class="hljs-hr"></span>
+<span class="hljs-result">Dispatching: SAVE</span>
+<span class="hljs-result">Old state: { ... }</span>
+<span class="hljs-result">New state: { ... }</span>
 </code></pre>
 <blockquote class="up-next">
 <p>Let's use this for something useful. <a href="#side-effects">Next</a></p>
@@ -50,12 +54,12 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> fetcher = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-keyword">const</span> { type, next, url } = action
   <span class="hljs-keyword">if</span> (type === <span class="hljs-string">'FETCH'</span>) {
-    <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_PENDING'</span> })</span>
-    fetch(url)
-    .then(result =&gt; <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_SUCCESS'</span>, result })</span>)
-    .then(error =&gt; <span class="hljs-highlight">dispatch({ type: next + <span class="hljs-string">'_ERROR'</span>, result })</span>)
+    <span class="hljs-highlight">dispatch({ type: <span class="hljs-string">`<span class="hljs-subst">${next}</span>_PENDING`</span> })</span>
+    <span class="hljs-keyword">return</span> fetch(url)
+    .then(result =&gt; <span class="hljs-highlight">dispatch({ type: <span class="hljs-string">`<span class="hljs-subst">${next}</span>_SUCCESS`</span>, result })</span>)
+    .then(error =&gt; <span class="hljs-highlight">dispatch({ type: <span class="hljs-string">`<span class="hljs-subst">${next}</span>_ERROR`</span>, error })</span>)
   } <span class="hljs-keyword">else</span> {
-    dispatch(action)
+    <span class="hljs-keyword">return</span> dispatch(action)
   }
 }
 </code></pre>
@@ -104,11 +108,11 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 <hr>
 <p>Having them as functions-that-return-functions makes for something interesting: it breaks the middleware into 3 steps that are applied separately.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">store</span>) </span>{
-  <span class="hljs-placeholder -line">You can get store.dispatch() and store.getState() here.</span>
+  <span class="hljs-placeholder -info">You can get store.dispatch() and store.getState() here.</span>
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
-    <span class="hljs-placeholder -line">This only runs once.</span>
+    <span class="hljs-placeholder -info">This runs on <code>createStore()</code>.</span>
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">action</span>) </span>{
-      <span class="hljs-placeholder -line">This runs every dispatch().</span>
+      <span class="hljs-placeholder -info">This runs every <code>dispatch()</code>.</span>
     }
   }
 }
@@ -124,17 +128,18 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 </code></pre>
 <hr>
 <p>They give <code>dispatch()</code> more powers.</p>
-<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })     <span class="hljs-comment">// Normal</span>
-store.dispatch(fetch(<span class="hljs-string">'/data.json'</span>))  <span class="hljs-comment">// Promises</span>
-store.dispatch(() =&gt; { <span class="hljs-ellipsis"></span> })    <span class="hljs-comment">// Functions/thunks</span>
-store.dispatch(<span class="hljs-ellipsis"></span>)              <span class="hljs-comment">// and a lot more</span>
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'SAVE'</span> })     <span class="hljs-placeholder -ok">Normal</span>
+store.dispatch(fetch(<span class="hljs-string">'/data.json'</span>))  <span class="hljs-placeholder -ok">Promises</span>
+store.dispatch(() =&gt; { <span class="hljs-ellipsis"></span> })     <span class="hljs-placeholder -ok">Functions/thunks</span>
+store.dispatch(<span class="hljs-ellipsis"></span>)               <span class="hljs-placeholder -ok">...and more</span>
 </code></pre>
 <hr>
 <p>You can use middleware to write side effects to actions.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> middleware = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'FETCH'</span>) {
-    dispatch(action) <span class="hljs-comment">// &lt;-- Do something different here</span>
+    doSomethingDifferent()
   }
+  dispatch(action)
 }
 </code></pre>
 <blockquote class="up-next">

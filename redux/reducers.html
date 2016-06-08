@@ -25,15 +25,17 @@
 <p>Never modify the state! That's the Redux way of doing things.
 This is called <em>immutability</em>, in other words, never having to mutate.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{ </span><span class="hljs-line -mute">  <span class="hljs-keyword">switch</span> (action.type) { </span><span class="hljs-line -mute">    <span class="hljs-keyword">case</span> <span class="hljs-string">'PUBLISH'</span>: </span>
-      state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span><span class="hljs-line -mute">      <span class="hljs-keyword">return</span> state </span>
+      state.published = <span class="hljs-literal">true</span>  <span class="hljs-placeholder -warning">Avoid</span><span class="hljs-line -mute">      <span class="hljs-keyword">return</span> state </span>
+<span class="hljs-hr"></span>
+      <span class="hljs-keyword">return</span> { ...state, published: <span class="hljs-literal">true</span> }  <span class="hljs-placeholder -ok"></span>
 </code></pre>
 <hr>
 <p>This seems like a hassle at first, but it makes your app faster in the long run. You'll be able to check if a state has changed.</p>
-<pre><code class="language-js"><span class="hljs-keyword">var</span> a = { message: <span class="hljs-string">'Hello'</span> }
-<span class="hljs-keyword">var</span> b = a
-a.message = <span class="hljs-string">'Hola'</span><span class="hljs-hr"></span>
-<span class="hljs-placeholder -line">State mutations break equality checks.</span>
-a === b  <span class="hljs-result">true</span>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> orig = { message: <span class="hljs-string">'Hello'</span> }
+<span class="hljs-keyword">var</span> copy = orig
+orig.message = <span class="hljs-string">'Hola'</span>
+orig === copy  <span class="hljs-placeholder -warning">true</span><span class="hljs-hr"></span>
+<span class="hljs-placeholder -warning">State mutations break equality checks.</span>
 </code></pre>
 <p>If your React app seems like it's not updating, it's probably because you're mutating state. It'd make <code>state === oldState</code> even if they changed, making React skip doing updates.</p>
 <blockquote class="up-next">
@@ -53,10 +55,10 @@ This is only useful if each reducer works on a single part of your state.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> { combineReducers, createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span> </span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">articles</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder -line">...`state` is `state.articles` here</span>
+  <span class="hljs-placeholder -ok">...<code>state</code> is <code>state.articles</code> here.</span>
 }
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">users</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder -line">...`state` is `state.users` here</span>
+  <span class="hljs-placeholder -ok">...<code>state</code> is <code>state.users</code> here.</span>
 }<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">combineReducers({ articles, users })</span><span class="hljs-line -mute"><span class="hljs-keyword">let</span> store = createStore(reducer) </span>
 </code></pre>
@@ -83,7 +85,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 <p><code>combineReducers()</code> lets you break apart your reducer. Your reducers will only operate in their own subtree, like <em>state.profile</em> above.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profile</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'PUBLISH'</span>) {
-    <span class="hljs-placeholder -line">`state` is actually `state.profile` here.</span>
+    <span class="hljs-placeholder -info"><code>state</code> is limited to <code>state.profile</code> here.</span>
     <span class="hljs-keyword">return</span> { ...state, private: <span class="hljs-literal">false</span> }
   }
 }<span class="hljs-hr"></span>
@@ -99,10 +101,10 @@ This is only useful if each reducer works on a single part of your state.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> reduceReducers <span class="hljs-keyword">from</span> <span class="hljs-string">'reduce-reducers'</span> </span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profiles</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder">see the whole `state` here</span>
+  <span class="hljs-placeholder -info">See the whole <code>state</code> here.</span>
 }
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">photos</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder">see the whole `state` here</span>
+  <span class="hljs-placeholder -info">Here, as well.</span>
 }<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">reduceReducers(profiles, photos)</span>
 <span class="hljs-keyword">let</span> store = createStore(reducer)
@@ -122,8 +124,8 @@ This is only useful if each reducer works on a single part of your state.</p>
 </code></pre>
 <hr>
 <p><strong>Immutable:</strong> reducers work your state in a way that never mutates objects.</p>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reducer</span> (<span class="hljs-params">state, action</span>) </span>{
-  state.published = <span class="hljs-literal">true</span>  <span class="hljs-comment">// &lt;-- Avoid this</span>
+<pre><code class="language-js">state.published = <span class="hljs-literal">true</span>  <span class="hljs-placeholder -warning"></span><span class="hljs-hr"></span>
+<span class="hljs-keyword">return</span> { ...state, published: <span class="hljs-literal">true</span> }  <span class="hljs-placeholder -ok"></span>
 </code></pre>
 <hr>
 <p><strong>Composing:</strong> You can use <code>combineReducers()</code> or <code>reduce-reducers</code> to break a big reducer into smaller reducers.</p>

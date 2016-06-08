@@ -13,13 +13,13 @@
 <p>A <code>let</code> is only available inside the <code>{ ... }</code> block they're in. <code>let</code> is scoped to blocks.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{
   <span class="hljs-keyword">if</span> (user.gender === <span class="hljs-string">'male'</span>) {
-    <span class="hljs-highlight"><span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name</span>
+    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name
   } <span class="hljs-keyword">else</span> {
-    <span class="hljs-highlight"><span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name</span>
+    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name
   }
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)  <span class="hljs-placeholder -warning"></span>
 }<span class="hljs-hr"></span>
-<span class="hljs-result">ReferenceError: name is not defined</span>
+<span class="hljs-placeholder -warning">ReferenceError: name is not defined</span>
 </code></pre>
 <p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.
 If we changed <code>let</code> to <code>var</code>, it'd work like you expect it, because <code>var</code> is scoped to functions.</p>
@@ -37,7 +37,7 @@ If we changed <code>let</code> to <code>var</code>, it'd work like you expect it
 Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> name = user.name
 name = name.toUpperCase()<span class="hljs-hr"></span>
-<span class="hljs-result">TypeError: Assignment to constant variable</span>
+<span class="hljs-placeholder -warning">TypeError: Assignment to constant variable</span>
 </code></pre>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants (MDN)</a></p>
@@ -50,12 +50,13 @@ name = name.toUpperCase()<span class="hljs-hr"></span>
 <h1 id="block-scoping">Block scoping</h1>
 <p><code>let</code> and <code>const</code> are said to be <em>block scoping.</em> In JavaScript, a block is code inside <code>{</code> and <code>}</code>. These variables are only available inside their blocks.</p>
 <pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
-  <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
+  <span class="hljs-keyword">let</span> msg = <span class="hljs-string">'hello'</span>
 }
-<span class="hljs-built_in">console</span>.log(a)<span class="hljs-hr"></span>
-<span class="hljs-placeholder -line">`a` is only available inside the *if* block.</span>
-<span class="hljs-result">undefined</span>
+<span class="hljs-built_in">console</span>.log(msg)  <span class="hljs-placeholder -warning">undefined</span>
 </code></pre>
+<blockquote>
+<p><code>msg</code> is only available inside the <em>if</em> block.</p>
+</blockquote>
 <hr>
 <p>Block scoping affects other kinds of blocks.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
@@ -82,12 +83,12 @@ name = name.toUpperCase()<span class="hljs-hr"></span>
   <span class="hljs-keyword">if</span> (user) {
     <span class="hljs-highlight"><span class="hljs-keyword">let</span> running = user.state === <span class="hljs-string">'running'</span></span>
     <span class="hljs-keyword">if</span> (running) {
-      <span class="hljs-placeholder -line">`running` is still available here</span>
+      <span class="hljs-placeholder -ok"><code>running</code> is still available here</span>
     } <span class="hljs-keyword">else</span> {
-      <span class="hljs-placeholder -line">and here, too</span>
+      <span class="hljs-placeholder -ok">and here, too</span>
     }
   } <span class="hljs-keyword">else</span> {
-    <span class="hljs-placeholder -line">but not here!</span>
+    <span class="hljs-placeholder -warning">but not here!</span>
   }
 }
 </code></pre>
@@ -105,7 +106,7 @@ name = name.toUpperCase()<span class="hljs-hr"></span>
 <pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
   <span class="hljs-keyword">let</span> a = <span class="hljs-string">'hello'</span>
 }
-<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-result">undefined</span>
+<span class="hljs-built_in">console</span>.log(a)  <span class="hljs-placeholder -warning">undefined</span>
 </code></pre>
 <blockquote class="up-next">
 <p>Learn what's new with objects. <a href="objects.html">Next</a></p>

@@ -33,7 +33,7 @@
   <span class="hljs-keyword">this</span>.show()
   <span class="hljs-highlight"><span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span></span>
   items.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
-    <span class="hljs-placeholder -line">Without arrow functions, `this` means something else here.</span>
+    <span class="hljs-placeholder -warning">Without arrow functions, <code>this</code> means something else here.</span>
     self.append(item)
   })
 }
@@ -51,20 +51,20 @@
 All these lines do the same thing.</p>
 <pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))<span class="hljs-hr"></span>
 list.map(n =&gt; <span class="hljs-highlight">{ <span class="hljs-keyword">return</span></span> <span class="hljs-built_in">Math</span>.sqrt(n) <span class="hljs-highlight">}</span>)
-list.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(n) }) <span class="hljs-placeholder -line">In ES5</span>
+list.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(n) })
 </code></pre>
 <blockquote>
 <p>Useful for functions like <code>map</code> and <code>reduce</code>.</p>
 </blockquote>
 <hr>
 <p>You may have noticed we omitted the parentheses as well. You can do this if your function only takes in one argument. It makes no difference.</p>
-<pre><code class="language-js"><span class="hljs-placeholder -line">These two are the same.</span>
+<pre><code class="language-js"><span class="hljs-placeholder -ok">These two are the same.</span>
 list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
 list.map(<span class="hljs-highlight">(n)</span> =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))
 </code></pre>
-<pre><code class="language-js"><span class="hljs-placeholder -line">It only works if you have 1 argument.</span>
+<pre><code class="language-js"><span class="hljs-placeholder -warning">It only works if you have 1 argument.</span>
 list.reduce((a, b) =&gt; a + b)
-list.reduce(a, b =&gt; a + b) <span class="hljs-placeholder -line">Error</span>
+list.reduce(a, b =&gt; a + b) <span class="hljs-placeholder -warning">Error</span>
 </code></pre>
 <!-- -->
 <blockquote class="up-next">
@@ -76,7 +76,7 @@ list.reduce(a, b =&gt; a + b) <span class="hljs-placeholder -line">Error</span>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = next =&gt; dispatch =&gt; action =&gt; {
   dispatch(action)
 }<span class="hljs-hr"></span>
-logger(next)(store.dispatch)({ type: <span class="hljs-string">'init '</span>})
+logger(next)(store.dispatch)({ type: <span class="hljs-string">'init'</span> })
 </code></pre>
 <blockquote>
 <p>This is how <a href="../redux/middleware">Redux middleware</a> are built.</p>
@@ -103,12 +103,12 @@ greet(<span class="hljs-string">'Kyle'</span>)  <span class="hljs-result">'Hello
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">...names</span></span>) </span>{
   <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${names.join(', ')}</span>!`</span>;
 }<span class="hljs-hr"></span>
-greet(<span class="hljs-string">'Moe'</span>, <span class="hljs-string">'Larry'</span>, <span class="hljs-string">'Curly'</span>)  <span class="hljs-placeholder -line">Hello Moe, Larry, Curly!</span>
+greet(<span class="hljs-string">'Moe'</span>, <span class="hljs-string">'Larry'</span>, <span class="hljs-string">'Curly'</span>)  <span class="hljs-placeholder -ok">Hello Moe, Larry, Curly!</span>
 </code></pre>
 <hr>
 <p>Similarly, you can call functions with an array of arguments by using the <em>spread</em> syntax.</p>
 <pre><code class="language-js"><span class="hljs-keyword">let</span> names = [<span class="hljs-string">'Moe'</span>, <span class="hljs-string">'Larry'</span>, <span class="hljs-string">'Curly'</span>]<span class="hljs-hr"></span>
-greet(<span class="hljs-highlight">...names</span>)  <span class="hljs-placeholder -line">...same as: greet('Moe', 'Larry', 'Curly')</span>
+greet(<span class="hljs-highlight">...names</span>)  <span class="hljs-placeholder -ok">same as: <code>greet('Moe', 'Larry', 'Curly')</code></span>
 </code></pre>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="http://babeljs.io/docs/learn-es2015/#default--rest--spread">Default rest spread (Babel)</a></p>

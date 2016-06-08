@@ -53,8 +53,8 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </blockquote>
 <hr>
 <p>But now we're not being consistent: we often use <code>store.dispatch()</code> to trigger actions, but this time we're using <code>load(...)</code>. We can do better.</p>
-<pre><code class="language-js"><span class="hljs-highlight">load(store.dispatch)</span>              <span class="hljs-comment">// &lt;-- this new way</span><span class="hljs-hr"></span>
-store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-comment">// &lt;-- everything else</span>
+<pre><code class="language-js"><span class="hljs-highlight">load(store.dispatch)</span>              <span class="hljs-placeholder -info">this new way</span><span class="hljs-hr"></span>
+store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-placeholder -info">everything else</span>
 </code></pre>
 <blockquote class="up-next">
 <p>Let's make things more consistent. <a href="#next">Next</a></p>
