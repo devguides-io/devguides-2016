@@ -1,4 +1,5 @@
 $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$hiborder: rgba($teal, .3);
 
 @mixin try-button {
   & {
@@ -9,7 +10,6 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     border: 0;
     outline: 0;
     border-radius: 3px;
-    text-transform: uppercase;
     font-weight: bold;
 
     height: 26px;
@@ -52,7 +52,7 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 @mixin code-block {
   padding: 0;
   background: $skyblue;
-  border: solid 1px $teal;
+  border: solid 1px $hiborder;
   border-radius: 2px;
 }
 
@@ -176,7 +176,7 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 .example-output {
   background: white;
-  border-top: solid 1px $teal;
+  border-top: solid 1px $hiborder;
   padding-left: 16px;
   overflow: hidden;
 
