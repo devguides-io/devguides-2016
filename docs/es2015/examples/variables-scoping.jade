@@ -1,0 +1,20 @@
+---
+given: []
+examples:
+  - auto: true
+    placeholder: |
+      let msg = 'hi'
+      if (true) {
+        let msg = 'hello'
+      }
+      console.log(msg)
+    code: |
+      let msg = 'hi'
+      if (true) {
+        let msg = 'hello'
+      }
+      console.log(msg)
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

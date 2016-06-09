@@ -5,7 +5,7 @@ given:
   - code: |
       var createStore = require('redux').createStore
 
-      var album = {
+      var initialState = {
         title: 'Kind of Blue',
         artist: 'Miles Davis',
         year: 1959
@@ -15,7 +15,7 @@ given:
         return state
       }
 
-      var store = createStore(reducer, album)
+      var store = createStore(reducer, initialState)
 examples:
   - action: Read
     auto: true

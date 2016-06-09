@@ -5,18 +5,16 @@ given:
   - code: |
       var createStore = require('redux').createStore
 
-      var article = {
-        title: 'Global Warming'
-      }
-
       function reducer (state, action) {
-        if (action.type === 'PUBLISH') {
-          return Object.assign({}, state, { published: true })
-        } else {
-          return state
+        switch (action.type) {
+          case 'PUBLISH':
+           return Object.assign({}, state, { published: true })
+          default:
+           return state
         }
       }
 
+      var article = { title: 'Global Warming' }
       var store = createStore(reducer, article)
 examples:
   - placeholder: |

@@ -10,7 +10,7 @@ mixin example-body(given, examples, external)
 
   body.-example
     each blk in examples
-      .markdown-body.example-block(role='example' data-auto=(blk.auto ? 'true' : 'false'))
+      .markdown-body.example-block(role='example' data-auto=(blk.auto ? 'true' : 'false') class=(blk.class || ''))
         .example-example(role='example-input')
           .code
             if blk.placeholder

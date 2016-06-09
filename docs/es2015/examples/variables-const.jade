@@ -1,0 +1,17 @@
+---
+given: []
+examples:
+  - auto: true
+    secret: |
+      Hint: try changing 'const' to 'let'.
+    placeholder: |
+      const name = 'John'
+      name = name.toUpperCase()  //!
+    code: |
+      const name = 'John'
+      name = name.toUpperCase()
+      console.log(name)
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

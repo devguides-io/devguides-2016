@@ -22,3 +22,9 @@ $sans: source sans pro, sans-serif;
 
 // $sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 // $sans: adelle sans, source sans pro, sans-serif;
+
+@mixin antialias {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

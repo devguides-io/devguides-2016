@@ -43,10 +43,12 @@ $hiborder: rgba($teal, .3);
   outline: 0;
   font-size: 12px;
   font-family: $monospace;
+  letter-spacing: -.05em;
   color: $blue;
   min-height: 1.7em;
   line-height: 1.5em;
   margin: 0;
+  @include antialias;
 }
 
 @mixin code-block {
@@ -139,12 +141,12 @@ $hiborder: rgba($teal, .3);
   cursor: text;
 
   &:hover {
-    background: darken($skyblue, 2%);
+    box-shadow: inset 0 0 4px rgba($teal, .2);
   }
 
   // Focused
   .example-givens + & {
-    background: darken($skyblue, 5%);
+    background: darken($skyblue, 2%);
   }
 
    & + & {
@@ -223,5 +225,19 @@ $hiborder: rgba($teal, .3);
   &.-highlight {
     transition: none;
     background-color: #fefef0;
+  }
+}
+
+.example-block.-discreet {
+  border-color: transparent;
+  background: transparent;
+
+  .try {
+    opacity: 0;
+  }
+
+  &.-focus {
+    border-color: $hiborder;
+    .try { opacity: 1; }
   }
 }

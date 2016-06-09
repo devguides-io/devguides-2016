@@ -1,0 +1,48 @@
+---
+given: []
+examples:
+  - auto: true
+    placeholder: |
+      function greet (user) {
+        if (user.gender === 'male') {
+          let fullname = 'Mr. ' + user.name
+        } else {
+          let fullname = 'Ms. ' + user.name
+        }
+        console.log('Hello, ' + fullname)  //!
+      }
+
+      greet({ name: 'John', gender: 'male' })
+    code: |
+      function greet (user) {
+        if (user.gender === 'male') {
+          let fullname = 'Mr. ' + user.name
+        } else {
+          let fullname = 'Ms. ' + user.name
+        }
+        console.log('Hello, ' + fullname)
+      }
+
+      greet({ name: 'John', gender: 'male' })
+
+  - secret: |
+      We can fix this by placing 'let' on a higher scope.
+    class: '-discreet'
+    placeholder: |
+      // --> Click here for solution
+    code: |
+      function greet (user) {
+        let fullname
+        if (user.gender === 'male') {
+          fullname = 'Mr. ' + user.name
+        } else {
+          fullname = 'Ms. ' + user.name
+        }
+        console.log('Hello, ' + fullname)
+      }
+
+      greet({ name: 'John', gender: 'male' })
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

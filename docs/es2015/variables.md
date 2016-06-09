@@ -23,18 +23,7 @@ function greet (user) {
 
 A `let` is only available inside the `{ ... }` block they're in. `let` is scoped to blocks.
 
-```js
-function greet (user) {
-  if (user.gender === 'male') {
-    let name = 'Mr. ' + user.name
-  } else {
-    let name = 'Ms. ' + user.name
-  }
-  console.log('Hello, ' + name)  //!
-}
-// ---
-//! ReferenceError: name is not defined
-```
+<!-- example: examples/variables-let -->
 
 Here, the `name`s are only available inside their respective *if* and *else* blocks.
 If we changed `let` to `var`, it'd work like you expect it, because `var` is scoped to functions.
@@ -54,12 +43,7 @@ If we changed `let` to `var`, it'd work like you expect it, because `var` is sco
 `const` is just like *let*, except you can't reassign it to a new value.
 Most guides now recommend using *let* and *const* instead of `var`.
 
-```js
-const name = user.name
-name = name.toUpperCase()
-// ---
-//! TypeError: Assignment to constant variable
-```
+<!-- example: examples/variables-const -->
 
 > Also see: [Constants (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 
@@ -73,13 +57,9 @@ name = name.toUpperCase()
 
 `let` and `const` are said to be *block scoping.* In JavaScript, a block is code inside `{` and `}`. These variables are only available inside their blocks.
 
-```js
-if (true) {
-  let msg = 'hello'
-}
-console.log(msg)  //! undefined
-```
-> `msg` is only available inside the *if* block.
+<!-- example: examples/variables-scoping -->
+
+> The 2nd `msg` is only available inside the *if* block.
 
 ---
 

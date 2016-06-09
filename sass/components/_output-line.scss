@@ -10,17 +10,19 @@
 
   &::before {
     @include ion-icon('arrow-right-c');
-    width: 16px;
+    width: 20px;
     margin-left: -24px;
     color: $teal;
   }
 
   &.-error {
-    color: $red;
+    color: mix($red, $gray, 50%);
   }
 
   &.-error::before {
     color: $red;
     @include ion-icon('alert-circled');
+    position: relative;
+    top: -1px;
   }
 }
