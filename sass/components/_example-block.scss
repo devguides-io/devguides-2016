@@ -66,8 +66,14 @@ $hiborder: rgba($teal, .3);
   // "Dock" into the example
   border: 0;
   border-radius: 0;
-  border-top: solid 1px $hiborder;
+  border-bottom: solid 1px $hiborder;
   position: relative;
+
+  // eh, in case
+  .example-output + & {
+    border-top: solid 1px $hiborder;
+    border-bottom: 0;
+  }
 
   &.-hide {
     display: none;
@@ -96,6 +102,7 @@ $hiborder: rgba($teal, .3);
  *     .try
  *     .secret
  *   .example-output
+ *   .example-givens  <- will be placed here dynamically
  */
 
 .example-block {
