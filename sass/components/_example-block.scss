@@ -110,10 +110,6 @@ $hiborder: rgba($teal, .3);
 
   &.example-block {
     @include code-block;
-
-    &:hover {
-      background: darken($skyblue, 2%);
-    }
   }
 
   > .example-example,
@@ -140,6 +136,15 @@ $hiborder: rgba($teal, .3);
 
 .example-example {
   display: flex;
+
+  &:hover {
+    background: darken($skyblue, 2%);
+  }
+
+  // Focused
+  .example-givens + & {
+    background: darken($skyblue, 5%);
+  }
 
    & + & {
     border-top: solid 1px rgba($blue, .2);
