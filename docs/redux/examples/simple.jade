@@ -1,11 +1,20 @@
 ---
 example_type: repl
 given:
-  - code: |
-      var state = { title: 'Hello world' }
+  - hide: true
+    code: |
+      var album = {
+        title: 'Kind of Blue',
+        artist: 'Miles Davis',
+        year: 1959
+      }
 examples:
-  - code: |
-      console.log(state)
+  - action: Read
+    code: |
+      album.title
+  - action: Set
+    code: |
+      album.genre = 'Jazz', album
 ---
 extends ../../_layouts/example.jade
 block body

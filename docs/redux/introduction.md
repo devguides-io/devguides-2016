@@ -27,7 +27,7 @@ Think of a store as a bunch of data. In fact, you may have already done this: th
 ```js
 var album = {
   title: 'Kind of Blue',
-  artist: 'Miles Davis'
+  artist: 'Miles Davis',
   year: 1959
 }
 ```
@@ -40,6 +40,8 @@ You can read and write data into a plain JS object. You can do the same in Redux
 console.log(album.title)  // <-- Reading
 album.genre = 'Jazz'      // <-- Writing
 ```
+
+<!-- example: examples/simple -->
 
 > Next: How would you do that in Redux? [Next](#our-first-store)
 
