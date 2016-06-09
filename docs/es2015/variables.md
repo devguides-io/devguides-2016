@@ -26,11 +26,11 @@ A `let` is only available inside the `{ ... }` block they're in. `let` is scoped
 ```js
 function greet (user) {
   if (user.gender === 'male') {
-    /*{*/let name = 'Mr. ' + user.name/*}*/
+    let name = 'Mr. ' + user.name
   } else {
-    /*{*/let name = 'Ms. ' + user.name/*}*/
+    let name = 'Ms. ' + user.name
   }
-  console.log('Hello, ' + name)
+  console.log('Hello, ' + name)  //!
 }
 // ---
 //! ReferenceError: name is not defined

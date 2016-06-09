@@ -11,14 +11,14 @@
   align-items: center;
 
   > .cover-front {
-    flex: 0 0 50%;
+    flex: 0 0 45%;
     min-height: calc(100vh - 32px);
     height: 100%;
     background: #89a;
   }
 
   > .cover-content {
-    flex: 0 0 50%;
+    flex: 0 0 55%;
   }
 }
 

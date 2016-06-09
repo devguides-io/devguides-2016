@@ -80,7 +80,7 @@ All these lines do the same thing.
 list.map(n => Math.sqrt(n))
 // ---
 list.map(n => /*{*/{ return/*}*/ Math.sqrt(n) /*{*/}/*}*/)
-list.map(function (n) { return Math.sqrt(n) }) /// In ES5
+list.map(function (n) { return Math.sqrt(n) })
 ```
 
 > Useful for functions like `map` and `reduce`.
@@ -117,7 +117,7 @@ const logger = next => dispatch => action => {
   dispatch(action)
 }
 // ---
-logger(next)(store.dispatch)({ type: 'init '})
+logger(next)(store.dispatch)({ type: 'init' })
 ```
 
 > This is how [Redux middleware](../redux/middleware) are built.

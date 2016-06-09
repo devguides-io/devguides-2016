@@ -41,6 +41,14 @@ Introduction
 
 Controllers and actions, views, templates
 
+- Try creating a page
+  - mix phoenix.gen.html --no-model
+  - list of files made
+
+- Routes
+  - resources :document, DocumentController
+  - document_path helpers
+
 ## Models
 
 - Ecto and stuff
