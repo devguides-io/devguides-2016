@@ -136,7 +136,7 @@ $hiborder: rgba($teal, .3);
   }
 
   > .code {
-    flex: 1 1 90%;
+    flex: 1 1 99%;
     padding-left: 8px;
   }
 
@@ -169,7 +169,10 @@ $hiborder: rgba($teal, .3);
 
   > .try {
     @include try-button;
-    flex: 1 0 100px;
+    flex: 1 0 10px;
+    white-space: nowrap;
+    padding-left: 16px;
+    padding-right: 16px;
     margin-left: 8px;
   }
 }

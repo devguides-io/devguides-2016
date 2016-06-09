@@ -1,0 +1,11 @@
+extends ./base.jade
+
+block title
+  = title
+
+mixin body-content()
+  body.-landing
+    if block
+      block
+    script(src='../assets/script.js')
+    include ./includes/analytics.jade
