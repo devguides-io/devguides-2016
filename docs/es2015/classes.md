@@ -221,4 +221,4 @@ c = Circle.createFromDiameter(20)
 c.getArea()
 ```
 
-> Next: Let's learn about strings. [Next](strings.html)
+> Next: Let's learn about strings. [Next](strings)

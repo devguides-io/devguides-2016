@@ -210,4 +210,4 @@ function photos (state, action) { /*...*/ }
 combineReducers({ profile, photos })
 ```
 
-> Next: Let's use Redux with React. [Next](react.html)
+> Next: Let's use Redux with React. [Next](react)

@@ -215,4 +215,4 @@ store.dispatch(/*{*/loadProject(12)/*}*/)
 store = createStore(reducer, {}, /*{*/applyMiddleware(reduxThunk)/*}*/)
 ```
 
-> Next: Let's learn about reducers. [Next](reducers.html)
+> Next: Let's learn about reducers. [Next](reducers)

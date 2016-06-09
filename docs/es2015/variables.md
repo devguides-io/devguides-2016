@@ -124,4 +124,4 @@ if (true) {
 console.log(a)  //! undefined
 ```
 
-> Next: Learn what's new with objects. [Next](objects.html)
+> Next: Learn what's new with objects. [Next](objects)

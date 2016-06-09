@@ -51,4 +51,4 @@ function tpl (strings, values) {
 
 <!-- -->
 
-> Next: Let's learn about what's new with functions. [Next](functions.html)
+> Next: Let's learn about what's new with functions. [Next](functions)
