@@ -39,15 +39,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </div></div><div class="page-section"><div class="container">
 <h1 id="second-try">Second try</h1>
 <p>Let's try putting that logic in a function outside the store. Let's make a function.</p>
-<pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
-  dispatch({ type: <span class="hljs-string">'LOAD_START'</span> })
-  fetch(<span class="hljs-string">'/data.json'</span>)
-    .then(data =&gt;
-      dispatch({ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data }))
-    .catch(error =&gt;
-      dispatch({ type: <span class="hljs-string">'LOAD_ERROR'</span>, error: error }))
-}
-</code></pre>
+<iframe class='example-frame' src='examples/actions-second-try' seamless></iframe>
 <blockquote>
 <p>By passing <code>dispatch</code> to <code>load()</code>, it can dispatch events.</p>
 </blockquote>

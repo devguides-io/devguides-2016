@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../../assets/style.css"><title></title><script src="https://cdn.rawgit.com/davidjbradshaw/iframe-resizer/v3.5.3/js/iframeResizer.contentWindow.min.js"></script></head><script src="/vendor/redux.js"></script><body class="-example"><div role="example" data-auto="false" class="markdown-body example-block"><div role="example-input" class="example-example"><div class="code"><div role="placeholder" class="placeholder"><pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span> (<span class="hljs-params">dispatch</span>) </span>{</span>
+  dispatch({ type: <span class="hljs-string">'LOAD_START'</span> })
+  fetch(<span class="hljs-string">'https://httpbin.org/ip'</span>)
+    .then(res =&gt; res.json())
+    .then(data =&gt;
+      dispatch({ type: <span class="hljs-string">'LOAD_FINISH'</span>, data: data }))
+    .catch(error =&gt;
+      dispatch({ type: <span class="hljs-string">'LOAD_ERROR'</span>, error: error }))
+}
+</code></pre></div><textarea style="display:none" spellcheck="false" role="code">function load (dispatch) {
+  dispatch({ type: 'LOAD_START' })
+  fetch('https://httpbin.org/ip')
+    .then(res =&gt; res.json())
+    .then(data =&gt;
+      dispatch({ type: 'LOAD_FINISH', data: data }))
+    .catch(error =&gt;
+      dispatch({ type: 'LOAD_ERROR', error: error }))
+}
+
+load(store.dispatch)</textarea></div><button role="try" class="try">Try</button></div><div role="output" class="example-output -hide"></div></div><div role="givens" class="example-givens -hide"><h3>Context</h3><div role="given" class="example-given"><textarea spellcheck="false" role="code">var createStore = require('redux').createStore
+
+function reducer (state, action) {
+  if (action.type === 'LOAD_START') {
+    return { status: 'loading' }
+  } else if (action.type === 'LOAD_FINISH') {
+    return { status: 'finish', data: action.data }
+  } else if (action.type === 'LOAD_ERROR') {
+    return { status: 'error', error: action.error.message }
+  } else {
+    return state
+  }
+}
+
+var store = createStore(reducer, {})
+
+store.subscribe(() =&gt; { console.log(store.getState()) })</textarea></div></div><script src="../../assets/example.js"></script></body></html>
