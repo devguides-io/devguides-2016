@@ -38,3 +38,14 @@ body, .markdown-body {
 //   bottom: 0;
 //   overflow: auto;
 // }
+
+/*
+ * Seamless iframes
+ */
+
+iframe[seamless] {
+    background-color: transparent;
+    border: 0px none transparent;
+    padding: 0px;
+    overflow: hidden;
+}

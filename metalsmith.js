@@ -1,6 +1,7 @@
 var Metalsmith = require('metalsmith')
 
 var app = Metalsmith(__dirname)
+  .use(require('./lib/meta')())
   .use(require('metalsmith-browserify')({
     dest: 'assets/script.js',
     args: [ './docs/assets/script.js' ]
@@ -12,6 +13,7 @@ var app = Metalsmith(__dirname)
     defaultlayout: null
   }))
   .use(require('./lib/middleware').transformHtml())
+  .use(require('./lib/example').embedExamples())
   .source('./docs')
   .destination('./public')
 

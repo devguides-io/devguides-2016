@@ -1,0 +1,15 @@
+extends ./base.jade
+
+block head
+  script(src='https://cdn.rawgit.com/davidjbradshaw/iframe-resizer/v3.5.3/js/iframeResizer.contentWindow.min.js')
+
+mixin example-body(given, examples)
+  body.-example
+    .markdown-body.example-block
+      each blk in given
+        .example-given
+          textarea(spellcheck='false')= blk.code.trim()
+      each blk in examples
+        .example-example
+          textarea(spellcheck='false')= blk.code.trim()
+          button.try Try

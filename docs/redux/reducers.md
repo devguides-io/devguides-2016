@@ -32,6 +32,8 @@ function reducer (state, action) {
 }
 ```
 
+<!-- example: examples/simple -->
+
 > Next: Why do we keep using `...`? [Next](#immutability)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

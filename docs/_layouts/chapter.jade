@@ -3,20 +3,21 @@ extends ./base.jade
 block title
   = chapter + ' - ' + book
 
-block content
-  .book-nav
-    .nav-button
+block body
+  body.-chapter
+    .book-nav
+      .nav-button
 
-  .chapter-nav
-    a(href='.')= book
-    span= chapter
+    .chapter-nav
+      a(href='.')= book
+      span= chapter
 
-  #body.markdown-body.-literate
-    .page-section
-      .container
-        h5.chapter-prelude
-          strong= 'Pocket Guides / '
-          a(href='.')= book
-        != contents
+    #body.markdown-body.-literate
+      .page-section
+        .container
+          h5.chapter-prelude
+            strong= 'Pocket Guides / '
+            a(href='.')= book
+          != contents
 
-  script(src='../assets/script.js')
+    script(src='../assets/script.js')

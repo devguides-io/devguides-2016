@@ -1,0 +1,27 @@
+---
+example_type: repl
+given:
+  - code: |
+      function reducer (state, action) {
+        switch (action.type) {
+          case 'PUBLISH':
+            return { ...state, published: true }
+          case 'UNPUBLISH':
+            return { ...state, published: false }
+          case 'UPDATE':
+            return { ...state, ...action.data }
+          default:
+            return state
+        }
+      }
+
+      var state = { title: 'Hello world' }
+examples:
+  - code: |
+      reducer(state, { type: 'PUBLISH' })
+  - code: |
+      reducer(state, { type: 'UPDATE', data: { title: 'Hola mundo' } })
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples)

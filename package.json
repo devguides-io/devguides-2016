@@ -15,6 +15,7 @@
     "github-markdown-css": "2.3.0",
     "highlight.js": "9.4.0",
     "iconfonts": "0.9.0",
+    "iframe-resizer": "3.5.3",
     "jquery": "2.2.4",
     "jstransformer-jade": "0.1.1",
     "jstransformer-markdown-it": "0.2.3",
@@ -27,6 +28,7 @@
     "metalsmith-start": "2.0.1",
     "modularscale-sass": "2.1.1",
     "normalize.css": "4.1.1",
+    "seamless": "0.0.6",
     "waypoints": "4.0.0",
     "zepto": "1.0.1"
   },

@@ -1,0 +1,12 @@
+---
+example_type: repl
+given:
+  - code: |
+      var state = { title: 'Hello world' }
+examples:
+  - code: |
+      console.log(state)
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples)
