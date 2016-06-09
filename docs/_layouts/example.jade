@@ -31,6 +31,7 @@ mixin example-body(given, examples, external)
         .example-output.-hide(role='output')
 
     .example-givens.-hide(role='givens')
+      h3 Context
       each blk in given
         .example-given(role='given' class=(blk.hide ? '-hide' : ''))
           textarea(spellcheck='false' role='code')= blk.code.trim()
