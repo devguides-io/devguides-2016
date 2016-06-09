@@ -272,7 +272,7 @@ $(function () {
 
 function runExample ($example) {
   var givens = $('[role~="given"] [role~="code"]').val()
-  var code = $example.find('[role~="code"]').val()
+  var code = $example.find('[role~="example-input"] [role~="code"]').val()
 
   var $output = $example.find('[role~="output"]')
   $output.removeClass('-hide')
@@ -329,11 +329,11 @@ function reveal () {
   var $givenBlock = $('[role~="givens"]')
   var $givens = $('[role~="given"]:not(.-hide)')
   if ($givens.length) {
-    $givenBlock.removeClass('-hide')
+    $givenBlock.slideDown().removeClass('-hide')
   }
 }
 
-$(document).on('focus', '[role~="code"]', function () {
+$(document).on('focus', '[role~="example-input"] [role~="code"]', function () {
   var $example = $(this).closest('[role~="example"]')
   focusExample($example)
   reveal()
@@ -345,7 +345,10 @@ $(document).on('focus', '[role~="code"]', function () {
 
 function focusExample ($example) {
   // Move the given above it
-  $example.after($('[role~="givens"]'))
+  // $example.find('[role~="output"]').after($('[role~="givens"]'))
+  var $givens = $('[role~="givens"]')
+  $example.find('[role~="example-input"]').before($givens)
+  // setTimeout(function () { $givens.slideDown() }, 100)
 
   // Show hints
   $example.find('[role~="hint"]').removeClass('-hide')
@@ -357,7 +360,7 @@ function focusExample ($example) {
 
 $(function () {
   $('[role~="given"] [role~="code"]').autoexpand({ extraLines: 1 })
-  $('[role~="example"] [role~="code"]').autoexpand()
+  $('[role~="example-input"] [role~="code"]').autoexpand()
 })
 
 /*
