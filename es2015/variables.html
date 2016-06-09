@@ -11,16 +11,7 @@
 </div></div><div class="page-section"><div class="container">
 <h1 id="let-vs-var">let vs. var</h1>
 <p>A <code>let</code> is only available inside the <code>{ ... }</code> block they're in. <code>let</code> is scoped to blocks.</p>
-<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params">user</span>) </span>{
-  <span class="hljs-keyword">if</span> (user.gender === <span class="hljs-string">'male'</span>) {
-    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Mr. '</span> + user.name
-  } <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">let</span> name = <span class="hljs-string">'Ms. '</span> + user.name
-  }
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, '</span> + name)  <span class="hljs-placeholder -warning"></span>
-}<span class="hljs-hr"></span>
-<span class="hljs-placeholder -warning">ReferenceError: name is not defined</span>
-</code></pre>
+<iframe class='example-frame' src='examples/variables-let' seamless></iframe>
 <p>Here, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.
 If we changed <code>let</code> to <code>var</code>, it'd work like you expect it, because <code>var</code> is scoped to functions.</p>
 <!-- -->
@@ -35,10 +26,7 @@ If we changed <code>let</code> to <code>var</code>, it'd work like you expect it
 <h1 id="constants">Constants</h1>
 <p><code>const</code> is just like <em>let</em>, except you can't reassign it to a new value.
 Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
-<pre><code class="language-js"><span class="hljs-keyword">const</span> name = user.name
-name = name.toUpperCase()<span class="hljs-hr"></span>
-<span class="hljs-placeholder -warning">TypeError: Assignment to constant variable</span>
-</code></pre>
+<iframe class='example-frame' src='examples/variables-const' seamless></iframe>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants (MDN)</a></p>
 </blockquote>
@@ -49,13 +37,9 @@ name = name.toUpperCase()<span class="hljs-hr"></span>
 </div></div><div class="page-section"><div class="container">
 <h1 id="block-scoping">Block scoping</h1>
 <p><code>let</code> and <code>const</code> are said to be <em>block scoping.</em> In JavaScript, a block is code inside <code>{</code> and <code>}</code>. These variables are only available inside their blocks.</p>
-<pre><code class="language-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
-  <span class="hljs-keyword">let</span> msg = <span class="hljs-string">'hello'</span>
-}
-<span class="hljs-built_in">console</span>.log(msg)  <span class="hljs-placeholder -warning">undefined</span>
-</code></pre>
+<iframe class='example-frame' src='examples/variables-scoping' seamless></iframe>
 <blockquote>
-<p><code>msg</code> is only available inside the <em>if</em> block.</p>
+<p>The 2nd <code>msg</code> is only available inside the <em>if</em> block.</p>
 </blockquote>
 <hr>
 <p>Block scoping affects other kinds of blocks.</p>

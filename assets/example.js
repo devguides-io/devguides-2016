@@ -340,8 +340,9 @@ function reveal () {
 
 $(document).on('focus', '[role~="example-input"] [role~="code"]', function () {
   var $example = $(this).closest('[role~="example"]')
-  focusExample($example)
   reveal()
+  focusExample($example)
+  runExample($example)
 })
 
 /*
@@ -351,6 +352,7 @@ $(document).on('focus', '[role~="example-input"] [role~="code"]', function () {
 function focusExample ($example) {
   // Move the given above it
   // $example.find('[role~="output"]').after($('[role~="givens"]'))
+  $example.addClass('-focus')
   var $givens = $('[role~="givens"]')
   $example.find('[role~="example-input"]').before($givens)
   // setTimeout(function () { $givens.slideDown() }, 100)

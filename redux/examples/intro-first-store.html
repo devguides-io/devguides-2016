@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../../assets/style.css"><title></title><script src="https://cdn.rawgit.com/davidjbradshaw/iframe-resizer/v3.5.3/js/iframeResizer.contentWindow.min.js"></script></head><script src="/vendor/redux.js"></script><body class="-example"><div role="example" data-auto="true" class="markdown-body example-block"><div role="example-input" class="example-example"><div class="code"><textarea spellcheck="false" role="code">var state = store.getState()
 console.log(state.title)</textarea></div><button role="try" class="try">Read</button></div><div role="output" class="example-output -hide"></div></div><div role="givens" class="example-givens -hide"><h3>Context</h3><div role="given" class="example-given"><textarea spellcheck="false" role="code">var createStore = require('redux').createStore
 
-var album = {
+var initialState = {
   title: 'Kind of Blue',
   artist: 'Miles Davis',
   year: 1959
@@ -11,4 +11,4 @@ function reducer (state, action) {
   return state
 }
 
-var store = createStore(reducer, album)</textarea></div></div><script src="../../assets/example.js"></script></body></html>
+var store = createStore(reducer, initialState)</textarea></div></div><script src="../../assets/example.js"></script></body></html>
