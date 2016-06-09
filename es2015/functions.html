@@ -49,8 +49,8 @@
 <h1 id="short-syntax">Short syntax</h1>
 <p>You can omit the curly braces. If you do, it implicitly returns the expression after the arrow.
 All these lines do the same thing.</p>
-<pre><code class="language-js">list.map(n =&gt; <span class="hljs-built_in">Math</span>.sqrt(n))<span class="hljs-hr"></span>
-list.map(n =&gt; <span class="hljs-highlight">{ <span class="hljs-keyword">return</span></span> <span class="hljs-built_in">Math</span>.sqrt(n) <span class="hljs-highlight">}</span>)
+<iframe class='example-frame' src='examples/functions-short' seamless></iframe>
+<pre><code class="language-js">list.map(n =&gt; <span class="hljs-highlight">{ <span class="hljs-keyword">return</span></span> <span class="hljs-built_in">Math</span>.sqrt(n) <span class="hljs-highlight">}</span>)
 list.map(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(n) })
 </code></pre>
 <blockquote>
