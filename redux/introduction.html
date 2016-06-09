@@ -18,10 +18,7 @@
 </code></pre>
 <hr>
 <p>You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.</p>
-<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(album.title)  <span class="hljs-placeholder -info">Reading</span>
-album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-placeholder -info">Writing</span>
-</code></pre>
-<iframe class='example-frame' src='examples/simple' seamless></iframe>
+<iframe class='example-frame' src='examples/intro-simple-read' seamless></iframe>
 <blockquote class="up-next">
 <p>How would you do that in Redux? <a href="#our-first-store">Next</a></p>
 </blockquote>
@@ -36,10 +33,7 @@ album.genre = <span class="hljs-string">'Jazz'</span>      <span class="hljs-pla
 <hr>
 <p>You can read from a store by checking its <em>state</em> using <code>getState()</code>.
 Writing data works a bit different, though. That's where <code>reducer</code> comes in.</p>
-<pre><code class="language-js"><span class="hljs-keyword">var</span> state = <span class="hljs-highlight">store.getState()</span>
-<span class="hljs-built_in">console</span>.log(state.title)<span class="hljs-hr"></span>
-<span class="hljs-result">'Kind of Blue'</span>
-</code></pre>
+<iframe class='example-frame' src='examples/intro-first-store' seamless></iframe>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Actions.html">createStore docs</a></p>
 </blockquote>
@@ -63,30 +57,9 @@ Writing data works a bit different, though. That's where <code>reducer</code> co
 <p>Reducers take the current state and return a new one. How it changes the store depends on <code>action</code>.</p>
 <hr>
 <p>To run an action, use <code>dispatch()</code>. This changes the store's <em>state</em>.</p>
-<pre><code class="language-js">store.getState().published        <span class="hljs-result">false</span><span class="hljs-hr"></span>
-<span class="hljs-highlight">store.dispatch({ type: <span class="hljs-string">'PUBLISH'</span> })</span>
-store.getState().published        <span class="hljs-result">true</span>
+<pre><code class="language-js">store.getState().published        <span class="hljs-result">false</span>
 </code></pre>
-<!--
-var store = createStore(reducer)
-
-store.dispatch({ type: 'SET', value: 10 })
-console.log(store.getState())
-
-store.dispatch({ type: 'ADD', value: 3 })
-console.log(store.getState())
-
-function reducer (state, action) {
-  switch (action.type) {
-    case 'SET':
-      return action.value
-    case 'ADD':
-      return state + action.value
-    default:
-      return state
-  }
-}
--->
+<iframe class='example-frame' src='examples/intro-updating' seamless></iframe>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Reducers.html">Reducer docs</a></p>
 </blockquote>

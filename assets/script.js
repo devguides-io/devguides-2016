@@ -208,7 +208,12 @@ $(document).on('pages:advance pages:rewind', '.page-section', function (e, optio
  */
 
 var iFrameResize = require('iframe-resizer')
-iFrameResize.iframeResizer({ log: true }, 'iframe[seamless]')
+iFrameResize.iframeResizer({
+  resizedCallback: function () {
+    console.log('resize')
+    $(window).trigger('resize')
+  }
+}, 'iframe[seamless]')
 
 },{"./behaviors/next_progress":2,"./helpers/on_scrollup":3,"iframe-resizer":5,"jquery":9,"waypoints/lib/jquery.waypoints":10}],5:[function(require,module,exports){
 
@@ -12754,5 +12759,4 @@ https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
   }
 }())
 ;
-
 },{}]},{},[1]);
