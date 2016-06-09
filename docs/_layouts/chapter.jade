@@ -16,8 +16,9 @@ block body
       .page-section
         .container
           h5.chapter-prelude
-            strong= 'Pocket Guides / '
-            a(href='.')= book
+            a.root(href='/') devguides.io
+            span= ' / '
+            a.book(href='.')= book
           != contents
 
     script(src='../assets/script.js')

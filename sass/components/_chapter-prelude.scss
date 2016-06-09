@@ -12,4 +12,9 @@
     margin-top: 16px;
     @include hr-rule;
   }
+
+  > .root,
+  > .root:visited {
+    color: $blacker;
+  }
 }

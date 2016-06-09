@@ -14,8 +14,9 @@ mixin content(chapters)
     .cover-section
       .cover-front
         h5.chapter-prelude
-          strong= 'Pocket Guides / '
-          a(href='.')= title
+          a.root(href='/') devguides.io
+          span= ' / '
+          a.book(href='.')= title
 
         .space
         .cover-front-title
