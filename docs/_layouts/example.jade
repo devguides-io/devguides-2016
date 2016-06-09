@@ -11,7 +11,7 @@ mixin example-body(given, examples, external)
   body.-example
     each blk in examples
       .markdown-body.example-block(role='example' data-auto=(blk.auto ? 'true' : 'false'))
-        .example-example
+        .example-example(role='example-input')
           .code
             if blk.placeholder
               .placeholder(role='placeholder')
@@ -30,6 +30,7 @@ mixin example-body(given, examples, external)
 
         .example-output.-hide(role='output')
 
+    -// This will be moved inside example-example
     .example-givens.-hide(role='givens')
       h3 Context
       each blk in given

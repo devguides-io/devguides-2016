@@ -62,13 +62,11 @@ $hiborder: rgba($teal, .3);
 
 .example-givens {
   @include code-block;
-  margin-bottom: 16px;
 
   // "Dock" into the example
-  border-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin-top: -16px;
+  border: 0;
+  border-radius: 0;
+  border-top: solid 1px $hiborder;
   position: relative;
 
   &.-hide {
