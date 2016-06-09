@@ -143,8 +143,20 @@ $hiborder: rgba($teal, .3);
   > .code > textarea {
     @include textarea;
     resize: none;
+  }
+
+  > .code > textarea,
+  > .code > .placeholder > pre {
     position: relative;
     top: 5px; // Compensate for line height
+  }
+
+  > .code > .placeholder > pre {
+    @include textarea;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 8px;
+    cursor: text;
   }
 
   > .code > .hint {

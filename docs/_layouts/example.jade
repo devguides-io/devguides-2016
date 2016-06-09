@@ -13,7 +13,13 @@ mixin example-body(given, examples, external)
       .markdown-body.example-block(role='example' data-auto=(blk.auto ? 'true' : 'false'))
         .example-example
           .code
-            textarea(spellcheck='false' role='code')= blk.code.trim()
+            if blk.placeholder
+              .placeholder(role='placeholder')
+                pre
+                  code(class='language-js')= blk.placeholder
+              textarea(style='display:none' spellcheck='false' role='code')= blk.code.trim()
+            else
+              textarea(spellcheck='false' role='code')= blk.code.trim()
             if blk.hint
               span.hint(role="hint")= blk.hint
             if blk.secret

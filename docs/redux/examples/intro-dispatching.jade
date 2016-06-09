@@ -1,0 +1,28 @@
+---
+external:
+  - /vendor/redux.js
+given:
+  - code: |
+      var createStore = require('redux').createStore
+
+      function reducer (state, action) {
+        switch (action.type) {
+          case 'SET':
+            return action.value
+          case 'ADD':
+            return state + action.value
+          default:
+            return state
+        }
+      }
+
+      var store = createStore(reducer)
+examples:
+  - code: |
+      store.dispatch({ type: 'SET', value: 200 })
+      store.dispatch({ type: 'ADD', value: 5 })
+      console.log(store.getState())
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

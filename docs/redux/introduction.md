@@ -146,43 +146,13 @@ Dispatching actions
 
 The only way to change the store's state is by dispatching actions. You can then easily make a log of what actions have happened, or even undo them.
 
-```js
-store.dispatch({ type: 'UPDATE', title: 'Global Warming 101' })
-store.dispatch({ type: 'PUBLISH' })
-store.dispatch({ type: 'ADD_COMMENT', text: 'I agree!' })
-```
+<!-- example: examples/intro-dispatching -->
 
 ---
 
 You can also listen for changes in the store using `subscribe()`.
 
-```js
-store.subscribe(() => {
-  /*...*/
-})
-```
-
-<!--
-var store = createStore(reducer)
-
-store.subscribe(() => {
-  inspect(store.getState())
-})
-
-store.dispatch({ type: 'SET', value: 10 })
-store.dispatch({ type: 'ADD', value: 3 })
-
-function reducer (state, action) {
-  switch (action.type) {
-    case 'SET':
-      return action.value
-    case 'ADD':
-      return state + action.value
-    default:
-      return state
-  }
-}
--->
+<!-- example: examples/intro-subscribe -->
 
 > Next: Let's recap what we've learned. [Next](#recap)
 
