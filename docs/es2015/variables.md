@@ -21,14 +21,10 @@ function greet (user) {
 
 # let vs. var
 
-A `let` is only available inside the `{ ... }` block they're in. `let` is scoped to blocks.
+A `let` is only available inside the `{ ... }` block they're in.
+In this example, the `name`s are only available inside their respective *if* and *else* blocks.
 
 <!-- example: examples/variables-let -->
-
-Here, the `name`s are only available inside their respective *if* and *else* blocks.
-If we changed `let` to `var`, it'd work like you expect it, because `var` is scoped to functions.
-
-<!-- -->
 
 > Also see: [Block scope (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
