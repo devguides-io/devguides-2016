@@ -96,6 +96,14 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
   &.example-block {
     @include code-block;
+
+    &:hover {
+      background: darken($skyblue, 2%);
+    }
+
+    .example-givens + & {
+      background: darken($skyblue, 5%);
+    }
   }
 
   > .example-example,
