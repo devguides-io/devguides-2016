@@ -1,6 +1,41 @@
 $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
-@mixin textarea ($height: 1) {
+@mixin try-button {
+  & {
+    cursor: pointer;
+    background: $teal;
+    color: white;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    height: 26px;
+    line-height: 26px - 2px;
+    font-size: 13px;
+  }
+
+  &:focus,
+  &:hover {
+    background: lighten($teal, 10%);
+  }
+
+  &:active {
+    background: darken($teal, 10%);
+  }
+
+  &::before {
+    @include ion-icon('play');
+    font-size: 12px;
+    margin-right: 8px;
+    position: relative;
+    top: -1px;
+  }
+}
+
+@mixin textarea {
   width: 100%;
   background: transparent;
   padding: 0;
@@ -9,8 +44,8 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
   font-family: $monospace;
   color: $blue;
-  height: 1.8em * $height;
-  line-height: 1.8em;
+  min-height: 1.7em;
+  line-height: 1.5em;
   margin: 0;
 }
 
@@ -19,7 +54,7 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     padding: 0;
     background: $skyblue;
     border: solid 1px $teal;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   > .example-example,
@@ -31,7 +66,7 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 .example-given {
   > textarea {
-    @include textarea(4);
+    @include textarea;
     resize: none;
     padding: 8px;
   }
@@ -52,34 +87,14 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     flex: 1 1 90%;
     @include textarea;
     resize: none;
-    margin-top: 6px;
+    margin-top: 4px; // Compensate for line height
     padding-left: 8px;
   }
 
   > .try {
+    @include try-button;
     flex: 1 0 100px;
     margin-left: 8px;
-
-    cursor: pointer;
-    background: $teal;
-    color: white;
-    text-align: center;
-    border: 0;
-    outline: 0;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-
-    height: 32px;
-    line-height: 32px;
-  }
-
-  > .try::before {
-    @include ion-icon('play');
-    font-size: 16px;
-    margin-right: 8px;
-    position: relative;
-    top: -1px;
   }
 }
 
@@ -87,6 +102,7 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   background: white;
   border-top: solid 1px $teal;
   padding-left: 16px;
+
   &.example-output.example-output {
     padding-top: 0;
   }
@@ -96,10 +112,22 @@ $monospace: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   }
 }
 
+/*
+ * Outputs
+ */
+
 .output-line {
   padding-top: 8px;
+  padding-left: 8px;
+
+  &::before {
+    @include ion-icon('arrow-right-c');
+    width: 16px;
+    color: $teal;
+  }
 
   &.-error {
     color: $red;
+    @include ion-icon('alert-circled');
   }
 }

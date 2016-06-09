@@ -3,14 +3,20 @@ extends ./base.jade
 block head
   script(src='https://cdn.rawgit.com/davidjbradshaw/iframe-resizer/v3.5.3/js/iframeResizer.contentWindow.min.js')
 
-mixin example-body(given, examples)
+mixin example-body(given, examples, external)
+  if external
+    each script in external
+      script(src=script)
+
   body.-example
     .markdown-body.example-block
       each blk in given
+        jkjkjkjkj
         .example-given(role='given' class=(blk.hide ? '-hide' : ''))
           textarea(spellcheck='false' role='code')= blk.code.trim()
+
       each blk in examples
-        .example-example(role='example')
+        .example-example(role='example' data-auto=(blk.auto ? 'true' : 'false'))
           textarea(spellcheck='false' role='code')= blk.code.trim()
           button.try(role='try')
             = blk.action ? blk.action : 'Try'

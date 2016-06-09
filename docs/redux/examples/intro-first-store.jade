@@ -1,0 +1,29 @@
+---
+external:
+  - /vendor/redux.js
+given:
+  - hide: true
+    code: |
+      var createStore = require('redux').createStore
+
+      var album = {
+        title: 'Kind of Blue',
+        artist: 'Miles Davis',
+        year: 1959
+      }
+
+      function reducer (state, action) {
+        return state
+      }
+
+      var store = createStore(reducer, album)
+examples:
+  - action: Read
+    auto: true
+    code: |
+      var state = store.getState()
+      console.log(state.title)
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

@@ -36,12 +36,9 @@ var album = {
 
 You can read and write data into a plain JS object. You can do the same in Redux, but just a little differently.
 
-```js
-console.log(album.title)  // <-- Reading
-album.genre = 'Jazz'      // <-- Writing
-```
+<!-- example: examples/intro-simple-read -->
 
-<!-- example: examples/simple -->
+<!-- example: examples/intro-simple-write -->
 
 > Next: How would you do that in Redux? [Next](#our-first-store)
 
@@ -64,13 +61,7 @@ var store = /*{*/createStore(reducer, album)/*}*/
 You can read from a store by checking its *state* using `getState()`.
 Writing data works a bit different, though. That's where `reducer` comes in.
 
-```js
-var state = /*{*/store.getState()/*}*/
-console.log(state.title)
-// ---
-//=> 'Kind of Blue'
-```
-
+<!-- example: examples/intro-first-store -->
 
 > See also: [createStore docs](http://redux.js.org/docs/basics/Actions.html)
 
