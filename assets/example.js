@@ -233,6 +233,10 @@ function prelude (__output, __inspect) {
   console.log = function (obj) {
     __output.append($('<div class="output-line -message">').append(__inspect(obj)))
   }
+  console.warn = console.error = function (obj) {
+    __output.append($('<div class="output-line -error">').append(__inspect(obj)))
+  }
+  var alert = console.log
 }
 
 /*
@@ -279,7 +283,7 @@ function runExample ($example) {
   try {
     var fn = new Function('__output,__inspect', fullcode)
     var result = fn($output, inspect)
-    var isLogged = (code.indexOf('console.log') > -1 && typeof result === 'undefined')
+    var isLogged = (code.indexOf('console.') > -1 && typeof result === 'undefined')
     if (!isLogged) {
       $output.append($('<div class="output-line -result">').append(inspect(result)))
     }
