@@ -6,19 +6,19 @@ given:
       var createStore = require('redux').createStore
 
       function reducer (state, action) {
-        if (action.type === 'LOAD_START') {
-          return { status: 'loading' }
-        } else if (action.type === 'LOAD_FINISH') {
-          return { status: 'finish', data: action.data }
-        } else if (action.type === 'LOAD_ERROR') {
-          return { status: 'error', error: action.error.message }
-        } else {
-          return state
+        switch (action.type) {
+          case 'LOAD_START':
+            return { status: 'loading' }
+          case 'LOAD_FINISH':
+            return { status: 'finish', data: action.data }
+          case 'LOAD_ERROR':
+            return { status: 'error', error: action.error.message }
+          default:
+            return state
         }
       }
 
       var store = createStore(reducer, {})
-
       store.subscribe(() => { console.log(store.getState()) })
 examples:
   - placeholder: |
