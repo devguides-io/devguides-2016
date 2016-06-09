@@ -93,37 +93,10 @@ inspect({ ...state, published: true })
 </div></div><div class="page-section"><div class="container">
 <h1 id="dispatching-actions">Dispatching actions</h1>
 <p>The only way to change the store's state is by dispatching actions. You can then easily make a log of what actions have happened, or even undo them.</p>
-<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'UPDATE'</span>, title: <span class="hljs-string">'Global Warming 101'</span> })
-store.dispatch({ type: <span class="hljs-string">'PUBLISH'</span> })
-store.dispatch({ type: <span class="hljs-string">'ADD_COMMENT'</span>, text: <span class="hljs-string">'I agree!'</span> })
-</code></pre>
+<iframe class='example-frame' src='examples/intro-dispatching' seamless></iframe>
 <hr>
 <p>You can also listen for changes in the store using <code>subscribe()</code>.</p>
-<pre><code class="language-js">store.subscribe(() =&gt; {
-  <span class="hljs-ellipsis"></span>
-})
-</code></pre>
-<!--
-var store = createStore(reducer)
-
-store.subscribe(() => {
-  inspect(store.getState())
-})
-
-store.dispatch({ type: 'SET', value: 10 })
-store.dispatch({ type: 'ADD', value: 3 })
-
-function reducer (state, action) {
-  switch (action.type) {
-    case 'SET':
-      return action.value
-    case 'ADD':
-      return state + action.value
-    default:
-      return state
-  }
-}
--->
+<iframe class='example-frame' src='examples/intro-subscribe' seamless></iframe>
 <blockquote class="up-next">
 <p>Let's recap what we've learned. <a href="#recap">Next</a></p>
 </blockquote>

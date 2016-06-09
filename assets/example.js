@@ -345,7 +345,7 @@ $(document).on('focus', '[role~="code"]', function () {
 
 function focusExample ($example) {
   // Move the given above it
-  $example.before($('[role~="givens"]'))
+  $example.after($('[role~="givens"]'))
 
   // Show hints
   $example.find('[role~="hint"]').removeClass('-hide')
@@ -358,6 +358,16 @@ function focusExample ($example) {
 $(function () {
   $('[role~="given"] [role~="code"]').autoexpand({ extraLines: 1 })
   $('[role~="example"] [role~="code"]').autoexpand()
+})
+
+/*
+ * Placeholder
+ */
+
+$(document).on('click', '[role~="placeholder"]', function () {
+  var $example = $(this).closest('[role~="example"]')
+  $(this).hide()
+  $example.find('[role~="code"]').show().focus()
 })
 
 },{"../helpers/jquery.autoexpand":1,"jquery":3}],3:[function(require,module,exports){
