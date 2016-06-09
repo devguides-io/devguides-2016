@@ -1,0 +1,11 @@
+---
+given:
+  - code: |
+      let list = [4, 9, 16, 25, 36]
+examples:
+  - code: |
+      list.map(n => Math.sqrt(n))
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

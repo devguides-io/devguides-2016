@@ -76,9 +76,9 @@ addItems: function (items) {
 You can omit the curly braces. If you do, it implicitly returns the expression after the arrow.
 All these lines do the same thing.
 
+<!-- example: examples/functions-short -->
+
 ```js
-list.map(n => Math.sqrt(n))
-// ---
 list.map(n => /*{*/{ return/*}*/ Math.sqrt(n) /*{*/}/*}*/)
 list.map(function (n) { return Math.sqrt(n) })
 ```
