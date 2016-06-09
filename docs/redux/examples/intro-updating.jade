@@ -1,0 +1,29 @@
+---
+external:
+  - /vendor/redux.js
+given:
+  - code: |
+      var createStore = require('redux').createStore
+
+      var article = {
+        title: 'Global Warming'
+      }
+
+      function reducer (state, action) {
+        if (action.type === 'PUBLISH') {
+          return Object.assign({}, state, { published: true })
+        } else {
+          return state
+        }
+      }
+
+      var store = createStore(reducer, article)
+examples:
+  - secret: Try removing store.dispatch and see what happens.
+    code: |
+      store.dispatch({ type: 'PUBLISH' })
+      console.log(store.getState())
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)

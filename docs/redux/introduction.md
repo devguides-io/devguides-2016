@@ -38,8 +38,6 @@ You can read and write data into a plain JS object. You can do the same in Redux
 
 <!-- example: examples/intro-simple-read -->
 
-<!-- example: examples/intro-simple-write -->
-
 > Next: How would you do that in Redux? [Next](#our-first-store)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -98,31 +96,9 @@ To run an action, use `dispatch()`. This changes the store's *state*.
 
 ```js
 store.getState().published        //=> false
-// ---
-/*{*/store.dispatch({ type: 'PUBLISH' })/*}*/
-store.getState().published        //=> true
 ```
 
-<!--
-var store = createStore(reducer)
-
-store.dispatch({ type: 'SET', value: 10 })
-console.log(store.getState())
-
-store.dispatch({ type: 'ADD', value: 3 })
-console.log(store.getState())
-
-function reducer (state, action) {
-  switch (action.type) {
-    case 'SET':
-      return action.value
-    case 'ADD':
-      return state + action.value
-    default:
-      return state
-  }
-}
--->
+<!-- example: examples/intro-updating -->
 
 > See also: [Reducer docs](http://redux.js.org/docs/basics/Reducers.html)
 

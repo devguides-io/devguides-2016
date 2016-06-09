@@ -9,18 +9,24 @@ mixin example-body(given, examples, external)
       script(src=script)
 
   body.-example
-    .markdown-body.example-block
-      each blk in given
-        jkjkjkjkj
-        .example-given(role='given' class=(blk.hide ? '-hide' : ''))
-          textarea(spellcheck='false' role='code')= blk.code.trim()
+    each blk in examples
+      .markdown-body.example-block(role='example' data-auto=(blk.auto ? 'true' : 'false'))
+        .example-example
+          .code
+            textarea(spellcheck='false' role='code')= blk.code.trim()
+            if blk.hint
+              span.hint(role="hint")= blk.hint
+            if blk.secret
+              span.hint.-hide(role="hint")= blk.secret
 
-      each blk in examples
-        .example-example(role='example' data-auto=(blk.auto ? 'true' : 'false'))
-          textarea(spellcheck='false' role='code')= blk.code.trim()
           button.try(role='try')
             = blk.action ? blk.action : 'Try'
 
-      .example-output.-hide(role='output')
+        .example-output.-hide(role='output')
+
+    .example-givens.-hide(role='givens')
+      each blk in given
+        .example-given(role='given' class=(blk.hide ? '-hide' : ''))
+          textarea(spellcheck='false' role='code')= blk.code.trim()
 
     script(src=(base + '/assets/example.js'))

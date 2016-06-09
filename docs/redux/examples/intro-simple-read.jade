@@ -1,7 +1,6 @@
 ---
 given:
-  - hide: true
-    code: |
+  - code: |
       var album = {
         title: 'Kind of Blue',
         artist: 'Miles Davis',
@@ -11,6 +10,10 @@ examples:
   - action: Read
     code: |
       console.log(album.title)
+  - action: Write
+    code: |
+      album.genre = 'Jazz'
+      console.log(album)
 ---
 extends ../../_layouts/example.jade
 block body
