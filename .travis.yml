@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- '4'
+script:
+  - npm run build
+  - test -e public/index.html
+  - test -e public/CNAME
+after_success:
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then ./node_modules/.bin/git-update-ghpages -e; fi
+cache:
+  directories:
+  - node_modules
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+env:
+  global:
+  - CXX: g++-4.8
+  - GIT_NAME: Travis CI
+  - GIT_EMAIL: nobody@nobody.org
+  - GITHUB_REPO: rstacruz/devguides.io
+  - GIT_SOURCE: public
