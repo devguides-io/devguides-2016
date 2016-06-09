@@ -1,3 +1,12 @@
+Metalsmith
+----------
+
+This is a metalsmith website. Start a dev server like this:
+
+    npm install
+    npm start
+    npm start -- --port 3005
+
 Examples
 --------
 

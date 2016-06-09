@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "metalstart",
     "build": "env NODE_ENV=production node metalsmith.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "browserify": "13.0.1",
     "github-markdown-css": "2.3.0",
