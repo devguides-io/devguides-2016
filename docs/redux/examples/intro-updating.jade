@@ -19,8 +19,14 @@ given:
 
       var store = createStore(reducer, article)
 examples:
-  - secret: Try removing store.dispatch and see what happens.
+  - placeholder: |
+      console.log(store.getState())  //=> { ... }
+
+      store.dispatch({ type: 'PUBLISH' })
+      console.log(store.getState())  //=> { ..., published: true }
     code: |
+      console.log(store.getState())
+
       store.dispatch({ type: 'PUBLISH' })
       console.log(store.getState())
 ---

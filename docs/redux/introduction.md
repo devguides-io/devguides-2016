@@ -78,7 +78,7 @@ You can't change the store's state from outside the store. To do that, you'll ne
 import { createStore } from 'redux' //-
 
 var store = createStore(/*{*/reducer/*}*/, article)
-// ---
+
 function reducer (state, action) {
   if (action.type === 'PUBLISH') {
     return { ...state, published: true }
@@ -93,10 +93,6 @@ Reducers take the current state and return a new one. How it changes the store d
 ---
 
 To run an action, use `dispatch()`. This changes the store's *state*.
-
-```js
-store.getState().published        //=> false
-```
 
 <!-- example: examples/intro-updating -->
 

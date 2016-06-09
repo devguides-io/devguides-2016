@@ -136,6 +136,7 @@ $hiborder: rgba($teal, .3);
 
 .example-example {
   display: flex;
+  cursor: text;
 
   &:hover {
     background: darken($skyblue, 2%);

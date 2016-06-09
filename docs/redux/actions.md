@@ -67,16 +67,7 @@ It seems you can't `dispatch()` inside a reducer! This is how Redux was designed
 
 Let's try putting that logic in a function outside the store. Let's make a function.
 
-```js
-/*{*/function load (dispatch) {/*}*/
-  dispatch({ type: 'LOAD_START' })
-  fetch('/data.json')
-    .then(data =>
-      dispatch({ type: 'LOAD_FINISH', data: data }))
-    .catch(error =>
-      dispatch({ type: 'LOAD_ERROR', error: error }))
-}
-```
+<!-- example: examples/actions-second-try -->
 
 > By passing `dispatch` to `load()`, it can dispatch events.
 

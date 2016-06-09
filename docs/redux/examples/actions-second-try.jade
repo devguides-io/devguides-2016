@@ -1,0 +1,49 @@
+---
+external:
+  - /vendor/redux.js
+given:
+  - code: |
+      var createStore = require('redux').createStore
+
+      function reducer (state, action) {
+        if (action.type === 'LOAD_START') {
+          return { status: 'loading' }
+        } else if (action.type === 'LOAD_FINISH') {
+          return { status: 'finish', data: action.data }
+        } else if (action.type === 'LOAD_ERROR') {
+          return { status: 'error', error: action.error.message }
+        } else {
+          return state
+        }
+      }
+
+      var store = createStore(reducer, {})
+
+      store.subscribe(() => { console.log(store.getState()) })
+examples:
+  - placeholder: |
+      /*{*/function load (dispatch) {/*}*/
+        dispatch({ type: 'LOAD_START' })
+        fetch('https://httpbin.org/ip')
+          .then(res => res.json())
+          .then(data =>
+            dispatch({ type: 'LOAD_FINISH', data: data }))
+          .catch(error =>
+            dispatch({ type: 'LOAD_ERROR', error: error }))
+      }
+    code: |
+      function load (dispatch) {
+        dispatch({ type: 'LOAD_START' })
+        fetch('https://httpbin.org/ip')
+          .then(res => res.json())
+          .then(data =>
+            dispatch({ type: 'LOAD_FINISH', data: data }))
+          .catch(error =>
+            dispatch({ type: 'LOAD_ERROR', error: error }))
+      }
+
+      load(store.dispatch)
+---
+extends ../../_layouts/example.jade
+block body
+  +example-body(given, examples, external)
