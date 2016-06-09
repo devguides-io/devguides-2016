@@ -172,7 +172,7 @@ $hiborder: rgba($teal, .3);
   > .code > .hint {
     font-style: italic;
     font-family: $serif;
-    color: $gray;
+    color: mix($blue, $gray, 20%);
     font-size: .83em;
   }
 
@@ -200,10 +200,11 @@ $hiborder: rgba($teal, .3);
 }
 
 .example-output {
-  background: white;
+  background-color: white;
   border-top: solid 1px $hiborder;
   padding-left: 16px;
   overflow: hidden;
+  transition: background-color 250ms linear;
 
   &.example-output.example-output {
     padding: 4px 0;
@@ -211,5 +212,10 @@ $hiborder: rgba($teal, .3);
 
   &.-hide {
     display: none;
+  }
+
+  &.-highlight {
+    transition: none;
+    background-color: #fefef0;
   }
 }
