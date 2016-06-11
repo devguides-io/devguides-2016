@@ -40,6 +40,7 @@ var app = Metalsmith(__dirname)
   .use(require('./lib/example').embedExamples())
   .use(require('metalsmith-uglify')({
     sourceMap: !isProduction,
+    mangle: isProduction,
     compress: isProduction
   }))
   .source('./docs')
