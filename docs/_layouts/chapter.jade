@@ -21,5 +21,6 @@ block body
             a.book(href='.')= book
           != contents
 
-    script(src='../assets/script.js')
+    script(src=(base + '/assets/common.min.js'))
+    script(src=(base + '/assets/script.min.js'))
     include ./includes/analytics.jade

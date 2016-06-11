@@ -42,5 +42,6 @@ mixin content(chapters)
                   strong.title= chapter.title
                   span.description= chapter.description
 
-  script(src='../assets/script.js')
-    include ./includes/analytics.jade
+  script(src=(base + '/assets/common.min.js'))
+  script(src=(base + '/assets/script.min.js'))
+  include ./includes/analytics.jade

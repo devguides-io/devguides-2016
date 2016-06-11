@@ -37,4 +37,5 @@ mixin example-body(given, examples, external)
         .example-given(role='given' class=(blk.hide ? '-hide' : ''))
           textarea(spellcheck='false' role='code')= blk.code.trim()
 
+    script(src=(base + '/assets/common.js'))
     script(src=(base + '/assets/example.js'))
