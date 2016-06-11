@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: Redux
 chapter: Reducers
+next: react
 ---
 
 Reducers

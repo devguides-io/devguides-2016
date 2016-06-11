@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: Redux
 chapter: Using with React
+next: middleware
 ---
 
 Using with React

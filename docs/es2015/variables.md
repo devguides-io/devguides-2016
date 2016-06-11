@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: ES2015
 chapter: Variables
+next: objects
 ---
 
 # Let

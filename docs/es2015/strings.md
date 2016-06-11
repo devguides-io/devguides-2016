@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: ES2015
 chapter: Strings
+next: functions
 ---
 
 # Template strings

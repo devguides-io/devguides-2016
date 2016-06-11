@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: Redux
 chapter: Actions
+next: reducers
 ---
 
 # Actions
