@@ -37,3 +37,20 @@ Each `examples` item has:
 - `secret` - a hint text that's only shown after focus.
 - `auto` - if *true*, then the example output will be shown even before trying it.
 - `action` (default "Try") - the button text.
+
+Annotations
+-----------
+
+You can use this inside code:
+
+- `/*...*/` - ellipsis
+- `/*[ foo ]*/ - placeholders
+- `//!` - warnings
+- `///` - checkmarks
+- `// <--` - arrows
+- `// -->` - arrows
+- `//=#` - results
+- `//+` - line highlight
+- `//-` - line mute
+- `// ---` - horiz rule
+- `/*{*/highlight/*}*/` - highlights

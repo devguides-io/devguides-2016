@@ -32,11 +32,12 @@
 
 .markdown-body h3 {
   font-family: $sans;
-  @include ms-respond(font-size, 0);
+  @include ms-respond(font-size, 1);
   font-weight: 700;
 
   margin-bottom: .25em;
   font-size: 1.2em;
+  margin-top: 0; // ??
 
   & + p {
     margin-top: 0;

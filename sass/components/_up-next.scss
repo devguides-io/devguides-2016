@@ -123,3 +123,16 @@
     }
   }
 }
+
+.markdown-body.-literate .up-next,
+.markdown-body .up-next {
+  &.-short {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 1.5em;
+  }
+
+  &.-short::before {
+    display: none;
+  }
+}
