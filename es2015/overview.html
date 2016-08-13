@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><link rel="prefetch" href="variables"><link rel="prerender" href="variables"><link rel="next" href="variables"><title>Classes - ES2015</title></head><body class="-chapter"><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Classes</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><a href="/" class="root">devguides.io</a><span> / </span><a href="." class="book">ES2015</a></h5><h1 id="es-2015">ES2015</h1>
+<p>Here's an overview of what's new with ES2015 (previously known as ES6).</p>
+<blockquote class="up-next">
+<p>See what's new with variables. <a href="#variables">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="variables">Variables</h1>
+<p><strong><a href="variables">Block scoping:</a></strong> <code>let</code> is the new <code>var</code>. It respects a thing called &quot;block scoping&quot;.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-highlight"><span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span></span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+    <span class="hljs-highlight"><span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span></span> <span class="hljs-placeholder">only inside this <code>if</code></span>
+  }
+}
+</code></pre>
+<hr>
+<p><strong><a href="variables">Constants</a></strong> are variables that you can't modify.</p>
+<pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-keyword">const</span> DAY = <span class="hljs-number">86400</span></span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="variables">ES2015: variables</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Learn about template strings. <a href="#strings">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="strings">Strings</h1>
+<p><strong><a href="strings">Template strings</a></strong> are surrounded by backticks. You can do interpolation with them.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> message = <span class="hljs-highlight"><span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span></span>
+</code></pre>
+<hr>
+<p><strong><a href="strings">Multiline strings</a></strong> are also supported through backticks.</p>
+<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`
+Usage:
+  parse-csv [file]
+
+Parses a CSV file.
+`</span>)
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="strings">ES2015: Strings</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Write objects easier. <a href="#objects">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="objects">Objects</h1>
+<p><strong><a href="objects">New shorthand:</a></strong> there are now shorter syntaxes for getters, setters, and methods.</p>
+<pre><code class="language-js">App = {
+  <span class="hljs-placeholder -ok">Functions:</span>
+  <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
+
+  <span class="hljs-placeholder -ok">Getters and setters:</span>
+  <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
+  <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
+}
+</code></pre>
+<hr>
+<p><strong><a href="objects">Same-name properties</a></strong> also get a new shorthand.</p>
+<pre><code class="language-js"><span class="hljs-placeholder -ok">Short for <code>{ start: start, reset: reset }</code></span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-highlight">{ start, reset }</span>
+</code></pre>
+<hr>
+<p><strong><a href="objects">Computed property names</a></strong> let you make dynamic names.</p>
+<pre><code class="language-js"><span class="hljs-keyword">return</span> {
+  <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
+}
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="objects">Objects</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>See new function features. <a href="#functions">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="functions">Functions</h1>
+<p><strong>Default, rest, and spread</strong> make dynamic arguments easier.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">name = 'Jerry'</span></span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">...names</span></span>) </span>{ <span class="hljs-ellipsis"></span> }<span class="hljs-hr"></span>
+greet(<span class="hljs-highlight">...names</span>)
+</code></pre>
+<hr>
+<p><strong>Arrow functions</strong> preserve the lexical <code>this</code>.</p>
+<pre><code class="language-js">list.forEach(<span class="hljs-highlight">item =&gt; {</span>
+  <span class="hljs-keyword">this</span>.addItem(item)
+<span class="hljs-highlight">}</span>)
+</code></pre>
+<hr>
+<p><strong>Short functions:</strong> Omit the curly braces for short functions.</p>
+<pre><code class="language-js">list.map(<span class="hljs-highlight">n =&gt; <span class="hljs-built_in">Math</span>.PI * <span class="hljs-built_in">Math</span>.sqrt(n)</span>)
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="functions">Functions</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Write classes, not prototypes. <a href="#classes">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="classes">Classes</h1>
+<p>ES2015 lets you write <a href="classes">classes</a> instead of dealing with prototypes.</p>
+<pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Shape</span> </span>{</span>
+  <span class="hljs-keyword">constructor</span> (radius) {
+    <span class="hljs-keyword">this</span>.radius = radius
+  }
+
+  <span class="hljs-placeholder -ok">Methods:</span>
+  getArea () { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius }
+
+  <span class="hljs-placeholder -ok">Static methods:</span>
+  <span class="hljs-keyword">static</span> createFromDiameter (d) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(d / <span class="hljs-number">2</span>) }
+}
+</code></pre>
+<pre><code class="language-js">c = <span class="hljs-keyword">new</span> Circle(<span class="hljs-number">10</span>)
+c = Circle.createFromDiameter(<span class="hljs-number">20</span>)
+c.getArea()
+</code></pre>
+<blockquote class="up-next">
+<p>See what's new with variables. <a href="variables">Next</a></p>
+</blockquote>
+</div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')
+  ga('create', 'UA-79044901-1', 'auto')
+  ga('send', 'pageview')
+}</script></body></html>

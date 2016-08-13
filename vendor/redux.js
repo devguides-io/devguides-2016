@@ -237,7 +237,7 @@ function combineReducers(reducers) {
     return hasChanged ? nextState : state;
   };
 }
-},{"./createStore":5,"./utils/warning":6,"lodash/isPlainObject":10}],4:[function(require,module,exports){
+},{"./createStore":5,"./utils/warning":6,"lodash/isPlainObject":11}],4:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -541,7 +541,7 @@ function createStore(reducer, initialState, enhancer) {
     replaceReducer: replaceReducer
   }, _ref2[_symbolObservable2["default"]] = observable, _ref2;
 }
-},{"lodash/isPlainObject":10,"symbol-observable":11}],6:[function(require,module,exports){
+},{"lodash/isPlainObject":11,"symbol-observable":12}],6:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -568,23 +568,14 @@ function warning(message) {
   /* eslint-enable no-empty */
 }
 },{}],7:[function(require,module,exports){
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetPrototype = Object.getPrototypeOf;
+var overArg = require('./_overArg');
 
-/**
- * Gets the `[[Prototype]]` of `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {null|Object} Returns the `[[Prototype]]`.
- */
-function getPrototype(value) {
-  return nativeGetPrototype(Object(value));
-}
+/** Built-in value references. */
+var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 module.exports = getPrototype;
 
-},{}],8:[function(require,module,exports){
+},{"./_overArg":9}],8:[function(require,module,exports){
 /**
  * Checks if `value` is a host object in IE < 9.
  *
@@ -607,6 +598,23 @@ function isHostObject(value) {
 module.exports = isHostObject;
 
 },{}],9:[function(require,module,exports){
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+},{}],10:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -637,7 +645,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var getPrototype = require('./_getPrototype'),
     isHostObject = require('./_isHostObject'),
     isObjectLike = require('./isObjectLike');
@@ -646,10 +654,11 @@ var getPrototype = require('./_getPrototype'),
 var objectTag = '[object Object]';
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
-var funcToString = Function.prototype.toString;
+var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
 var hasOwnProperty = objectProto.hasOwnProperty;
@@ -659,7 +668,7 @@ var objectCtorString = funcToString.call(Object);
 
 /**
  * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
 var objectToString = objectProto.toString;
@@ -673,8 +682,7 @@ var objectToString = objectProto.toString;
  * @since 0.8.0
  * @category Lang
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a plain object,
- *  else `false`.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
  * @example
  *
  * function Foo() {
@@ -709,7 +717,7 @@ function isPlainObject(value) {
 
 module.exports = isPlainObject;
 
-},{"./_getPrototype":7,"./_isHostObject":8,"./isObjectLike":9}],11:[function(require,module,exports){
+},{"./_getPrototype":7,"./_isHostObject":8,"./isObjectLike":10}],12:[function(require,module,exports){
 (function (global){
 /* global window */
 'use strict';
@@ -717,7 +725,7 @@ module.exports = isPlainObject;
 module.exports = require('./ponyfill')(global || window || this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./ponyfill":12}],12:[function(require,module,exports){
+},{"./ponyfill":13}],13:[function(require,module,exports){
 'use strict';
 
 module.exports = function symbolObservablePonyfill(root) {
