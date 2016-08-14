@@ -104,7 +104,7 @@ Shop.closed         /// `true` (invokes `get closed()`)
 
 <!-- -->
 
-> Next: Learn about writing dynamic property names. [Next](#computed-properties)
+> Next: Learn about writing dynamic property names. [Next](#computed-names)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

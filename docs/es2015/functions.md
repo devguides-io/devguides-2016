@@ -29,7 +29,7 @@ function greet (name) {
 }
 ```
 
-> Next: But what makes them different? [Next](#)
+> Next: But what makes them different? [Next](#this)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -68,7 +68,7 @@ addItems: function (items) {
 
 <!-- -->
 
-> Next: How else are arrow functions useful? [Next](#)
+> Next: How else are arrow functions useful? [Next](#short-syntax)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -105,7 +105,7 @@ list.reduce(a, b => a + b) //! Error
 
 <!-- -->
 
-> Next: What else is it useful for? [Next](#)
+> Next: What else is it useful for? [Next](#currying)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

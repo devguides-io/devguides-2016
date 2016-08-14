@@ -10,7 +10,7 @@ next: strings
 You can now write classes in ES2015. Classes let you define your own object types.
 
 ```js
-class Circle {
+/*{*/class Circle {/*}*/
   constructor (radius) {
     this.radius = radius
   }
@@ -61,7 +61,7 @@ c.getArea()  //=> 12.56
 
 <!-- -->
 
-> Next: What about constructors? [Continue](#constructors)
+> Next: What about constructors? [Next](#constructors)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
