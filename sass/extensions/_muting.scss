@@ -2,6 +2,8 @@
  * Muting
  */
 
+$speed: 150ms;
+
 @media (min-width: 769px) {
   .markdown-body {
     background-color: #f0f2f4;
@@ -11,18 +13,18 @@
   .page-section {
     & {
       background-color: rgba(white, .99);
-      transition: background-color 600ms linear, transform 300ms ease-out;
+      transition: background-color ($speed * 2) linear, transform $speed ease-out;
       transform-origin: 64px 50%;
       transform: scale(1) translate3d(0, 0, 0);
 
       > .container {
         opacity: 1;
-        transition: opacity 300ms linear;
+        transition: opacity $speed linear;
       }
     }
 
     &.-active {
-      transition: background-color 300ms linear, transform 300ms ease-out;
+      transition: background-color $speed linear, transform $speed ease-out;
       border-top: 0;
       position: relative;
       z-index: 3;
@@ -30,7 +32,7 @@
 
       > .container {
         opacity: 1;
-        transition: opacity 300ms linear 300ms;
+        transition: opacity $speed linear $speed;
       }
     }
 
