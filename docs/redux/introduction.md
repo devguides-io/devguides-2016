@@ -101,7 +101,7 @@ To run an action, use `dispatch()`. This changes the store's *state*.
 
 <br>
 
-> Next: What does `...state` mean? [Next](#spread-operator)
+> Next: What does `...state` mean? [Next](#the-spread-operator)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

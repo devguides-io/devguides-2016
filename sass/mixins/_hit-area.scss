@@ -1,0 +1,11 @@
+@mixin hit-area ($top: 16px, $right: $top, $bottom: $top, $left: $right) {
+  content: '';
+  position: absolute;
+  top: -$top;
+  right: -$right;
+  bottom: -$bottom;
+  left: -$left;
+  background: transparent;
+  display: block;
+  cursor: pointer;
+}

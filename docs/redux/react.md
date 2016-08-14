@@ -29,12 +29,12 @@ render(
 
 <!-- -->
 
-> Next: How do I see the state in my components? [Next](#connecting)
+> Next: How do I see the state in my components? [Next](#connecting-to-a-store)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Connecting to the store
-=======================
+Connecting to a store
+=====================
 
 react-redux provides `connect()` to let components see the store's state.
 

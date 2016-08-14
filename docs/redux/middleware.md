@@ -139,7 +139,7 @@ action @ 13:11:01 LOAD_PENDING (in 0.1ms)
 action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 ```
 
-> Next: Did you wonder why middleware looks like `store => dispatch => action`? [Next](#signature)
+> Next: Did you wonder why middleware looks like `store => dispatch => action`? [Next](#middleware-signature)
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

@@ -15,8 +15,7 @@ store.dispatch(/*{*/{ type: 'PUBLISH' }/*}*/)
 
 Actions are objects and always have a `type` key. This isn't required, but it's just the way everyone does it.
 
-> Next: How would we do it asynchronously? [Next](#next)
-
+> Next: How would we do it asynchronously? [Next](#the-three-states)
 
 * * * *
 
@@ -37,7 +36,7 @@ fetch('/data.json')
 
 <!-- -->
 
-> Next: Let's try to hook this up to our store. [Next](#next)
+> Next: Let's try to hook this up to our store. [Next](#first-try)
 
 * * * *
 
@@ -60,7 +59,7 @@ createStore(reducer) //-
 
 It seems you can't `dispatch()` inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.
 
-> Next: Let's try a different approach. [Next](#next)
+> Next: Let's try a different approach. [Next](#second-try)
 
 * * * *
 
@@ -82,7 +81,7 @@ But now we're not being consistent: we often use `store.dispatch()` to trigger a
 store.dispatch({ type: 'INIT' })  // <-- everything else
   ```
 
-> Next: Let's make things more consistent. [Next](#next)
+> Next: Let's make things more consistent. [Next](#meet-redux-thunk)
 
 * * * *
 
@@ -117,7 +116,7 @@ store.dispatch(/*{*/load/*}*/)
 
 <!-- -->
 
-> Next: Let's sort out our action creators. [Next](#next)
+> Next: Let's sort out our action creators. [Next](#action-creators)
 
 * * * *
 
@@ -160,7 +159,7 @@ store.dispatch(/*{*/loadProject()/*}*/)
 
 <!-- -->
 
-> Next: Let's build more action creators. [Next](#next)
+> Next: Let's build more action creators. [Next](#simple-action-creators)
 
 * * * *
 
@@ -174,7 +173,7 @@ export function publishProject (id) {
 }
 ```
 
-> Next: Let's recap what we've learned. [Next](#next)
+> Next: Let's recap what we've learned. [Next](#recap)
 
 * * * *
 
