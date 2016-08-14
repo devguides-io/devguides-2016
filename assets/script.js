@@ -1,21 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 require('../../lib/web')
 
-},{"../../lib/web":4}],2:[function(require,module,exports){
-var $ = window.$
-
-$(document).on('pages:load', function () {
-  if ($('.next-progress').length) return
-
-  var $progress = $('<div class="next-progress">')
-  $progress.appendTo('body')
-
-  setTimeout(function () {
-    $progress.remove()
-  }, 500)
-})
-
-},{}],3:[function(require,module,exports){
+},{"../../lib/web":3}],2:[function(require,module,exports){
 var $ = window.$
 
 module.exports = function onScrollUp (options, fn) {
@@ -48,7 +34,7 @@ module.exports = function onScrollUp (options, fn) {
   })
 }
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 window.jQuery = window.$ = require('jquery')
 require('waypoints/lib/jquery.waypoints')
 
@@ -60,10 +46,12 @@ var Waypoint = window.Waypoint
  */
 
 var onScrollUp = require('./helpers/on_scrollup')
-require('./behaviors/next_progress')
 
 /*
- * First load
+ * First load:
+ *
+ * `div(role='next-waypoint')` is inserted at the end of all the sections.
+ * this has a waypoint trigger to show the next page.
  */
 
 $(function () {
@@ -97,11 +85,11 @@ $(function () {
       var $next = $('.page-section.-hide').eq(0)
       $('body').removeClass('-first-load')
 
-      // Disable until refresh; prevents double invocation.
+      // Disable until animations are finished; prevents double invocation.
       disabled = true
 
       $next.trigger('pages:load')
-      $next.removeClass('-hide')
+      $('.page-section.-hide').removeClass('-hide')
 
       // Remove on the last page to show.
       if ($('.page-section.-hide').length === 0) $placeholder.remove()
@@ -150,7 +138,7 @@ $(function () {
   }
 
   // There's a strange instance where its first appearance (via infinite scroll)
-  // triggers htis
+  // triggers this
   function onRewind (direction) {
     if (direction !== 'up') return
     var $this = $(this.element)
@@ -162,6 +150,10 @@ $(function () {
     count: $pages.length
   })
 })
+
+/*
+ * Show everything when scrolling up.
+ */
 
 onScrollUp({ min: 128 }, function () {
   $(document).trigger('pages:showAll')
@@ -215,13 +207,13 @@ iFrameResize.iframeResizer({
   }
 }, 'iframe[seamless]')
 
-},{"./behaviors/next_progress":2,"./helpers/on_scrollup":3,"iframe-resizer":5,"jquery":"jquery","waypoints/lib/jquery.waypoints":9}],5:[function(require,module,exports){
+},{"./helpers/on_scrollup":2,"iframe-resizer":4,"jquery":"jquery","waypoints/lib/jquery.waypoints":8}],4:[function(require,module,exports){
 
 'use strict';
 
 module.exports = require('./js');
 
-},{"./js":8}],6:[function(require,module,exports){
+},{"./js":7}],5:[function(require,module,exports){
 /*
  * File: iframeResizer.contentWindow.js
  * Desc: Include this file in any page being loaded into an iframe
@@ -1291,7 +1283,7 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /*
  * File: iframeResizer.js
  * Desc: Force iframes to size to content.
@@ -2289,11 +2281,11 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 exports.iframeResizer = require('./iframeResizer');
 exports.iframeResizerContentWindow = require('./iframeResizer.contentWindow');
 
-},{"./iframeResizer":7,"./iframeResizer.contentWindow":6}],9:[function(require,module,exports){
+},{"./iframeResizer":6,"./iframeResizer.contentWindow":5}],8:[function(require,module,exports){
 /*!
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton
