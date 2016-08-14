@@ -4,7 +4,7 @@
 </code></pre>
 <p>Actions are objects and always have a <code>type</code> key. This isn't required, but it's just the way everyone does it.</p>
 <blockquote class="up-next">
-<p>How would we do it asynchronously? <a href="#next">Next</a></p>
+<p>How would we do it asynchronously? <a href="#the-three-states">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="the-three-states">The three states</h1>
@@ -21,7 +21,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's try to hook this up to our store. <a href="#next">Next</a></p>
+<p>Let's try to hook this up to our store. <a href="#first-try">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="first-try">First try</h1>
@@ -34,7 +34,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </code></pre>
 <p>It seems you can't <code>dispatch()</code> inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.</p>
 <blockquote class="up-next">
-<p>Let's try a different approach. <a href="#next">Next</a></p>
+<p>Let's try a different approach. <a href="#second-try">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="second-try">Second try</h1>
@@ -49,7 +49,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-placeholder -info">everything else</span>
 </code></pre>
 <blockquote class="up-next">
-<p>Let's make things more consistent. <a href="#next">Next</a></p>
+<p>Let's make things more consistent. <a href="#meet-redux-thunk">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="meet-redux-thunk">Meet redux-thunk</h1>
@@ -75,7 +75,7 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's sort out our action creators. <a href="#next">Next</a></p>
+<p>Let's sort out our action creators. <a href="#action-creators">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="action-creators">Action creators</h1>
@@ -105,7 +105,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's build more action creators. <a href="#next">Next</a></p>
+<p>Let's build more action creators. <a href="#simple-action-creators">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="simple-action-creators">Simple action creators</h1>
@@ -115,7 +115,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 }
 </code></pre>
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#next">Next</a></p>
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
