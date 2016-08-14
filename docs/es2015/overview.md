@@ -15,7 +15,7 @@ Here's an overview of what's new with ES2015 (previously known as ES6).
 
 # Variables
 
-**[Block scoping:](variables)** `let` is the new `var`. It respects a thing called "block scoping".
+[Block scoping:](variables) `let` is the new `var`. It respects a thing called "block scoping".
 
 ```js
 function fn () {
@@ -28,7 +28,7 @@ function fn () {
 
 ----
 
-**[Constants](variables)** are variables that you can't modify.
+[Constants](variables#constants) are variables that you can't modify.
 
 ```js
 /*{*/const DAY = 86400/*}*/
@@ -44,7 +44,7 @@ function fn () {
 
 # Strings
 
-**[Template strings](strings)** are surrounded by backticks. You can do interpolation with them.
+[Template strings](strings) are surrounded by backticks. You can do interpolation with them.
 
 ```js
 var message = /*{*/`Hello ${name}`/*}*/
@@ -52,7 +52,7 @@ var message = /*{*/`Hello ${name}`/*}*/
 
 ----
 
-**[Multiline strings](strings)** are also supported through backticks.
+[Multiline strings](strings) are also supported through backticks.
 
 ```js
 console.log(`
@@ -73,7 +73,7 @@ Parses a CSV file.
 
 # Objects
 
-**[New shorthand:](objects)** there are now shorter syntaxes for getters, setters, and methods.
+[New shorthand:](objects) there are now shorter syntaxes for getters, setters, and methods.
 
 ```js
 App = {
@@ -88,7 +88,7 @@ App = {
 
 ---
 
-**[Same-name properties](objects)** also get a new shorthand.
+[Same-name properties](objects#name-shorthand) also get a new shorthand.
 
 ```js
 /// Short for `{ start: start, reset: reset }`
@@ -97,7 +97,7 @@ module.exports = /*{*/{ start, reset }/*}*/
 
 ---
 
-**[Computed property names](objects)** let you make dynamic names.
+[Computed property names](objects#computed-names) let you make dynamic names.
 
 ```js
 return {
@@ -115,7 +115,7 @@ return {
 
 # Functions
 
-**Default, rest, and spread** make dynamic arguments easier.
+[Default](functions#default-arguments), [rest, and spread](functions#rest-and-spread) make dynamic arguments easier.
 
 ```js
 function greet(/*{*/name = "Jerry"/*}*/) { /*...*/ }
@@ -126,7 +126,7 @@ greet(/*{*/...names/*}*/)
 
 ---
 
-**Arrow functions** preserve the lexical `this`.
+[Arrow functions](functions) preserve the lexical `this`.
 
 ```js
 list.forEach(/*{*/item => {/*}*/
@@ -136,7 +136,7 @@ list.forEach(/*{*/item => {/*}*/
 
 ---
 
-**Short functions:** Omit the curly braces for short functions.
+[Short functions](functions#short-syntax): Omit the curly braces for short functions.
 
 ```js
 list.map(/*{*/n => Math.PI * Math.sqrt(n)/*}*/)
@@ -184,7 +184,7 @@ c.getArea()
 
 # Destructuring
 
-**Arrays** can be destructured. Rest (`...`) can be used when destructuring arrays.
+[Arrays](destructuring) can be destructured. [Spread](destructuring#spread) (`...`) can be used when destructuring arrays.
 
 ```js
 const name = ['John', 'F', 'Kennedy'] //-
@@ -194,7 +194,7 @@ const [first, /*{*/...others/*}*/] = name
 
 ---
 
-**Objects** can be destructured. You can even assign them to new names.
+[Objects](destructuring#objects) can be destructured. You can even assign them to new names.
 
 ```js
 const name = { first: 'Jon', last: 'Snow' } //-
@@ -204,7 +204,7 @@ const /*{*/{ first: firstName }/*}*/ = name
 
 ---
 
-**Function arguments** can also be destructured.
+[Function arguments](destructuring#function-arguments) can also be destructured.
 
 ```js
 function greet (/*{*/{name, greeting}/*}*/) {
@@ -222,7 +222,7 @@ function greet (/*{*/{name, greeting}/*}*/) {
 
 # Modules
 
-**import** is the new `require()`.
+[import](modules) is the new `require()`.
 
 ```js
 import fs from 'fs'
@@ -236,7 +236,7 @@ var readFile = require('fs').readFile //-
 
 ---
 
-**export** is the new `module.exports`. You can export `default`, `function`, or `var`.
+[export](modules#exporting) is the new `module.exports`. You can export `default`, `function`, or `var`.
 
 ```js
 export default start
@@ -254,7 +254,7 @@ exports.PI = 3.14159 //-
 
 ---
 
-When mixing `export default` with other exports, `import` will fetch the default export. This different from the `require()` behavior.
+When mixing `export default` with other exports, `import` will fetch the default export. [This is different](modules#exporting-many) from the `require()` behavior.
 
 ```js
 import Engine from './engine'      // <-- Gets `export default`
