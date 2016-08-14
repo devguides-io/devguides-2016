@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: ES2015
 chapter: Functions
+next: destructuring
 ---
 
 # Arrow functions
@@ -204,4 +205,4 @@ Omit the curly braces for short functions.
 list.map(n => Math.PI * Math.sqrt(n))
 ```
 
-> Next: That's all for now! [Back](.)
+> Next: Let's learn about destructuring. [Next](destructuring)

@@ -174,4 +174,46 @@ c = Circle.createFromDiameter(20)
 c.getArea()
 ```
 
+> Also see: [Classes](classes)
+
+<!-- -->
+
+> Next: Extract variables through destructuring. [Next](#destructuring)
+
+* * * *
+
+# Destructuring
+
+**Arrays** can be destructured. Rest (`...`) can be used when destructuring arrays.
+
+```js
+const name = ['John', 'F', 'Kennedy'] //-
+const /*{*/[first, middle, last]/*}*/ = name
+const [first, /*{*/...others/*}*/] = name
+```
+
+---
+
+**Objects** can be destructured. You can even assign them to new names.
+
+```js
+const name = { first: 'Jon', last: 'Snow' } //-
+const /*{*/{ first, last }/*}*/ = name
+const /*{*/{ first: firstName }/*}*/ = name
+```
+
+---
+
+**Function arguments** can also be destructured.
+
+```js
+function greet (/*{*/{name, greeting}/*}*/) {
+  console.log(`${greeting}, ${name}!`) //-
+} //-
+```
+
+> Also see: [Destructuring](destructuring)
+
+<!-- -->
+
 > Next: See what's new with variables. [Next](variables)

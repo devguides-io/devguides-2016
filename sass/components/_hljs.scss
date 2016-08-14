@@ -161,7 +161,7 @@
 }
 
 .hljs-result {
-  color: saturate($blue, 40%);
+  color: rgba($blue, .5);
   font-style: italic;
 
   &::before {

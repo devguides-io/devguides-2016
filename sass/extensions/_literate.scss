@@ -3,29 +3,34 @@
  */
 
 @media (min-width: 900px) {
-  .markdown-body.-literate {
-    pre, blockquote, .example-frame {
+  .markdown-body.-literate .container {
+    > pre, > blockquote:not(.up-next), > .example-frame {
       width: 60%;
       float: right;
       clear: right;
     }
 
-    blockquote {
+    > blockquote {
       box-sizing: border-box;
       padding-right: 2em;
     }
 
-    h2, h3, p {
+    // Note `h2` will not be wrapped to the left
+    > h2 {
+      font-weight: normal;
+      padding-top: 2em;
+      clear: both;
+    }
+
+    > h3, > p, > details {
       width: 37%;
       float: left;
       clear: left;
     }
 
-    blockquote {
-      > p {
-        width: auto;
-        float: none;
-      }
+    > blockquote > p {
+      width: auto;
+      float: none;
     }
   }
 }
