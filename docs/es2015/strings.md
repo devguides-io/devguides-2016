@@ -52,4 +52,4 @@ function tpl (strings, values) {
 
 <!-- -->
 
-> Next: Let's learn about what's new with functions. [Next](functions)
+> Next: Let's learn about what's new with functions. [Next chapter](functions)

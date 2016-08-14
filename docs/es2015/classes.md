@@ -222,4 +222,4 @@ c = Circle.createFromDiameter(20)
 c.getArea()
 ```
 
-> Next: Let's learn about strings. [Next](strings)
+> Next: Let's learn about strings. [Next chapter](strings)

@@ -168,4 +168,4 @@ App = {
 }
 ```
 
-> Next: Let's learn about classes. [Next](classes)
+> Next: Let's learn about classes. [Next chapter](classes)

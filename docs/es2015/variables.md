@@ -125,4 +125,4 @@ if (true) {
 console.log(a)  //! undefined
 ```
 
-> Next: Learn what's new with objects. [Next](objects)
+> Next: Learn what's new with objects. [Next chapter](objects)

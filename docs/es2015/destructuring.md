@@ -206,4 +206,4 @@ function greet (/*{*/{name, greeting}/*}*/) {
 } //-
 ```
 
-> Next: Let's learn about import and export. [Next](modules)
+> Next: Let's learn about import and export. [Next chapter](modules)

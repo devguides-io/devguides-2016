@@ -268,4 +268,4 @@ var Engine = require('./engine').default || require('./engine') //-
 
 <!-- -->
 
-> Next: See what's new with variables. [Next](variables)
+> Next: See what's new with variables. [Next chapter](variables)

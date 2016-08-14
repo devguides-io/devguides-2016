@@ -205,4 +205,4 @@ Omit the curly braces for short functions.
 list.map(n => Math.PI * Math.sqrt(n))
 ```
 
-> Next: Let's learn about destructuring. [Next](destructuring)
+> Next: Let's learn about destructuring. [Next chapter](destructuring)

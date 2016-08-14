@@ -26,10 +26,11 @@
 @import './components/hljs';
 @import './components/nav';
 @import './components/page-dots';
-@import './components/cover-section';
-@import './components/chapter-links';
 @import './components/example-block';
 @import './components/output-line';
+
+@import './book/cover-section';
+@import './book/chapter-links';
 
 @import './extensions/literate';
 @import './extensions/muting';
