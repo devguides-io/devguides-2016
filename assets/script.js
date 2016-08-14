@@ -262,7 +262,8 @@ function navigateToHash (hash) {
   var idx = $section.index()
 
   $(document).queue(function (next) {
-    $('html, body').animate({ scrollTop: y - 16 }, 250, next)
+    setTimeout(next, 250 * .85)
+    $('html, body').animate({ scrollTop: y - 16 }, 250)
   })
 }
 
