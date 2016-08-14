@@ -72,43 +72,67 @@ $(function () {
 })
 
 /*
+ * Scroll properly on load to a hash
+ */
+
+$(function () {
+  if (window.location.hash) {
+    var $section = $(window.location.hash).closest('.page-section')
+    var y = $section.offset().top
+
+    setTimeout(function () {
+      // no offset here, just because I think it looks better
+      $('html, body').scrollTop(y)
+    }, 0)
+  }
+})
+
+/*
  * Infinite scroll
  */
 
 $(function () {
   var $placeholder = $('[role="next-waypoint"]')
-  var disabled
 
   $placeholder.waypoint({
-    handler: function () {
-      if (disabled) return
-      $('body').removeClass('-first-load')
-
-      // Disable until animations are finished; prevents double invocation.
-      disabled = true
-
-      // var $next = $('.page-section.-hide').eq(0)
-      // $next.trigger('pages:load')
-
-      // Show all pages (but still muted!)
-      $('.page-section.-hide').removeClass('-hide')
-      $placeholder.remove()
-
-      // Ahuh
-      setTimeout(function () {
-        disabled = false
-      }, 50)
-
-      setTimeout(function () {
-        window.Waypoint.refreshAll()
-      })
-    },
+    handler: destroyPlaceholder,
     offset: '70%'
   })
 })
 
+var disabled
+
+function destroyPlaceholder () {
+  var $placeholder = $('[role="next-waypoint"]')
+
+  if (disabled) return
+  $('body').removeClass('-first-load')
+
+  // Disable until animations are finished; prevents double invocation.
+  disabled = true
+
+  // var $next = $('.page-section.-hide').eq(0)
+  // $next.trigger('pages:load')
+
+  // Show all pages (but still muted!)
+  $('.page-section.-hide').removeClass('-hide')
+  $placeholder.remove()
+
+  // Ahuh
+  setTimeout(function () {
+    disabled = false
+  }, 50)
+
+  setTimeout(function () {
+    window.Waypoint.refreshAll()
+  })
+}
+
 /*
- * Waypoints
+ * Waypoints.
+ *
+ * Triggers `pages:advance` ({index}) when loading a new page.
+ * Triggers `pages:rewind` ({index}) when going back.
  */
 
 $(function () {
@@ -201,10 +225,38 @@ $(document).on('pages:advance pages:rewind', '.page-section', function (e, optio
 var iFrameResize = require('iframe-resizer')
 iFrameResize.iframeResizer({
   resizedCallback: function () {
-    console.log('resize')
     $(window).trigger('resize')
   }
 }, 'iframe[seamless]')
+
+/*
+ * On hash change
+ */
+
+$(window).on('hashchange', function (e) {
+  navigateToHash(window.location.hash)
+})
+
+$(document).on('click', 'a[href^="#"]', function (e) {
+  e.preventDefault()
+  var $a = $(this)
+
+  // No one cares about window.location.hash
+  navigateToHash($a.attr('href'))
+})
+
+function navigateToHash (hash) {
+  if (!hash) return
+
+  destroyPlaceholder()
+
+  var $heading = $(hash)
+  var $section = $heading.closest('.page-section')
+  var y = $section.offset().top
+  var idx = $section.index()
+
+  $('html, body').animate({ scrollTop: y - 16 }, 250)
+}
 
 },{"./helpers/on_scrollup":2,"iframe-resizer":4,"jquery":"jquery","waypoints/lib/jquery.waypoints":8}],4:[function(require,module,exports){
 
