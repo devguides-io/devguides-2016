@@ -5,7 +5,7 @@
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="variables">Variables</h1>
-<p><strong><a href="variables">Block scoping:</a></strong> <code>let</code> is the new <code>var</code>. It respects a thing called &quot;block scoping&quot;.</p>
+<p><a href="variables">Block scoping:</a> <code>let</code> is the new <code>var</code>. It respects a thing called &quot;block scoping&quot;.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span> (<span class="hljs-params"></span>) </span>{
   <span class="hljs-highlight"><span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span></span>
   <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
@@ -14,7 +14,7 @@
 }
 </code></pre>
 <hr>
-<p><strong><a href="variables">Constants</a></strong> are variables that you can't modify.</p>
+<p><a href="variables#constants">Constants</a> are variables that you can't modify.</p>
 <pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-keyword">const</span> DAY = <span class="hljs-number">86400</span></span>
 </code></pre>
 <blockquote class="see-also">
@@ -26,11 +26,11 @@
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="strings">Strings</h1>
-<p><strong><a href="strings">Template strings</a></strong> are surrounded by backticks. You can do interpolation with them.</p>
+<p><a href="strings">Template strings</a> are surrounded by backticks. You can do interpolation with them.</p>
 <pre><code class="language-js"><span class="hljs-keyword">var</span> message = <span class="hljs-highlight"><span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span></span>
 </code></pre>
 <hr>
-<p><strong><a href="strings">Multiline strings</a></strong> are also supported through backticks.</p>
+<p><a href="strings">Multiline strings</a> are also supported through backticks.</p>
 <pre><code class="language-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">`
 Usage:
   parse-csv [file]
@@ -47,7 +47,7 @@ Parses a CSV file.
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="objects">Objects</h1>
-<p><strong><a href="objects">New shorthand:</a></strong> there are now shorter syntaxes for getters, setters, and methods.</p>
+<p><a href="objects">New shorthand:</a> there are now shorter syntaxes for getters, setters, and methods.</p>
 <pre><code class="language-js">App = {
   <span class="hljs-placeholder -ok">Functions:</span>
   <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
@@ -58,12 +58,12 @@ Parses a CSV file.
 }
 </code></pre>
 <hr>
-<p><strong><a href="objects">Same-name properties</a></strong> also get a new shorthand.</p>
+<p><a href="objects#name-shorthand">Same-name properties</a> also get a new shorthand.</p>
 <pre><code class="language-js"><span class="hljs-placeholder -ok">Short for <code>{ start: start, reset: reset }</code></span>
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-highlight">{ start, reset }</span>
 </code></pre>
 <hr>
-<p><strong><a href="objects">Computed property names</a></strong> let you make dynamic names.</p>
+<p><a href="objects#computed-names">Computed property names</a> let you make dynamic names.</p>
 <pre><code class="language-js"><span class="hljs-keyword">return</span> {
   <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
 }
@@ -77,19 +77,19 @@ Parses a CSV file.
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="functions">Functions</h1>
-<p><strong>Default, rest, and spread</strong> make dynamic arguments easier.</p>
+<p><a href="functions#default-arguments">Default</a>, <a href="functions#rest-and-spread">rest, and spread</a> make dynamic arguments easier.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">name = 'Jerry'</span></span>) </span>{ <span class="hljs-ellipsis"></span> }
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"><span class="hljs-highlight">...names</span></span>) </span>{ <span class="hljs-ellipsis"></span> }<span class="hljs-hr"></span>
 greet(<span class="hljs-highlight">...names</span>)
 </code></pre>
 <hr>
-<p><strong>Arrow functions</strong> preserve the lexical <code>this</code>.</p>
+<p><a href="functions">Arrow functions</a> preserve the lexical <code>this</code>.</p>
 <pre><code class="language-js">list.forEach(<span class="hljs-highlight">item =&gt; {</span>
   <span class="hljs-keyword">this</span>.addItem(item)
 <span class="hljs-highlight">}</span>)
 </code></pre>
 <hr>
-<p><strong>Short functions:</strong> Omit the curly braces for short functions.</p>
+<p><a href="functions#short-syntax">Short functions</a>: Omit the curly braces for short functions.</p>
 <pre><code class="language-js">list.map(<span class="hljs-highlight">n =&gt; <span class="hljs-built_in">Math</span>.PI * <span class="hljs-built_in">Math</span>.sqrt(n)</span>)
 </code></pre>
 <blockquote class="see-also">
@@ -127,19 +127,19 @@ c.getArea()
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="destructuring">Destructuring</h1>
-<p><strong>Arrays</strong> can be destructured. Rest (<code>...</code>) can be used when destructuring arrays.</p>
+<p><a href="destructuring">Arrays</a> can be destructured. <a href="destructuring#spread">Spread</a> (<code>...</code>) can be used when destructuring arrays.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = [<span class="hljs-string">'John'</span>, <span class="hljs-string">'F'</span>, <span class="hljs-string">'Kennedy'</span>] </span>
 <span class="hljs-keyword">const</span> <span class="hljs-highlight">[first, middle, last]</span> = name
 <span class="hljs-keyword">const</span> [first, <span class="hljs-highlight">...others</span>] = name
 </code></pre>
 <hr>
-<p><strong>Objects</strong> can be destructured. You can even assign them to new names.</p>
+<p><a href="destructuring#objects">Objects</a> can be destructured. You can even assign them to new names.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = { first: <span class="hljs-string">'Jon'</span>, last: <span class="hljs-string">'Snow'</span> } </span>
 <span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first, last }</span> = name
 <span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first: firstName }</span> = name
 </code></pre>
 <hr>
-<p><strong>Function arguments</strong> can also be destructured.</p>
+<p><a href="destructuring#function-arguments">Function arguments</a> can also be destructured.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"><span class="hljs-highlight">{name, greeting}</span></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, <span class="hljs-subst">${name}</span>!`</span>) </span><span class="hljs-line -mute">} </span>
 </code></pre>
 <blockquote class="see-also">
@@ -151,13 +151,13 @@ c.getArea()
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="modules">Modules</h1>
-<p><strong>import</strong> is the new <code>require()</code>.</p>
+<p><a href="modules">import</a> is the new <code>require()</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>) </span>
 </code></pre>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> { readFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile </span>
 </code></pre>
 <hr>
-<p><strong>export</strong> is the new <code>module.exports</code>. You can export <code>default</code>, <code>function</code>, or <code>var</code>.</p>
+<p><a href="modules#exporting">export</a> is the new <code>module.exports</code>. You can export <code>default</code>, <code>function</code>, or <code>var</code>.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> start<span class="hljs-line -mute"><span class="hljs-built_in">module</span>.exports = start </span>
 </code></pre>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
@@ -166,7 +166,7 @@ c.getArea()
 <span class="hljs-line -mute">exports.start = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ ... } </span><span class="hljs-line -mute">exports.PI = <span class="hljs-number">3.14159</span> </span>
 </code></pre>
 <hr>
-<p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. This different from the <code>require()</code> behavior.</p>
+<p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. <a href="modules#exporting-many">This is different</a> from the <code>require()</code> behavior.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info">Gets <code>export default</code></span>
 <span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info">Gets <code>export function</code></span>
 
