@@ -82,20 +82,19 @@ $(function () {
   $placeholder.waypoint({
     handler: function () {
       if (disabled) return
-      var $next = $('.page-section.-hide').eq(0)
       $('body').removeClass('-first-load')
 
       // Disable until animations are finished; prevents double invocation.
       disabled = true
 
-      $next.trigger('pages:load')
-      $('.page-section.-hide').removeClass('-hide')
+      // var $next = $('.page-section.-hide').eq(0)
+      // $next.trigger('pages:load')
 
-      // Remove on the last page to show.
-      if ($('.page-section.-hide').length === 0) $placeholder.remove()
+      // Show all pages (but still muted!)
+      $('.page-section.-hide').removeClass('-hide')
+      $placeholder.remove()
 
       // Ahuh
-
       setTimeout(function () {
         disabled = false
       }, 50)
