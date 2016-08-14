@@ -88,7 +88,10 @@ $(function () {
 })
 
 /*
- * Infinite scroll
+ * Infinite scroll.
+ *
+ * This "loads" the next page as you scroll.
+ * Animations are NOT a part of this.
  */
 
 $(function () {
@@ -192,8 +195,11 @@ $(document).on('pages:showAll', function (e) {
 
 $(document).on('pages:advance', '.page-section', function (e, options) {
   var $this = $(this)
-  $('.page-section').addClass('-mute').removeClass('-active')
-  $this.removeClass('-mute').addClass('-active')
+  $(document).queue(function (next) {
+    $('.page-section').addClass('-mute').removeClass('-active')
+    $this.removeClass('-mute').addClass('-active')
+    next()
+  })
 })
 
 /*
@@ -255,7 +261,9 @@ function navigateToHash (hash) {
   var y = $section.offset().top
   var idx = $section.index()
 
-  $('html, body').animate({ scrollTop: y - 16 }, 250)
+  $(document).queue(function (next) {
+    $('html, body').animate({ scrollTop: y - 16 }, 250, next)
+  })
 }
 
 },{"./helpers/on_scrollup":2,"iframe-resizer":4,"jquery":"jquery","waypoints/lib/jquery.waypoints":8}],4:[function(require,module,exports){
