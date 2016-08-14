@@ -105,7 +105,7 @@ return {
 }
 ```
 
-> Also see: [Objects](objects)
+> Also see: [ES2015: Objects](objects)
 
 <!-- -->
 
@@ -142,7 +142,7 @@ list.forEach(/*{*/item => {/*}*/
 list.map(/*{*/n => Math.PI * Math.sqrt(n)/*}*/)
 ```
 
-> Also see: [Functions](functions)
+> Also see: [ES2015: Functions](functions)
 
 <!-- -->
 
@@ -174,7 +174,7 @@ c = Circle.createFromDiameter(20)
 c.getArea()
 ```
 
-> Also see: [Classes](classes)
+> Also see: [ES2015: Classes](classes)
 
 <!-- -->
 
@@ -212,7 +212,59 @@ function greet (/*{*/{name, greeting}/*}*/) {
 } //-
 ```
 
-> Also see: [Destructuring](destructuring)
+> Also see: [ES2015: Destructuring](destructuring)
+
+<!-- -->
+
+> Next: Let's learn about importing and exporting. [Next](#modules)
+
+* * * *
+
+# Modules
+
+**import** is the new `require()`.
+
+```js
+import fs from 'fs'
+var fs = require('fs') //-
+```
+
+```js
+import { readFile } from 'fs'
+var readFile = require('fs').readFile //-
+```
+
+---
+
+**export** is the new `module.exports`. You can export `default`, `function`, or `var`.
+
+```js
+export default start
+module.exports = start //-
+```
+
+```js
+export function start () { /*...*/ }
+export var PI = 3.14159
+
+
+exports.start = function () { ... } //-
+exports.PI = 3.14159 //-
+```
+
+---
+
+When mixing `export default` with other exports, `import` will fetch the default export. This different from the `require()` behavior.
+
+```js
+import Engine from './engine'      // <-- Gets `export default`
+import { start } from './engine'   // <-- Gets `export function`
+
+
+var Engine = require('./engine').default || require('./engine') //-
+```
+
+> Also see: [ES2015: Modules](modules)
 
 <!-- -->
 

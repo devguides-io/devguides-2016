@@ -2,6 +2,7 @@
 layout: _layouts/chapter.jade
 book: ES2015
 chapter: Destructuring
+next: modules
 ---
 
 # Destructuring
@@ -25,11 +26,15 @@ This works great for swapping variables! No need for temporary variables.
 let [a, b] = [b, a]
 ```
 
-> Next: What if there's more than 3 items? [Next](#rest)
+> Also see: [Destructuring assignment (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
+<!-- -->
+
+> Next: What if there's more than 3 items? [Next](#spread)
 
 * * * *
 
-# Rest
+# Spread
 
 You can use `...` to clump many arguments into on array.
 
@@ -48,6 +53,10 @@ This works on the other side of `=` too! You can use the `...` syntax as part of
 ```js
 const people = [leader, ...members]
 ```
+
+> Also see: [Spread operator (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+
+<!-- -->
 
 > Next: Let's try them on objects, too. [Next](#objects)
 
@@ -83,6 +92,10 @@ When used outside of `let` (or `var` or `const`), you'll need to wrap them in pa
 
 The parentheses prevents `{a, b}` from being treated as a block statement. This is the same rule that prevents `{hi: 'world'};` from being a valid JS statement.
 </details>
+
+> Also see: [Destructuring assignment (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
+<!-- -->
 
 > Next: Let's use them outside assignments. [Next](#function-arguments)
 
@@ -165,7 +178,7 @@ console.log(domain)
 
 # Recap
 
-**Arrays** can be destructured. Rest (`...`) can be used when destructuring arrays.
+**Arrays** can be destructured. Spread (`...`) can be used when destructuring arrays.
 
 ```js
 const name = ['John', 'F', 'Kennedy'] //-
@@ -193,4 +206,4 @@ function greet (/*{*/{name, greeting}/*}*/) {
 } //-
 ```
 
-> Next: That's all for now! [Back](.)
+> Next: Let's learn about import and export. [Next](#modules)

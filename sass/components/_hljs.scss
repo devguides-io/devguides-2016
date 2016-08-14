@@ -73,6 +73,7 @@
   padding-left: 0;
   padding-right: 0;
   color: $gray;
+  opacity: .5;
 
   &::before {
     font-size: 12px;
@@ -80,7 +81,8 @@
     margin-right: .5em;
     position: relative;
     top: -1px;
-    color: $green;
+    color: $gray;
+    opacity: .5;
   }
 
   code {

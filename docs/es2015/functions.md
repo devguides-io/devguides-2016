@@ -168,7 +168,7 @@ let names = ['Moe', 'Larry', 'Curly']
 greet(/*{*/...names/*}*/)  /// same as: `greet('Moe', 'Larry', 'Curly')`
 ```
 
-> See also: [Default rest spread (Babel)](http://babeljs.io/docs/learn-es2015/#default--rest--spread)
+> See also: [Spread operator (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
 <!-- -->
 
