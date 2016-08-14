@@ -118,6 +118,34 @@ greet(<span class="hljs-highlight">...names</span>)
 c = Circle.createFromDiameter(<span class="hljs-number">20</span>)
 c.getArea()
 </code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="classes">Classes</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Extract variables through destructuring. <a href="#destructuring">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="destructuring">Destructuring</h1>
+<p><strong>Arrays</strong> can be destructured. Rest (<code>...</code>) can be used when destructuring arrays.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = [<span class="hljs-string">'John'</span>, <span class="hljs-string">'F'</span>, <span class="hljs-string">'Kennedy'</span>] </span>
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">[first, middle, last]</span> = name
+<span class="hljs-keyword">const</span> [first, <span class="hljs-highlight">...others</span>] = name
+</code></pre>
+<hr>
+<p><strong>Objects</strong> can be destructured. You can even assign them to new names.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = { first: <span class="hljs-string">'Jon'</span>, last: <span class="hljs-string">'Snow'</span> } </span>
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first, last }</span> = name
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first: firstName }</span> = name
+</code></pre>
+<hr>
+<p><strong>Function arguments</strong> can also be destructured.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"><span class="hljs-highlight">{name, greeting}</span></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, <span class="hljs-subst">${name}</span>!`</span>) </span><span class="hljs-line -mute">} </span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="destructuring">Destructuring</a></p>
+</blockquote>
+<!-- -->
 <blockquote class="up-next">
 <p>See what's new with variables. <a href="variables">Next</a></p>
 </blockquote>

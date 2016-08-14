@@ -1,0 +1,139 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Destructuring - ES2015</title></head><body class="-chapter"><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Destructuring</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><a href="/" class="root">devguides.io</a><span> / </span><a href="." class="book">ES2015</a></h5><h1 id="destructuring">Destructuring</h1>
+<p>The new destructuring syntax lets you extract data from arrays and objects into their own variables.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> name = [<span class="hljs-string">'John'</span>, <span class="hljs-string">'F'</span>, <span class="hljs-string">'Kennedy'</span>]
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">[first, middle, last]</span> = name
+
+<span class="hljs-built_in">console</span>.log(first)    <span class="hljs-result">'John'</span>
+<span class="hljs-built_in">console</span>.log(middle)   <span class="hljs-result">'F'</span>
+<span class="hljs-built_in">console</span>.log(last)     <span class="hljs-result">'Kennedy'</span>
+</code></pre>
+<hr>
+<p>This works great for swapping variables! No need for temporary variables.</p>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> [a, b] = [b, a]
+</code></pre>
+<blockquote class="up-next">
+<p>What if there's more than 3 items? <a href="#rest">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="rest">Rest</h1>
+<p>You can use <code>...</code> to clump many arguments into on array.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> countries = [<span class="hljs-string">'USA'</span>, <span class="hljs-string">'Canada'</span>, <span class="hljs-string">'Portugal'</span>]
+<span class="hljs-keyword">const</span> [usa, <span class="hljs-highlight">...others</span>] = countries
+
+<span class="hljs-built_in">console</span>.log(usa)      <span class="hljs-result">'USA'</span>
+<span class="hljs-built_in">console</span>.log(others)   <span class="hljs-result">['Canada', 'Portugal']</span>
+</code></pre>
+<hr>
+<p>This works on the other side of <code>=</code> too! You can use the <code>...</code> syntax as part of an array literal. In fact, destructuring syntax was made so that they can be used as literals, too.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> people = [leader, ...members]
+</code></pre>
+<blockquote class="up-next">
+<p>Let's try them on objects, too. <a href="#objects">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="objects">Objects</h1>
+<p>Destructuring works for objects, too.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> album = {
+  artist: <span class="hljs-string">'Miles Davis'</span>,
+  title: <span class="hljs-string">'Kind of Blue'</span>
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">{ artist, title }</span> = album
+
+<span class="hljs-built_in">console</span>.log(artist)    <span class="hljs-result">'Miles Davis'</span>
+<span class="hljs-built_in">console</span>.log(album)     <span class="hljs-result">'Kind of Blue'</span>
+</code></pre>
+<hr>
+<pre><code class="language-js"><span class="hljs-keyword">let</span> a, b
+({a, b} = {a:<span class="hljs-number">1</span>, b:<span class="hljs-number">2</span>})
+</code></pre>
+<p>When used outside of <code>let</code> (or <code>var</code> or <code>const</code>), you'll need to wrap them in parentheses.</p>
+<details>
+<summary>Why?</summary>
+<p>The parentheses prevents <code>{a, b}</code> from being treated as a block statement. This is the same rule that prevents <code>{hi: 'world'};</code> from being a valid JS statement.</p>
+</details>
+<blockquote class="up-next">
+<p>Let's use them outside assignments. <a href="#function-arguments">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="function-arguments">Function arguments</h1>
+<p>Destructuring also works in function arguments. It's not just for assignments!</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"><span class="hljs-highlight">{name, greeting}</span></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, <span class="hljs-subst">${name}</span>!`</span>)
+}
+
+greet({ greeting: <span class="hljs-string">'Hello'</span>, name: <span class="hljs-string">'John'</span> })
+<span class="hljs-result">'Hello, John!'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>What if you want to change the name? <a href="#changing-names">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="changing-names">Changing names</h1>
+<p>Your variables don't need to have the same name as the object keys. You can extract a property into a different name.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> name = {
+  first: <span class="hljs-string">'Sherlock'</span>,
+  last: <span class="hljs-string">'Holmes'</span>
+}
+
+<span class="hljs-keyword">const</span> { <span class="hljs-highlight">first: firstName</span> } = name
+<span class="hljs-built_in">console</span>.log(firstName)   <span class="hljs-result">'Sherlock'</span>
+</code></pre>
+<!-- {pre:.-light} -->
+</div></div><div class="page-section"><div class="container">
+<h1 id="default-values">Default values</h1>
+<p>Use the default value syntax to set defaults in case a property doesn't exist.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> song = {
+  title: <span class="hljs-string">'Across the Universe'</span>,
+   artist: <span class="hljs-string">'The Beatles'</span>
+}
+
+<span class="hljs-keyword">const</span> { <span class="hljs-highlight">genre = <span class="hljs-string">'Unknown'</span></span> } = song
+
+<span class="hljs-built_in">console</span>.log(genre)
+<span class="hljs-result">'Unknown'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>What about objects inside objects? <a href="#deep-objects">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="deep-objects">Deep objects</h1>
+<p>You can go down into nested objects with destructuring, too.</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> page = {
+  uri: { domain: <span class="hljs-string">'devguides.io'</span>, path: <span class="hljs-string">'/es2015'</span> },
+  title: <span class="hljs-string">'ES2015 guides'</span>
+}
+
+<span class="hljs-keyword">const</span> { uri: <span class="hljs-highlight">{domain}</span> } = page
+
+<span class="hljs-built_in">console</span>.log(domain)
+<span class="hljs-result">'devguides.io'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p><strong>Arrays</strong> can be destructured. Rest (<code>...</code>) can be used when destructuring arrays.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = [<span class="hljs-string">'John'</span>, <span class="hljs-string">'F'</span>, <span class="hljs-string">'Kennedy'</span>] </span>
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">[first, middle, last]</span> = name
+<span class="hljs-keyword">const</span> [first, <span class="hljs-highlight">...others</span>] = name
+</code></pre>
+<hr>
+<p><strong>Objects</strong> can be destructured. You can even assign them to new names.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">const</span> name = { first: <span class="hljs-string">'Jon'</span>, last: <span class="hljs-string">'Snow'</span> } </span>
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first, last }</span> = name
+<span class="hljs-keyword">const</span> <span class="hljs-highlight">{ first: firstName }</span> = name
+</code></pre>
+<hr>
+<p><strong>Function arguments</strong> can also be destructured.</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"><span class="hljs-highlight">{name, greeting}</span></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, <span class="hljs-subst">${name}</span>!`</span>) </span><span class="hljs-line -mute">} </span>
+</code></pre>
+<blockquote class="up-next">
+<p>That's all for now! <a href=".">Back</a></p>
+</blockquote>
+</div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')
+  ga('create', 'UA-79044901-1', 'auto')
+  ga('send', 'pageview')
+}</script></body></html>
