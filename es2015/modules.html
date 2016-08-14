@@ -1,0 +1,136 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="../assets/style.css"><title>Modules - ES2015</title></head><body class="-chapter"><div class="book-nav"><div class="nav-button"></div></div><div class="chapter-nav"><a href=".">ES2015</a><span>Modules</span></div><div id="body" class="markdown-body -literate"><div class="page-section"><div class="container"><h5 class="chapter-prelude"><a href="/" class="root">devguides.io</a><span> / </span><a href="." class="book">ES2015</a></h5><h1 id="modules">Modules</h1>
+<p>Use <code>import</code> as a substitute for <em>require()</em>. These two lines do the same thing in most cases.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>)    <span class="hljs-placeholder -info-right">ES5</span>
+<span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>       <span class="hljs-placeholder -ok">ES2015</span>
+</code></pre>
+<blockquote class="up-next">
+<p>How can we import many things from a module? <a href="#destructuring">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="destructuring">Destructuring</h1>
+<p>You can also extract certain things from a module using <a href="destructuring">destructuring</a>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile    <span class="hljs-placeholder -info-right">ES5</span>
+<span class="hljs-keyword">import</span> { readFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>            <span class="hljs-placeholder -ok">ES2015</span>
+</code></pre>
+<hr>
+<p>You can also use the <em>assign to new name</em> destructuring syntax to extract things into new names.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> openFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).openFile    <span class="hljs-placeholder -info-right">ES5</span>
+<span class="hljs-keyword">import</span> { open: openFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>      <span class="hljs-placeholder -ok">ES2015</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Let's learn about hoisting. <a href="#hoisting">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="hoisting">Hoisting</h1>
+<p>If <code>import</code> appears on the top-level, but not at the top, they will be <em>hoisted</em> to the top.</p>
+<pre><code class="language-js"><span class="hljs-built_in">console</span>.log(util.inspect(<span class="hljs-string">'hello'</span>))
+<span class="hljs-keyword">import</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">'util'</span>
+</code></pre>
+<blockquote>
+<p>This will work as if the <code>import</code> was placed on top.</p>
+</blockquote>
+<hr>
+<p><code>import</code> can't be used inside a block (like a function), unlike <em>require()</em>.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">openFile</span> (<span class="hljs-params">file</span>) </span>{ </span>
+  <span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>  <span class="hljs-placeholder -warning"></span><span class="hljs-line -mute">  <span class="hljs-keyword">return</span> fs.readFileSync(file) </span><span class="hljs-line -mute">} </span>
+</code></pre>
+<blockquote>
+<p>Error: 'import' and 'export' may only appear at the top level.</p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>How can we export? <a href="#exporting">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="exporting">Exporting</h1>
+<p>Use <code>export default</code> as a substitute for assigning to <code>module.exports</code>.</p>
+<pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{ </span><span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Starting engines...'</span> </span><span class="hljs-line -mute">} </span>
+
+<span class="hljs-built_in">module</span>.exports = start  <span class="hljs-placeholder -info-right">ES5</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> start    <span class="hljs-placeholder -ok">ES2015</span>
+</code></pre>
+<hr>
+<p>You can also export inline function definitions.
+In fact, you can export any expression, not just functions!</p>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'hello'</span>
+}
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  name: <span class="hljs-string">'devguides'</span>,
+  version: <span class="hljs-string">'1.0.0'</span>
+}
+</code></pre>
+<blockquote class="up-next">
+<p>How can we export many things from one module? <a href="#exporting-many">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="exporting-many">Exporting many</h1>
+<p>Use <code>export function</code> to export functions.<br>
+Use <code>export var</code> to export variables.</p>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Vroom!'</span> </span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span> (<span class="hljs-params"></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Skreech!'</span> </span>
+}
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> PI = <span class="hljs-number">3.14159</span>
+</code></pre>
+<hr>
+<p>You can then import these by <a href="destructuring">destructuring</a>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { start, stop } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>
+</code></pre>
+<blockquote class="up-next">
+<p>Can we mix this with <code>export default</code>? <a href="#mixing-exports">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="mixing-exports">Mixing exports</h1>
+<p>You can mix <code>default</code> exports with <code>var</code> and <code>function</code> exports.</p>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Engine
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-ellipsis"></span>
+}
+</code></pre>
+<hr>
+<p>Doing <code>import X</code> will fetch the default export if it's available, or object with every export if it's not. This makes <code>import</code> very different from <code>require()</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Gets <code>export default</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info-right">Gets <code>export function</code></span>
+</code></pre>
+<pre><code class="language-js"><span class="hljs-placeholder -info-right">ES5 equivalent:</span>
+<span class="hljs-keyword">var</span> Engine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>)
+</code></pre>
+<blockquote class="up-next">
+<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="recap">Recap</h1>
+<p><code>import</code> is the new <code>require()</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>) </span>
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { readFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile </span>
+</code></pre>
+<hr>
+<p><code>export</code> is the new <code>module.exports</code>. You can export <code>default</code>, <code>function</code>, or <code>var</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> start<span class="hljs-line -mute"><span class="hljs-built_in">module</span>.exports = start </span>
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> PI = <span class="hljs-number">3.14159</span>
+
+<span class="hljs-line -mute">exports.start = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ ... } </span><span class="hljs-line -mute">exports.PI = <span class="hljs-number">3.14159</span> </span>
+</code></pre>
+<hr>
+<p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. This different from the <code>require()</code> behavior.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info">Gets <code>export default</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info">Gets <code>export function</code></span>
+
+<span class="hljs-line -mute"><span class="hljs-keyword">var</span> Engine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>) </span>
+</code></pre>
+<blockquote class="up-next">
+<p>That's all for now! <a href=".">Back</a></p>
+</blockquote>
+</div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')
+  ga('create', 'UA-79044901-1', 'auto')
+  ga('send', 'pageview')
+}</script></body></html>

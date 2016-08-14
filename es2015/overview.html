@@ -69,7 +69,7 @@ Parses a CSV file.
 }
 </code></pre>
 <blockquote class="see-also">
-<p><span>Also see:</span> <a href="objects">Objects</a></p>
+<p><span>Also see:</span> <a href="objects">ES2015: Objects</a></p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
@@ -93,7 +93,7 @@ greet(<span class="hljs-highlight">...names</span>)
 <pre><code class="language-js">list.map(<span class="hljs-highlight">n =&gt; <span class="hljs-built_in">Math</span>.PI * <span class="hljs-built_in">Math</span>.sqrt(n)</span>)
 </code></pre>
 <blockquote class="see-also">
-<p><span>Also see:</span> <a href="functions">Functions</a></p>
+<p><span>Also see:</span> <a href="functions">ES2015: Functions</a></p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
@@ -119,7 +119,7 @@ c = Circle.createFromDiameter(<span class="hljs-number">20</span>)
 c.getArea()
 </code></pre>
 <blockquote class="see-also">
-<p><span>Also see:</span> <a href="classes">Classes</a></p>
+<p><span>Also see:</span> <a href="classes">ES2015: Classes</a></p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
@@ -143,7 +143,37 @@ c.getArea()
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"><span class="hljs-highlight">{name, greeting}</span></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${greeting}</span>, <span class="hljs-subst">${name}</span>!`</span>) </span><span class="hljs-line -mute">} </span>
 </code></pre>
 <blockquote class="see-also">
-<p><span>Also see:</span> <a href="destructuring">Destructuring</a></p>
+<p><span>Also see:</span> <a href="destructuring">ES2015: Destructuring</a></p>
+</blockquote>
+<!-- -->
+<blockquote class="up-next">
+<p>Let's learn about importing and exporting. <a href="#modules">Next</a></p>
+</blockquote>
+</div></div><div class="page-section"><div class="container">
+<h1 id="modules">Modules</h1>
+<p><strong>import</strong> is the new <code>require()</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>) </span>
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { readFile } <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span><span class="hljs-line -mute"><span class="hljs-keyword">var</span> readFile = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>).readFile </span>
+</code></pre>
+<hr>
+<p><strong>export</strong> is the new <code>module.exports</code>. You can export <code>default</code>, <code>function</code>, or <code>var</code>.</p>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> start<span class="hljs-line -mute"><span class="hljs-built_in">module</span>.exports = start </span>
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> PI = <span class="hljs-number">3.14159</span>
+
+<span class="hljs-line -mute">exports.start = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ ... } </span><span class="hljs-line -mute">exports.PI = <span class="hljs-number">3.14159</span> </span>
+</code></pre>
+<hr>
+<p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. This different from the <code>require()</code> behavior.</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info">Gets <code>export default</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info">Gets <code>export function</code></span>
+
+<span class="hljs-line -mute"><span class="hljs-keyword">var</span> Engine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>) </span>
+</code></pre>
+<blockquote class="see-also">
+<p><span>Also see:</span> <a href="modules">ES2015: Modules</a></p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
