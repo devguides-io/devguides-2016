@@ -370,6 +370,12 @@ void (function () {
   }, { detectMutate: true })
 }())
 
+onmount('html.mobile', function () {
+  if ($('html, body').scrollTop() === 0) {
+    $('html, body').scrollTop(12)
+  }
+})
+
 },{"./actions/load_next_slide":2,"./actions/navigate_to_hash":3,"./helpers/on_scrollup":4,"hammerjs":6,"iframe-resizer":7,"jquery":"jquery","onmount":11,"waypoints/lib/jquery.waypoints":12}],6:[function(require,module,exports){
 /*! Hammer.JS - v2.0.7 - 2016-04-22
  * http://hammerjs.github.io/
