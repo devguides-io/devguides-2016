@@ -55,10 +55,10 @@ Parses a CSV file.
 <p><strong>New shorthand:</strong> there are now shorter syntaxes for getters, setters, and methods.
 <a href="objects">#</a></p>
 <pre><code class="language-js">App = {
-  <span class="hljs-placeholder -ok">Functions:</span>
+  <span class="hljs-placeholder -info-right">Functions:</span>
   <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
 
-  <span class="hljs-placeholder -ok">Getters and setters:</span>
+  <span class="hljs-placeholder -info-right">Getters and setters:</span>
   <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
   <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
 }
@@ -66,7 +66,7 @@ Parses a CSV file.
 <hr>
 <p><strong>Same-name properties</strong> also get a new shorthand.
 <a href="objects#name-shorthand">#</a></p>
-<pre><code class="language-js"><span class="hljs-placeholder -ok">Short for <code>{ start: start, reset: reset }</code></span>
+<pre><code class="language-js"><span class="hljs-placeholder -info-right">Short for <code>{ start: start, reset: reset }</code></span>
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-highlight">{ start, reset }</span>
 </code></pre>
 <hr>
@@ -120,10 +120,10 @@ greet(<span class="hljs-highlight">...names</span>)
     <span class="hljs-keyword">this</span>.radius = radius
   }
 
-  <span class="hljs-placeholder -ok">Methods:</span>
+  <span class="hljs-placeholder -info-right">Methods:</span>
   getArea () { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.radius }
 
-  <span class="hljs-placeholder -ok">Static methods:</span>
+  <span class="hljs-placeholder -info-right">Static methods:</span>
   <span class="hljs-keyword">static</span> createFromDiameter (d) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Circle(d / <span class="hljs-number">2</span>) }
 }
 </code></pre>
