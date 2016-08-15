@@ -7,14 +7,14 @@
 <pre><code class="language-js">App = {
   <span class="hljs-highlight">handler</span>,
 
-  <span class="hljs-placeholder -ok">Functions:</span>
+  <span class="hljs-placeholder -info-right">Functions:</span>
   <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
 
-  <span class="hljs-placeholder -ok">Getters and setters:</span>
+  <span class="hljs-placeholder -info-right">Getters and setters:</span>
   <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
   <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
 
-  <span class="hljs-placeholder -ok">Computed properties:</span>
+  <span class="hljs-placeholder -info-right">Computed properties:</span>
   <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
 }
 </code></pre>
@@ -65,9 +65,9 @@ App.start()
     <span class="hljs-keyword">this</span>.status = value ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span>
   }
 }<span class="hljs-hr"></span>
-Shop.closed = <span class="hljs-literal">true</span>  <span class="hljs-placeholder -ok">invokes <code>set closed()</code></span>
-Shop.status         <span class="hljs-placeholder -ok"><code>'closed'</code></span>
-Shop.closed         <span class="hljs-placeholder -ok"><code>true</code> (invokes <code>get closed()</code>)</span>
+Shop.closed = <span class="hljs-literal">true</span>  <span class="hljs-placeholder -info-right">invokes <code>set closed()</code></span>
+Shop.status         <span class="hljs-placeholder -info-right"><code>'closed'</code></span>
+Shop.closed         <span class="hljs-placeholder -info-right"><code>true</code> (invokes <code>get closed()</code>)</span>
 </code></pre>
 <blockquote class="see-also">
 <p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">get (MDN)</a></p>
@@ -109,14 +109,14 @@ App = {
 <pre><code class="language-js">App = {
   <span class="hljs-highlight">handler</span>,
 
-  <span class="hljs-placeholder -ok">Functions:</span>
+  <span class="hljs-placeholder -info-right">Functions:</span>
   <span class="hljs-highlight">start ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.go() },
 
-  <span class="hljs-placeholder -ok">Getters and setters:</span>
+  <span class="hljs-placeholder -info-right">Getters and setters:</span>
   <span class="hljs-highlight">get closed ()</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.status === <span class="hljs-string">'closed'</span> },
   <span class="hljs-highlight">set closed (val)</span> { <span class="hljs-keyword">this</span>.status = val ? <span class="hljs-string">'closed'</span> : <span class="hljs-string">'open'</span> },
 
-  <span class="hljs-placeholder -ok">Computed names:</span>
+  <span class="hljs-placeholder -info-right">Computed names:</span>
   <span class="hljs-highlight">[ <span class="hljs-string">'prop_'</span> + n ]</span>: <span class="hljs-number">42</span>
 }
 </code></pre>
