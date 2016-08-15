@@ -13,10 +13,12 @@
 <p>A <code>let</code> is only available inside the <code>{ ... }</code> block they're in.
 In this example, the <code>name</code>s are only available inside their respective <em>if</em> and <em>else</em> blocks.</p>
 <iframe class='example-frame' src='examples/variables-let' seamless></iframe>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block scope (MDN)</a></p>
-</blockquote>
-<!-- -->
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">Block scope</a> <em>(Mozilla Developer Network)</em></li>
+</ul>
+</details>
 <blockquote class="up-next">
 <p><span>Learn about </span><code>let</code>'s cousin. <a href="#constants">Next</a></p>
 </blockquote>
@@ -25,10 +27,12 @@ In this example, the <code>name</code>s are only available inside their respecti
 <p><code>const</code> is just like <em>let</em>, except you can't reassign it to a new value.
 Most guides now recommend using <em>let</em> and <em>const</em> instead of <code>var</code>.</p>
 <iframe class='example-frame' src='examples/variables-const' seamless></iframe>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants (MDN)</a></p>
-</blockquote>
-<!-- -->
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Constants</a> <em>(Mozilla Developer Network)</em></li>
+</ul>
+</details>
 <blockquote class="up-next">
 <p><span>What is block scoping? </span><a href="#block-scoping">Next</a></p>
 </blockquote>
@@ -36,9 +40,6 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <h1 id="block-scoping">Block scoping</h1>
 <p><code>let</code> and <code>const</code> are said to be <em>block scoping.</em> In JavaScript, a block is code inside <code>{</code> and <code>}</code>. These variables are only available inside their blocks.</p>
 <iframe class='example-frame' src='examples/variables-scoping' seamless></iframe>
-<blockquote>
-<p>The 2nd <code>msg</code> is only available inside the <em>if</em> block.</p>
-</blockquote>
 <hr>
 <p>Block scoping affects other kinds of blocks.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span> (<span class="hljs-params"></span>) </span>{ <span class="hljs-ellipsis"></span> }
@@ -51,10 +52,12 @@ Most guides now recommend using <em>let</em> and <em>const</em> instead of <code
 <span class="hljs-keyword">for</span> (;;) { <span class="hljs-ellipsis"></span> }
 <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) { <span class="hljs-ellipsis"></span> }
 </code></pre>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block">Blocks (MDN)</a></p>
-</blockquote>
-<!-- -->
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block">Block statement</a> <em>(Mozilla Developer Network)</em></li>
+</ul>
+</details>
 <blockquote class="up-next">
 <p><span>What about blocks inside blocks? </span><a href="#nested-blocks">Next</a></p>
 </blockquote>
