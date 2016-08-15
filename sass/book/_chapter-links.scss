@@ -1,5 +1,9 @@
 .chapter-links {
-  margin: 2em 0;
+  margin: 0;
+
+  @media (min-width: 769px) {
+    margin: 2em 0;
+  }
 }
 
 .chapter-link {
