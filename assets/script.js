@@ -1,7 +1,63 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 require('../../lib/web')
 
-},{"../../lib/web":3}],2:[function(require,module,exports){
+},{"../../lib/web":5}],2:[function(require,module,exports){
+/**
+ * Internal: loads the next slide.
+ */
+
+function loadNextSlide () {
+  var $placeholder = $('[role="next-waypoint"]')
+
+  $('body').removeClass('-first-load')
+
+  // Show all pages (but still muted!)
+  $('.page-section.-hide').removeClass('-hide')
+  $placeholder.remove()
+
+  setTimeout(function () {
+    Waypoint.refreshAll()
+  })
+}
+
+module.exports = loadNextSlide
+
+},{}],3:[function(require,module,exports){
+var loadNextSlide = require('./load_next_slide')
+
+/**
+ * Internal: navigates to a given hash `hash`.
+ *
+ * It loads all slides and smooth-scrolls into the given slide.
+ *
+ *     navigateToHash('#recap')
+ */
+
+function navigateToHash (hash) {
+  if (!hash) return
+
+  loadNextSlide()
+
+  var isDesktop = $('html.-desktop').length > 0
+
+  var $heading = $(hash)
+  var $section = $heading.closest('.page-section')
+  var y = $section.offset().top
+  var idx = $section.index()
+
+  if (isDesktop) {
+    $(document).queue(function (next) {
+      setTimeout(next, 250 * .85)
+      $('html, body').animate({ scrollTop: y - 16 }, 250)
+    })
+  } else {
+    $('html, body').scrollTop(y)
+  }
+}
+
+module.exports = navigateToHash
+
+},{"./load_next_slide":2}],4:[function(require,module,exports){
 var $ = window.$
 
 module.exports = function onScrollUp (options, fn) {
@@ -10,7 +66,12 @@ module.exports = function onScrollUp (options, fn) {
   var min = options.min || 10
   var lastY, bottomY, lastDirection, supress
 
-  $window.on('scroll', function () {
+  $window.on('scroll', handler)
+  return function () {
+    $window.off('scroll', handler)
+  }
+
+  function handler () {
     var newY = $window.scrollTop()
 
     if (typeof lastY === 'undefined') {
@@ -31,15 +92,40 @@ module.exports = function onScrollUp (options, fn) {
 
     lastY = newY
     lastDirection = newDirection
-  })
+  }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 window.jQuery = window.$ = require('jquery')
 require('waypoints/lib/jquery.waypoints')
 
 var $ = window.$
 var Waypoint = window.Waypoint
+var onmount = require('onmount')
+var loadNextSlide = require('./actions/load_next_slide')
+var navigateToHash = require('./actions/navigate_to_hash')
+
+// Initialize onmount
+onmount.debug = true
+$(function () { onmount() })
+
+/*
+ * Window resize class
+ */
+
+void (function () {
+  $(window).on('resize', reclass)
+  $(reclass)
+
+  function reclass () {
+    var width = $(window).width()
+    var mobile = width <= 768
+    var klass = mobile ? '-mobile' : '-desktop'
+
+    document.documentElement.className = klass
+    onmount()
+  }
+}())
 
 /*
  * Custom behaviors
@@ -54,7 +140,7 @@ var onScrollUp = require('./helpers/on_scrollup')
  * this has a waypoint trigger to show the next page.
  */
 
-$(function () {
+onmount('html.-desktop', function (b) {
   // If pressing the 'back' button, just show everything
   if ($('body').scrollTop() !== 0 || window.location.hash !== '') return
 
@@ -63,13 +149,27 @@ $(function () {
 
   // Don't add a next-waypoint unless there's a next page.
   if ($sections.length > 1) {
+    b.$sections = $sections
+    b.$next = $('<div role="next-waypoint"></div>')
     $sections.addClass('-hide')
     $sections.eq(0).removeClass('-hide')
-    $sections.parent().append($('<div role="next-waypoint"></div>'))
+    $sections.parent().append(b.$next)
   }
 
-  Waypoint.refreshAll()
-})
+  setTimeout(function () {
+    Waypoint.refreshAll()
+  })
+}, function (b) {
+  $('body').removeClass('-first-load')
+
+  if (b.$next) {
+    b.$next.remove()
+  }
+
+  if (b.$sections) {
+    b.$sections.removeClass('-hide')
+  }
+}, { detectMutate: true })
 
 /*
  * Scroll properly on load to a hash
@@ -81,7 +181,7 @@ $(function () {
     var y = $section.offset().top
 
     setTimeout(function () {
-      // no offset here, just because I think it looks better
+      // No offset here; don't smooth-scroll into place on first load.
       $('html, body').scrollTop(y)
     }, 0)
   }
@@ -94,42 +194,18 @@ $(function () {
  * Animations are NOT a part of this.
  */
 
-$(function () {
+onmount('html.-desktop', function enter (b) {
   var $placeholder = $('[role="next-waypoint"]')
 
-  $placeholder.waypoint({
-    handler: destroyPlaceholder,
-    offset: '70%'
+  b.waypoints = $placeholder.waypoint({
+    handler: loadNextSlide,
+    offset: '90%'
   })
-})
-
-var disabled
-
-function destroyPlaceholder () {
-  var $placeholder = $('[role="next-waypoint"]')
-
-  if (disabled) return
-  $('body').removeClass('-first-load')
-
-  // Disable until animations are finished; prevents double invocation.
-  disabled = true
-
-  // var $next = $('.page-section.-hide').eq(0)
-  // $next.trigger('pages:load')
-
-  // Show all pages (but still muted!)
-  $('.page-section.-hide').removeClass('-hide')
-  $placeholder.remove()
-
-  // Ahuh
-  setTimeout(function () {
-    disabled = false
-  }, 50)
-
-  setTimeout(function () {
-    window.Waypoint.refreshAll()
-  })
-}
+}, function exit (b) {
+  if (b.waypoints) {
+    $.each(b.waypoints, function () { this.destroy() })
+  }
+}, { detectMutate: true })
 
 /*
  * Waypoints.
@@ -181,9 +257,13 @@ $(function () {
  * Show everything when scrolling up.
  */
 
-onScrollUp({ min: 128 }, function () {
-  $(document).trigger('pages:showAll')
-})
+onmount('html.-desktop', function (b) {
+  b.handler = onScrollUp({ min: 128 }, function () {
+    $(document).trigger('pages:showAll')
+  })
+}, function (b) {
+  b.handler()
+}, { detectMutate: true })
 
 /*
  * Page change (muting)
@@ -239,41 +319,31 @@ iFrameResize.iframeResizer({
  * On hash change
  */
 
-$(window).on('hashchange', function (e) {
-  navigateToHash(window.location.hash)
-})
+void (function () {
+  $(window).on('hashchange', onHashChange)
+  $(document).on('click', 'a[href^="#"]', onClick)
 
-$(document).on('click', 'a[href^="#"]', function (e) {
-  e.preventDefault()
-  var $a = $(this)
+  function onHashChange (e) {
+    navigateToHash(window.location.hash)
+  }
 
-  // No one cares about window.location.hash
-  navigateToHash($a.attr('href'))
-})
+  function onClick (e) {
+    e.preventDefault()
+    var $a = $(this)
 
-function navigateToHash (hash) {
-  if (!hash) return
+    // No one cares about window.location.hash;
+    // so no pushState magic here to preserve back button behavior.
+    navigateToHash($a.attr('href'))
+  }
+}())
 
-  destroyPlaceholder()
-
-  var $heading = $(hash)
-  var $section = $heading.closest('.page-section')
-  var y = $section.offset().top
-  var idx = $section.index()
-
-  $(document).queue(function (next) {
-    setTimeout(next, 250 * .85)
-    $('html, body').animate({ scrollTop: y - 16 }, 250)
-  })
-}
-
-},{"./helpers/on_scrollup":2,"iframe-resizer":4,"jquery":"jquery","waypoints/lib/jquery.waypoints":8}],4:[function(require,module,exports){
+},{"./actions/load_next_slide":2,"./actions/navigate_to_hash":3,"./helpers/on_scrollup":4,"iframe-resizer":6,"jquery":"jquery","onmount":10,"waypoints/lib/jquery.waypoints":11}],6:[function(require,module,exports){
 
 'use strict';
 
 module.exports = require('./js');
 
-},{"./js":7}],5:[function(require,module,exports){
+},{"./js":9}],7:[function(require,module,exports){
 /*
  * File: iframeResizer.contentWindow.js
  * Desc: Include this file in any page being loaded into an iframe
@@ -1343,7 +1413,7 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /*
  * File: iframeResizer.js
  * Desc: Force iframes to size to content.
@@ -2341,11 +2411,430 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 exports.iframeResizer = require('./iframeResizer');
 exports.iframeResizerContentWindow = require('./iframeResizer.contentWindow');
 
-},{"./iframeResizer":6,"./iframeResizer.contentWindow":5}],8:[function(require,module,exports){
+},{"./iframeResizer":8,"./iframeResizer.contentWindow":7}],10:[function(require,module,exports){
+/* global define */
+void (function (root, factory) {
+  if (typeof define === 'function' && define.amd) define(factory)
+  else if (typeof exports === 'object') module.exports = factory()
+  else {
+    if (window.jQuery) window.jQuery.onmount = factory()
+    else root.onmount = factory()
+  }
+}(this, function ($) {
+  /*
+   * Internal: Registry.
+   */
+
+  var handlers, behaviors, selectors, log
+
+  /*
+   * Internal: IDs for auto-incrementing.
+   */
+
+  var bid = 0 /* behavior ID */
+  var cid = 0 /* component ID */
+
+  /**
+   * (Module) Adds a behavior, or triggers behaviors.
+   *
+   * When no parameters are passed, it triggers all behaviors. When one
+   * parameter is passed, it triggers the given behavior. Otherwise, it adds a
+   * behavior.
+   *
+   *     // define a behavior
+   *     $.onmount('.select-box', function () {
+   *       $(this).on('...')
+   *     })
+   *
+   *     // define a behavior with exit
+   *     $.onmount('.select-box', function () {
+   *       $(document).on('...')
+   *     }, function () {
+   *       $(document).off('...')
+   *     })
+   *
+   *     // retrigger a onmount
+   *     $.onmount('.select-box')
+   *
+   *     // retriggers all behaviors
+   *     $.onmount()
+   */
+
+  function onmount (selector, init, exit, options) {
+    if (typeof exit === 'object') {
+      options = exit
+      exit = undefined
+    }
+
+    if (arguments.length === 0 || isjQuery(selector) || isEvent(selector)) {
+      // onmount() - trigger all behaviors. Also account for cases such as
+      // $($.onmount), where it's triggered with a jQuery event object.
+      onmount.poll()
+    } else if (arguments.length === 1) {
+      // onmount(selector) - trigger for a given selector.
+      onmount.poll(selector)
+    } else {
+      // onmount(sel, fn, [fn]) - register a new behavior.
+      var be = new Behavior(selector, init, exit, options)
+      behaviors.push(be)
+      be.register()
+    }
+
+    return this
+  }
+
+  /*
+   * Use jQuery (or a jQuery-like) when available. This will allow
+   * the use of jQuery selectors.
+   */
+
+  onmount.$ = window.jQuery || window.Zepto || window.Ender
+
+  /*
+   * Detect MutationObserver support for `onmount.observe()`.
+   * You may even add a polyfill here via
+   * `onmount.MutationObserver = require('mutation-observer')`.
+   */
+
+  onmount.MutationObserver =
+    window.MutationObserver ||
+    window.WebKitMutationObserver ||
+    window.MozMutationObserver
+
+  /**
+   * Set this to true if you want to see debug messages.
+   */
+
+  onmount.debug = false
+
+  /**
+   * Internal: triggers behaviors for a selector or for all.
+   *
+   *     onmount.poll()
+   *     onmount.poll('.js-button')
+   */
+
+  onmount.poll = function poll (selector) {
+    if (selector) selector = onmount.selectify(selector)
+    var functions = (selector ? selectors[selector] : handlers) || []
+    each(functions, function (fn) { fn() })
+  }
+
+  /**
+   * Observes automatically using MutationObserver events.
+   *
+   *     onmount.observe()
+   */
+
+  onmount.observe = function observe () {
+    var MutationObserver = onmount.MutationObserver
+    if (typeof MutationObserver === 'undefined') return
+
+    var obs = new MutationObserver(function (mutations) {
+      each(behaviors, function (be) {
+        each(mutations, function (mutation) {
+          each(mutation.addedNodes, function (el) {
+            if (matches(el, be.selector)) be.visitEnter(el)
+          })
+
+          each(mutation.removedNodes, function (el) {
+            if (matches(el, be.selector)) be.doExit(el)
+          })
+        })
+      })
+    })
+
+    obs.observe(document, { subtree: true, childList: true })
+    onmount.observer = obs
+
+    // trigger everything before going
+    onmount()
+    return true
+  }
+
+  /**
+   * Turns off observation first issued by `onmount.observe()`.
+   */
+
+  onmount.unobserve = function unobserve () {
+    if (!this.observer) return
+    this.observer.disconnect()
+    delete this.observer
+  }
+
+  /**
+   * Forces teardown of all behaviors currently applied.
+   */
+
+  onmount.teardown = function teardown () {
+    each(behaviors, function (be) {
+      each(be.loaded, function (el, i) {
+        if (el) be.doExit(el, i)
+      })
+    })
+  }
+
+  /**
+   * Clears all behaviors. Useful for tests.
+   * This will NOT call exit handlers.
+   */
+
+  onmount.reset = function reset () {
+    handlers = onmount.handlers = []
+    selectors = onmount.selectors = {}
+    behaviors = onmount.behaviors = []
+  }
+
+  /**
+   * Internal: Converts `@role` to `[role~="role"]` if needed. You can override
+   * this by reimplementing `onmount.selectify`.
+   *
+   *     selectify('@hi')   //=> '[role="hi"]'
+   *     selectify('.btn')  //=> '.btn'
+   */
+
+  onmount.selectify = function selectify (selector) {
+    if (selector[0] === '@') {
+      return '[role~="' + selector.substr(1).replace(/"/g, '\\"') + '"]'
+    }
+    return selector
+  }
+
+  /**
+   * Internal: behavior class
+   */
+
+  function Behavior (selector, init, exit, options) {
+    this.id = 'b' + bid++
+    this.init = init
+    this.exit = exit
+    this.selector = onmount.selectify(selector)
+    this.loaded = [] // keep track of dom elements loaded for this behavior
+    this.key = '__onmount:' + bid // leave the state in el['__onmount:12']
+    this.detectMutate = options && options.detectMutate
+  }
+
+  /**
+   * Internal: initialize this behavior by registering itself to the internal
+   * `selectors` map. This allows you to call `onmount(selector)` later on.
+   */
+
+  Behavior.prototype.register = function () {
+    var be = this
+    var loaded = this.loaded
+    var selector = this.selector
+
+    register(selector, function () {
+      var list = query(selector)
+
+      // This is the function invoked on `onmount(selector)`.
+      // Clean up old ones (if they're not in the DOM anymore).
+      each(loaded, function (element, i) {
+        be.visitExit(element, i, list)
+      })
+
+      // Clean up new ones (if they're not loaded yet).
+      eachOf(list, function (element) {
+        be.visitEnter(element)
+      })
+    })
+  }
+
+  /**
+   * Internal: visits the element `el` and turns it on if applicable.
+   */
+
+  Behavior.prototype.visitEnter = function (el) {
+    if (el[this.key]) return
+    var options = { id: 'c' + cid, selector: this.selector }
+    if (this.init.call(el, options) !== false) {
+      if (onmount.debug) log('enter', this.selector, el)
+      el[this.key] = options
+      this.loaded.push(el)
+      cid++
+    }
+  }
+
+  /**
+   * Internal: visits the element `el` and sees if it needs its exit handler
+   * called.
+   */
+
+  Behavior.prototype.visitExit = function (el, i, list) {
+    if (!el) return
+    if (this.detectMutate) {
+      if (!has(list, el)) return this.doExit(el, i)
+    } else {
+      if (!isAttached(el)) return this.doExit(el, i)
+    }
+  }
+
+  /**
+   * Internal: calls the exit handler for the behavior for element `el` (if
+   * available), and marks the behavior/element as uninitialized.
+   */
+
+  Behavior.prototype.doExit = function (el, i) {
+    if (typeof i === 'undefined') i = this.loaded.indexOf(el)
+    this.loaded[i] = undefined
+    if (this.exit && this.exit.call(el, el[this.key]) !== false) {
+      if (onmount.debug) log('exit', this.selector, el)
+      delete el[this.key]
+    }
+  }
+
+  /**
+   * Internal: check if an element is still attached to its document.
+   */
+
+  function isAttached (el) {
+    while (el) {
+      if (el === document.documentElement) return true
+      el = el.parentElement
+    }
+  }
+
+  /**
+   * Internal: reimplementation of `$('...')`. If jQuery is available,
+   * use it (I guess to preserve IE compatibility and to enable special jQuery
+   * attribute selectors). Use with `eachOf()` or `has()`.
+   */
+
+  function query (selector, fn) {
+    if (onmount.$) return onmount.$(selector)
+    return document.querySelectorAll(selector)
+  }
+
+  /**
+   * Internal: iterates through a `query()` result.
+   */
+
+  function eachOf (list, fn) {
+    if (onmount.$) return list.each(function (i) { fn(this, i) })
+    return each(list, fn)
+  }
+
+  /**
+   * Interanl: checks if given element `el` is in the query result `list`.
+   */
+
+  function has (list, el) {
+    if (onmount.$) return list.index(el) > -1
+    return list.indexOf(el) > -1
+  }
+
+  /**
+   * Internal: registers a behavior handler for a selector.
+   */
+
+  function register (selector, fn) {
+    if (!selectors[selector]) selectors[selector] = []
+    selectors[selector].push(fn)
+    handlers.push(fn)
+  }
+
+  /**
+   * Checks if a given element `el` matches `selector`.
+   * Compare with [$.fn.is](http://api.jquery.com/is/).
+   *
+   *     var matches = require('dom101/matches');
+   *
+   *     matches(button, ':focus');
+   */
+
+  function matches (el, selector) {
+    var _matches = el.matches ||
+      el.matchesSelector ||
+      el.msMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.webkitMatchesSelector ||
+      el.oMatchesSelector
+
+    if (onmount.$) {
+      return onmount.$(el).is(selector)
+    } else if (_matches) {
+      return _matches.call(el, selector)
+    } else if (el.parentNode) {
+      // IE8 and below
+      var nodes = el.parentNode.querySelectorAll(selector)
+      for (var i = nodes.length; i--; 0) {
+        if (nodes[i] === el) return true
+      }
+      return false
+    }
+  }
+
+  /**
+   * Iterates through `list` (an array or an object). This is useful when dealing
+   * with NodeLists like `document.querySelectorAll`.
+   *
+   *     var each = require('dom101/each');
+   *     var qa = require('dom101/query-selector-all');
+   *
+   *     each(qa('.button'), function (el) {
+   *       addClass('el', 'selected');
+   *     });
+   */
+
+  function each (list, fn) {
+    var i
+    var len = list.length
+
+    if (len === +len) {
+      for (i = 0; i < len; i++) { fn(list[i], i) }
+    } else {
+      for (i in list) {
+        if (list.hasOwnProperty(i)) fn(list[i], i)
+      }
+    }
+
+    return list
+  }
+
+  /**
+   * Internal: Check if a given object is jQuery
+   */
+
+  function isjQuery ($) {
+    return typeof $ === 'function' && $.fn && $.noConflict
+  }
+
+  function isEvent (e) {
+    return typeof e === 'object' && e.target
+  }
+
+  /**
+   * Internal: logging
+   */
+
+  var styles = {
+    enter: 'background-color:#dfd;font-weight:bold;color:#141',
+    exit: 'background-color:#fdd;font-weight:bold;color:#411'
+  }
+
+  if (~navigator.userAgent.indexOf('Mozilla')) {
+    log = function (type, selector, el) {
+      console.log('%c %s ', styles[type], selector, el)
+    }
+  } else {
+    log = function (type, selector, el) {
+      console.log('(onmount)', type, selector)
+    }
+  }
+
+  /*
+   * Export
+   */
+
+  onmount.reset()
+  return onmount
+}))
+
+},{}],11:[function(require,module,exports){
 /*!
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton
