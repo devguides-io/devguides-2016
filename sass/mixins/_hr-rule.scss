@@ -6,6 +6,6 @@
   background: $line-color;
 
   @media (min-width: 769px) {
-    background: linear-gradient(to right, $line-color, rgba($line-color, .5) 90%);
+    background: linear-gradient(to right, $line-color, rgba($line-color, .05) 90%);
   }
 }
