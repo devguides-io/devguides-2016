@@ -134,6 +134,8 @@ console.log(firstName)   //=> 'Sherlock'
 
 <!-- {pre:.-light} -->
 
+> Next: Let's learn about default values. [Next](#default-values)
+
 * * * *
 
 # Default values
