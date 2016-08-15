@@ -41,6 +41,7 @@ When using `this` inside arrow functions, they take whatever's the value of `thi
 addItems: function (items) {
   this.show()
   items.forEach((item) => {
+    //! Without arrow functions, `this` means something else here.
     /*{*/this/*}*/.append(item)
   })
 }
@@ -58,7 +59,6 @@ addItems: function (items) {
   this.show()
   /*{*/var self = this/*}*/
   items.forEach(function (item) {
-    //! Without arrow functions, `this` means something else here.
     self.append(item)
   })
 }
