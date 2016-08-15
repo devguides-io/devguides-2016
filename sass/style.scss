@@ -41,5 +41,6 @@
 @media (max-width: 480px) {
   html, body {
     overflow: hidden;
+    -webkit-overflow-scrolling: auto;
   }
 }

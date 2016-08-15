@@ -28,6 +28,11 @@ body, .markdown-body {
   @media (max-width: 480px) {
     color: #111;
   }
+
+  @media (max-width: 390px) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 }
 
 /*
