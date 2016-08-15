@@ -27,9 +27,11 @@ In this example, the `name`s are only available inside their respective *if* and
 
 <!-- example: examples/variables-let -->
 
-> Also see: [Block scope (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+- [Block scope](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) *(Mozilla Developer Network)*
+</details>
 
 > Next: Learn about `let`'s cousin. [Next](#constants)
 
@@ -42,9 +44,11 @@ Most guides now recommend using *let* and *const* instead of `var`.
 
 <!-- example: examples/variables-const -->
 
-> Also see: [Constants (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+- [Constants](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) *(Mozilla Developer Network)*
+</details>
 
 > Next: What is block scoping? [Next](#block-scoping)
 
@@ -55,8 +59,6 @@ Most guides now recommend using *let* and *const* instead of `var`.
 `let` and `const` are said to be *block scoping.* In JavaScript, a block is code inside `{` and `}`. These variables are only available inside their blocks.
 
 <!-- example: examples/variables-scoping -->
-
-> The 2nd `msg` is only available inside the *if* block.
 
 ---
 
@@ -74,9 +76,11 @@ for (;;) { /*...*/ }
 while (true) { /*...*/ }
 ```
 
-> Also see: [Blocks (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+- [Block statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block) *(Mozilla Developer Network)*
+</details>
 
 > Next: What about blocks inside blocks? [Next](#nested-blocks)
 
