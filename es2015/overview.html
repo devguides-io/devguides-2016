@@ -174,8 +174,8 @@ c.getArea()
 </code></pre>
 <hr>
 <p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. <a href="modules#exporting-many">This is different</a> from the <code>require()</code> behavior.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info">Gets <code>export default</code></span>
-<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info">Gets <code>export function</code></span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-left">Gets <code>export default</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info-left">Gets <code>export function</code></span>
 
 <span class="hljs-line -mute"><span class="hljs-keyword">var</span> Engine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>) </span>
 </code></pre>

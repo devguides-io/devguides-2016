@@ -24,20 +24,16 @@
 <h1 id="hoisting">Hoisting</h1>
 <p>If <code>import</code> appears on the top-level, but not at the top, they will be <em>hoisted</em> to the top.</p>
 <pre><code class="language-js"><span class="hljs-built_in">console</span>.log(util.inspect(<span class="hljs-string">'hello'</span>))
-<span class="hljs-keyword">import</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">'util'</span>
+<span class="hljs-keyword">import</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">'util'</span><span class="hljs-hr"></span>
+<span class="hljs-placeholder -info">This will work as if the <code>import</code> was placed on top.</span>
 </code></pre>
-<blockquote>
-<p>This will work as if the <code>import</code> was placed on top.</p>
-</blockquote>
 <hr>
 <p><code>import</code> can't be used inside a block (like a function), unlike <em>require()</em>.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">openFile</span> (<span class="hljs-params">file</span>) </span>{ </span>
   <span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">'fs'</span>  <span class="hljs-placeholder -warning"></span><span class="hljs-line -mute">  <span class="hljs-keyword">return</span> fs.readFileSync(file) </span><span class="hljs-line -mute">} </span>
+<span class="hljs-hr"></span>
+<span class="hljs-placeholder -warning">Error: 'import' and 'export' may only appear at the top level.</span>
 </code></pre>
-<blockquote>
-<p>Error: 'import' and 'export' may only appear at the top level.</p>
-</blockquote>
-<!-- -->
 <blockquote class="up-next">
 <p>How can we export? <a href="#exporting">Next</a></p>
 </blockquote>
@@ -121,10 +117,10 @@ Use <code>export var</code> to export variables.</p>
 </code></pre>
 <hr>
 <p>When mixing <code>export default</code> with other exports, <code>import</code> will fetch the default export. This different from the <code>require()</code> behavior.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info">Gets <code>export default</code></span>
-<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info">Gets <code>export function</code></span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Gets <code>export default</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info-right">Gets <code>export function</code></span>
 
-<span class="hljs-line -mute"><span class="hljs-keyword">var</span> Engine = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>) </span>
+<span class="hljs-line -mute"><span class="hljs-keyword">var</span> Engine = </span><span class="hljs-line -mute">  <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>).default || </span><span class="hljs-line -mute">  <span class="hljs-built_in">require</span>(<span class="hljs-string">'./engine'</span>) </span>
 </code></pre>
 <blockquote class="up-next">
 <p>That's all for now! <a href=".">Back</a></p>

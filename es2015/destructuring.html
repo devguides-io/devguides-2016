@@ -11,9 +11,12 @@
 <p>This works great for swapping variables! No need for temporary variables.</p>
 <pre><code class="language-js"><span class="hljs-keyword">let</span> [a, b] = [b, a]
 </code></pre>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment (MDN)</a></p>
-</blockquote>
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment</a> (Mozilla Developer Network)</li>
+</ul>
+</details>
 <!-- -->
 <blockquote class="up-next">
 <p>What if there's more than 3 items? <a href="#spread">Next</a></p>
@@ -31,10 +34,12 @@
 <p>This works on the other side of <code>=</code> too! You can use the <code>...</code> syntax as part of an array literal. In fact, destructuring syntax was made so that they can be used as literals, too.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> people = [leader, ...members]
 </code></pre>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator (MDN)</a></p>
-</blockquote>
-<!-- -->
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator</a> (MDN)</li>
+</ul>
+</details>
 <blockquote class="up-next">
 <p>Let's try them on objects, too. <a href="#objects">Next</a></p>
 </blockquote>
@@ -57,12 +62,15 @@
 </code></pre>
 <p>When used outside of <code>let</code> (or <code>var</code> or <code>const</code>), you'll need to wrap them in parentheses.</p>
 <details>
-<summary>Why?</summary>
+<summary>Why parentheses?</summary>
 <p>The parentheses prevents <code>{a, b}</code> from being treated as a block statement. This is the same rule that prevents <code>{hi: 'world'};</code> from being a valid JS statement.</p>
 </details>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment (MDN)</a></p>
-</blockquote>
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring assignment</a> (MDN)</li>
+</ul>
+</details>
 <!-- -->
 <blockquote class="up-next">
 <p>Let's use them outside assignments. <a href="#function-arguments">Next</a></p>

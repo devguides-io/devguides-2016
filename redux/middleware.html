@@ -61,16 +61,12 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
   } <span class="hljs-keyword">else</span> {
     <span class="hljs-keyword">return</span> dispatch(action)
   }
-}
+}<span class="hljs-hr"></span>
+<span class="hljs-placeholder -info">This function will replace <code>dispatch()</code>. It listens for <code>FETCH</code> actions.</span>
 </code></pre>
-<blockquote>
-<p>This function will replace <code>dispatch()</code>. It listens for <code>FETCH</code> actions.</p>
-</blockquote>
-<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'FETCH'</span>, next: <span class="hljs-string">'LOAD'</span>, url: <span class="hljs-string">'/data.json'</span> })
+<pre><code class="language-js">store.dispatch({ type: <span class="hljs-string">'FETCH'</span>, next: <span class="hljs-string">'LOAD'</span>, url: <span class="hljs-string">'/data.json'</span> })<span class="hljs-hr"></span>
+<span class="hljs-placeholder -info">When using the middleware, this dispatches <code>LOAD_PENDING</code>, <code>LOAD_SUCCESS</code> and <code>LOAD_ERROR</code>.</span>
 </code></pre>
-<blockquote>
-<p>When using the middleware, this dispatches <code>LOAD_PENDING</code>, <code>LOAD_SUCCESS</code> and <code>LOAD_ERROR</code>.</p>
-</blockquote>
 <blockquote class="up-next">
 <p>Let's improve your Redux experience with npm. <a href="#common-middleware">Next</a></p>
 </blockquote>
@@ -108,11 +104,11 @@ action @ 13:11:02 LOAD_SUCCESS (in 0.1ms)
 <hr>
 <p>Having them as functions-that-return-functions makes for something interesting: it breaks the middleware into 3 steps that are applied separately.</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">store</span>) </span>{
-  <span class="hljs-placeholder -info">You can get store.dispatch() and store.getState() here.</span>
+  <span class="hljs-placeholder -info-left">You can get store.dispatch() and store.getState() here.</span>
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">dispatch</span>) </span>{
-    <span class="hljs-placeholder -info">This runs on <code>createStore()</code>.</span>
+    <span class="hljs-placeholder -info-left">This runs on <code>createStore()</code>.</span>
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">action</span>) </span>{
-      <span class="hljs-placeholder -info">This runs every <code>dispatch()</code>.</span>
+      <span class="hljs-placeholder -info-left">This runs every <code>dispatch()</code>.</span>
     }
   }
 }

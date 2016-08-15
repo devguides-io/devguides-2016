@@ -76,16 +76,14 @@ This is only useful if each reducer works on a single part of your state.</p>
   profile: {
     name: <span class="hljs-string">'John Jones'</span>,
     private: <span class="hljs-literal">true</span>
-  },<span class="hljs-line -mute">  photos: [ </span><span class="hljs-line -mute">    <span class="hljs-ellipsis"></span> </span><span class="hljs-line -mute">  ] </span><span class="hljs-line -mute">} </span>
+  },<span class="hljs-line -mute">  photos: [ </span><span class="hljs-line -mute">    <span class="hljs-ellipsis"></span> </span><span class="hljs-line -mute">  ] </span><span class="hljs-line -mute">} </span><span class="hljs-hr"></span>
+<span class="hljs-placeholder -info"><code>state.profile</code> is a subtree of the <em>state</em> tree.</span>
 </code></pre>
-<blockquote>
-<p><code>state.profile</code> is a subtree of the <em>state</em> tree.</p>
-</blockquote>
 <hr>
 <p><code>combineReducers()</code> lets you break apart your reducer. Your reducers will only operate in their own subtree, like <em>state.profile</em> above.</p>
 <pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profile</span> (<span class="hljs-params">state, action</span>) </span>{
   <span class="hljs-keyword">if</span> (action.type === <span class="hljs-string">'PUBLISH'</span>) {
-    <span class="hljs-placeholder -info"><code>state</code> is limited to <code>state.profile</code> here.</span>
+    <span class="hljs-placeholder -info-left"><code>state</code> is limited to <code>state.profile</code> here.</span>
     <span class="hljs-keyword">return</span> { ...state, private: <span class="hljs-literal">false</span> }
   }
 }<span class="hljs-hr"></span>
@@ -101,10 +99,10 @@ This is only useful if each reducer works on a single part of your state.</p>
 <pre><code class="language-js"><span class="hljs-line -mute"><span class="hljs-keyword">import</span> reduceReducers <span class="hljs-keyword">from</span> <span class="hljs-string">'reduce-reducers'</span> </span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">profiles</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder -info">See the whole <code>state</code> here.</span>
+  <span class="hljs-placeholder -info-left">See the whole <code>state</code> here.</span>
 }
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">photos</span> (<span class="hljs-params">state, action</span>) </span>{
-  <span class="hljs-placeholder -info">Here, as well.</span>
+  <span class="hljs-placeholder -info-left">Here, as well.</span>
 }<span class="hljs-hr"></span>
 <span class="hljs-keyword">let</span> reducer = <span class="hljs-highlight">reduceReducers(profiles, photos)</span>
 <span class="hljs-keyword">let</span> store = createStore(reducer)

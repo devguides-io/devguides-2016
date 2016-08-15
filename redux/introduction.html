@@ -34,9 +34,13 @@
 <p>You can read from a store by checking its <em>state</em> using <code>getState()</code>.
 Writing data works a bit different, though. That's where <code>reducer</code> comes in.</p>
 <iframe class='example-frame' src='examples/intro-first-store' seamless></iframe>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="http://redux.js.org/docs/basics/Actions.html">createStore docs</a></p>
-</blockquote>
+<hr>
+<details>
+<summary>Further reading...</summary>
+<ul>
+<li><a href="http://redux.js.org/docs/basics/Actions.html">createStore docs</a> (redux.js.org)</li>
+</ul>
+</details>
 <blockquote class="up-next">
 <p>How do you write to a store? <a href="#updating-the-store">Next</a></p>
 </blockquote>
@@ -74,11 +78,9 @@ These two are roughly equivalent.</p>
   <span class="hljs-highlight">title: state.title,</span>
   <span class="hljs-highlight">body: state.body,</span>
   published: <span class="hljs-literal">true</span>
-}
+}<span class="hljs-hr"></span>
+<span class="hljs-placeholder -info">The contents of <code>state</code> is rolled out in place of <code>...state</code>.</span>
 </code></pre>
-<blockquote>
-<p>The contents of <code>state</code> is rolled out in place of <code>...state</code>.</p>
-</blockquote>
 <!--
 var state = { name: 'John', age: 3 }
 inspect({ ...state, published: true })
@@ -124,7 +126,7 @@ store = createStore(reducer, {<span class="hljs-placeholder">initial state</span
 store.subscribe(() =&gt; { <span class="hljs-ellipsis"></span> })
 </code></pre>
 <blockquote class="up-next">
-<p>Let's learn more about actions. <a href="actions">Next</a></p>
+<p>Let's learn more about actions. <a href="actions">Next chapter</a></p>
 </blockquote>
 </div></div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')
