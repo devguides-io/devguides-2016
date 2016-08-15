@@ -4,8 +4,12 @@
 
 .chapter-link {
   border-top: solid 1px rgba($blue, .2);
-  padding: 8px 0;
   @include clearfix;
+
+  > a {
+    display: block;
+    padding: 8px 0;
+  }
 
   > a:hover,
   > a:focus {

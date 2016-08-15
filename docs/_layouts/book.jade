@@ -26,6 +26,7 @@ mixin content(chapters)
         .space
 
       .cover-content
+        .space
         block description
 
         .chapter-links
@@ -41,6 +42,7 @@ mixin content(chapters)
                 a(href=chapter.id)
                   strong.title= chapter.title
                   span.description= chapter.description
+        .space
 
   script(src=(base + '/assets/common.min.js'))
   script(src=(base + '/assets/script.min.js'))

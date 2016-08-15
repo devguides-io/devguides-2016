@@ -66,25 +66,3 @@ div[role="next-waypoint"] {
   text-align: center;
 }
 
-.cover-section {
-  position: relative;
-  min-height: calc(100vh - 32px);
-  background: white;
-  overflow: hidden;
-
-  display: flex;
-
-  > .cover-front {
-    flex: 0 0 50%;
-    background: #89a;
-  }
-
-  > .cover-content {
-    flex: 0 0 50%;
-  }
-}
-
-.cover-content {
-  padding: 32px;
-  
-}

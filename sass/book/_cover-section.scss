@@ -1,28 +1,36 @@
 /*
  * Cover
+ *
+ *     .cover-section
+ *       .cover-front
+ *         .cover-front-title
+ *       .cover-content
  */
 
-.cover-section {
-  position: relative;
-  background: white;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-
-  > .cover-front {
-    flex: 0 0 45%;
-    min-height: calc(100vh - 32px);
-    height: 100%;
-    background: #89a;
-  }
-
-  > .cover-content {
-    flex: 0 0 55%;
-  }
-}
-
 @media (min-width: 769px) {
+  .cover-section {
+    position: relative;
+    background: white;
+    overflow: hidden;
+
+    display: flex;
+    align-items: stretch;
+
+    > .cover-front,
+    > .cover-content {
+      min-height: calc(100vh - 32px);
+    }
+
+    > .cover-front {
+      flex: 0 0 45%;
+    }
+
+    > .cover-content {
+      flex: 0 0 55%;
+    }
+  }
+
+  // Line
   .cover-section::after {
     content: '';
     display: block;
@@ -35,9 +43,25 @@
   }
 }
 
+/*
+ * The content
+ */
+
 .cover-content {
-  padding: 32px;
-  padding-left: 64px;
+  display: flex;
+  flex-direction: column;
+
+  padding: 16px;
+
+  @media (min-width: 769px) {
+    padding: 32px;
+    padding-left: 64px;
+
+    > .space {
+      flex: 1 1 50%;
+      min-height: 32px;
+    }
+  }
 }
 
 /*
@@ -45,22 +69,41 @@
  */
 
 .cover-front {
-  padding: 32px;
-  padding-top: 24px;
-  padding-left: 64px + 32px;
-
+  background: #89a;
   display: flex;
   flex-direction: column;
 
-  > .space {
-    flex: 1 0 50%;
-  }
-
+  // "Introduction to"
   > .chapter-prelude {
-    margin-top: 0;
-    margin-bottom: 0;
     strong { color: $black; }
     a { color: white; }
+  }
+
+  @media (min-width: 769px) {
+    padding: 32px;
+    padding-top: 24px;
+    padding-left: 64px + 32px;
+
+    > .space {
+      flex: 1 1 50%;
+    }
+
+    > .chapter-prelude {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    > .space {
+      height: 16px;
+    }
+
+    > .chapter-prelude {
+      display: none;
+    }
   }
 }
 
@@ -85,6 +128,16 @@
 
   > .title::after {
     display: none;
+  }
+
+  @media (max-width: 768px) {
+    & {
+      text-align: center;
+    }
+
+    > .prelude {
+      font-size: 1em;
+    }
   }
 }
 
