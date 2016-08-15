@@ -19,6 +19,10 @@
   }
 
   @media (max-width: 480px) {
+    & {
+      margin-top: 0;
+    }
+
     &::after {
       margin-top: 8px;
       margin-bottom: 2em;

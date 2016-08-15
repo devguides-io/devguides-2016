@@ -15,7 +15,8 @@ Here's an overview of what's new with ES2015 (previously known as ES6).
 
 # Variables
 
-[Block scoping:](variables) `let` is the new `var`. It respects a thing called "block scoping".
+__Block scoping:__ `let` is the new `var`. These variables are only available in their respective blocks.
+[More](variables)
 
 ```js
 function fn () {
@@ -28,7 +29,8 @@ function fn () {
 
 ----
 
-[Constants](variables#constants) are variables that you can't modify.
+__Constants__ are variables that you can't modify.
+[More](variables#constants)
 
 ```js
 /*{*/const DAY = 86400/*}*/
@@ -44,7 +46,8 @@ function fn () {
 
 # Strings
 
-[Template strings](strings) are surrounded by backticks. You can do interpolation with them.
+__Template strings__ are surrounded by backticks. You can do interpolation with them.
+[More](strings)
 
 ```js
 var message = /*{*/`Hello ${name}`/*}*/
@@ -52,7 +55,8 @@ var message = /*{*/`Hello ${name}`/*}*/
 
 ----
 
-[Multiline strings](strings) are also supported through backticks.
+__Multiline__ strings are also supported through backticks.
+[More](strings)
 
 ```js
 console.log(`
@@ -73,7 +77,8 @@ Parses a CSV file.
 
 # Objects
 
-[New shorthand:](objects) there are now shorter syntaxes for getters, setters, and methods.
+__New shorthand:__ there are now shorter syntaxes for getters, setters, and methods.
+[More](objects)
 
 ```js
 App = {
@@ -88,7 +93,8 @@ App = {
 
 ---
 
-[Same-name properties](objects#name-shorthand) also get a new shorthand.
+__Same-name properties__ also get a new shorthand.
+[More](objects#name-shorthand)
 
 ```js
 /// Short for `{ start: start, reset: reset }`
@@ -97,7 +103,8 @@ module.exports = /*{*/{ start, reset }/*}*/
 
 ---
 
-[Computed property names](objects#computed-names) let you make dynamic names.
+__Computed property names__ let you make dynamic names.
+[More](objects#computed-names)
 
 ```js
 return {
