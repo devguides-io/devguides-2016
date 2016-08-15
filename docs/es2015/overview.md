@@ -16,7 +16,7 @@ Here's an overview of what's new with ES2015, previously known as ES6.
 # Variables
 
 __Block scoping:__ `let` is the new `var`. These variables are only available in their respective blocks.
-[More](variables)
+[#](variables)
 
 ```js
 function fn () {
@@ -30,7 +30,7 @@ function fn () {
 ----
 
 __Constants__ are variables that you can't modify.
-[More](variables#constants)
+[#](variables#constants)
 
 ```js
 /*{*/const DAY = 86400/*}*/
@@ -51,7 +51,7 @@ See the [ES2015: variables](variables) guide.
 # Strings
 
 __Template strings__ are surrounded by backticks. You can do interpolation with them.
-[More](strings)
+[#](strings)
 
 ```js
 var message = /*{*/`Hello ${name}`/*}*/
@@ -60,7 +60,7 @@ var message = /*{*/`Hello ${name}`/*}*/
 ----
 
 __Multiline__ strings are also supported through backticks.
-[More](strings)
+[#](strings)
 
 ```js
 console.log(`
@@ -84,7 +84,7 @@ Learn more at the [ES2015: Strings](strings) guide.
 # Objects
 
 __New shorthand:__ there are now shorter syntaxes for getters, setters, and methods.
-[More](objects)
+[#](objects)
 
 ```js
 App = {
@@ -100,7 +100,7 @@ App = {
 ---
 
 __Same-name properties__ also get a new shorthand.
-[More](objects#name-shorthand)
+[#](objects#name-shorthand)
 
 ```js
 /// Short for `{ start: start, reset: reset }`
@@ -110,7 +110,7 @@ module.exports = /*{*/{ start, reset }/*}*/
 ---
 
 __Computed property names__ let you make dynamic names.
-[More](objects#computed-names)
+[#](objects#computed-names)
 
 ```js
 return {
@@ -130,7 +130,9 @@ Learn more at the [ES2015: Objects](objects) guide.
 
 # Functions
 
-[Default](functions#default-arguments), [rest, and spread](functions#rest-and-spread) make dynamic arguments easier.
+__Default, rest and spread__ make dynamic arguments easier.
+[#](functions#default-arguments)
+[#](functions#rest-and-spread)
 
 ```js
 function greet(/*{*/name = "Jerry"/*}*/) { /*...*/ }
@@ -141,7 +143,8 @@ greet(/*{*/...names/*}*/)
 
 ---
 
-[Arrow functions](functions) preserve the lexical `this`.
+__Arrow functions__ preserve the lexical `this`.
+[#](functions)
 
 ```js
 list.forEach(/*{*/item => {/*}*/
@@ -151,7 +154,8 @@ list.forEach(/*{*/item => {/*}*/
 
 ---
 
-[Short functions](functions#short-syntax): Omit the curly braces for short functions.
+__Short functions:__ Omit the curly braces for short functions.
+[#](functions#short-syntax)
 
 ```js
 list.map(/*{*/n => Math.PI * Math.sqrt(n)/*}*/)
@@ -169,7 +173,8 @@ Learn more at the [ES2015: Functions](functions) guide.
 
 # Classes
 
-ES2015 lets you write [classes](classes) instead of dealing with prototypes.
+ES2015 lets you write classes instead of dealing with prototypes.
+[#](classes)
 
 ```js
 /*{*/class Circle extends Shape {/*}*/
@@ -203,7 +208,8 @@ Learn more at the [ES2015: Classes](classes) guide.
 
 # Destructuring
 
-[Arrays](destructuring) can be destructured. [Spread](destructuring#spread) (`...`) can be used when destructuring arrays.
+__Arrays__ can be destructured. The spread operator can be used when destructuring arrays.
+[#](destructuring)
 
 ```js
 const name = ['John', 'F', 'Kennedy'] //-
@@ -213,7 +219,8 @@ const [first, /*{*/...others/*}*/] = name
 
 ---
 
-[Objects](destructuring#objects) can be destructured. You can even assign them to new names.
+__Objects__ can be destructured. You can even assign them to new names.
+[#](destructuring#objects)
 
 ```js
 const name = { first: 'Jon', last: 'Snow' } //-
