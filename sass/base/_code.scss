@@ -5,6 +5,7 @@
 .markdown-body pre {
   background: $skyblue;
   color: rgba($blue, .8);
+  font-family: $monospace;
   font-size: .8em;
   line-height: 1.6;
 
@@ -16,8 +17,8 @@
   @media (max-width: 480px) {
     margin-left: -16px;
     margin-right: -16px;
-
-    background: rgba($skyblue, .6);
+    border-top: solid 1px $line-color;
+    border-bottom: solid 1px $line-color;
   }
 
   & + pre {
@@ -27,6 +28,7 @@
 
 .markdown-body code {
   background: transparent;
+  font-family: $monospace;
   padding: 0;
   margin: 0;
   color: $maroon;

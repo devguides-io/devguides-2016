@@ -43,6 +43,14 @@
     font-size: .9em;
     margin-left: .4em;
   }
+
+  @media (max-width: 480px) {
+    &::before {
+      @include hr-rule;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+  }
 }
 
 .markdown-body.-literate .up-next,
@@ -84,56 +92,58 @@
  * Button-on-the-left layout
  */
 
-@media (min-width: 769px) {
-  .markdown-body.-literate .up-next,
-  .markdown-body .up-next {
-    > p {
-      line-height: 2.3em;
-      color: $gray;
-      font-size: .9em;
-      font-family: $serif;
-      font-style: italic;
-    }
+.markdown-body.-literate .up-next,
+.markdown-body .up-next {
+  > p {
+    line-height: 2.3em;
+    color: $gray;
+    font-size: .9em;
+    font-family: $serif;
+    font-style: italic;
+  }
 
-    > p > a {
-      font-size: 1em;
-      line-height: 1em;
-      display: inline-block;
-      padding: 8px 12px;
-      border: solid 1px rgba($teal, .5);
-      border-radius: 3px;
+  > p > a {
+    font-size: 1em;
+    line-height: 1em;
+    display: inline-block;
+    padding: 8px 12px;
+    border: solid 1px rgba($teal, .5);
+    border-radius: 3px;
 
-      float: left;
-      margin-left: 0;
-      margin-right: 16px;
-      position: relative;
-    }
+    float: left;
+    margin-left: 0;
+    margin-right: 16px;
+    position: relative;
+  }
 
-    // Invisible hit area
-    > p > a::before {
-      @include hit-area(32px, 96px, 32px, 32px);
-    }
+  // Invisible hit area
+  > p > a::before {
+    @include hit-area(32px, 96px, 32px, 32px);
+  }
 
-    > p > a::after {
-      // content: '\f35d';
-      color: $teal;
-      top: 0;
-    }
+  > p > a::after {
+    // content: '\f35d';
+    color: $teal;
+    top: 0;
+  }
 
-    > p > a:hover,
-    > p > a:focus {
-      text-decoration: none;
-      background: rgba($blue, .5);
-      border-color: transparent;
+  > p > a:hover,
+  > p > a:focus {
+    text-decoration: none;
+    background: rgba($blue, .5);
+    border-color: transparent;
+    color: white;
+
+    &::after {
       color: white;
-
-      &::after {
-        color: white;
-        opacity: .5;
-      }
+      opacity: .5;
     }
   }
 }
+
+/*
+ * Short mode (currently not used)
+ */
 
 .markdown-body.-literate .up-next,
 .markdown-body .up-next {
