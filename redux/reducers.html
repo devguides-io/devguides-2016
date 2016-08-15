@@ -18,7 +18,7 @@
 }
 </code></pre>
 <blockquote class="up-next">
-<p>Why do we keep using <code>...</code>? <a href="#immutability">Next</a></p>
+<p><span>Why do we keep using </span><code>...</code>? <a href="#immutability">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="immutability">Immutability</h1>
@@ -39,7 +39,7 @@ orig === copy  <span class="hljs-placeholder -warning">true</span><span class="h
 </code></pre>
 <p>If your React app seems like it's not updating, it's probably because you're mutating state. It'd make <code>state === oldState</code> even if they changed, making React skip doing updates.</p>
 <blockquote class="up-next">
-<p>What happens when my reducer gets very big? <a href="#combining-reducers">Next</a></p>
+<p><span>What happens when my reducer gets very big? </span><a href="#combining-reducers">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="combining-reducers">Combining reducers</h1>
@@ -67,7 +67,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>What do you mean &quot;on a single part&quot;? <a href="#state-subtrees">Next</a></p>
+<p><span>What do you mean &quot;on a single part&quot;? </span><a href="#state-subtrees">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="state-subtrees">State subtrees</h1>
@@ -91,7 +91,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 </code></pre>
 <p>This reducer can't see <code>state.photos</code>! This is usually a good thing. As your store reducers get bigger, you're assured that they only play in one part of your state tree.</p>
 <blockquote class="up-next">
-<p>What if my I need my reducers to do more than that? <a href="#reduce-reducers">Next</a></p>
+<p><span>What if my I need my reducers to do more than that? </span><a href="#reduce-reducers">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="reduce-reducers">Reduce reducers</h1>
@@ -113,7 +113,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+<p><span>Let's recap what we've learned. </span><a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
@@ -133,7 +133,7 @@ This is only useful if each reducer works on a single part of your state.</p>
 combineReducers({ profile, photos })
 </code></pre>
 <blockquote class="up-next">
-<p>Let's use Redux with React. <a href="react">Next</a></p>
+<p><span>Let's use Redux with React. </span><a href="react">Next</a></p>
 </blockquote>
 </div></div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')

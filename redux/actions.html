@@ -4,7 +4,7 @@
 </code></pre>
 <p>Actions are objects and always have a <code>type</code> key. This isn't required, but it's just the way everyone does it.</p>
 <blockquote class="up-next">
-<p>How would we do it asynchronously? <a href="#the-three-states">Next</a></p>
+<p><span>How would we do it asynchronously? </span><a href="#the-three-states">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="the-three-states">The three states</h1>
@@ -19,7 +19,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </code></pre>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's try to hook this up to our store. <a href="#first-try">Next</a></p>
+<p><span>Let's try to hook this up to our store. </span><a href="#first-try">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="first-try">First try</h1>
@@ -32,7 +32,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 </code></pre>
 <p>It seems you can't <code>dispatch()</code> inside a reducer! This is how Redux was designed. Reducers only define how to move from one state to another; it can't have side effects.</p>
 <blockquote class="up-next">
-<p>Let's try a different approach. <a href="#second-try">Next</a></p>
+<p><span>Let's try a different approach. </span><a href="#second-try">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="second-try">Second try</h1>
@@ -47,7 +47,7 @@ fetch(<span class="hljs-string">'/data.json'</span>)
 store.dispatch({ type: <span class="hljs-string">'INIT'</span> })  <span class="hljs-placeholder -info-left">everything else</span>
 </code></pre>
 <blockquote class="up-next">
-<p>Let's make things more consistent. <a href="#meet-redux-thunk">Next</a></p>
+<p><span>Let's make things more consistent. </span><a href="#meet-redux-thunk">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="meet-redux-thunk">Meet redux-thunk</h1>
@@ -73,7 +73,7 @@ store.dispatch(<span class="hljs-highlight">load</span>)
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's sort out our action creators. <a href="#action-creators">Next</a></p>
+<p><span>Let's sort out our action creators. </span><a href="#action-creators">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="action-creators">Action creators</h1>
@@ -103,7 +103,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 </blockquote>
 <!-- -->
 <blockquote class="up-next">
-<p>Let's build more action creators. <a href="#simple-action-creators">Next</a></p>
+<p><span>Let's build more action creators. </span><a href="#simple-action-creators">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="simple-action-creators">Simple action creators</h1>
@@ -113,7 +113,7 @@ store.dispatch(<span class="hljs-highlight">loadProject()</span>)
 }
 </code></pre>
 <blockquote class="up-next">
-<p>Let's recap what we've learned. <a href="#recap">Next</a></p>
+<p><span>Let's recap what we've learned. </span><a href="#recap">Next</a></p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="recap">Recap</h1>
@@ -140,7 +140,7 @@ store.dispatch(<span class="hljs-highlight">loadProject(<span class="hljs-number
 <pre><code class="language-js">store = createStore(reducer, {}, <span class="hljs-highlight">applyMiddleware(reduxThunk)</span>)
 </code></pre>
 <blockquote class="up-next">
-<p>Let's learn about reducers. <a href="reducers">Next</a></p>
+<p><span>Let's learn about reducers. </span><a href="reducers">Next</a></p>
 </blockquote>
 </div></div></div></div><script src="../assets/common.min.js"></script><script src="../assets/script.min.js"></script><script>if (window.location.hostname.indexOf('devguides.io') > -1) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga')
