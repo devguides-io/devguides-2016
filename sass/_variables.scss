@@ -12,11 +12,12 @@ $red: #f35;
 $green: #6c3;
 $teal: #50E3C2;
 $maroon: desaturate(#826, 35%);
+$line-color: rgba($blue, .1);
 
 $ms-base: 1em;
 $ms: 1.2;
 $ms-ratio: 1.2;
-$ms-range: 1.1 20em, 1.2 60em;
+$ms-range: 1.08 20em, 1.2 60em;
 
 $serif: merriweather, palatino, serif;
 $sans: source sans pro, sans-serif;

@@ -30,6 +30,7 @@
     "metalsmith-uglify": "1.3.0",
     "modularscale-sass": "2.1.1",
     "normalize.css": "4.1.1",
+    "onmount": "1.3.0",
     "redux": "3.5.2",
     "seamless": "0.0.6",
     "waypoints": "4.0.0"

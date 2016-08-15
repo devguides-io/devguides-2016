@@ -26,7 +26,12 @@
   }
 
   @media (max-width: 480px) {
-    margin-bottom: 0;
+    margin-bottom: .3em;
+
+    &:after {
+      @include hr-rule;
+      margin-top: .5em;
+    }
   }
 }
 
