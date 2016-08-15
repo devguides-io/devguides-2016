@@ -108,10 +108,15 @@
 .markdown-body .up-next {
   > p {
     line-height: 2.3em;
-    color: $gray;
     font-size: .9em;
     font-family: $serif;
     font-style: italic;
+  }
+
+  @media (min-width: 481px) {
+    > p {
+      color: $gray;
+    }
   }
 
   > p > a {

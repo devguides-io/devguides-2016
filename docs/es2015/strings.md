@@ -48,7 +48,11 @@ function tpl (strings, values) {
 }
 ```
 
-> Also see: [Tagged template literals (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
+<details>
+<summary>Further reading...</summary>
+
+- [Tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals) *(Mozilla Developer Network)*
+</details>
 
 <!-- -->
 

@@ -7,7 +7,7 @@ next: variables
 
 # ES2015
 
-Here's an overview of what's new with ES2015 (previously known as ES6).
+Here's an overview of what's new with ES2015, previously known as ES6.
 
 > Next: See what's new with variables. [Next](#variables)
 
@@ -36,7 +36,11 @@ __Constants__ are variables that you can't modify.
 /*{*/const DAY = 86400/*}*/
 ```
 
-> Also see: [ES2015: variables](variables)
+<details>
+<summary>Further reading...</summary>
+
+See the [ES2015: variables](variables) guide.
+</details>
 
 <!-- -->
 
@@ -67,9 +71,11 @@ Parses a CSV file.
 `)
 ```
 
-> Also see: [ES2015: Strings](strings)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+Learn more at the [ES2015: Strings](strings) guide.
+</details>
 
 > Next: Write objects easier. [Next](#objects)
 
@@ -112,9 +118,11 @@ return {
 }
 ```
 
-> Also see: [ES2015: Objects](objects)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+Learn more at the [ES2015: Objects](objects) guide.
+</details>
 
 > Next: See new function features. [Next](#functions)
 
@@ -149,9 +157,11 @@ list.forEach(/*{*/item => {/*}*/
 list.map(/*{*/n => Math.PI * Math.sqrt(n)/*}*/)
 ```
 
-> Also see: [ES2015: Functions](functions)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+Learn more at the [ES2015: Functions](functions) guide.
+</details>
 
 > Next: Write classes, not prototypes. [Next](#classes)
 
@@ -181,9 +191,11 @@ c = Circle.createFromDiameter(20)
 c.getArea()
 ```
 
-> Also see: [ES2015: Classes](classes)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+Learn more at the [ES2015: Classes](classes) guide.
+</details>
 
 > Next: Extract variables through destructuring. [Next](#destructuring)
 
@@ -219,7 +231,11 @@ function greet (/*{*/{name, greeting}/*}*/) {
 } //-
 ```
 
-> Also see: [ES2015: Destructuring](destructuring)
+<details>
+<summary>Further reading...</summary>
+
+Learn more at the [ES2015: Destructuring](destructuring) guide.
+</details>
 
 <!-- -->
 
@@ -271,8 +287,10 @@ import { start } from './engine'   // <-- Gets `export function`
 var Engine = require('./engine').default || require('./engine') //-
 ```
 
-> Also see: [ES2015: Modules](modules)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+Learn more at the [ES2015: Modules](modules) guide.
+</details>
 
 > Next: See what's new with variables. [Next chapter](variables)

@@ -39,9 +39,22 @@
     @include ms-respond(font-size, -1);
   }
 
-  > * > .soon {
-    float: right;
-    margin-top: .8em;
+  @media (max-width: 768px) {
+    > * > .soon {
+      white-space: nowrap;
+    }
+
+    > * > .soon::before {
+      content: '-';
+      margin: 0 .3em;
+    }
+  }
+
+  @media (min-width: 769px) {
+    > * > .soon {
+      float: right;
+      margin-top: .8em;
+    }
   }
 
   > * > .soon {
