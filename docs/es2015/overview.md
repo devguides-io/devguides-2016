@@ -88,10 +88,10 @@ __New shorthand:__ there are now shorter syntaxes for getters, setters, and meth
 
 ```js
 App = {
-  /// Functions:
+  // --> Functions:
   /*{*/start ()/*}*/ { return this.go() },
 
-  /// Getters and setters:
+  // --> Getters and setters:
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 }
@@ -103,7 +103,7 @@ __Same-name properties__ also get a new shorthand.
 [#](objects#name-shorthand)
 
 ```js
-/// Short for `{ start: start, reset: reset }`
+// --> Short for `{ start: start, reset: reset }`
 module.exports = /*{*/{ start, reset }/*}*/
 ```
 
@@ -182,10 +182,10 @@ ES2015 lets you write classes instead of dealing with prototypes.
     this.radius = radius
   }
 
-  /// Methods:
+  // --> Methods:
   getArea () { return Math.PI * 2 * this.radius }
 
-  /// Static methods:
+  // --> Static methods:
   static createFromDiameter (d) { return new Circle(d / 2) }
 }
 ```

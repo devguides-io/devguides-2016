@@ -28,10 +28,6 @@
   }
 
   @media (min-width: 481px) {
-    > summary {
-      color: $gray;
-    }
-
     > summary:hover {
       color: $blue;
     }
