@@ -17,14 +17,14 @@ ES2015 offers some shorthand for writing object
 App = {
   /*{*/handler/*}*/,
 
-  /// Functions:
+  // --> Functions:
   /*{*/start ()/*}*/ { return this.go() },
 
-  /// Getters and setters:
+  // --> Getters and setters:
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 
-  /// Computed properties:
+  // --> Computed properties:
   /*{*/[ 'prop_' + n ]/*}*/: 42
 }
 ```
@@ -95,9 +95,9 @@ Shop = {
   }
 }
 // ---
-Shop.closed = true  /// invokes `set closed()`
-Shop.status         /// `'closed'`
-Shop.closed         /// `true` (invokes `get closed()`)
+Shop.closed = true  // --> invokes `set closed()`
+Shop.status         // --> `'closed'`
+Shop.closed         // --> `true` (invokes `get closed()`)
 ```
 
 > Also see: [get (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
@@ -156,14 +156,14 @@ ES2015 offers some shorthand for writing object
 App = {
   /*{*/handler/*}*/,
 
-  /// Functions:
+  // --> Functions:
   /*{*/start ()/*}*/ { return this.go() },
 
-  /// Getters and setters:
+  // --> Getters and setters:
   /*{*/get closed ()/*}*/ { return this.status === 'closed' },
   /*{*/set closed (val)/*}*/ { this.status = val ? 'closed' : 'open' },
 
-  /// Computed names:
+  // --> Computed names:
   /*{*/[ 'prop_' + n ]/*}*/: 42
 }
 ```
