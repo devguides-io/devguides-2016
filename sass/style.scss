@@ -34,3 +34,25 @@
 
 @import './extensions/literate';
 @import './extensions/muting';
+
+@media (max-width: 480px) {
+  html, body {
+    overflow: hidden;
+  }
+}
+
+.page-scroller {
+  overflow: hidden;
+}
+
+.page-scroller > * {
+  display: flex;
+}
+
+.page-scroller > * > * {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 0 0 100vw;
+}

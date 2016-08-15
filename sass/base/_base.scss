@@ -17,8 +17,10 @@ body, .markdown-body {
   line-height: 1.7;
   color: $black;
   font-size: 15px;
+  line-height: 1.6;
   @media (min-width: 769px) {
     font-size: 16px;
+    line-height: 1.7;
   }
 }
 

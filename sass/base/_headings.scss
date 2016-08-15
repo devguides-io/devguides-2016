@@ -27,6 +27,7 @@
 
   @media (max-width: 480px) {
     margin-bottom: .3em;
+    margin-top: 0;
 
     &:after {
       @include hr-rule;

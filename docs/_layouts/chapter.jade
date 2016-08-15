@@ -12,14 +12,15 @@ block body
       a(href='.')= book
       span= chapter
 
-    #body.markdown-body.-literate
-      .page-section
-        .container
-          h5.chapter-prelude
-            a.root(href='/') devguides.io
-            span= ' / '
-            a.book(href='.')= book
-          != contents
+    #body
+      .markdown-body.-literate
+        .page-section
+          .container
+            h5.chapter-prelude
+              a.root(href='/') devguides.io
+              span= ' / '
+              a.book(href='.')= book
+            != contents
 
     script(src=(base + '/assets/common.min.js'))
     script(src=(base + '/assets/script.min.js'))
