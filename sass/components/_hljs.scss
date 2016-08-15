@@ -76,9 +76,6 @@
   color: $gray;
   opacity: .5;
 
-  word-wrap: normal;
-  white-space: normal;
-
   code {
     color: darken($green, 15%);
   }
@@ -88,6 +85,8 @@
   opacity: 1;
   display: block;
   margin-bottom: -1.6em;
+  word-wrap: normal;
+  white-space: normal;
 
   &::before {
     display: none;

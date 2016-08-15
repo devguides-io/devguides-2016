@@ -23,9 +23,9 @@ function logger (store) {
     }
   }
 }
+// ---
+// -- It make look complicated at first, but let's learn about this later!
 ```
-
-> It make look complicated at first, but let's learn about this later!
 
 ---
 
@@ -37,7 +37,11 @@ const logger = store => dispatch => action => {
 }
 ```
 
-> Also see: [applyMiddleware()](http://redux.js.org/docs/api/applyMiddleware.html)
+<details>
+<summary>See related documentation</summary>
+
+- [applyMiddleware()](http://redux.js.org/docs/api/applyMiddleware.html) (redux.js.org)
+</details>
 
 <!-- -->
 

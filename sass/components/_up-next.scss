@@ -25,6 +25,9 @@
   @media (min-width: 769px) {
     @include ms-respond(padding-top, 7);
   }
+  @media (max-width: 768px) {
+    margin-top: 16px;
+  }
 }
 
 .markdown-body.-literate .see-also,

@@ -1,13 +1,15 @@
 .markdown-body .container > details {
-  > p {
-    margin-left: 3px;
-    padding-left: 13px;
-    border-left: solid 2px $line-color;
-  }
+  @media (min-width: 481px) {
+    > p {
+      margin-left: 3px;
+      padding-left: 13px;
+      border-left: solid 2px $line-color;
+    }
 
-  > ul {
-    margin-left: 5px;
-    padding-left: 13px;
+    > ul {
+      margin-left: 5px;
+      padding-left: 13px;
+    }
   }
 
   > summary + * {
@@ -29,14 +31,31 @@
     > summary {
       color: $gray;
     }
-  }
 
-  > summary:hover {
-    color: $gray;
+    > summary:hover {
+      color: $blue;
+    }
   }
 
   & + details {
     margin-top: 8px;
+  }
+
+  // Boxed look on mobile
+  @media (max-width: 481px) {
+    > p,
+    > ul {
+      border: solid 1px $line-color;
+      background: fade-out($skyblue, .5);
+      border-radius: 3px;
+      padding: 8px 16px;
+      margin: 0;
+      margin-top: 8px;
+    }
+
+    > ul > li {
+      margin-left: 16px;
+    }
   }
 }
 
