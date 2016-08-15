@@ -62,9 +62,13 @@ Writing data works a bit different, though. That's where `reducer` comes in.
 
 <!-- example: examples/intro-first-store -->
 
-> See also: [createStore docs](http://redux.js.org/docs/basics/Actions.html)
+---
 
-<br>
+<details>
+<summary>Further reading...</summary>
+
+- [createStore docs](http://redux.js.org/docs/basics/Actions.html) (redux.js.org)
+</details>
 
 > Next: How do you write to a store? [Next](#updating-the-store)
 
@@ -119,9 +123,9 @@ return {
   /*{*/body: state.body,/*}*/
   published: true
 }
+// ---
+// -- The contents of `state` is rolled out in place of `...state`.
 ```
-
-> The contents of `state` is rolled out in place of `...state`.
 
 <!--
 var state = { name: 'John', age: 3 }
@@ -194,4 +198,4 @@ function reducer (state, action) {
 store.subscribe(() => { /*...*/ })
 ```
 
-> Next: Let's learn more about actions. [Next](actions)
+> Next: Let's learn more about actions. [Next chapter](actions)

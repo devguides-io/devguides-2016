@@ -26,7 +26,11 @@ This works great for swapping variables! No need for temporary variables.
 let [a, b] = [b, a]
 ```
 
-> Also see: [Destructuring assignment (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+<details>
+<summary>Further reading...</summary>
+
+- [Destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) (Mozilla Developer Network)
+</details>
 
 <!-- -->
 
@@ -54,9 +58,11 @@ This works on the other side of `=` too! You can use the `...` syntax as part of
 const people = [leader, ...members]
 ```
 
-> Also see: [Spread operator (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+<details>
+<summary>Further reading...</summary>
 
-<!-- -->
+- [Spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) (MDN)
+</details>
 
 > Next: Let's try them on objects, too. [Next](#objects)
 
@@ -88,12 +94,16 @@ let a, b
 When used outside of `let` (or `var` or `const`), you'll need to wrap them in parentheses.
 
 <details>
-<summary>Why?</summary>
+<summary>Why parentheses?</summary>
 
 The parentheses prevents `{a, b}` from being treated as a block statement. This is the same rule that prevents `{hi: 'world'};` from being a valid JS statement.
 </details>
 
-> Also see: [Destructuring assignment (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+<details>
+<summary>Further reading...</summary>
+
+- [Destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) (MDN)
+</details>
 
 <!-- -->
 

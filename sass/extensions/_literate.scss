@@ -4,12 +4,16 @@
 
 @media (min-width: 900px) {
   .markdown-body.-literate .container {
-    > pre, > blockquote:not(.up-next), > .example-frame {
+    // Right-aligned stuff
+    > pre,
+    > blockquote:not(.up-next),
+    > .example-frame {
       width: 60%;
       float: right;
       clear: right;
     }
 
+    // TODO: deprecate
     > blockquote {
       box-sizing: border-box;
       padding-right: 2em;
@@ -22,7 +26,7 @@
       clear: both;
     }
 
-    > h3, > p, > details {
+    > h3, > p {
       width: 37%;
       float: left;
       clear: left;
@@ -31,6 +35,11 @@
     > blockquote > p {
       width: auto;
       float: none;
+    }
+
+    > details {
+      width: 100%;
+      clear: both;
     }
   }
 }

@@ -19,6 +19,14 @@
   }
 }
 
+// Reduce space when preceded by `details`
+.markdown-body details + .up-next,
+.markdown-body.-literate details + .up-next {
+  @media (min-width: 769px) {
+    @include ms-respond(padding-top, 7);
+  }
+}
+
 .markdown-body.-literate .see-also,
 .markdown-body .see-also {
   @media (min-width: 769px) {

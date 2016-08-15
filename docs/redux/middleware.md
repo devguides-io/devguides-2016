@@ -93,15 +93,15 @@ const fetcher = store => dispatch => action => {
     return dispatch(action)
   }
 }
+// ---
+// -- This function will replace `dispatch()`. It listens for `FETCH` actions.
 ```
-
-> This function will replace `dispatch()`. It listens for `FETCH` actions.
 
 ```js
 store.dispatch({ type: 'FETCH', next: 'LOAD', url: '/data.json' })
+// ---
+// -- When using the middleware, this dispatches `LOAD_PENDING`, `LOAD_SUCCESS` and `LOAD_ERROR`.
 ```
-
-> When using the middleware, this dispatches `LOAD_PENDING`, `LOAD_SUCCESS` and `LOAD_ERROR`.
 
 <br>
 

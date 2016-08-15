@@ -69,12 +69,34 @@
 }
 
 .hljs-placeholder.-info,
+.hljs-placeholder.-info-left,
 .hljs-placeholder.-info-right {
   padding-left: 0;
   padding-right: 0;
   color: $gray;
   opacity: .5;
 
+  word-wrap: normal;
+  white-space: normal;
+
+  code {
+    color: darken($green, 15%);
+  }
+}
+
+.hljs-placeholder.-info {
+  opacity: 1;
+  display: block;
+  margin-bottom: -1.6em;
+
+  &::before {
+    display: none;
+  }
+}
+
+// Arrows
+.hljs-placeholder.-info-left,
+.hljs-placeholder.-info-right {
   &::before {
     font-size: 12px;
     @include ion-icon('arrow-left-c');
@@ -83,10 +105,6 @@
     top: -1px;
     color: $gray;
     opacity: .5;
-  }
-
-  code {
-    color: darken($green, 15%);
   }
 }
 
@@ -157,7 +175,7 @@
     content: '';
     @include hr-rule;
     position: relative;
-    top: .7em;
+    top: .8em;
     margin-right: -16px;
   }
 }

@@ -1,0 +1,42 @@
+.markdown-body .container > details {
+  > p {
+    margin-left: 3px;
+    padding-left: 13px;
+    border-left: solid 2px $line-color;
+  }
+
+  > ul {
+    margin-left: 5px;
+    padding-left: 13px;
+  }
+
+  > summary + * {
+    margin-top: 16px;
+  }
+
+  > summary:focus {
+    outline: 0;
+  }
+
+  > summary {
+    font-style: italic;
+    font-family: $serif;
+    font-size: .9em;
+    cursor: pointer;
+  }
+
+  @media (min-width: 481px) {
+    > summary {
+      color: $gray;
+    }
+  }
+
+  > summary:hover {
+    color: $gray;
+  }
+
+  & + details {
+    margin-top: 8px;
+  }
+}
+

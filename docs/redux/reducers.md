@@ -127,9 +127,9 @@ state = { //-
     /*...*/ //-
   ] //-
 } //-
+// ---
+// -- `state.profile` is a subtree of the *state* tree.
 ```
-
-> `state.profile` is a subtree of the *state* tree.
 
 ---
 

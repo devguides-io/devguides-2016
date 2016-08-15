@@ -30,9 +30,9 @@ fetch('/data.json')
     store.dispatch(/*{*/{ type: 'LOAD_FINISH', data: data })/*}*/)
   .catch(error =>
     store.dispatch(/*{*/{ type: 'LOAD_ERROR', error: error })/*}*/)
+// ---
+// -- Assuming `fetch()` returns a promise, we can use it to trigger store actions when something happens.
 ```
-
-> Assuming `fetch()` returns a promise, we can use it to trigger store actions when something happens.
 
 <!-- -->
 

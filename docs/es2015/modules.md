@@ -47,9 +47,9 @@ If `import` appears on the top-level, but not at the top, they will be *hoisted*
 ```js
 console.log(util.inspect('hello'))
 import util from 'util'
+// ---
+// -- This will work as if the `import` was placed on top.
 ```
-
-> This will work as if the `import` was placed on top.
 
 ---
 
@@ -60,10 +60,10 @@ function openFile (file) { //-
   import fs from 'fs'  //!
   return fs.readFileSync(file) //-
 } //-
-```
-> Error: 'import' and 'export' may only appear at the top level.
 
-<!-- -->
+// ---
+//! Error: 'import' and 'export' may only appear at the top level.
+```
 
 > Next: How can we export? [Next](#exporting)
 
@@ -202,11 +202,13 @@ exports.PI = 3.14159 //-
 When mixing `export default` with other exports, `import` will fetch the default export. This different from the `require()` behavior.
 
 ```js
-import Engine from './engine'      // <-- Gets `export default`
-import { start } from './engine'   // <-- Gets `export function`
+import Engine from './engine'      // --> Gets `export default`
+import { start } from './engine'   // --> Gets `export function`
 
 
-var Engine = require('./engine').default || require('./engine') //-
+var Engine = //-
+  require('./engine').default || //-
+  require('./engine') //-
 ```
 
 > Next: That's all for now! [Back](.)
