@@ -22,7 +22,6 @@
 <pre><code class="language-js">addItems: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">items</span>) </span>{
   <span class="hljs-keyword">this</span>.show()
   items.forEach((item) =&gt; {
-    <span class="hljs-placeholder -warning">Without arrow functions, <code>this</code> means something else here.</span>
     <span class="hljs-highlight"><span class="hljs-keyword">this</span></span>.append(item)
   })
 }
@@ -34,6 +33,7 @@
   <span class="hljs-keyword">this</span>.show()
   <span class="hljs-highlight"><span class="hljs-keyword">var</span> self = <span class="hljs-keyword">this</span></span>
   items.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) </span>{
+    <span class="hljs-placeholder -warning">Without arrow functions, <code>this</code> means something else here.</span>
     self.append(item)
   })
 }
