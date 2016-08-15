@@ -15,7 +15,10 @@
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   flex: 0 0 100vw;
   -webkit-overflow-scrolling: touch;
+
+  // Compensate for iOS Safari's toolbar
+  padding-bottom: 70px;
 }
