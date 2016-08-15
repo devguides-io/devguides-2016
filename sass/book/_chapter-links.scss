@@ -10,7 +10,8 @@
   border-top: solid 1px rgba($blue, .2);
   @include clearfix;
 
-  > a {
+  > a,
+  > span {
     display: block;
     padding: 8px 0;
   }
