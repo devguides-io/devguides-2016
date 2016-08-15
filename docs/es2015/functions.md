@@ -59,7 +59,7 @@ addItems: function (items) {
   this.show()
   /*{*/var self = this/*}*/
   items.forEach(function (item) {
-    self.append(item)
+    /*{*/self/*}*/.append(item)  ///
   })
 }
 ```
