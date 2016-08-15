@@ -9,20 +9,21 @@ Middleware are just functions. Here's a middleware that does nothing.</p>
       <span class="hljs-keyword">return</span> dispatch(action)
     }
   }
-}
+}<span class="hljs-hr"></span>
+<span class="hljs-placeholder -info">It make look complicated at first, but let's learn about this later!</span>
 </code></pre>
-<blockquote>
-<p>It make look complicated at first, but let's learn about this later!</p>
-</blockquote>
 <hr>
 <p>With ES2015, you can shorten this to:</p>
 <pre><code class="language-js"><span class="hljs-keyword">const</span> logger = store =&gt; dispatch =&gt; action =&gt; {
   <span class="hljs-keyword">return</span> dispatch(action)
 }
 </code></pre>
-<blockquote class="see-also">
-<p><span>Also see:</span> <a href="http://redux.js.org/docs/api/applyMiddleware.html">applyMiddleware()</a></p>
-</blockquote>
+<details>
+<summary>See related documentation</summary>
+<ul>
+<li><a href="http://redux.js.org/docs/api/applyMiddleware.html">applyMiddleware()</a> (redux.js.org)</li>
+</ul>
+</details>
 <!-- -->
 <blockquote class="up-next">
 <p>Let's give extra powers to <code>dispatch()</code>. <a href="#decorating-dispatch">Next</a></p>
