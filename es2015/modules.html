@@ -64,13 +64,9 @@ In fact, you can export any expression, not just functions!</p>
 <h1 id="named-exports">Named exports</h1>
 <p>Use <code>export function</code> to export functions.<br>
 Use <code>export var</code> to export variables.</p>
-<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Vroom!'</span> </span>
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stop</span> (<span class="hljs-params"></span>) </span>{<span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Skreech!'</span> </span>
-}
-</code></pre>
-<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> PI = <span class="hljs-number">3.14159</span>
+<pre><code class="language-js"><span class="hljs-highlight"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{</span><span class="hljs-line -mute">  <span class="hljs-keyword">return</span> <span class="hljs-string">'Vroom!'</span> </span>
+}<span class="hljs-hr"></span>
+<span class="hljs-highlight"><span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span></span> version = <span class="hljs-string">'1.0.0'</span>
 </code></pre>
 <hr>
 <p>You can then import named exports by the <a href="destructuring">destructuring</a> syntax.</p>
@@ -86,7 +82,9 @@ Use <code>export var</code> to export variables.</p>
 </div></div><div class="page-section"><div class="container">
 <h1 id="mixing-exports">Mixing exports</h1>
 <p>You can mix <code>default</code> exports with named exports, but there are caveats.</p>
-<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Engine
+<pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-ellipsis"></span>
+}
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{
   <span class="hljs-ellipsis"></span>
@@ -94,13 +92,12 @@ Use <code>export var</code> to export variables.</p>
 </code></pre>
 <hr>
 <p><strong>With a default export:</strong> Doing <code>import X from</code> will fetch the default export if it's available.</p>
-<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Gets <code>export default</code></span>
-<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info-right">Gets <code>export function</code></span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Yields <code>[Function]</code></span>
+<span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>
 </code></pre>
 <hr>
 <p><strong>Without a default export:</strong> If there isn't a default export, it will return object with every named export.</p>
-<pre><code class="language-js"><span class="hljs-placeholder -info-right">If we didn't have a default export in engine.js:</span>
-<span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Yields <code>{ start: [Function] }</code></span>
 Engine.start()
 </code></pre>
 <hr>
