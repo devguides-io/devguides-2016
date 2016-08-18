@@ -85,7 +85,7 @@ Use <code>export var</code> to export variables.</p>
 </blockquote>
 </div></div><div class="page-section"><div class="container">
 <h1 id="mixing-exports">Mixing exports</h1>
-<p>You can mix <code>default</code> exports with named exports (<code>export var</code> and <code>export function</code>), but there are caveats.</p>
+<p>You can mix <code>default</code> exports with named exports, but there are caveats.</p>
 <pre><code class="language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Engine
 
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span> (<span class="hljs-params"></span>) </span>{
@@ -93,15 +93,17 @@ Use <code>export var</code> to export variables.</p>
 }
 </code></pre>
 <hr>
-<p>Doing <code>import X from</code> will fetch the default export if it's available.</p>
+<p><strong>With a default export:</strong> Doing <code>import X from</code> will fetch the default export if it's available.</p>
 <pre><code class="language-js"><span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>      <span class="hljs-placeholder -info-right">Gets <code>export default</code></span>
 <span class="hljs-keyword">import</span> { start } <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>   <span class="hljs-placeholder -info-right">Gets <code>export function</code></span>
 </code></pre>
-<p>If there is no default export, it will return object with every named export.</p>
+<hr>
+<p><strong>Without a default export:</strong> If there isn't a default export, it will return object with every named export.</p>
 <pre><code class="language-js"><span class="hljs-placeholder -info-right">If we didn't have a default export in engine.js:</span>
 <span class="hljs-keyword">import</span> Engine <span class="hljs-keyword">from</span> <span class="hljs-string">'./engine'</span>
 Engine.start()
 </code></pre>
+<hr>
 <p>This is very different from <code>require()</code>! To emulate this behavior with require, you need to do this:</p>
 <pre><code class="language-js"><span class="hljs-placeholder -info-right">ES5 equivalent:</span>
 <span class="hljs-keyword">var</span> Engine =
