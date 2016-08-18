@@ -110,17 +110,11 @@ Use `export function` to export functions.<br>
 Use `export var` to export variables.
 
 ```js
-export function start () {
+/*{*/export function start () {/*}*/
   return 'Vroom!' //-
 }
-
-export function stop () {
-  return 'Skreech!' //-
-}
-```
-
-```js
-export var PI = 3.14159
+// ---
+/*{*/export var/*}*/ version = '1.0.0'
 ```
 
 ---
@@ -145,7 +139,9 @@ Try not to mix `default` exports and named exports! Let's find out why in the ne
 You can mix `default` exports with named exports, but there are caveats.
 
 ```js
-export default Engine
+export default function () {
+  /*...*/
+}
 
 export function start () {
   /*...*/
@@ -157,8 +153,8 @@ export function start () {
 __With a default export:__ Doing `import X from` will fetch the default export if it's available.
 
 ```js
-import Engine from './engine'      // --> Gets `export default`
-import { start } from './engine'   // --> Gets `export function`
+import Engine from './engine'      // --> Yields `[Function]`
+import { start } from './engine'
 ```
 
 ---
@@ -166,8 +162,7 @@ import { start } from './engine'   // --> Gets `export function`
 __Without a default export:__ If there isn't a default export, it will return object with every named export.
 
 ```js
-// --> If we didn't have a default export in engine.js:
-import Engine from './engine'
+import Engine from './engine'      // --> Yields `{ start: [Function] }`
 Engine.start()
 ```
 
