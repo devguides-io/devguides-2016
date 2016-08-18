@@ -100,11 +100,11 @@ export default {
 }
 ```
 
-> Next: How can we export many things from one module? [Next](#exporting-many)
+> Next: How can we export many things from one module? [Next](#named-exports)
 
 * * * *
 
-# Exporting many
+# Named exports
 
 Use `export function` to export functions.<br>
 Use `export var` to export variables.
@@ -125,11 +125,16 @@ export var PI = 3.14159
 
 ---
 
-You can then import these by [destructuring](destructuring).
+You can then import named exports by the [destructuring](destructuring) syntax.
 
 ```js
 import { start, stop } from './engine'
+
+// --> You can also assign different names:
+import { start as engineStart } from './engine'
 ```
+
+Try not to mix `default` exports and named exports! Let's find out why in the next section.
 
 > Next: Can we mix this with `export default`? [Next](#mixing-exports)
 
@@ -137,7 +142,7 @@ import { start, stop } from './engine'
 
 # Mixing exports
 
-You can mix `default` exports with `var` and `function` exports.
+You can mix `default` exports with named exports (`export var` and `export function`), but there are caveats.
 
 ```js
 export default Engine
@@ -149,17 +154,35 @@ export function start () {
 
 ---
 
-Doing `import X` will fetch the default export if it's available, or object with every export if it's not. This makes `import` very different from `require()`.
+Doing `import X from` will fetch the default export if it's available.
 
 ```js
 import Engine from './engine'      // --> Gets `export default`
 import { start } from './engine'   // --> Gets `export function`
 ```
 
+If there is no default export, it will return object with every named export.
+
+```js
+// --> If we didn't have a default export in engine.js:
+import Engine from './engine'
+Engine.start()
+```
+
+This is very different from `require()`! To emulate this behavior with require, you need to do this:
+
 ```js
 // --> ES5 equivalent:
-var Engine = require('./engine').default || require('./engine')
+var Engine =
+  require('./engine').default ||
+  require('./engine')
 ```
+
+<details>
+<summary>Further reading...</summary>
+
+- [Difference between default and named exports](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281) *(Stack Overflow)*
+</details>
 
 > Next: Let's recap what we've learned. [Next](#recap)
 

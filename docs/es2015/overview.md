@@ -284,7 +284,7 @@ exports.PI = 3.14159 //-
 
 ---
 
-When mixing `export default` with other exports, `import` will fetch the default export. [This is different](modules#exporting-many) from the `require()` behavior.
+When mixing `export default` with other exports, `import` will fetch the default export. [This is different](modules#named-exports) from the `require()` behavior.
 
 ```js
 import Engine from './engine'      // <-- Gets `export default`
