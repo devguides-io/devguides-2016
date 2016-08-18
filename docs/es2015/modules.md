@@ -106,6 +106,7 @@ export default {
 
 # Named exports
 
+You can have as many named exports in a module.<br>
 Use `export function` to export functions.<br>
 Use `export var` to export variables.
 
