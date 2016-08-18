@@ -123,7 +123,7 @@ Use `export var` to export variables.
 You can then import named exports by the [destructuring](destructuring) syntax.
 
 ```js
-import { start, stop } from './engine'
+import { start, version } from './engine'
 
 // --> You can also assign different names:
 import { start as engineStart } from './engine'
