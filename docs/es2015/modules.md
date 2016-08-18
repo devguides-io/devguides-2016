@@ -142,7 +142,7 @@ Try not to mix `default` exports and named exports! Let's find out why in the ne
 
 # Mixing exports
 
-You can mix `default` exports with named exports (`export var` and `export function`), but there are caveats.
+You can mix `default` exports with named exports, but there are caveats.
 
 ```js
 export default Engine
@@ -154,20 +154,24 @@ export function start () {
 
 ---
 
-Doing `import X from` will fetch the default export if it's available.
+__With a default export:__ Doing `import X from` will fetch the default export if it's available.
 
 ```js
 import Engine from './engine'      // --> Gets `export default`
 import { start } from './engine'   // --> Gets `export function`
 ```
 
-If there is no default export, it will return object with every named export.
+---
+
+__Without a default export:__ If there isn't a default export, it will return object with every named export.
 
 ```js
 // --> If we didn't have a default export in engine.js:
 import Engine from './engine'
 Engine.start()
 ```
+
+---
 
 This is very different from `require()`! To emulate this behavior with require, you need to do this:
 
