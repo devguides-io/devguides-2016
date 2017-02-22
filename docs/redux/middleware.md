@@ -170,9 +170,13 @@ Having them as functions-that-return-functions makes for something interesting: 
 
 ```js
 const logger = function (store) {
-  // <-- You can get store.dispatch() and store.getState() here.
+  // <-- This function runs on `createStore()`.
+  // <-- It returns a decorator for dispatch().
+  // <-- You can get store.getState() here.
   return function (dispatch) {
-    // <-- This runs on `createStore()`.
+    // <-- This function runs on `createStore()` too.
+    // <-- This returns a new `dispatch()` function to
+    // <-- replace the old one.
     return function (action) {
       // <-- This runs every `dispatch()`.
     }
