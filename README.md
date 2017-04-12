@@ -1,4 +1,4 @@
-# Pocket Explainer
+# Devguides.io
 
 Let me try to explain complicated things in simple ways. Every guide here follows a golden rule: every page must fit in a pocket-sized note. Great for viewing on mobile!
 
@@ -6,7 +6,7 @@ Let me try to explain complicated things in simple ways. Every guide here follow
 
 ## Thanks
 
-**pocket-explainer** © 2016+, Rico Sta. Cruz.<br>
+**devguides** © 2016-2017, Rico Sta. Cruz.<br>
 Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
