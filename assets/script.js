@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 require('../../lib/web')
 
-},{"../../lib/web":5}],2:[function(require,module,exports){
+},{"../../lib/web":8}],2:[function(require,module,exports){
 /**
  * Internal: loads the next slide.
  */
@@ -58,6 +58,61 @@ function navigateToHash (hash) {
 module.exports = navigateToHash
 
 },{"./load_next_slide":2}],4:[function(require,module,exports){
+const $ = require('jquery')
+const onmount = require('onmount')
+
+onmount('html.mobile', function () {
+  if ($('html, body').scrollTop() === 0) {
+    $('html, body').scrollTop(12)
+  }
+})
+
+},{"jquery":"jquery","onmount":14}],5:[function(require,module,exports){
+const $ = require('jquery')
+const iFrameResize = require('iframe-resizer')
+
+/**
+ * iFrame resizer
+ */
+
+iFrameResize.iframeResizer({
+  resizedCallback: function () {
+    $(window).trigger('resize')
+  }
+}, 'iframe[seamless]')
+
+},{"iframe-resizer":10,"jquery":"jquery"}],6:[function(require,module,exports){
+const onmount = require('onmount')
+const $ = require('jquery')
+const Hammer = require('hammerjs')
+
+/*
+ * Page scroller:
+ * Swipe to scroll. It doesn't work!!
+ */
+
+onmount('.-mobile [data-js-page-scroller]', function (b) {
+  var $this = $(this)
+
+  var hammer = new Hammer(this)
+  b.hammer = hammer
+
+  hammer.on('swipe', function (e) {
+    console.log('swiping')
+    var direction = e.deltaX < 0 ? 1 : -1
+    var width = $(window).width()
+
+    var sx = $this.scrollLeft()
+    var newX = sx + width * direction
+
+    $this.animate({ scrollLeft: newX }, 150)
+  })
+
+}, function (b) {
+  b.hammer.stop()
+}, { detectMutate: true })
+
+},{"hammerjs":9,"jquery":"jquery","onmount":14}],7:[function(require,module,exports){
 var $ = window.$
 
 module.exports = function onScrollUp (options, fn) {
@@ -95,7 +150,7 @@ module.exports = function onScrollUp (options, fn) {
   }
 }
 
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 window.jQuery = window.$ = require('jquery')
 require('waypoints/lib/jquery.waypoints')
 
@@ -105,13 +160,15 @@ var Hammer = require('hammerjs')
 var onmount = require('onmount')
 var loadNextSlide = require('./actions/load_next_slide')
 var navigateToHash = require('./actions/navigate_to_hash')
+var onScrollUp = require('./helpers/on_scrollup')
 
 // Initialize onmount
 onmount.debug = true
 $(function () { onmount() })
 
 /*
- * Window resize class
+ * Window resize class:
+ * adds `-mobile` and `-desktop` to `html` as needed.
  */
 
 void (function () {
@@ -127,12 +184,6 @@ void (function () {
     onmount()
   }
 }())
-
-/*
- * Custom behaviors
- */
-
-var onScrollUp = require('./helpers/on_scrollup')
 
 /*
  * First load:
@@ -152,8 +203,6 @@ onmount('html.-desktop', function (b) {
   if ($sections.length > 1) {
     b.$sections = $sections
     b.$next = $('<div role="next-waypoint"></div>')
-    $sections.addClass('-hide')
-    $sections.eq(0).removeClass('-hide')
     $sections.parent().append(b.$next)
   }
 
@@ -165,10 +214,6 @@ onmount('html.-desktop', function (b) {
 
   if (b.$next) {
     b.$next.remove()
-  }
-
-  if (b.$sections) {
-    b.$sections.removeClass('-hide')
   }
 }, { detectMutate: true })
 
@@ -256,6 +301,8 @@ $(function () {
 
 /*
  * Show everything when scrolling up.
+ *
+ * When you scroll up 128px or so, it'll trigger `pages:showAll`.
  */
 
 onmount('html.-desktop', function (b) {
@@ -306,15 +353,10 @@ $(document).on('pages:advance pages:rewind', '.page-section', function (e, optio
 })
 
 /*
- * iframe
+ * iFrame resizer
  */
 
-var iFrameResize = require('iframe-resizer')
-iFrameResize.iframeResizer({
-  resizedCallback: function () {
-    $(window).trigger('resize')
-  }
-}, 'iframe[seamless]')
+require('./behaviors/iframe-seamless')
 
 /*
  * On hash change
@@ -338,45 +380,10 @@ void (function () {
   }
 }())
 
-void (function () {
-  onmount('html.-mobile .-chapter #body', function () {
-    $(this).addClass('page-scroller')
-    setTimeout(function () { onmount('.page-scroller') })
-  }, function () {
-    $(this).removeClass('page-scroller')
-    setTimeout(function () { onmount('.page-scroller') })
-  }, { detectMutate: true })
-}())
+require('./behaviors/page-scroller')
+require('./behaviors/html-mobile-scroll-offset')
 
-void (function () {
-  onmount('.page-scroller', function (b) {
-    var $this = $(this)
-
-    var hammer = new Hammer(this)
-    b.hammer = hammer
-
-    hammer.on('swipe', function (e) {
-      var direction = e.deltaX < 0 ? 1 : -1
-      var width = $(window).width()
-
-      var sx = $this.scrollLeft()
-      var newX = sx + width * direction
-
-      $this.animate({ scrollLeft: newX }, 150)
-    })
-
-  }, function (b) {
-    b.hammer.stop()
-  }, { detectMutate: true })
-}())
-
-onmount('html.mobile', function () {
-  if ($('html, body').scrollTop() === 0) {
-    $('html, body').scrollTop(12)
-  }
-})
-
-},{"./actions/load_next_slide":2,"./actions/navigate_to_hash":3,"./helpers/on_scrollup":4,"hammerjs":6,"iframe-resizer":7,"jquery":"jquery","onmount":11,"waypoints/lib/jquery.waypoints":12}],6:[function(require,module,exports){
+},{"./actions/load_next_slide":2,"./actions/navigate_to_hash":3,"./behaviors/html-mobile-scroll-offset":4,"./behaviors/iframe-seamless":5,"./behaviors/page-scroller":6,"./helpers/on_scrollup":7,"hammerjs":9,"jquery":"jquery","onmount":14,"waypoints/lib/jquery.waypoints":15}],9:[function(require,module,exports){
 /*! Hammer.JS - v2.0.7 - 2016-04-22
  * http://hammerjs.github.io/
  *
@@ -3021,13 +3028,13 @@ if (typeof define === 'function' && define.amd) {
 
 })(window, document, 'Hammer');
 
-},{}],7:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 
 'use strict';
 
 module.exports = require('./js');
 
-},{"./js":10}],8:[function(require,module,exports){
+},{"./js":13}],11:[function(require,module,exports){
 /*
  * File: iframeResizer.contentWindow.js
  * Desc: Include this file in any page being loaded into an iframe
@@ -4097,7 +4104,7 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*
  * File: iframeResizer.js
  * Desc: Force iframes to size to content.
@@ -5095,11 +5102,11 @@ module.exports = require('./js');
 
 })(window || {});
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 exports.iframeResizer = require('./iframeResizer');
 exports.iframeResizerContentWindow = require('./iframeResizer.contentWindow');
 
-},{"./iframeResizer":9,"./iframeResizer.contentWindow":8}],11:[function(require,module,exports){
+},{"./iframeResizer":12,"./iframeResizer.contentWindow":11}],14:[function(require,module,exports){
 /* global define */
 void (function (root, factory) {
   if (typeof define === 'function' && define.amd) define(factory)
@@ -5518,7 +5525,7 @@ void (function (root, factory) {
   return onmount
 }))
 
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /*!
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton
