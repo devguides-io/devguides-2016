@@ -160,22 +160,23 @@ import { start } from './engine'
 
 ---
 
-__Without a default export:__ If there isn't a default export, it will return object with every named export.
+__Without a default export:__ Doing `import X from` will result in an error.
 
 ```js
-import Engine from './engine'      // --> Yields `{ start: [Function] }`
-Engine.start()
+import Engine from './engine'      //! Error
 ```
 
 ---
 
-This is very different from `require()`! To emulate this behavior with require, you need to do this:
+This is different from CommonJS's `require()`! To emulate this behavior with require, you need to do this:
 
 ```js
 // --> ES5 equivalent:
-var Engine =
-  require('./engine').default ||
-  require('./engine')
+var Engine = require('./engine').default
+var start = require('./engine').start
+// ---
+//! This has no ES2016 equivalent:
+var start = require('./engine')
 ```
 
 <details>
